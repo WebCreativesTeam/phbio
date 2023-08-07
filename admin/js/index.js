@@ -3478,6 +3478,7 @@ exports.default = (initLinks = [])=>({
         links: initLinks,
         draggingLinkId: null,
         draggedOverLinkId: null,
+        isInputFocused: false,
         addLink () {
             if (this.inputAddLinkValue.length && this.validateURL(this.inputAddLinkValue) && !this.linkExists(this.inputAddLinkValue)) {
                 this.links.push({

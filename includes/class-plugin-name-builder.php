@@ -135,7 +135,7 @@ class Plugin_Name_Builder {
                 <ul>
                     <template x-for="link in links">
                         <li 
-                            draggable="true" 
+                            x-bind:draggable="!isInputFocused" 
                             @dragstart="handleDragStart($event, link.id)" 
                             @drop="handleDrop($event, link.id)" 
                             @dragover="handleDragOver($event)"
@@ -152,7 +152,10 @@ class Plugin_Name_Builder {
                                 id="editionForm" 
                                 x-show="link.isEditing"
                             >
-                                <input x-model="inputEditLinkValue" type="text" placeholder="Edit your link..." @keyup.enter="editLink(link.id)" @keydown.enter.prevent />
+                                <input x-model="inputEditLinkValue" type="text" placeholder="Edit your link..." @keyup.enter="editLink(link.id)" @keydown.enter.prevent
+                                @focus="isInputFocused = true"
+                                @blur="isInputFocused = false"
+                                />
                                 <button type="button" @click="cancelEditLink()">Cancel</button>
                             </div>
                         </li>
