@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .dashboard {
+        @apply bg-gray-200 !important;
+    }
+}

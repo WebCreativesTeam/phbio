@@ -97,6 +97,8 @@ class Plugin_Name_Public {
 			true
 		);
 
+		
+
 	}
 
 	/**

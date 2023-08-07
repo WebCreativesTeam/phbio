@@ -193,8 +193,33 @@ class Plugin_Name_Admin {
 
 
 		?>
-		<div class="wrap">
-			<?php Plugin_Name_Builder::upload_field('profile_photo', 'Profile Photo', Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>
+		<div class="h-full p-6 mx-auto ">
+    <!-- Two Column Grid -->
+    <div class="grid h-full grid-cols-1 gap-3 bg-gray-200 md:grid-cols-4">
+
+        <!-- Main Content (3/4 width on desktop) -->
+        <div class="p-6 rounded md:col-span-3 ">
+			<div class="m-20 bg-gray-300">Ok</div>
+			<img class="w-20 h-20 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Rounded avatar">
+            <!-- Your main content goes here -->
+        </div>
+
+        <!-- Sidebar (1/4 width on desktop) -->
+        <div class="p-6 rounded">
+            <h2 class="mb-2 text-xl">Preview</h2>
+            <!-- Your sidebar content goes here -->
+        </div>
+
+    </div>
+</div>
+		<?php
+	}
+	
+
+	public static function render_playground() {
+		?>
+
+		<?php Plugin_Name_Builder::upload_field('profile_photo', 'Profile Photo', Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>
 			<?php Plugin_Name_Builder::upload_field('cover_photo', 'Cover Photo', Plugin_Name_Capabilities::EDIT_COVER, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>
 			
 			<form method="post">
@@ -208,10 +233,31 @@ class Plugin_Name_Admin {
 				<input type="submit" name="submit_form" value="Submit">
 				
 			</form>
-		</div>
+
 		<?php
 	}
-	
+
+	public static function render_preview() {
+		?>
+
+		<?php Plugin_Name_Builder::upload_field('profile_photo', 'Profile Photo', Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>
+			<?php Plugin_Name_Builder::upload_field('cover_photo', 'Cover Photo', Plugin_Name_Capabilities::EDIT_COVER, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>
+			
+			<form method="post">
+				<?php Plugin_Name_Builder::text_field('project', 'Project / Artist', 'Project / Artist:', Plugin_Name_Capabilities::EDIT_PROJECT_NAME, $user_id); ?>
+				<?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio:', Plugin_Name_Capabilities::EDIT_BIO, $user_id); ?>
+				<!-- EDIT_LINKS -->
+				<?php Plugin_Name_Builder::checkbox_field('branding' . '_chck', 'Remove Branding:', Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO, $user_id); ?>
+				<!-- HIGHLIGHT_LINK -->
+				<?php Plugin_Name_Builder::link_list_field( Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
+				
+				<input type="submit" name="submit_form" value="Submit">
+				
+			</form>
+
+		<?php
+	}
+
 	public static function user_column_button($columns) {
 		$columns['edit_btn'] = 'Edit Profile';
 		return $columns;
