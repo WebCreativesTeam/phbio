@@ -173,6 +173,8 @@ class Plugin_Name {
 		$plugin_admin = new Plugin_Name_Admin( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
 		$this->loader->add_action( 'init', $plugin_admin, 'role_manager' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'disable_notices', 0 );
+		$this->loader->add_action( 'all_admin_notices', $plugin_admin, 'disable_notices', 0 );
 		$this->loader->add_filter( 'manage_users_columns', $plugin_admin, 'user_column_button');
 		$this->loader->add_filter( 'manage_users_custom_column', $plugin_admin, 'user_column_button_cb', 10, 3);
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );

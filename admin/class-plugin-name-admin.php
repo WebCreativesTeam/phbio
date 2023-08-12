@@ -182,6 +182,18 @@ class Plugin_Name_Admin {
 		);
 	}
 
+	function disable_notices() {
+		
+		global $pagenow;
+	
+		// Check if we're on our custom page
+		if ( $pagenow == 'admin.php' && isset( $_GET['page'] ) && $_GET['page'] == 'my_custom_page_slug' ) {
+			// Remove all other actions hooked into admin_notices and all_admin_notices
+			remove_all_actions( 'admin_notices' );
+			remove_all_actions( 'all_admin_notices' );
+		}
+		
+	}
 	
 	function my_custom_admin_page( $hook_suffix ) {
 
