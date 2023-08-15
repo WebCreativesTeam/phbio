@@ -186,4 +186,38 @@
   .textarea-field {
     @apply w-full p-4  mt-2 transition-all bg-gray-100 rounded-md focus:ring-0 focus:border-transparent focus:outline-none border-0 resize-y placeholder-gray-500 !important;
   }
+
+  /* LINKS LIST */
+  .input-list-container {
+    @apply p-4 bg-gray-200 rounded-lg shadow-md;
+  }
+
+  .input-field-enhanced {
+    @apply w-full p-2 pl-4 placeholder-gray-500 bg-white border-0 rounded-lg focus:outline-none focus:ring-0;
+  }
+
+  .btn-remove,
+  .btn-edit {
+    @apply p-1 ml-2 text-white transition-colors duration-150 rounded-full;
+  }
+
+  .btn-remove {
+    @apply bg-red-500 hover:bg-red-600;
+  }
+
+  .btn-edit {
+    @apply bg-blue-500 hover:bg-blue-600;
+  }
+
+  .icon {
+    @apply inline-block w-4 h-4;
+  }
+
+  .link-item {
+    @apply flex items-center p-2 mt-2 bg-white rounded-md shadow-sm;
+  }
+
+  .description {
+    @apply mt-2 text-xs text-red-500;
+  }
 }

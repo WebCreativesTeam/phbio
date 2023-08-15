@@ -84,13 +84,7 @@ class Plugin_Name_Builder {
     }
 
 
-    public static function link_list_field($capability, $target_user_id) {
-        $value = Plugin_Name_Utilities::handle_user_meta('links_list', $capability, $target_user_id);
-        
-        $decodedString = urldecode($value);
-        $linksArray = json_decode($decodedString, true);
-    
-        /**  This following array would not work as it starts from 1 (Decoded string gives this)*/
+    /**  This following array would not work as it starts from 1 (Decoded string gives this)*/
 
         // $linksArray = array(
         //     1 => array(
@@ -117,72 +111,84 @@ class Plugin_Name_Builder {
         // );
         
 
-        /** Re-index to fix the above issue */
-        $reIndexedArray = array_values(is_array($linksArray) ? $linksArray : []);
-        
-        $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
-        
-        // Start the output buffering
-        ob_start();
-    
-        // Check capability
-        if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
-        } else {
-            ?>
-
-            <main x-data="dataList(<?php echo $links_json; ?>)">
-                <input 
-                    placeholder="Type link here..." 
-                    type="text" 
-                    name="links" 
-                    x-model="inputAddLinkValue"
-                    @keyup.enter="addLink()"
-                    @keydown.enter.prevent
-                />
-                <span x-text="linkError" class="text-danger"></span>
-                <ul>
-                    <template x-for="link in links">
-                        <li 
-                            x-bind:draggable="!isInputFocused" 
-                            @dragstart="handleDragStart($event, link.id)" 
-                            @drop="handleDrop($event, link.id)" 
-                            @dragover="handleDragOver($event)"
-                        >
-                            <div x-show="!link.isEditing">
-                                <span x-text="link.text">Item</span>
-                                &nbsp;&nbsp;&nbsp;
-                                <button type="button" @click="removeLink(link.id)">x</button>
-                                <button type="button" @click="showEditLinkForm(link.id)">
-                                    <img class="width:12px" src="./assets/icons/pen.svg" />
-                                </button>
-                            </div>
-                            <div 
-                                id="editionForm" 
-                                x-show="link.isEditing"
-                            >
-                                <input x-model="inputEditLinkValue" type="text" placeholder="Edit your link..." @keyup.enter="editLink(link.id)" @keydown.enter.prevent
-                                @focus="isInputFocused = true"
-                                @blur="isInputFocused = false"
-                                />
-                                <button type="button" @click="cancelEditLink()">Cancel</button>
-                            </div>
-                        </li>
-                    </template>
-                </ul>
-                <input type="hidden" name="links_list" x-model="linksJson" />
-            </main>
-
+        public static function link_list_field($capability, $target_user_id) {
+            $value = Plugin_Name_Utilities::handle_user_meta('links_list', $capability, $target_user_id);
             
-
-            <?php
+            $decodedString = urldecode($value);
+            $linksArray = json_decode($decodedString, true);
+        
+            /** Re-index to fix the above issue */
+            $reIndexedArray = array_values(is_array($linksArray) ? $linksArray : []);
+            
+            $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
+            
+            // Start the output buffering
+            ob_start();
+        
+            // Check capability
+            if (!Plugin_Name_Utilities::check_user_capability($capability)) {
+                echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
+            } else {
+                ?>
+                <main x-data="dataList(<?php echo $links_json; ?>)">
+                    <div class="input-container">
+                        <input 
+                            class="input-field-enhanced"
+                            placeholder="Type link here..." 
+                            type="text" 
+                            name="links" 
+                            x-model="inputAddLinkValue"
+                            @keyup.enter="addLink()"
+                            @keydown.enter.prevent
+                        />
+                    </div>
+                    <span x-text="linkError" class="text-danger"></span>
+                    <ul>
+                        <template x-for="link in links">
+                            <li 
+                                x-bind:draggable="!isInputFocused" 
+                                @dragstart="handleDragStart($event, link.id)" 
+                                @drop="handleDrop($event, link.id)" 
+                                @dragover="handleDragOver($event)"
+                            >
+                                <div x-show="!link.isEditing">
+                                    <span x-text="link.text">Item</span>
+                                    <button type="button" class="btn-remove" @click="removeLink(link.id)">x</button>
+                                    <button type="button" class="btn-edit" @click="showEditLinkForm(link.id)">
+                                        <img class="icon" src="./assets/icons/pen.svg" />
+                                    </button>
+                                </div>
+                                <div 
+                                    id="editionForm" 
+                                    x-show="link.isEditing"
+                                >
+                                    <input 
+                                        class="input-field-enhanced"
+                                        x-model="inputEditLinkValue" 
+                                        type="text" 
+                                        placeholder="Edit your link..." 
+                                        @keyup.enter="editLink(link.id)" 
+                                        @keydown.enter.prevent
+                                        @focus="isInputFocused = true"
+                                        @blur="isInputFocused = false"
+                                    />
+                                    <button type="button" @click="cancelEditLink()">Cancel</button>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                    <input type="hidden" name="links_list" x-model="linksJson" />
+                </main>
+        
+                <?php
+            }
+        
+            // Get the content from the output buffer and end buffering
+            $content = ob_get_clean();
+        
+            echo $content;
         }
-    
-        // Get the content from the output buffer and end buffering
-        $content = ob_get_clean();
-    
-        echo $content;
-    }
+        
     
     
 
