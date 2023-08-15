@@ -206,68 +206,8 @@ class Plugin_Name_Admin {
 
 		?>
 		<div class="h-full p-6 mx-auto ">
-    <!-- Two Column Grid -->
-    <div class="grid h-full grid-cols-1 gap-3 bg-gray-200 md:grid-cols-6">
-
-        <!-- Main Content (3/4 width on desktop) -->
-		<div class="p-6 rounded md:col-span-3">
-			<div class="relative m-5 bg-gray-300 bg-center bg-no-repeat bg-cover rounded-sm h-80" 
-				style="background-image: url('http://luca.local/wp-content/uploads/2023/08/kelly-sikkema-YXWoEn5uOvg-unsplash.jpg')"
-				x-data="{ mainOverlay: false, showOverlay: false }"
-				@mouseover="mainOverlay = true"
-				@mouseout="mainOverlay = false"
-			>
-				<!-- Main Container Overlay and Pencil Icon -->
-				<div x-show="mainOverlay" class="absolute inset-0 flex items-start justify-start bg-black bg-opacity-40">
-					<!-- Pencil Icon -->
-				
-					<button class="p-2 mt-2 ml-2 bg-white border-0 rounded-full outline-none focus:outline-none">
-						<svg width="16" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M15.197 3.35462C16.8703 1.67483 19.4476 1.53865 20.9536 3.05046C22.4596 4.56228 22.3239 7.14956 20.6506 8.82935L18.2268 11.2626M10.0464 14C8.54044 12.4882 8.67609 9.90087 10.3494 8.22108L12.5 6.06212" stroke="black" stroke-width="2" stroke-linecap="round"></path>
-							<path d="M13.9536 10C15.4596 11.5118 15.3239 14.0991 13.6506 15.7789L11.2268 18.2121L8.80299 20.6454C7.12969 22.3252 4.55237 22.4613 3.0464 20.9495C1.54043 19.4377 1.67609 16.8504 3.34939 15.1706L5.77323 12.7373" stroke="black" stroke-width="2" stroke-linecap="round"></path>
-						</svg>
-					</button>
-
-					<!-- Main Container File Input -->
-					<input 
-						type="file" 
-						class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" 
-					>
-				</div>
-				
-				<div 
-					class="absolute w-20 h-20 bottom-[-10%] left-[45%]"
-					@mouseover="showOverlay = true; $event.stopPropagation()"
-					@mouseout="showOverlay = false; $event.stopPropagation()"
-				>
-					<img class="w-20 h-20 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="Rounded avatar">
-					
-					<div x-show="showOverlay" class="absolute top-0 left-0 flex items-center justify-center w-20 h-20 bg-black rounded-full cursor-pointer bg-opacity-20">
-						<!-- Profile Picture File Input -->
-						<button class="p-2 bg-white border-0 rounded-full outline-none focus:outline-none">
-							<svg width="16" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path d="M15.197 3.35462C16.8703 1.67483 19.4476 1.53865 20.9536 3.05046C22.4596 4.56228 22.3239 7.14956 20.6506 8.82935L18.2268 11.2626M10.0464 14C8.54044 12.4882 8.67609 9.90087 10.3494 8.22108L12.5 6.06212" stroke="black" stroke-width="2" stroke-linecap="round"></path>
-								<path d="M13.9536 10C15.4596 11.5118 15.3239 14.0991 13.6506 15.7789L11.2268 18.2121L8.80299 20.6454C7.12969 22.3252 4.55237 22.4613 3.0464 20.9495C1.54043 19.4377 1.67609 16.8504 3.34939 15.1706L5.77323 12.7373" stroke="black" stroke-width="2" stroke-linecap="round"></path>
-							</svg>
-						</button>
-						<input 
-							type="file" 
-							class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer" 
-						>
-					</div>
-				</div>
-			</div>
-
-        </div>
-
-        <!-- Sidebar (1/4 width on desktop) -->
-        <div class="p-6 rounded">
-            <h2 class="mb-2 text-xl">Preview</h2>
-            <!-- Your sidebar content goes here -->
-        </div>
-
-    </div>
-</div>
+    
+		</div>
 		<?php
 	}
 	
