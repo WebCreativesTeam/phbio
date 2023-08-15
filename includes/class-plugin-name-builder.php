@@ -183,10 +183,10 @@ class Plugin_Name_Builder {
         $image_url = Plugin_Name_Utilities::handle_user_meta($name, Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE,  $target_user_id);
         ?>
 
-        <div class="upload-container <?php if(!Plugin_Name_Utilities::check_user_capability($capability)) { echo 'no-hover' ; } ?>">;
+        <div class="upload-container <?php if(!Plugin_Name_Utilities::check_user_capability($capability)) { echo 'no-hover' ; } ?>">
     
         <?php
-            if (isset($image_url)) {
+            if (isset($image_url) && strlen($image_url) > 2 && Plugin_Name_Utilities::check_user_capability($capability)) {
                 echo '<img src="' . esc_attr($image_url) . '" alt="Uploaded File" class="file-preview">';
             }
     
