@@ -247,7 +247,7 @@ class Plugin_Name_Admin {
 			?>
 
 			<?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio:', Plugin_Name_Capabilities::EDIT_BIO, $user_id); ?>
-
+			<?php Plugin_Name_Builder::link_list_field( Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
 			<input type="submit" name="submit_form" value="Submit">
 		</form>
 	</div>

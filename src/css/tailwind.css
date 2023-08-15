@@ -4,7 +4,7 @@
 
 @layer components {
   .dashboard-layout {
-    @apply flex items-start justify-center h-screen font-sans text-gray-800 bg-gray-200;
+    @apply flex items-start justify-center font-sans text-gray-800 bg-gray-200;
   }
 
   .main-area {

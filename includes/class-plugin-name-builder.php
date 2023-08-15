@@ -118,7 +118,7 @@ class Plugin_Name_Builder {
         
 
         /** Re-index to fix the above issue */
-        $reIndexedArray = array_values($linksArray);
+        $reIndexedArray = array_values(is_array($linksArray) ? $linksArray : []);
         
         $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
         
