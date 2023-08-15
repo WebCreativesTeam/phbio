@@ -205,14 +205,50 @@ class Plugin_Name_Admin {
 
 
 		?>
-		<div class="h-full p-6 mx-auto ">
-    
-		</div>
+		<div class="dashboard-layout">
+
+<div x-data="{ editMode: false }" 
+	 x-init="() => { 
+		 if (localStorage.getItem('editMode') !== null) { 
+			 editMode = (localStorage.getItem('editMode') === 'true'); 
+		 } 
+	 }" 
+	 class="main-area">
+	<!-- Actions Area -->
+	<div class="actions-area">
+		<h1 x-text="!editMode ? 'Edit Profile' : 'Profile Preview' " class="page-title"></h1>
+		<label class="toggle-label">
+			<input type="checkbox" x-model="editMode" @change="localStorage.setItem('editMode', editMode)" style="display: none !important">
+			<div class="toggle">
+				<div class="toggle__line"></div>
+				<div class="toggle__dot"></div>
+			</div>
+		</label>
+	</div>
+
+	<!-- Content Area -->
+	<div x-show="editMode" class="content-preview">
+		<!-- Profile Preview Goes Here -->
+
+	</div>
+
+	<div x-show="!editMode" class="content-edit">
+		<!-- Edit Profile Form Goes Here -->
+		<?php Plugin_Name_Builder::upload_field('profile_photo', 'Profile Photo', Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>
+		<?php Plugin_Name_Builder::upload_field('cover_photo', 'Cover Photo', Plugin_Name_Capabilities::EDIT_COVER, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>
+
+	</div>
+</div>
+
+</div>
+
+
+
 		<?php
 	}
 	
 
-	public static function render_playground() {
+	public static function render_playground( $user_id) {
 		?>
 
 		<?php Plugin_Name_Builder::upload_field('profile_photo', 'Profile Photo', Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>

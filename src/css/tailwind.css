@@ -3,7 +3,162 @@
 @tailwind utilities;
 
 @layer components {
-    .dashboard {
-        @apply bg-gray-200 !important;
+  .dashboard-layout {
+    @apply flex items-start justify-center h-screen font-sans text-gray-800 bg-gray-200;
+  }
+
+  .main-area {
+    @apply w-full max-w-screen-lg p-6;
+  }
+
+  .actions-area {
+    @apply flex items-center justify-between mb-6;
+  }
+
+  .page-title {
+    @apply text-2xl font-semibold text-gray-900;
+  }
+
+  .toggle-label {
+    @apply cursor-pointer;
+  }
+
+  .toggle {
+    @apply relative inline-block h-8 align-middle rounded-full cursor-pointer w-14 bg-gradient-to-r from-gray-400 to-gray-600;
+  }
+
+  .toggle__line {
+    @apply absolute w-full h-full transition-colors duration-300 rounded-full shadow-inner bg-gradient-to-r from-gray-500 to-gray-700;
+  }
+
+  .toggle__dot {
+    @apply absolute w-6 h-6 transition-transform duration-300 bg-white rounded-full shadow-md top-1 left-1 transform-gpu;
+  }
+
+  .toggle-label input:checked + .toggle .toggle__dot {
+    @apply transform translate-x-6 bg-blue-500;
+  }
+
+  .content-preview,
+  .content-edit {
+    @apply mt-4;
+  }
+
+  .content-title {
+    @apply text-lg font-medium text-gray-900;
+  }
+
+  /** Upload Field **/
+
+  .upload-container {
+    @apply relative flex flex-col items-center p-4 mb-4 transition-all border-2 border-gray-300 border-dashed rounded-md cursor-pointer hover:border-blue-500 md:flex-row md:space-x-4 md:justify-between;
+  }
+
+  .no-hover,
+  .no-hover input {
+    @apply cursor-not-allowed !important;
+  }
+  .upload-container.no-hover:hover {
+    @apply border-gray-300 cursor-not-allowed !important;
+  }
+
+  .upload-label {
+    @apply text-sm font-medium text-center text-gray-700 md:text-left;
+  }
+
+  .file-preview {
+    @apply object-cover w-32 h-32 mx-auto mb-4 rounded shadow-lg md:mb-0 md:order-last;
+  }
+
+  .upload-btn {
+    @apply w-full px-4 py-2 mt-2 font-bold text-white bg-blue-500 rounded md:w-auto md:mt-0 hover:bg-blue-700;
+  }
+
+  .upload-content {
+    @apply flex flex-col items-center justify-center w-full md:items-start;
+  }
+
+  .success {
+    @apply mt-2 text-center;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px 35px 20px 25px;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transform: translateX(calc(100% + 30px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+  }
+
+  .toast.active {
+    transform: translateX(0%);
+  }
+
+  .toast .toast-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .toast-content .check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    min-width: 35px;
+    background-color: #2770ff;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+  }
+
+  .toast-content .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+  }
+
+  .message .text {
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+  }
+
+  .message .text.text-1 {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .toast .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+  }
+
+  .toast .progress:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #2770ff;
+  }
+
+  .progress.active:before {
+    animation: progress 5s linear forwards;
+  }
+
+  @keyframes progress {
+    100% {
+      right: 100%;
     }
+  }
 }

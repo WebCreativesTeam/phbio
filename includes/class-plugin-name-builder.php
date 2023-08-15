@@ -181,28 +181,38 @@ class Plugin_Name_Builder {
         
         $name = $field_name . '_url';
         $image_url = Plugin_Name_Utilities::handle_user_meta($name, Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE,  $target_user_id);
-        if ($image_url) {
-            echo '<img src="' . esc_attr($image_url) . '" alt="Profile Photo">';
-        }
-        
-        if(!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<label for="' . esc_attr($name) . '">' . esc_html($label) . '</label>';
-            echo '<input type="file" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" disabled />';
-            echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
-        } else  {
+        ?>
 
-            echo '<form method="post" enctype="multipart/form-data">';
-            echo '<label for="' . esc_attr($name) . '">' . esc_html($label) . '</label>';
-            echo '<input type="file" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" accept="'. implode(',', $allowed_types) .'" />';
-            echo '<input type="submit" name="upload_' . esc_attr($name) . '" value="Upload" />';
-            echo '</form>';
+        <div class="upload-container <?php if(!Plugin_Name_Utilities::check_user_capability($capability)) { echo 'no-hover' ; } ?>">;
     
-          
-            if (substr($name, -4) === '_url' && isset($_FILES[$name]) && Plugin_Name_Utilities::check_user_capability($capability)) {
-                self::handle_avatar_upload($name, $allowed_types, $max_size, $target_user_id);
+        <?php
+            if (isset($image_url)) {
+                echo '<img src="' . esc_attr($image_url) . '" alt="Uploaded File" class="file-preview">';
             }
-        }
+    
+            echo '<div class="upload-content" >'; // Added this container
+    
+                if(!Plugin_Name_Utilities::check_user_capability($capability)) {
+                    echo '<label for="' . esc_attr($name) . '" class="block upload-label">' . esc_html($label) . '</label>';
+                    echo '<input type="file" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="absolute inset-0 w-full h-full opacity-0" disabled />';
+                    echo '<p class="mt-2 text-center text-red-600">' . esc_html(self::ERROR_MSG) . '</p>';
+                } else {
+                    echo '<form method="post" enctype="multipart/form-data">';
+                    echo '<label for="' . esc_attr($name) . '" class="block upload-label">' . esc_html($label) . '</label>';
+                    echo '<input type="file" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="absolute inset-0 w-full h-full opacity-0" accept="'. implode(',', $allowed_types) .'" onchange="this.form.submit()" />';
+                    echo '<input type="submit" value="Upload" class="mt-2 upload-btn" />';
+                    echo '</form>';
+    
+                    if (substr($name, -4) === '_url' && isset($_FILES[$name]) && Plugin_Name_Utilities::check_user_capability($capability)) {
+                        self::handle_avatar_upload($name, $allowed_types, $max_size, $target_user_id);
+                    }
+                }
+            
+            echo '</div>'; // Closing the upload-content container
+    
+        echo '</div>';
     }
+    
 
     private static function handle_avatar_upload($field_name, $allowed_types, $max_size, $target_user_id = null) {
         // If a target user ID isn't provided, use the current user's ID
@@ -254,7 +264,30 @@ class Plugin_Name_Builder {
             // Save the URL into the user's meta data
             update_user_meta($user_id, $field_name, $upload['url']);
     
-            echo '<p class="success">File uploaded successfully.</p>';
+            ?>
+
+            <div class="toast active">
+            
+            <div class="toast-content">
+                
+                <svg class="check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M14.72,8.79l-4.29,4.3L8.78,11.44a1,1,0,1,0-1.41,1.41l2.35,2.36a1,1,0,0,0,.71.29,1,1,0,0,0,.7-.29l5-5a1,1,0,0,0,0-1.42A1,1,0,0,0,14.72,8.79ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"></path></svg>
+                <div class="message">
+                <span class="text text-1">Success</span>
+                <span class="text text-2">Your changes has been saved</span>
+                </div>
+            </div>
+            <!-- Remove 'active' class, this is just to show in Codepen thumbnail -->
+            <div class="progress active"></div>
+            </div>
+            <script>
+                setTimeout(() => {
+                    window.location.assign(window.location.href);
+                }, 1500);
+
+            </script>
+            <?php
+            
+
         } else {
             echo '<p class="error">Something went wrong.</p>';
         }
