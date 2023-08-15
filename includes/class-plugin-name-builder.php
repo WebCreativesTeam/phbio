@@ -4,35 +4,44 @@ class Plugin_Name_Builder {
     
     const ERROR_MSG= "This functionality is only available for the Full Version";
 
-    public static function text_field($name, $value, $label, $capability, $target_user_id) {
+    public static function text_field($name, $value, $label, $icon, $capability, $target_user_id) {
         $value = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
-
+        ?>
+        <label for="<?php echo $name;?>" class="input-label"> <?php echo $label; ?></label>
+        <?php
+        echo '<div class="input-container">';
+        
+        // SVG icon
+        echo $icon;
+    
         // Display the field
         if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<label for="' . esc_attr($name) . '">' . esc_html($label) . '</label>';
-            echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($value) . '" disabled />';
+            echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($value) . '" class="input-field" placeholder="Artist or Project Name" disabled />';
             echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
         } else {
             // Render the enabled input field if the capability is met
-            echo '<label for="' . esc_attr($name) . '">' . esc_html($label) . '</label>';
-            echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($value) . '" />';
+            echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($value) . '" class="input-field" placeholder="Artist or Project Name" />';
         }
+        
+        echo '</div>'; // Closing div for input-container
     }
+    
 
     
     public static function textarea_field($name, $value, $label, $capability, $target_user_id) {
         $value = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
     
         // Display the field
+        echo '<label for="' . esc_attr($name) . '" class="textarea-label">' . esc_html($label) . '</label>';
+        
         if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<label for="' . esc_attr($name) . '">' . esc_html($label) . '</label>';
-            echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" disabled>' . esc_textarea($value) . '</textarea>';
+            echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="textarea-field" disabled rows="4" style="resize: none !important;">' . esc_textarea($value) . '</textarea>';
             echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
         } else {
-            echo '<label for="' . esc_attr($name) . '">' . esc_html($label) . '</label>';
-            echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '">' . esc_textarea($value) . '</textarea>';
+            echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="textarea-field" rows="4" style="resize: none !important;">' . esc_textarea($value) . '</textarea>';
         }
     }
+    
     
     
     public static function checkbox_field($name, $label, $capability, $target_user_id) {
