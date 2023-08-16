@@ -4,9 +4,9 @@ class Plugin_Name_Builder {
     
     const ERROR_MSG= "This functionality is only available for the Full Version";
 
-    public static function text_field($name, $value, $label, $icon, $capability, $target_user_id) {
+    public static function text_field($name, $value, $isValue , $label, $icon, $capability, $target_user_id) {
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
-        if(!$data) $data = $value;
+        if(!$data && $isValue) $data = $value;
         
         ?>
         <label for="<?php echo $name;?>" class="input-label"> <?php echo $label; ?></label>

@@ -191,7 +191,7 @@
   }
 
   .textarea-field {
-    @apply w-full p-4  mt-2 transition-all bg-gray-100 rounded-md focus:ring-0 focus:border-transparent focus:outline-none border-0 resize-y placeholder-gray-500 !important;
+    @apply w-full p-4 mb-8  mt-2 transition-all bg-gray-100 rounded-md focus:ring-0 focus:border-transparent focus:outline-none border-0 resize-y placeholder-gray-500 !important;
   }
 
   /* LINKS LIST */

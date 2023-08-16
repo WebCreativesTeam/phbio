@@ -613,6 +613,7 @@ select {
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 .textarea-field {
+    margin-bottom: 2rem !important;
     margin-top: 0.5rem !important;
     width: 100% !important;
     resize: vertical !important;
@@ -721,9 +722,6 @@ select {
 }
 .block {
     display: block;
-}
-.flex {
-    display: flex;
 }
 .hidden {
     display: none;
