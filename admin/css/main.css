@@ -444,8 +444,21 @@ select {
     background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 .content-preview,
-  .content-edit {
+  .content-edit,
+  .content-settings,
+  .content-templates {
     margin-top: 1rem;
+}
+.content-settings,
+  .content-templates {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    height: 100%;
+    width: 100%;
+    --tw-bg-opacity: 1;
+    background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 /** Upload Field **/
 .upload-container {
@@ -815,11 +828,23 @@ select {
 .absolute {
     position: absolute;
 }
+.relative {
+    position: relative;
+}
 .inset-0 {
     inset: 0px;
 }
 .mt-2 {
     margin-top: 0.5rem;
+}
+.ml-4 {
+    margin-left: 1rem;
+}
+.mt-4 {
+    margin-top: 1rem;
+}
+.mt-6 {
+    margin-top: 1.5rem;
 }
 .block {
     display: block;

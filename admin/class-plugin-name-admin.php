@@ -263,6 +263,106 @@ class Plugin_Name_Admin {
 	}
 	
 	function my_custom_admin_page( $hook_suffix ) {
+		$user_id = get_current_user_id(); // default to current logged-in user
+
+		if (current_user_can('administrator') && isset($_GET['user_id']) && is_numeric($_GET['user_id'])) {
+			$user_id = intval($_GET['user_id']); // use user_id from URL if admin
+		}
+		?>
+<div class="dashboard-layout">
+
+<div x-data="{ editMode: false, showSettings: false, showTemplates: false }" 
+     x-init="() => { 
+         if (localStorage.getItem('editMode') !== null) { 
+             editMode = (localStorage.getItem('editMode') === 'true'); 
+         } 
+     }" 
+     class="relative main-area"> <!-- Added relative positioning here -->
+
+    <!-- Actions Area -->
+    <div class="actions-area">
+        <h1 x-text="!editMode ? 'Edit Mode' : 'Preview Mode' " class="page-title"></h1>
+
+        <!-- New Flex Container for Buttons and Toggle -->
+        <div class="action-buttons">
+
+            <!-- Button: Select Template -->
+            <button @click="showTemplates = !showTemplates; showSettings = false;" class="template-btn">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19,2H9A3,3,0,0,0,6,5V6H5A3,3,0,0,0,2,9V19a3,3,0,0,0,3,3H15a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V5A3,3,0,0,0,19,2ZM16,19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H16Zm0-9H4V9A1,1,0,0,1,5,8H15a1,1,0,0,1,1,1Zm4,5a1,1,0,0,1-1,1H18V9a3,3,0,0,0-.18-1H20Zm0-9H8V5A1,1,0,0,1,9,4H19a1,1,0,0,1,1,1Z"></path></svg>
+                Select Template
+            </button>
+
+            <!-- Button: Settings (SVG only) -->
+            <button @click="showSettings = !showSettings; showTemplates = false;" class="settings-btn">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.9,12.66a1,1,0,0,1,0-1.32L21.18,9.9a1,1,0,0,0,.12-1.17l-2-3.46a1,1,0,0,0-1.07-.48l-1.88.38a1,1,0,0,1-1.15-.66l-.61-1.83A1,1,0,0,0,13.64,2h-4a1,1,0,0,0-1,.68L8.08,4.51a1,1,0,0,1-1.15.66L5,4.79A1,1,0,0,0,4,5.27L2,8.73A1,1,0,0,0,2.1,9.9l1.27,1.44a1,1,0,0,1,0,1.32L2.1,14.1A1,1,0,0,0,2,15.27l2,3.46a1,1,0,0,0,1.07.48l1.88-.38a1,1,0,0,1,1.15.66l.61,1.83a1,1,0,0,0,1,.68h4a1,1,0,0,0,.95-.68l.61-1.83a1,1,0,0,1,1.15-.66l1.88.38a1,1,0,0,0,1.07-.48l2-3.46a1,1,0,0,0-.12-1.17ZM18.41,14l.8.9-1.28,2.22-1.18-.24a3,3,0,0,0-3.45,2L12.92,20H10.36L10,18.86a3,3,0,0,0-3.45-2l-1.18.24L4.07,14.89l.8-.9a3,3,0,0,0,0-4l-.8-.9L5.35,6.89l1.18.24a3,3,0,0,0,3.45-2L10.36,4h2.56l.38,1.14a3,3,0,0,0,3.45,2l1.18-.24,1.28,2.22-.8.9A3,3,0,0,0,18.41,14ZM11.64,8a4,4,0,1,0,4,4A4,4,0,0,0,11.64,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,11.64,14Z"></path></svg>
+            </button>
+
+            <!-- Toggle -->
+            <label class="toggle-label">
+                <input type="checkbox" x-model="editMode" @change="localStorage.setItem('editMode', editMode)" style="display: none !important">
+                <div class="toggle">
+                    <div class="toggle__line"></div>
+                    <div class="toggle__dot"></div>
+                </div>
+            </label>
+
+        </div> <!-- End of Flex Container -->
+    </div>
+
+    <!-- Settings Content Area -->
+    <div x-show="showSettings" class=" content-settings">
+		 <!-- Back Button for Settings -->
+		 <button @click="showSettings = false" class="mt-6 ml-4 template-btn">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path></svg>
+			Back
+		</button>
+        Settings Content Goes Here
+    </div>
+
+    <!-- Templates Content Area -->
+    <div x-show="showTemplates" class=" content-templates">
+		<!-- Back Button for Templates -->
+		<button @click="showTemplates = false" class="mt-6 ml-4 template-btn">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path></svg>
+			Back
+		</button>
+        Templates Content Goes Here
+    </div>
+
+    <!-- Content Area for Edit Mode -->
+    <div x-show="editMode" class="content-preview">
+        <!-- Edit Profile Form Goes Here -->
+		
+
+    </div>
+
+    <!-- Content Area for Preview Mode -->
+    <div x-show="!editMode" class="content-edit">
+        <?php Plugin_Name_Builder::upload_field('profile_photo', 'Profile Photo', Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>
+		<?php Plugin_Name_Builder::upload_field('cover_photo', 'Cover Photo', Plugin_Name_Capabilities::EDIT_COVER, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>
+		
+		<form method="post">
+			<?php 
+			Plugin_Name_Builder::text_field('project', 
+			'Project / Artist', 
+			false,
+			'Project / Artist', 
+			'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M14.58,11.3a3.24,3.24,0,0,0,.71-2,3.29,3.29,0,0,0-6.58,0,3.24,3.24,0,0,0,.71,2,5,5,0,0,0-2,2.31,1,1,0,1,0,1.84.78A3,3,0,0,1,12,12.57h0a3,3,0,0,1,2.75,1.82,1,1,0,0,0,.92.61,1.09,1.09,0,0,0,.39-.08,1,1,0,0,0,.53-1.31A5,5,0,0,0,14.58,11.3ZM12,10.57h0a1.29,1.29,0,1,1,1.29-1.28A1.29,1.29,0,0,1,12,10.57ZM18,2H6A3,3,0,0,0,3,5V16a3,3,0,0,0,3,3H8.59l2.7,2.71A1,1,0,0,0,12,22a1,1,0,0,0,.65-.24L15.87,19H18a3,3,0,0,0,3-3V5A3,3,0,0,0,18,2Zm1,14a1,1,0,0,1-1,1H15.5a1,1,0,0,0-.65.24l-2.8,2.4L9.71,17.29A1,1,0,0,0,9,17H6a1,1,0,0,1-1-1V5A1,1,0,0,1,6,4H18a1,1,0,0,1,1,1Z"></path></svg>', 
+			Plugin_Name_Capabilities::EDIT_PROJECT_NAME, true, $user_id); 
+			?>
+
+			<?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio:', Plugin_Name_Capabilities::EDIT_BIO, true, $user_id); ?>
+			<input type="submit" name="submit_form" value="Submit" class="upload-btn">
+		</form>
+    </div>
+</div>
+
+</div>
+
+
+		<?php
+	}
+	function old2( $hook_suffix ) {
 
 		$user_id = get_current_user_id(); // default to current logged-in user
 
@@ -274,7 +374,7 @@ class Plugin_Name_Admin {
 		?>
 		<div class="dashboard-layout">
 
-<div x-data="{ editMode: false }" 
+<div x-data="{ editMode: false, showSettings: false, showTemplates: false }" 
 	 x-init="() => { 
 		 if (localStorage.getItem('editMode') !== null) { 
 			 editMode = (localStorage.getItem('editMode') === 'true'); 
@@ -288,13 +388,13 @@ class Plugin_Name_Admin {
 		 <div class="action-buttons">
 
 		<!-- Button: Select Template -->
-		<button class="template-btn">
+		<button @click="showTemplates = !showTemplates; showSettings = false;" class="template-btn">
 			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19,2H9A3,3,0,0,0,6,5V6H5A3,3,0,0,0,2,9V19a3,3,0,0,0,3,3H15a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V5A3,3,0,0,0,19,2ZM16,19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H16Zm0-9H4V9A1,1,0,0,1,5,8H15a1,1,0,0,1,1,1Zm4,5a1,1,0,0,1-1,1H18V9a3,3,0,0,0-.18-1H20Zm0-9H8V5A1,1,0,0,1,9,4H19a1,1,0,0,1,1,1Z"></path></svg>
 			Select Template
 		</button>
 
 		<!-- Button: Settings (SVG only) -->
-		<button class="settings-btn">
+		<button @click="showSettings = !showSettings; showTemplates = false;" class="settings-btn">
 		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.9,12.66a1,1,0,0,1,0-1.32L21.18,9.9a1,1,0,0,0,.12-1.17l-2-3.46a1,1,0,0,0-1.07-.48l-1.88.38a1,1,0,0,1-1.15-.66l-.61-1.83A1,1,0,0,0,13.64,2h-4a1,1,0,0,0-1,.68L8.08,4.51a1,1,0,0,1-1.15.66L5,4.79A1,1,0,0,0,4,5.27L2,8.73A1,1,0,0,0,2.1,9.9l1.27,1.44a1,1,0,0,1,0,1.32L2.1,14.1A1,1,0,0,0,2,15.27l2,3.46a1,1,0,0,0,1.07.48l1.88-.38a1,1,0,0,1,1.15.66l.61,1.83a1,1,0,0,0,1,.68h4a1,1,0,0,0,.95-.68l.61-1.83a1,1,0,0,1,1.15-.66l1.88.38a1,1,0,0,0,1.07-.48l2-3.46a1,1,0,0,0-.12-1.17ZM18.41,14l.8.9-1.28,2.22-1.18-.24a3,3,0,0,0-3.45,2L12.92,20H10.36L10,18.86a3,3,0,0,0-3.45-2l-1.18.24L4.07,14.89l.8-.9a3,3,0,0,0,0-4l-.8-.9L5.35,6.89l1.18.24a3,3,0,0,0,3.45-2L10.36,4h2.56l.38,1.14a3,3,0,0,0,3.45,2l1.18-.24,1.28,2.22-.8.9A3,3,0,0,0,18.41,14ZM11.64,8a4,4,0,1,0,4,4A4,4,0,0,0,11.64,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,11.64,14Z"></path></svg>
 		</button>
 
@@ -310,6 +410,18 @@ class Plugin_Name_Admin {
 		</div> <!-- End of Flex Container -->
 	</div>
 
+	<!-- Settings Content Area -->
+    <div x-show="showSettings" class="content-settings">
+        <!-- Settings Content Goes Here -->
+		ok
+    </div>
+
+    <!-- Templates Content Area -->
+    <div x-show="showTemplates" class="content-templates">
+        <!-- Templates Content Goes Here -->
+		ok2
+    </div>
+	
 	<!-- Content Area -->
 	<div x-show="editMode" class="content-preview">
 		<!-- Profile Preview Goes Here -->
@@ -332,7 +444,6 @@ class Plugin_Name_Admin {
 			?>
 
 			<?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio:', Plugin_Name_Capabilities::EDIT_BIO, true, $user_id); ?>
-			<?php Plugin_Name_Builder::link_list_field('Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
 			<input type="submit" name="submit_form" value="Submit" class="upload-btn">
 		</form>
 	</div>
