@@ -59,7 +59,7 @@
   }
 
   .toggle-label input:checked + .toggle .toggle__dot {
-    @apply transform translate-x-6 bg-blue-500;
+    @apply transform translate-x-6 bg-gray-200;
   }
 
   .content-preview,
