@@ -247,8 +247,8 @@ class Plugin_Name_Admin {
 			?>
 
 			<?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio:', Plugin_Name_Capabilities::EDIT_BIO, $user_id); ?>
-			<?php Plugin_Name_Builder::link_list_field( Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
-			<input type="submit" name="submit_form" value="Submit">
+			<?php Plugin_Name_Builder::link_list_field('Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
+			<input type="submit" name="submit_form" value="Submit" class="upload-btn">
 		</form>
 	</div>
 </div>
@@ -273,7 +273,7 @@ class Plugin_Name_Admin {
 				<!-- EDIT_LINKS -->
 				<?php Plugin_Name_Builder::checkbox_field('branding' . '_chck', 'Remove Branding:', Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO, $user_id); ?>
 				<!-- HIGHLIGHT_LINK -->
-				<?php Plugin_Name_Builder::link_list_field( Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
+				<?php Plugin_Name_Builder::link_list_field('Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
 				
 				<input type="submit" name="submit_form" value="Submit">
 				

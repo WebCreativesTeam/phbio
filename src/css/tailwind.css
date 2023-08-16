@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+  #wpcontent {
+    @apply bg-[#e5e7eb] !important;
+  }
   .dashboard-layout {
     @apply flex items-start justify-center font-sans text-gray-800 bg-gray-200;
   }

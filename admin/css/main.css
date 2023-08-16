@@ -269,6 +269,10 @@ select {
         max-width: 1536px;
     }
 }
+#wpcontent {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(229 231 235 / var(--tw-bg-opacity)) !important;
+}
 .dashboard-layout {
     display: flex;
     align-items: flex-start;

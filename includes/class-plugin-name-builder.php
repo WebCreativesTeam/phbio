@@ -111,7 +111,7 @@ class Plugin_Name_Builder {
         // );
         
 
-        public static function link_list_field($capability, $target_user_id) {
+        public static function link_list_field($label, $capability, $target_user_id) {
             $value = Plugin_Name_Utilities::handle_user_meta('links_list', $capability, $target_user_id);
             
             $decodedString = urldecode($value);
@@ -129,7 +129,10 @@ class Plugin_Name_Builder {
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
                 echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
             } else {
+                
                 ?>
+        <label class="input-label"> <?php echo $label; ?></label>
+
                 <main x-data="dataList(<?php echo $links_json; ?>)">
                     <div class="input-container">
                         <input 
