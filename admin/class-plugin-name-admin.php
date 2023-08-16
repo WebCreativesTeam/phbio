@@ -321,12 +321,101 @@ class Plugin_Name_Admin {
 
     <!-- Templates Content Area -->
     <div x-show="showTemplates" class=" content-templates">
-		<!-- Back Button for Templates -->
-		<button @click="showTemplates = false" class="mt-6 ml-4 template-btn">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path></svg>
-			Back
-		</button>
-        Templates Content Goes Here
+		<?php
+		$selected = Plugin_Name_Utilities::handle_user_meta('selected_template', 'read', $user_id); 
+		
+		?>
+		<!-- Flex container with space between "Back" and "Save" buttons -->
+<div class="flex items-center justify-between mt-6 ml-4">
+    <!-- Back Button for Templates -->
+    <button @click="showTemplates = false" class="template-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+        </svg>
+        Back
+    </button>
+
+    <!-- Save Button -->
+    <button @click="document.getElementById('templateForm').submit();" class="template-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <!-- SVG path for a save icon -->
+            <path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2zm-5 12a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"></path>
+        </svg>
+        Save
+    </button>
+</div>
+
+        <?php 
+
+		$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
+		$args = array(
+			'post_type' => 'template-manager',
+			'posts_per_page' => 999,
+			'paged' => $paged
+		);
+		$query = new WP_Query( $args );
+
+		?>
+
+		<?php if(isset($selected)) { ?>
+			<div x-data="{ selectedTemplate: '<?php echo $selected; ?>' }" class="mt-10 ml-4">
+				<?php } else { ?>
+			<div x-data="{ selectedTemplate: '' }" class="mt-10 ml-4">
+		<?php } ?>
+
+		
+
+    <div class="grid grid-cols-2 gap-4 lg:grid-cols-3">
+        <?php 
+        // Get current user role
+        $user = wp_get_current_user();
+        $role = ( $user->roles ) ? $user->roles[0] : false;
+
+        while( $query->have_posts() ) : $query->the_post(); 
+            $version = get_post_meta(get_the_ID(), '_version_key', true);
+            $version_display = ($version == 'lite') ? 'Lite Version' : 'Full Version';
+            $is_disabled = ($role === 'lite-version' && $version === 'full' && $role !== 'administrator');
+            
+            if ($is_disabled):
+        ?>
+            <div class="no-underline opacity-50 template-card">
+                <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="object-cover w-full mb-2 rounded-t h-44">
+                <div class="p-1">
+                    <div class="flex flex-col items-baseline mb-4 ml-4 sm:flex-row">
+                        <span class="template-version"><?php echo $version_display; ?></span>
+                        <h2 class="template-title"><?php the_title(); ?></h2>
+                    </div>
+                </div>
+            </div>
+        <?php else: ?>
+            <a href="#" 
+               @click.prevent="selectedTemplate = '<?php the_ID(); ?>'" 
+               class="no-underline template-card" 
+               :class="{ 'border-gray-800 rounded shadow-xl border-4 transition-all': selectedTemplate === '<?php the_ID(); ?>' }">
+                <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="object-cover w-full mb-2 rounded-t h-44">
+                <div class="p-1">
+                    <div class="flex flex-col items-baseline mb-4 ml-4 sm:flex-row">
+                        <span class="template-version"><?php echo $version_display; ?></span>
+                        <h2 class="template-title"><?php the_title(); ?></h2>
+                    </div>
+                </div>
+            </a>
+        <?php endif; endwhile; ?>
+    </div>
+    
+ 
+    <!-- Hidden Input for Selected Template -->
+	<form method="post" action="" id="templateForm">
+		<input type="hidden" x-model="selectedTemplate" name="selected_template">
+	</form>
+    <!-- Other form fields go here -->
+</form>
+
+    <input type="hidden" x-model="selectedTemplate" name="selected_template">
+</div>
+
+
+
     </div>
 
     <!-- Content Area for Edit Mode -->
@@ -582,7 +671,7 @@ class Plugin_Name_Admin {
 		register_post_type( 'template-manager', $args );
 	}
 
-	public static function template_version_mb( $hook_suffix ) {
+     function template_version_mb( $hook_suffix ) {
 		add_meta_box(
 			'version_id',
 			__( 'Version', 'text-domain' ),
@@ -591,7 +680,7 @@ class Plugin_Name_Admin {
 		);
 	}
 
-	public static function template_version_field( $post ) {
+    function template_version_field( $post ) {
 		$value = get_post_meta( $post->ID, '_version_key', true );
 		?>
 		<label for="version_field">Version:</label>
