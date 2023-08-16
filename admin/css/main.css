@@ -910,6 +910,9 @@ select {
 .inset-0 {
     inset: 0px;
 }
+.m-auto {
+    margin: auto;
+}
 .ml-4 {
     margin-left: 1rem;
 }
@@ -921,6 +924,9 @@ select {
 }
 .block {
     display: block;
+}
+.flex {
+    display: flex;
 }
 .hidden {
     display: none;
@@ -934,8 +940,20 @@ select {
 .resize {
     resize: both;
 }
+.items-center {
+    align-items: center;
+}
+.justify-center {
+    justify-content: center;
+}
+.p-2 {
+    padding: 0.5rem;
+}
 .text-center {
     text-align: center;
+}
+.align-middle {
+    vertical-align: middle;
 }
 .text-red-600 {
     --tw-text-opacity: 1;

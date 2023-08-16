@@ -252,6 +252,8 @@ class Plugin_Name_Builder {
         <?php
             if (isset($image_url) && strlen($image_url) > 2 && Plugin_Name_Utilities::check_user_capability($capability)) {
                 echo '<img src="' . esc_attr($image_url) . '" alt="Uploaded File" class="file-preview">';
+            } else {
+                echo '<div class="flex items-center justify-center p-2 align-middle file-preview"> No File Uploaded </div>';
             }
     
             echo '<div class="upload-content" >'; // Added this container
