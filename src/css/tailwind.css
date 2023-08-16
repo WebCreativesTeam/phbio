@@ -22,6 +22,10 @@
     @apply text-2xl font-semibold text-gray-900;
   }
 
+  .title-area {
+    @apply flex items-center gap-5;
+  }
+
   .toggle-label {
     @apply cursor-pointer;
   }
@@ -74,7 +78,7 @@
   }
 
   .upload-btn {
-    @apply w-full px-4 py-2 mt-2 font-bold text-white bg-blue-500 rounded md:w-auto md:mt-0 hover:bg-blue-700;
+    @apply w-full px-4 py-2 mt-2 font-bold text-white bg-blue-500 rounded cursor-pointer md:w-auto md:mt-0 hover:bg-blue-700;
   }
 
   .upload-content {
@@ -167,7 +171,7 @@
 
   /* Input */
   .input-container {
-    @apply relative flex items-center gap-2 p-2 mt-4 transition-all bg-gray-100 rounded-md md:p-4;
+    @apply relative flex items-center gap-2 p-2 mt-4 mb-8 transition-all bg-gray-100 rounded-md md:p-4;
   }
 
   .icon {

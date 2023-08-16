@@ -5,7 +5,9 @@ class Plugin_Name_Builder {
     const ERROR_MSG= "This functionality is only available for the Full Version";
 
     public static function text_field($name, $value, $label, $icon, $capability, $target_user_id) {
-        $value = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
+        $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
+        if(!$data) $data = $value;
+        
         ?>
         <label for="<?php echo $name;?>" class="input-label"> <?php echo $label; ?></label>
         <?php
@@ -16,11 +18,11 @@ class Plugin_Name_Builder {
     
         // Display the field
         if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($value) . '" class="input-field" placeholder="Artist or Project Name" disabled />';
+            echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '" disabled />';
             echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
         } else {
             // Render the enabled input field if the capability is met
-            echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($value) . '" class="input-field" placeholder="Artist or Project Name" />';
+            echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '" />';
         }
         
         echo '</div>'; // Closing div for input-container
