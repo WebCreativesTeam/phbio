@@ -18,8 +18,24 @@
     @apply flex items-center justify-between mb-6;
   }
 
+  .action-buttons {
+    @apply flex items-center space-x-4;
+  }
+
+  .template-btn {
+    @apply flex items-center gap-1 px-3 py-1 text-xs text-white transition-transform duration-150 transform bg-gray-800 rounded-full shadow-md cursor-pointer hover:scale-105 sm:gap-2 sm:px-4 sm:py-1 sm:text-sm md:gap-2 md:px-5 md:py-2 md:text-base;
+  }
+
+  .settings-btn {
+    @apply bg-transparent border-none cursor-pointer;
+  }
+
+  .toggle-label {
+    @apply ml-auto;
+  }
+
   .page-title {
-    @apply text-2xl font-semibold text-gray-900;
+    @apply text-sm font-semibold text-gray-900 sm:text-lg md:text-2xl;
   }
 
   .title-area {
@@ -58,7 +74,7 @@
   /** Upload Field **/
 
   .upload-container {
-    @apply relative flex flex-col items-center p-4 mb-4 transition-all border-2 border-gray-300 border-dashed rounded-md cursor-pointer hover:border-blue-500 md:flex-row md:space-x-4 md:justify-between;
+    @apply relative flex flex-col items-center p-4 mb-4 transition-all border-2 border-gray-300 border-dashed rounded-md cursor-pointer hover:border-gray-800 md:flex-row md:space-x-4 md:justify-between;
   }
 
   .no-hover,
@@ -78,7 +94,7 @@
   }
 
   .upload-btn {
-    @apply w-full px-4 py-2 mt-2 font-bold text-white bg-blue-500 rounded cursor-pointer md:w-auto md:mt-0 hover:bg-blue-700;
+    @apply px-5 py-2 text-white transition-transform duration-150 transform bg-gray-800 rounded-full shadow-md cursor-pointer hover:scale-105;
   }
 
   .upload-content {
@@ -231,5 +247,13 @@
   /* Character Limit */
   .char-counter {
     @apply absolute text-sm text-gray-500 bottom-2 right-2;
+  }
+
+  .textarea-char-counter {
+    @apply absolute text-sm text-gray-500 bottom-11 right-2;
+  }
+
+  .textarea-container {
+    @apply relative;
   }
 }

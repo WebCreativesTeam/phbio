@@ -52,21 +52,41 @@ class Plugin_Name_Builder {
     
     
     
-
-    
-    public static function textarea_field($name, $value, $label, $capability, $target_user_id) {
-        $value = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
-    
-        // Display the field
-        echo '<label for="' . esc_attr($name) . '" class="textarea-label">' . esc_html($label) . '</label>';
+    public static function textarea_field($name, $value, $label, $capability, $target_user_id, $hasLimit = true) {
+        $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
         
+        $char_limit = null;
+        if ($hasLimit) {
+            // Retrieve the character limit from WordPress for admin user with ID 1
+            $char_limit_key = 'limit_' . $name;
+            $char_limit = get_user_meta(1, $char_limit_key, true);
+            if (!$char_limit) {
+                $hasLimit = false;  // Disable the limit if char_limit is unset
+            }
+        }
+    
+        echo '<label for="' . esc_attr($name) . '" class="textarea-label">' . esc_html($label) . '</label>';
+    
+        if ($hasLimit && $char_limit) {
+            echo '<div class="textarea-container" x-data="{ charCount: ' . strlen($data) . ', charLimit: ' . $char_limit . ' }">';
+        } else {
+            echo '<div class="textarea-container">';
+        }
+    
         if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="textarea-field" disabled rows="4" style="resize: none !important;">' . esc_textarea($value) . '</textarea>';
+            echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="textarea-field" rows="4" disabled style="resize: none !important;">' . esc_textarea($data) . '</textarea>';
             echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
         } else {
-            echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="textarea-field" rows="4" style="resize: none !important;">' . esc_textarea($value) . '</textarea>';
+            echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="textarea-field" rows="4" ' . ($char_limit ? 'x-bind:maxlength="' . esc_attr($char_limit) . '" x-on:input="charCount = $event.target.value.length"' : '') . ' style="resize: none !important;">' . esc_textarea($data) . '</textarea>';
+            if ($hasLimit && $char_limit) {
+                echo '<span class="textarea-char-counter" x-text="`${charCount} / ${charLimit}`">' . strlen($data) . ' / ' . $char_limit . '</span>';
+            }
         }
+    
+        echo '</div>'; // Closing div for textarea-container
     }
+    
+    
     
     
     
