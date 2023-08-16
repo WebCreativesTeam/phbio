@@ -546,6 +546,72 @@ class Plugin_Name_Admin {
 		return $val;
 	}
 	
+	public static function template_manager( $hook_suffix ) {
+		$labels = array(
+			'name'               => _x( 'Templates', 'post type general name', 'text-domain' ),
+			'singular_name'      => _x( 'Template', 'post type singular name', 'text-domain' ),
+			'menu_name'          => _x( 'Template Manager', 'admin menu', 'text-domain' ),
+			'name_admin_bar'     => _x( 'Template', 'add new on admin bar', 'text-domain' ),
+			'add_new'            => _x( 'Add New', 'template', 'text-domain' ),
+			'add_new_item'       => __( 'Add New Template', 'text-domain' ),
+			'new_item'           => __( 'New Template', 'text-domain' ),
+			'edit_item'          => __( 'Edit Template', 'text-domain' ),
+			'view_item'          => __( 'View Template', 'text-domain' ),
+			'all_items'          => __( 'All Templates', 'text-domain' ),
+			'search_items'       => __( 'Search Templates', 'text-domain' ),
+			'not_found'          => __( 'No templates found.', 'text-domain' ),
+			'not_found_in_trash' => __( 'No templates found in Trash.', 'text-domain' )
+		);
+	
+		$args = array(
+			'labels'             => $labels,
+			'description'        => __( 'Description.', 'text-domain' ),
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => 'template-manager' ),
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+			'supports'           => array( 'title', 'editor', 'thumbnail' )
+		);
+	
+		register_post_type( 'template-manager', $args );
+	}
+
+	public static function template_version_mb( $hook_suffix ) {
+		add_meta_box(
+			'version_id',
+			__( 'Version', 'text-domain' ),
+			array($this, 'template_version_field'),    
+			'template-manager'
+		);
+	}
+
+	public static function template_version_field( $post ) {
+		$value = get_post_meta( $post->ID, '_version_key', true );
+		?>
+		<label for="version_field">Version:</label>
+		<select id="version_field" name="version_field">
+			<option value="lite" <?php selected( $value, 'lite' ); ?>>Lite Version</option>
+			<option value="full" <?php selected( $value, 'full' ); ?>>Full Version</option>
+		</select>
+		<?php
+	}
+
+	public static function template_version_field_save( $post_id ) {
+		if ( array_key_exists( 'version_field', $_POST ) ) {
+			update_post_meta(
+				$post_id,
+				'_version_key',
+				$_POST['version_field']
+			);
+		}
+	}
+
 
 
 	

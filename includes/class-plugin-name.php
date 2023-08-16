@@ -172,6 +172,9 @@ class Plugin_Name {
 
 		$plugin_admin = new Plugin_Name_Admin( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
 		$this->loader->add_action( 'init', $plugin_admin, 'role_manager' );
+		$this->loader->add_action( 'init', $plugin_admin, 'template_manager' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'template_version_mb' );
+		$this->loader->add_action( 'save_post', $plugin_admin, 'template_version_field_save' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
 		$this->loader->add_action( 'admin_notices', $plugin_admin, 'disable_notices', 0 );
 		$this->loader->add_action( 'all_admin_notices', $plugin_admin, 'disable_notices', 0 );
