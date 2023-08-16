@@ -227,4 +227,9 @@
   .description {
     @apply mt-2 text-xs text-red-500;
   }
+
+  /* Character Limit */
+  .char-counter {
+    @apply absolute text-sm text-gray-500 bottom-2 right-2;
+  }
 }

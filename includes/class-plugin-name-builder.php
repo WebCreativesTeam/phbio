@@ -4,29 +4,53 @@ class Plugin_Name_Builder {
     
     const ERROR_MSG= "This functionality is only available for the Full Version";
 
-    public static function text_field($name, $value, $isValue , $label, $icon, $capability, $target_user_id) {
+    public static function text_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true) {
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
-        if(!$data && $isValue) $data = $value;
+        if (!$data && $isValue) $data = $value;
         
-        ?>
-        <label for="<?php echo $name;?>" class="input-label"> <?php echo $label; ?></label>
-        <?php
-        echo '<div class="input-container">';
-        
-        // SVG icon
-        echo $icon;
-    
-        // Display the field
-        if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '" disabled />';
-            echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
-        } else {
-            // Render the enabled input field if the capability is met
-            echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '" />';
+        $char_limit = 0;
+        if ($hasLimit) {
+            // Retrieve the character limit from WordPress for admin user with ID 0
+            $char_limit_key = 'limit_' . $name;
+
+           
+            $char_limit = get_metadata('user', 1, $char_limit_key, true);
+            error_log(print_r($char_limit, true));
+            if (!$char_limit) {
+                $hasLimit = false;  // Disable the limit if char_limit is unset
+            }
         }
+        ?>
         
-        echo '</div>'; // Closing div for input-container
+        <label for="<?php echo $name; ?>" class="input-label"><?php echo $label; ?></label>
+        
+        <?php
+        if($hasLimit) {
+            echo '<div class="input-container" x-data="{ charCount: ' .  strlen($data) . ', charLimit: '.  $char_limit . '}">';
+        } else {
+            echo '<div class="input-container">';
+        }
+        ?>
+            <?php
+            // SVG icon
+            echo $icon;
+            
+            // Display the field
+            if (!Plugin_Name_Utilities::check_user_capability($capability)) {
+                echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' disabled />';
+                echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
+            } else {
+                echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' x-on:input="charCount = $event.target.value.length" />';
+            }
+            if ($hasLimit) {
+                echo '<span class="char-counter" x-text="`${charCount} / ${charLimit}`"></span>';
+            }
+            ?>
+        </div>
+        <?php
     }
+    
+    
     
 
     
