@@ -319,4 +319,13 @@
   .template-desc {
     @apply text-sm italic text-gray-700 no-underline;
   }
+
+  /* Filter */
+  .filter-item {
+    @apply text-sm text-gray-700 transition-all duration-200;
+  }
+
+  .filter-item:hover {
+    @apply text-gray-800;
+  }
 }

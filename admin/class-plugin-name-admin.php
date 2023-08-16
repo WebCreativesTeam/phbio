@@ -242,6 +242,15 @@ class Plugin_Name_Admin {
 							'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.11,15.39,8.23,19.27a2.47,2.47,0,0,1-3.5,0,2.46,2.46,0,0,1,0-3.5l3.88-3.88a1,1,0,1,0-1.42-1.42L3.31,14.36a4.48,4.48,0,0,0,6.33,6.33l3.89-3.88a1,1,0,0,0-1.42-1.42Zm-3.28-.22a1,1,0,0,0,.71.29,1,1,0,0,0,.71-.29l4.92-4.92a1,1,0,1,0-1.42-1.42L8.83,13.75A1,1,0,0,0,8.83,15.17ZM21,18H20V17a1,1,0,0,0-2,0v1H17a1,1,0,0,0,0,2h1v1a1,1,0,0,0,2,0V20h1a1,1,0,0,0,0-2Zm-4.19-4.47,3.88-3.89a4.48,4.48,0,0,0-6.33-6.33L10.47,7.19a1,1,0,1,0,1.42,1.42l3.88-3.88a2.47,2.47,0,0,1,3.5,0,2.46,2.46,0,0,1,0,3.5l-3.88,3.88a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0Z"></path></svg>', 
 							Plugin_Name_Capabilities::EDIT_PROJECT_NAME, false, $user_id); 
 							?>
+
+							<?php 
+							Plugin_Name_Builder::text_field('default_template', 
+							'10', 
+							false,
+							'Default Template ID', 
+							'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19,2H9A3,3,0,0,0,6,5V6H5A3,3,0,0,0,2,9V19a3,3,0,0,0,3,3H15a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V5A3,3,0,0,0,19,2ZM16,19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H16Zm0-9H4V9A1,1,0,0,1,5,8H15a1,1,0,0,1,1,1Zm4,5a1,1,0,0,1-1,1H18V9a3,3,0,0,0-.18-1H20Zm0-9H8V5A1,1,0,0,1,9,4H19a1,1,0,0,1,1,1Z"></path></svg>', 
+							Plugin_Name_Capabilities::EDIT_PROJECT_NAME, false, $user_id); 
+							?>
 							<input type="submit" name="submit_form" value="Submit" class="upload-btn">
 						</form>
 					</div>
@@ -271,7 +280,7 @@ class Plugin_Name_Admin {
 		?>
 <div class="dashboard-layout">
 
-<div x-data="{ editMode: false, activeTab: 'profile', showSettings: false, showTemplates: false }" 
+<div x-data="{ editMode: false, activeTab: 'profile', showSettings: false, showTemplates: false, activeFilter: 'all' }" 
      x-init="() => { 
          if (localStorage.getItem('editMode') !== null) { 
              editMode = (localStorage.getItem('editMode') === 'true'); 
@@ -323,6 +332,7 @@ class Plugin_Name_Admin {
     <div x-show="showTemplates" class=" content-templates">
 		<?php
 		$selected = Plugin_Name_Utilities::handle_user_meta('selected_template', 'read', $user_id); 
+		$default = get_user_meta(1, 'default_template', true);
 		
 		?>
 		<!-- Flex container with space between "Back" and "Save" buttons -->
@@ -344,6 +354,13 @@ class Plugin_Name_Admin {
         Save
     </button>
 </div>
+<!-- Filter Section -->
+<div  class="flex items-center justify-start gap-4 mt-10 ml-4">
+    <span @click="activeFilter = 'all'" :class="{'text-gray-800 font-bold': activeFilter === 'all'}" class="cursor-pointer filter-item">All</span>
+    <span @click="activeFilter = 'full'" :class="{'text-gray-800 font-bold': activeFilter === 'full'}" class="cursor-pointer filter-item">Full Version</span>
+    <span @click="activeFilter = 'lite'" :class="{'text-gray-800 font-bold': activeFilter === 'lite'}" class="cursor-pointer filter-item">Lite Version</span>
+</div>
+
 
         <?php 
 
@@ -357,11 +374,16 @@ class Plugin_Name_Admin {
 
 		?>
 
-		<?php if(isset($selected)) { ?>
+		<?php if(isset($selected) && strlen($selected) > 0) { ?>
 			<div x-data="{ selectedTemplate: '<?php echo $selected; ?>' }" class="mt-10 ml-4">
-				<?php } else { ?>
-			<div x-data="{ selectedTemplate: '' }" class="mt-10 ml-4">
+		<?php } else { ?>
+			<?php if(isset($default) && strlen($default) > 0) { ?>
+				<div x-data="{ selectedTemplate: '<?php echo $default; ?>' }" class="mt-10 ml-4">
+			<?php } else { ?>
+				<div x-data="{ selectedTemplate: '' }" class="mt-10 ml-4">
+			<?php } ?>
 		<?php } ?>
+		
 
 		
 
@@ -378,7 +400,7 @@ class Plugin_Name_Admin {
             
             if ($is_disabled):
         ?>
-            <div class="no-underline opacity-50 template-card">
+            <div class="no-underline opacity-50 template-card" x-show="activeFilter === 'all' || activeFilter === '<?php echo $version; ?>'" >
                 <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="object-cover w-full mb-2 rounded-t h-44">
                 <div class="p-1">
                     <div class="flex flex-col items-baseline mb-4 ml-4 sm:flex-row">
@@ -390,7 +412,8 @@ class Plugin_Name_Admin {
         <?php else: ?>
             <a href="#" 
                @click.prevent="selectedTemplate = '<?php the_ID(); ?>'" 
-               class="no-underline template-card" 
+               class="no-underline template-card"
+			   x-show="activeFilter === 'all' || activeFilter === '<?php echo $version; ?>'" 
                :class="{ 'border-gray-800 rounded shadow-xl border-4 transition-all': selectedTemplate === '<?php the_ID(); ?>' }">
                 <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="object-cover w-full mb-2 rounded-t h-44">
                 <div class="p-1">
