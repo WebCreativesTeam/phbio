@@ -262,4 +262,29 @@
   .textarea-container {
     @apply relative;
   }
+
+  /* Tabs */
+  .tab-headers {
+    @apply flex gap-4 my-8;
+  }
+
+  /* .tab-btn {
+    @apply flex items-center gap-2 px-4 py-2 font-medium text-gray-700 transition-transform duration-150 transform bg-gray-200 rounded shadow cursor-pointer hover:scale-105;
+  } */
+
+  .tab-btn {
+    @apply flex items-center gap-1 px-2 py-1 text-sm font-medium text-gray-700 transition-transform duration-150 transform bg-gray-200 rounded shadow cursor-pointer hover:scale-105 sm:gap-2 sm:px-3 sm:py-2 sm:text-base md:gap-2 md:px-4 md:py-2 md:text-sm;
+  }
+
+  .tab-btn svg {
+    @apply w-4 h-4;
+  }
+
+  .active-tab {
+    @apply text-white bg-gray-600;
+  }
+
+  .tab-content {
+    @apply py-4;
+  }
 }
