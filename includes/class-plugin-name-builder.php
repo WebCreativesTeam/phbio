@@ -16,7 +16,6 @@ class Plugin_Name_Builder {
 
            
             $char_limit = get_metadata('user', 1, $char_limit_key, true);
-            error_log(print_r($char_limit, true));
             if (!$char_limit) {
                 $hasLimit = false;  // Disable the limit if char_limit is unset
             }
