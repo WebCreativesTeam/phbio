@@ -6,6 +6,7 @@ class Plugin_Name_Builder {
 
     public static function text_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true) {
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
+        echo $data;
         if (!$data && $isValue) $data = $value;
         
         $char_limit = 0;
@@ -92,42 +93,37 @@ class Plugin_Name_Builder {
     
     public static function checkbox_field($name, $label, $capability, $target_user_id) {
         $value = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
-    
-        // Display the checkbox
+        echo $value;
+        // Check user capability
+        $disabledAttribute = !Plugin_Name_Utilities::check_user_capability($capability) ? 'disabled' : '';
+        $initialState = $value ? 'true' : 'false';
+        
+        echo '<div x-data="{ switchState: ' . $initialState . ' }">';
+        // Hidden Field
+        echo '<input type="hidden" name="' . esc_attr($name) . '" x-bind:value="switchState ? \'yes\' : \'no\'">';
+        
+        // Toggle Switcher with Label
+        echo '<label class="toggle-label">';
+        echo '<input type="checkbox" x-model="switchState" ' . $disabledAttribute . ' style="display: none !important">';
+        echo '<div class="toggle">';
+        echo '<div class="toggle__line"></div>';
+        echo '<div class="toggle__dot"></div>';
+        echo '</div>';
+        echo esc_html($label);
+        echo '</label>';
+        
+        // Error Message if disabled
         if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<label for="' . esc_attr($name) . '">';
-            echo '<input type="checkbox" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" ' . checked($value, '1', false) . ' disabled />';
-            echo esc_html($label) . '</label>';
             echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
-        } else {
-            echo '<label for="' . esc_attr($name) . '">';
-            echo '<input type="checkbox" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" ' . checked($value, '1', false) . ' />';
-            echo esc_html($label) . '</label>';
         }
+        
+        echo '</div>'; // Closing div for x-data
     }
     
     
     
-    public static function select_field($name, $options, $selected, $label, $capability, $target_user_id) {
-        $value = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
-        // Display the select field
-        if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<label for="' . esc_attr($name) . '">' . esc_html($label) . '</label>';
-            echo '<select name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" disabled>';
-            foreach ($options as $value => $option_label) {
-                echo '<option value="' . esc_attr($value) . '" ' . selected($value, $selected, false) . '>' . esc_html($option_label) . '</option>';
-            }
-            echo '</select>';
-            echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
-        } else {
-            echo '<label for="' . esc_attr($name) . '">' . esc_html($label) . '</label>';
-            echo '<select name="' . esc_attr($name) . '" id="' . esc_attr($name) . '">';
-            foreach ($options as $value => $option_label) {
-                echo '<option value="' . esc_attr($value) . '" ' . selected($value, $selected, false) . '>' . esc_html($option_label) . '</option>';
-            }
-            echo '</select>';
-        }
-    }
+    
+    
 
 
     /**  This following array would not work as it starts from 1 (Decoded string gives this)*/

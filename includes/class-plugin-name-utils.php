@@ -26,18 +26,7 @@ class Plugin_Name_Utilities {
         $user_id = $target_user_id ? $target_user_id : get_current_user_id();
     
        
-        // Handle checkbox fields
-        if (substr($name, -5) === '_chck') {
-            if (self::check_user_capability($capability)) {
-                // Check if form is posted
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    // Check for checkbox value, '1' for checked, '0' for unchecked
-                    $posted_value = isset($_POST[$name]) ? '1' : '0';
-                    update_user_meta($user_id, $name, $posted_value);
-                }
-            }
-            return get_user_meta($user_id, $name, true) === '1';
-        }
+        
         // Handle file upload fields
         if (substr($name, -4) === '_url' && isset($_FILES[$name]) && self::check_user_capability($capability)) {
             return get_user_meta($user_id, $name, true);
@@ -61,11 +50,12 @@ class Plugin_Name_Utilities {
         // If the field has been posted and the capability is met, save it
         if (isset($_POST[$name]) && self::check_user_capability($capability)) {
             $posted_value = sanitize_text_field($_POST[$name]);  // Always sanitize input!
+           
             update_user_meta($user_id, $name, $posted_value);
         }
     
         // Retrieve the updated value for the field
-        return get_user_meta($user_id, $name, true);
+         return get_user_meta($user_id, $name, true);
     }
     
 

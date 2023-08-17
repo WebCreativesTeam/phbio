@@ -319,13 +319,35 @@ class Plugin_Name_Admin {
     </div>
 
     <!-- Settings Content Area -->
-    <div x-show="showSettings" class=" content-settings">
-		 <!-- Back Button for Settings -->
-		 <button @click="showSettings = false" class="mt-6 ml-4 template-btn">
-			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path></svg>
-			Back
-		</button>
-        Settings Content Goes Here
+    <div x-show="showSettings" class="content-settings">
+        <div class="flex items-center justify-between mt-6">
+			<!-- Back Button for Templates -->
+			<button @click="showSettings = false" class="mt-6 ml-4 template-btn">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+					<path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+				</svg>
+				Back
+			</button>
+
+			<!-- Save Button -->
+			<button @click="document.getElementById('settingsForm').submit();" class="template-btn">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+					<!-- SVG path for a save icon -->
+					<path d="M17 3H7a2 2 0 0 0-2 2v16l7-3 7 3V5a2 2 0 0 0-2-2zm-5 12a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"></path>
+				</svg>
+				Save
+			</button>
+		</div>
+		<div class="mt-10 ml-5">
+			<!-- Hidden Input for Selected Template -->
+			<form method="post" action="" id="settingsForm">
+			<?php 
+				Plugin_Name_Builder::checkbox_field('access', 
+				'Enable Public Access', 
+				Plugin_Name_Capabilities::EDIT_PROJECT_NAME, true, $user_id); 
+				?>
+			</form>
+		</div>
     </div>
 
     <!-- Templates Content Area -->
@@ -431,10 +453,8 @@ class Plugin_Name_Admin {
 	<form method="post" action="" id="templateForm">
 		<input type="hidden" x-model="selectedTemplate" name="selected_template">
 	</form>
-    <!-- Other form fields go here -->
-</form>
+   
 
-    <input type="hidden" x-model="selectedTemplate" name="selected_template">
 </div>
 
 
