@@ -50,7 +50,6 @@ class Plugin_Name_Utilities {
         // If the field has been posted and the capability is met, save it
         if (isset($_POST[$name]) && self::check_user_capability($capability)) {
             $posted_value = sanitize_text_field($_POST[$name]);  // Always sanitize input!
-           
             update_user_meta($user_id, $name, $posted_value);
         }
     

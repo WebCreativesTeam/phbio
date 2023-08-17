@@ -6,7 +6,6 @@ class Plugin_Name_Builder {
 
     public static function text_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true) {
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
-        echo $data;
         if (!$data && $isValue) $data = $value;
         
         $char_limit = 0;
@@ -92,7 +91,7 @@ class Plugin_Name_Builder {
     
     public static function checkbox_field($name, $label, $capability, $target_user_id) {
         $value = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
-        echo $value;
+        var_dump(get_user_meta(1, 'access', true));
         // Check user capability
         $disabledAttribute = !Plugin_Name_Utilities::check_user_capability($capability) ? 'disabled' : '';
         $initialState = $value ? 'true' : 'false';
