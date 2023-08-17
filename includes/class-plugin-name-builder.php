@@ -40,6 +40,11 @@ class Plugin_Name_Builder {
                 echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
             } else {
                 echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' x-on:input="charCount = $event.target.value.length" />';
+
+                if ($name == 'username') {
+                    echo '<button type="button" class="check-availability-button" onclick="checkUsernameAvailability();">Check Availability</button>';
+                }
+
             }
             if ($hasLimit) {
                 echo '<span class="char-counter" x-text="`${charCount} / ${charLimit}`"></span>';
@@ -91,10 +96,11 @@ class Plugin_Name_Builder {
     
     public static function checkbox_field($name, $label, $capability, $target_user_id) {
         $value = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
-        var_dump(get_user_meta(1, 'access', true));
+        
         // Check user capability
         $disabledAttribute = !Plugin_Name_Utilities::check_user_capability($capability) ? 'disabled' : '';
-        $initialState = $value ? 'true' : 'false';
+        $initialState = ($value === 'yes') ? 'true' : 'false';
+
         
         echo '<div x-data="{ switchState: ' . $initialState . ' }">';
         // Hidden Field
@@ -103,7 +109,7 @@ class Plugin_Name_Builder {
         // Toggle Switcher with Label
         echo '<label class="toggle-label">';
         echo '<input type="checkbox" x-model="switchState" ' . $disabledAttribute . ' style="display: none !important">';
-        echo '<div class="toggle">';
+        echo '<div class="mr-4 toggle">';
         echo '<div class="toggle__line"></div>';
         echo '<div class="toggle__dot"></div>';
         echo '</div>';

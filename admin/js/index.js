@@ -575,9 +575,8 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"iym3p":[function(require,module,exports) {
 var _alpine = require("./vendors/alpine");
-var _toast = require("./vendors/components/toast");
 
-},{"./vendors/alpine":"eCjjK","./vendors/components/toast":"gnUse"}],"eCjjK":[function(require,module,exports) {
+},{"./vendors/alpine":"eCjjK"}],"eCjjK":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _alpinejs = require("alpinejs");
 var _alpinejsDefault = parcelHelpers.interopDefault(_alpinejs);
@@ -3560,8 +3559,6 @@ exports.default = (initLinks = [])=>({
         }
     });
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gnUse":[function(require,module,exports) {
-
-},{}]},["bEyVM","iym3p"], "iym3p", "parcelRequiref22c")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["bEyVM","iym3p"], "iym3p", "parcelRequiref22c")
 
 //# sourceMappingURL=index.js.map
