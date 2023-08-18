@@ -40,11 +40,6 @@ class Plugin_Name_Builder {
                 echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
             } else {
                 echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' x-on:input="charCount = $event.target.value.length" />';
-
-                if ($name == 'username') {
-                    echo '<button type="button" class="check-availability-button" onclick="checkUsernameAvailability();">Check Availability</button>';
-                }
-
             }
             if ($hasLimit) {
                 echo '<span class="char-counter" x-text="`${charCount} / ${charLimit}`"></span>';
