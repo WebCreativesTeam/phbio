@@ -508,7 +508,7 @@ class Plugin_Name_Admin {
 		
 		<form method="post">
 			<?php 
-			Plugin_Name_Builder::text_field('username', 
+			Plugin_Name_Builder::url_field('username', 
 			'Username', 
 			false,
 			'Username', 

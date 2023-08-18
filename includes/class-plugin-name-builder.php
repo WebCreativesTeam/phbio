@@ -50,6 +50,77 @@ class Plugin_Name_Builder {
     }
     
     
+    public static function url_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true) {
+        $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
+        if (!$data && $isValue) $data = $value;
+    
+        $char_limit = 0;
+        if ($hasLimit) {
+            $char_limit_key = 'limit_' . $name;
+            $char_limit = get_metadata('user', 1, $char_limit_key, true);
+            if (!$char_limit) {
+                $hasLimit = false;  // Disable the limit if char_limit is unset
+            }
+        }
+        ?>
+    
+        <div 
+             x-data="{ charCount: <?= strlen($data) ?>, charLimit: <?= $char_limit ?>, username: '<?= esc_attr($data) ?>', isAvailable: false, isLoading: false, message: '', hasChecked: false }" 
+             x-init="() => {
+                checkAvailability = () => {
+    charCount = username.length; // Add this line to update the charCount
+    isLoading = true;
+    hasChecked = true;
+    let formData = new FormData();
+    formData.append('action', 'callback');
+    formData.append('username', username);
+    formData.append('nonce', plugin.nonce);
+
+    fetch(plugin.ajax_url, {
+        method: 'POST',
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        isLoading = false;
+        isAvailable = data.available;
+        message = data.available ? 'Username is available.' : 'Username is already taken.';
+    })
+    .catch(error => {
+        isLoading = false;
+        console.error('Error:', error);
+    });
+};
+
+            }">
+    
+            <label for="<?php echo $name; ?>" class="input-label"><?php echo $label; ?></label>
+            <div x-text="message" x-bind:style="'visibility: ' + (hasChecked ? 'visible' : 'hidden')" :class="{'text-blue-400': isAvailable, 'text-red-500': !isAvailable && message !== ''}" ></div>
+            
+            <div class=" input-container">
+
+                <?php
+                // SVG icon
+                echo $icon;
+    
+                // Display the field
+                if (!Plugin_Name_Utilities::check_user_capability($capability)) {
+                    echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="checkAvailability" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" disabled />';
+                    echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
+                } else {
+                    echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="checkAvailability" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" />';
+                }
+                if ($hasLimit) {
+                    echo '<span class="char-counter" x-text="`${charCount} / ${charLimit}`"></span>';
+                }
+                ?>
+            </div>
+
+
+        </div>
+        <?php
+    }
+    
     
     public static function textarea_field($name, $value, $label, $capability, $target_user_id, $hasLimit = true) {
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
