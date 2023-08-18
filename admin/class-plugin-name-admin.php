@@ -361,6 +361,11 @@ class Plugin_Name_Admin {
 				'Enable Public Access', 
 				Plugin_Name_Capabilities::EDIT_PROJECT_NAME, $user_id); 
 				?>
+			<?php 
+				Plugin_Name_Builder::checkbox_field('logo', 
+				'Disable Website Logo', 
+				Plugin_Name_Capabilities::EDIT_PROJECT_NAME, $user_id); 
+				?>
 			</form>
 			
 		</div>

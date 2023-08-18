@@ -168,7 +168,7 @@ class Plugin_Name_Builder {
         $initialState = ($value === 'yes') ? 'true' : 'false';
 
         
-        echo '<div x-data="{ switchState: ' . $initialState . ' }">';
+        echo '<div x-data="{ switchState: ' . $initialState . ' }" style="margin-bottom: 2rem;">';
         // Hidden Field
         echo '<input type="hidden" name="' . esc_attr($name) . '" x-bind:value="switchState ? \'yes\' : \'no\'">';
         
