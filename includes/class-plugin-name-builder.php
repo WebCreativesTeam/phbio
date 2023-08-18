@@ -65,40 +65,43 @@ class Plugin_Name_Builder {
         ?>
     
         <div 
-             x-data="{ charCount: <?= strlen($data) ?>, charLimit: <?= $char_limit ?>, username: '<?= esc_attr($data) ?>', isAvailable: false, isLoading: false, message: '', hasChecked: false }" 
+             x-data="{ charCount: <?= strlen($data) ?>, charLimit: <?= $char_limit ?>, username: '<?= esc_attr($data) ?>', secureUsername: '<?= esc_attr($data) ?>', isAvailable: false, isLoading: false, message: '', hasChecked: false }" 
              x-init="() => {
                 checkAvailability = () => {
-    charCount = username.length; // Add this line to update the charCount
-    isLoading = true;
-    hasChecked = true;
-    let formData = new FormData();
-    formData.append('action', 'callback');
-    formData.append('username', username);
-    formData.append('nonce', plugin.nonce);
-
-    fetch(plugin.ajax_url, {
-        method: 'POST',
-        body: formData,
-    })
-    .then(response => response.json())
-    .then(data => {
-        isLoading = false;
-        isAvailable = data.available;
-        message = data.available ? 'Username is available.' : 'Username is already taken.';
-    })
-    .catch(error => {
-        isLoading = false;
-        console.error('Error:', error);
-    });
-};
-
+            charCount = username.length;
+            isLoading = true;
+            hasChecked = true;
+            let formData = new FormData();
+            formData.append('action', 'callback');
+            formData.append('username', username);
+            formData.append('nonce', plugin.nonce);
+    
+            fetch(plugin.ajax_url, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                isLoading = false;
+    isAvailable = data.available;
+    message = data.available ? 'Username is available.' : 'Username is already taken.';
+    if(data.available) {
+        secureUsername = username; // Update the hidden input only when the username is available
+    } else {
+        secureUsername = ''; // Clear the hidden input when the username is unavailable
+    }
+            })
+            .catch(error => {
+                isLoading = false;
+                console.error('Error:', error);
+            });
+        };
             }">
     
             <label for="<?php echo $name; ?>" class="input-label"><?php echo $label; ?></label>
             <div x-text="message" x-bind:style="'visibility: ' + (hasChecked ? 'visible' : 'hidden')" :class="{'text-blue-400': isAvailable, 'text-red-500': !isAvailable && message !== ''}" ></div>
-            
-            <div class=" input-container">
-
+    
+            <div class="input-container">
                 <?php
                 // SVG icon
                 echo $icon;
@@ -114,12 +117,13 @@ class Plugin_Name_Builder {
                     echo '<span class="char-counter" x-text="`${charCount} / ${charLimit}`"></span>';
                 }
                 ?>
+                <!-- The hidden input for the secure username -->
+                <input type="hidden" name="secureUsername" x-model="secureUsername" value="<?= esc_attr($data) ?>">
             </div>
-
-
         </div>
         <?php
     }
+    
     
     
     public static function textarea_field($name, $value, $label, $capability, $target_user_id, $hasLimit = true) {
