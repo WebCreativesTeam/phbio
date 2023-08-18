@@ -32,7 +32,7 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
             // Check if the CPT with this permalink exists
             $args = array(
                 'name'        => $username,
-                'post_type'   => 'post',
+                'post_type'   => 'hb-user-profile',
                 'post_status' => 'publish',
                 'numberposts' => 1
             );

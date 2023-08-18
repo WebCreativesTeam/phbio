@@ -174,6 +174,7 @@ class Plugin_Name {
 		$plugin_admin = new Plugin_Name_Admin( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
 		$this->loader->add_action( 'init', $plugin_admin, 'role_manager' );
 		$this->loader->add_action( 'init', $plugin_admin, 'template_manager' );
+		$this->loader->add_action( 'init', $plugin_admin, 'user_profile_manager' );
 		
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'template_version_mb' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'template_version_field_save' );
@@ -187,9 +188,8 @@ class Plugin_Name {
 
 		$plugin_ajax = new Plugin_Ajax( $this->get_plugin_name() );
 
-			
-			$this->loader->add_action( 'wp_ajax_nopriv_callback', $plugin_ajax, 'callback' );
-			$this->loader->add_action( 'wp_ajax_callback', $plugin_ajax, 'callback' );
+		$this->loader->add_action( 'wp_ajax_nopriv_callback', $plugin_ajax, 'callback' );
+		$this->loader->add_action( 'wp_ajax_callback', $plugin_ajax, 'callback' );
 	}
 
 	/**

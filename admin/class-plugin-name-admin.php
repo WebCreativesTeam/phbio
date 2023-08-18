@@ -743,6 +743,43 @@ class Plugin_Name_Admin {
 		register_post_type( 'template-manager', $args );
 	}
 
+	public static function user_profile_manager( $hook_suffix ) {
+		$labels = array(
+			'name'               => _x( 'User Profiles', 'post type general name', 'text-domain' ),
+			'singular_name'      => _x( 'User Profile', 'post type singular name', 'text-domain' ),
+			'menu_name'          => _x( 'User Profiles', 'admin menu', 'text-domain' ),
+			'name_admin_bar'     => _x( 'User Profile', 'add new on admin bar', 'text-domain' ),
+			'add_new'            => _x( 'Add New', 'user profile', 'text-domain' ),
+			'add_new_item'       => __( 'Add New User Profile', 'text-domain' ),
+			'new_item'           => __( 'New User Profile', 'text-domain' ),
+			'edit_item'          => __( 'Edit User Profile', 'text-domain' ),
+			'view_item'          => __( 'View User Profile', 'text-domain' ),
+			'all_items'          => __( 'All User Profiles', 'text-domain' ),
+			'search_items'       => __( 'Search User Profiles', 'text-domain' ),
+			'not_found'          => __( 'No user profiles found.', 'text-domain' ),
+			'not_found_in_trash' => __( 'No user profiles found in Trash.', 'text-domain' )
+		);
+	
+		$args = array(
+			'labels'             => $labels,
+			'description'        => __( 'User Profiles.', 'text-domain' ),
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => 'hb-user-profile' ),
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+			'supports'           => array( 'title', 'editor', 'thumbnail' )
+		);
+	
+		register_post_type( 'hb-user-profile', $args );
+	}
+	
+
      function template_version_mb( $hook_suffix ) {
 		add_meta_box(
 			'version_id',
