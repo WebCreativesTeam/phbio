@@ -372,11 +372,10 @@ class Plugin_Name_Admin {
     </div>
 
     <!-- Templates Content Area -->
-    <div x-show="showTemplates" class=" content-templates">
+    <div x-show="showTemplates" class="content-templates">
 		<?php
 		$selected = Plugin_Name_Utilities::handle_user_meta('selected_template', 'read', $user_id); 
-		$default = get_user_meta(1, 'default_template', true);
-		
+		$default = get_user_meta(1, 'default_template', true);		
 		?>
 		<!-- Flex container with space between "Back" and "Save" buttons -->
 <div class="flex items-center justify-between mt-6 ml-4">
@@ -810,6 +809,39 @@ class Plugin_Name_Admin {
 		}
 	}
 	
+	
+
+function render_user_profile_elementor_content($content) {
+    // Check if we're on a 'user-profile' post type
+    if(get_post_type() !== 'hb-user-profile') return $content;
+    
+    // Get the current post's associated user (assuming you've saved the user ID in the post meta with key 'associated_user')
+    $user_id = get_post_meta(get_the_ID(), 'associated_user', true);
+    
+    if (!$user_id) {
+        // Error: No associated user found.
+        return $content . '<p class="error">Error: No associated user found for this profile.</p>';
+    }
+    
+    // Get the template manager ID from the user meta
+    $template_manager_id = get_user_meta($user_id, 'selected_template', true);
+    
+    // If no template manager ID is found, return an error message
+    if(!$template_manager_id) {
+        return $content . '<p class="error">Error: No template found for this user.</p>';
+    }
+    
+    // Fetch the Elementor content and append or replace the original content
+    $elementor_content = \Elementor\Plugin::$instance->frontend->get_builder_content_for_display($template_manager_id);
+    
+    if (!$elementor_content) {
+        // Error: Failed to fetch Elementor content
+        return $content . '<p class="error">Error: Failed to load template content.</p>';
+    }
+    
+    return $content . $elementor_content;
+}
+
     
 
 
