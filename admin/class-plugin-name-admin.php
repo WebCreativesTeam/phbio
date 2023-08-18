@@ -775,7 +775,7 @@ class Plugin_Name_Admin {
 			'show_ui'            => true,
 			'show_in_menu'       => true,
 			'query_var'          => true,
-			'rewrite'            => array( 'slug' => 'hb-user-profile' ),
+			'rewrite'            => array( 'slug' => 'bio' ),
 			'capability_type'    => 'post',
 			'has_archive'        => true,
 			'hierarchical'       => false,
