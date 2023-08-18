@@ -65,37 +65,47 @@ class Plugin_Name_Builder {
         ?>
     
         <div 
-             x-data="{ charCount: <?= strlen($data) ?>, charLimit: <?= $char_limit ?>, username: '<?= esc_attr($data) ?>', secureUsername: '<?= esc_attr($data) ?>', isAvailable: false, isLoading: false, message: '', hasChecked: false }" 
-             x-init="() => {
-                checkAvailability = () => {
-            charCount = username.length;
-            isLoading = true;
-            hasChecked = true;
-            let formData = new FormData();
-            formData.append('action', 'callback');
-            formData.append('username', username);
-            formData.append('nonce', plugin.nonce);
+            x-data="{ charCount: <?= strlen($data) ?>, charLimit: <?= $char_limit ?>, username: '<?= esc_attr($data) ?>', secureUsername: '<?= esc_attr($data) ?>', isAvailable: false, isLoading: false, message: '', hasChecked: false }" 
+            x-init="() => {
+                isValidUsername = () => {
+                    return /^[a-zA-Z0-9-_]+$/.test(username);
+                };
     
-            fetch(plugin.ajax_url, {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                isLoading = false;
-    isAvailable = data.available;
-    message = data.available ? 'Username is available.' : 'Username is already taken.';
-    if(data.available) {
-        secureUsername = username; // Update the hidden input only when the username is available
-    } else {
-        secureUsername = ''; // Clear the hidden input when the username is unavailable
-    }
-            })
-            .catch(error => {
-                isLoading = false;
-                console.error('Error:', error);
-            });
-        };
+                checkAvailability = () => {
+                    charCount = username.length;
+                    if (!isValidUsername()) {
+                        message = 'Invalid username.';
+                        hasChecked = true;
+                        return;  // Exit the function without making the AJAX request
+                    }
+    
+                    isLoading = true;
+                    hasChecked = true;
+                    let formData = new FormData();
+                    formData.append('action', 'callback');
+                    formData.append('username', username);
+                    formData.append('nonce', plugin.nonce);
+    
+                    fetch(plugin.ajax_url, {
+                        method: 'POST',
+                        body: formData,
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        isLoading = false;
+                        isAvailable = data.available;
+                        message = data.available ? 'Username is available.' : 'Username is already taken.';
+                        if(data.available) {
+                            secureUsername = username; 
+                        } else {
+                            secureUsername = '<?= esc_js($data) ?>'; 
+                        }
+                    })
+                    .catch(error => {
+                        isLoading = false;
+                        console.error('Error:', error);
+                    });
+                };
             }">
     
             <label for="<?php echo $name; ?>" class="input-label"><?php echo $label; ?></label>
@@ -108,21 +118,22 @@ class Plugin_Name_Builder {
     
                 // Display the field
                 if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-                    echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="checkAvailability" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" disabled />';
+                    echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="checkAvailability" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" disabled />';
                     echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
                 } else {
-                    echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="checkAvailability" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" />';
+                    echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="checkAvailability" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" />';
                 }
+                // The hidden input which holds the real value to be saved
+                echo '<input type="hidden" name="' . esc_attr($name) . '" x-model="secureUsername" />';
                 if ($hasLimit) {
                     echo '<span class="char-counter" x-text="`${charCount} / ${charLimit}`"></span>';
                 }
                 ?>
-                <!-- The hidden input for the secure username -->
-                <input type="hidden" name="secureUsername" x-model="secureUsername" value="<?= esc_attr($data) ?>">
             </div>
         </div>
         <?php
     }
+    
     
     
     

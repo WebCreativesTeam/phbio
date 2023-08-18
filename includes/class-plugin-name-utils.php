@@ -49,7 +49,11 @@ class Plugin_Name_Utilities {
             
         // If the field has been posted and the capability is met, save it
         if (isset($_POST[$name]) && self::check_user_capability($capability)) {
-            $posted_value = sanitize_text_field($_POST[$name]);  // Always sanitize input!
+            if ($name === "username") {
+                $posted_value = sanitize_title($_POST[$name]);  // Use sanitize_title for URL safe strings
+            } else {
+                $posted_value = sanitize_text_field($_POST[$name]);  // Always sanitize input!
+            }
             update_user_meta($user_id, $name, $posted_value);
         }
     
