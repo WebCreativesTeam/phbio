@@ -1,4 +1,7 @@
 export default (initLinks = []) => ({
+  isDebugMode: false,
+  debugTime: new Date(), // initialize with the current time
+
   inputAddLinkValue: "",
   inputEditLinkValue: "",
   linkError: "",
@@ -153,7 +156,9 @@ export default (initLinks = []) => ({
     event.preventDefault();
   },
   applyScheduling() {
-    const currentTime = new Date().toISOString(); // Current time in ISO format
+    const currentTime = this.isDebugMode
+      ? this.debugTime
+      : new Date().toISOString(); // Use debug time if in debug mode
 
     this.links.forEach((link) => {
       if (link.isScheduled) {

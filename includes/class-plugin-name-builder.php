@@ -259,6 +259,7 @@ class Plugin_Name_Builder {
                 <label class="input-label"><?php echo $label; ?></label>
         
                 <main x-data="dataList(<?php echo $links_json; ?>)" x-init="applyScheduling()">
+
                     <div class="input-container">
                         <input 
                             class="input-field-enhanced"

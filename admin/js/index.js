@@ -3472,6 +3472,8 @@ exports.export = function(dest, destName, get) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 exports.default = (initLinks = [])=>({
+        isDebugMode: false,
+        debugTime: new Date(),
         inputAddLinkValue: "",
         inputEditLinkValue: "",
         linkError: "",
@@ -3582,7 +3584,7 @@ exports.default = (initLinks = [])=>({
             event.preventDefault();
         },
         applyScheduling () {
-            const currentTime = new Date().toISOString(); // Current time in ISO format
+            const currentTime = this.isDebugMode ? this.debugTime : new Date().toISOString(); // Use debug time if in debug mode
             this.links.forEach((link)=>{
                 if (link.isScheduled) {
                     // Convert string times to Date objects for easier comparison
