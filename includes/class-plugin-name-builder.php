@@ -240,7 +240,7 @@ class Plugin_Name_Builder {
 
         public static function link_list_field($label, $capability, $target_user_id) {
             $value = Plugin_Name_Utilities::handle_user_meta('links_list', $capability, $target_user_id);
-            
+        
             $decodedString = urldecode($value);
             $linksArray = json_decode($decodedString, true);
         
@@ -256,10 +256,9 @@ class Plugin_Name_Builder {
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
                 echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
             } else {
-                
                 ?>
-        <label class="input-label"> <?php echo $label; ?></label>
-
+                <label class="input-label"> <?php echo $label; ?></label>
+        
                 <main x-data="dataList(<?php echo $links_json; ?>)">
                     <div class="input-container">
                         <input 
@@ -268,9 +267,10 @@ class Plugin_Name_Builder {
                             type="text" 
                             name="links" 
                             x-model="inputAddLinkValue"
-                            @keyup.enter="addLink()"
                             @keydown.enter.prevent
                         />
+                        <!-- Button to add the link -->
+                        <button type="button" @click="addLink()">Add</button>
                     </div>
                     <span x-text="linkError" class="text-danger"></span>
                     <ul>

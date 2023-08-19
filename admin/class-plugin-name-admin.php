@@ -543,6 +543,11 @@ class Plugin_Name_Admin {
     
     <div x-show="activeTab === 'links'" class="tab-content">
         <!-- Links Content Goes Here -->
+		<form method="post">
+		<?php Plugin_Name_Builder::link_list_field( 'Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
+		<input type="submit" name="submit_form" value="Submit" class="upload-btn">
+
+		</form>
     </div>
 
     <div x-show="activeTab === 'analytics'" class="tab-content">
