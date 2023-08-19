@@ -237,7 +237,6 @@ class Plugin_Name_Builder {
         //     )
         // );
         
-
         public static function link_list_field($label, $capability, $target_user_id) {
             $value = Plugin_Name_Utilities::handle_user_meta('links_list', $capability, $target_user_id);
         
@@ -259,7 +258,7 @@ class Plugin_Name_Builder {
                 ?>
                 <label class="input-label"><?php echo $label; ?></label>
         
-                <main x-data="dataList(<?php echo $links_json; ?>)">
+                <main x-data="dataList(<?php echo $links_json; ?>)" x-init="applyScheduling()">
                     <div class="input-container">
                         <input 
                             class="input-field-enhanced"
@@ -309,7 +308,14 @@ class Plugin_Name_Builder {
                                         @focus="isInputFocused = true"
                                         @blur="isInputFocused = false"
                                     />
+                                    <button type="button" @click="editLink(link.id)">Save</button>
                                     <button type="button" @click="cancelEditLink()">Cancel</button>
+                                    <!-- Scheduling UI -->
+                                    <hr>
+                                    <label>Scheduling:</label>
+                                    <input type="datetime-local" x-model="link.start_time" placeholder="Start Time">
+                                    <input type="datetime-local" x-model="link.end_time" placeholder="End Time">
+                                    <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
                                 </div>
                             </li>
                         </template>
@@ -325,7 +331,7 @@ class Plugin_Name_Builder {
         
             echo $content;
         }
-        
+          
     
     
 

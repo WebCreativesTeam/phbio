@@ -3479,7 +3479,10 @@ exports.default = (initLinks = [])=>({
                 id: link.id || Date.now(),
                 text: link.text || "",
                 isHidden: link.isHidden || false,
-                highlight: link.highlight || false
+                highlight: link.highlight || false,
+                start_time: link.start_time || null,
+                end_time: link.end_time || null,
+                isScheduled: link.isScheduled || false
             })),
         draggingLinkId: null,
         draggedOverLinkId: null,
@@ -3511,8 +3514,8 @@ exports.default = (initLinks = [])=>({
             if (link) link.isHidden = !link.isHidden;
             console.log("Updated links after toggling hidden state:", this.links);
         },
-        linkExists (link) {
-            return this.links.some((item)=>item.text === link);
+        linkExists (link, excludingId = null) {
+            return this.links.some((item)=>item.text === link && item.id !== excludingId);
         },
         linksJson () {
             let json = JSON.stringify(this.links);
@@ -3528,7 +3531,7 @@ exports.default = (initLinks = [])=>({
             });
         },
         editLink (id) {
-            if (this.inputEditLinkValue.length && this.validateURL(this.inputEditLinkValue) && !this.linkExists(this.inputEditLinkValue)) {
+            if (this.inputEditLinkValue.length && this.validateURL(this.inputEditLinkValue) && !this.linkExists(this.inputEditLinkValue, id)) {
                 this.links = this.links.map((item)=>({
                         ...item,
                         text: item.id === id ? this.inputEditLinkValue : item.text,
@@ -3536,7 +3539,7 @@ exports.default = (initLinks = [])=>({
                     }));
                 this.linkError = "";
                 console.log(this.links);
-            } else if (this.linkExists(this.inputEditLinkValue)) this.linkError = "Link already exists.";
+            } else if (this.linkExists(this.inputEditLinkValue, id)) this.linkError = "Link already exists.";
             else this.linkError = "Please enter a valid URL.";
             console.log("Updated links after editing:", this.links);
         },
@@ -3577,6 +3580,19 @@ exports.default = (initLinks = [])=>({
         },
         handleDragOver (event) {
             event.preventDefault();
+        },
+        applyScheduling () {
+            const currentTime = new Date().toISOString(); // Current time in ISO format
+            this.links.forEach((link)=>{
+                if (link.isScheduled) {
+                    // Convert string times to Date objects for easier comparison
+                    const startTime = new Date(link.start_time);
+                    const endTime = new Date(link.end_time);
+                    // Check if current time is outside the scheduled window
+                    if (currentTime < startTime.toISOString() || currentTime > endTime.toISOString()) link.isHidden = true; // Hide the link
+                    else link.isHidden = false; // Show the link
+                }
+            });
         }
     });
 

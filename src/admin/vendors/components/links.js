@@ -7,6 +7,9 @@ export default (initLinks = []) => ({
     text: link.text || "",
     isHidden: link.isHidden || false,
     highlight: link.highlight || false,
+    start_time: link.start_time || null,
+    end_time: link.end_time || null,
+    isScheduled: link.isScheduled || false,
   })),
 
   draggingLinkId: null,
@@ -55,9 +58,12 @@ export default (initLinks = []) => ({
     }
     console.log("Updated links after toggling hidden state:", this.links);
   },
-  linkExists(link) {
-    return this.links.some((item) => item.text === link);
+  linkExists(link, excludingId = null) {
+    return this.links.some(
+      (item) => item.text === link && item.id !== excludingId
+    );
   },
+
   linksJson() {
     let json = JSON.stringify(this.links);
     return encodeURIComponent(json);
@@ -77,7 +83,7 @@ export default (initLinks = []) => ({
     if (
       this.inputEditLinkValue.length &&
       this.validateURL(this.inputEditLinkValue) &&
-      !this.linkExists(this.inputEditLinkValue)
+      !this.linkExists(this.inputEditLinkValue, id)
     ) {
       this.links = this.links.map((item) => ({
         ...item,
@@ -86,13 +92,14 @@ export default (initLinks = []) => ({
       }));
       this.linkError = "";
       console.log(this.links);
-    } else if (this.linkExists(this.inputEditLinkValue)) {
+    } else if (this.linkExists(this.inputEditLinkValue, id)) {
       this.linkError = "Link already exists.";
     } else {
       this.linkError = "Please enter a valid URL.";
     }
     console.log("Updated links after editing:", this.links);
   },
+
   cancelEditLink() {
     this.links = this.links.map((item) => ({
       ...item,
@@ -144,5 +151,26 @@ export default (initLinks = []) => ({
   },
   handleDragOver(event) {
     event.preventDefault();
+  },
+  applyScheduling() {
+    const currentTime = new Date().toISOString(); // Current time in ISO format
+
+    this.links.forEach((link) => {
+      if (link.isScheduled) {
+        // Convert string times to Date objects for easier comparison
+        const startTime = new Date(link.start_time);
+        const endTime = new Date(link.end_time);
+
+        // Check if current time is outside the scheduled window
+        if (
+          currentTime < startTime.toISOString() ||
+          currentTime > endTime.toISOString()
+        ) {
+          link.isHidden = true; // Hide the link
+        } else {
+          link.isHidden = false; // Show the link
+        }
+      }
+    });
   },
 });
