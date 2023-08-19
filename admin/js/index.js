@@ -3478,7 +3478,8 @@ exports.default = (initLinks = [])=>({
         links: initLinks.map((link)=>({
                 id: link.id || Date.now(),
                 text: link.text || "",
-                isHidden: link.isHidden || false
+                isHidden: link.isHidden || false,
+                highlight: link.highlight || false
             })),
         draggingLinkId: null,
         draggedOverLinkId: null,
@@ -3496,6 +3497,14 @@ exports.default = (initLinks = [])=>({
             } else if (this.linkExists(this.inputAddLinkValue)) this.linkError = "Link already exists.";
             else this.linkError = "Please enter a valid URL.";
             console.log("Updated links after adding:", this.links);
+        },
+        toggleHighlightLink (id) {
+            let isCurrentLinkHighlighted = this.links.find((link)=>link.id === id).highlight;
+            this.links.forEach((link)=>{
+                if (link.id === id) link.highlight = !isCurrentLinkHighlighted;
+                else link.highlight = false;
+            });
+            console.log("Updated links after toggling highlight:", this.links);
         },
         toggleHideLink (id) {
             const link = this.links.find((link)=>link.id === id);

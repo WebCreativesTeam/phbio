@@ -6,7 +6,9 @@ export default (initLinks = []) => ({
     id: link.id || Date.now(),
     text: link.text || "",
     isHidden: link.isHidden || false,
+    highlight: link.highlight || false,
   })),
+
   draggingLinkId: null,
   draggedOverLinkId: null,
   isInputFocused: false,
@@ -31,6 +33,21 @@ export default (initLinks = []) => ({
     }
     console.log("Updated links after adding:", this.links);
   },
+  toggleHighlightLink(id) {
+    let isCurrentLinkHighlighted = this.links.find(
+      (link) => link.id === id
+    ).highlight;
+
+    this.links.forEach((link) => {
+      if (link.id === id) {
+        link.highlight = !isCurrentLinkHighlighted;
+      } else {
+        link.highlight = false;
+      }
+    });
+    console.log("Updated links after toggling highlight:", this.links);
+  },
+
   toggleHideLink(id) {
     const link = this.links.find((link) => link.id === id);
     if (link) {

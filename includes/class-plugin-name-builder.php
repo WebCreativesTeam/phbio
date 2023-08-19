@@ -240,18 +240,18 @@ class Plugin_Name_Builder {
 
         public static function link_list_field($label, $capability, $target_user_id) {
             $value = Plugin_Name_Utilities::handle_user_meta('links_list', $capability, $target_user_id);
-            
+        
             $decodedString = urldecode($value);
             $linksArray = json_decode($decodedString, true);
-            
+        
             /** Re-index to fix the above issue */
             $reIndexedArray = array_values(is_array($linksArray) ? $linksArray : []);
-            
+        
             $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
-            
+        
             // Start the output buffering
             ob_start();
-            
+        
             // Check capability
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
                 echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
@@ -279,7 +279,7 @@ class Plugin_Name_Builder {
                                 @dragstart="handleDragStart($event, link.id)" 
                                 @drop="handleDrop($event, link.id)" 
                                 @dragover="handleDragOver($event)"
-                                :class="link.isHidden ? 'hidden-link-class' : ''"
+                                :class="link.isHidden ? 'hidden-link-class' : (link.highlight ? 'highlight-link-class' : '')"
                             >
                                 <div x-show="!link.isEditing">
                                     <span x-text="link.text">Item</span>
@@ -289,6 +289,10 @@ class Plugin_Name_Builder {
                                     </button>
                                     <button type="button" @click="toggleHideLink(link.id)">
                                         <span x-text="link.isHidden ? 'Unhide' : 'Hide'"></span>
+                                    </button>
+                                    <!-- Show the highlight button only if the link is not hidden -->
+                                    <button type="button" x-show="!link.isHidden" @click="toggleHighlightLink(link.id)">
+                                        <span x-text="link.highlight ? 'Unhighlight' : 'Highlight'"></span>
                                     </button>
                                 </div>
                                 <div 
@@ -321,7 +325,6 @@ class Plugin_Name_Builder {
         
             echo $content;
         }
-        
         
     
     
