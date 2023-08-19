@@ -240,10 +240,10 @@ class Plugin_Name_Builder {
 
         public static function link_list_field($label, $capability, $target_user_id) {
             $value = Plugin_Name_Utilities::handle_user_meta('links_list', $capability, $target_user_id);
-        
+            
             $decodedString = urldecode($value);
             $linksArray = json_decode($decodedString, true);
-        
+            
             /** Re-index to fix the above issue */
             $reIndexedArray = array_values(is_array($linksArray) ? $linksArray : []);
             
@@ -251,13 +251,13 @@ class Plugin_Name_Builder {
             
             // Start the output buffering
             ob_start();
-        
+            
             // Check capability
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
                 echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
             } else {
                 ?>
-                <label class="input-label"> <?php echo $label; ?></label>
+                <label class="input-label"><?php echo $label; ?></label>
         
                 <main x-data="dataList(<?php echo $links_json; ?>)">
                     <div class="input-container">
@@ -269,7 +269,6 @@ class Plugin_Name_Builder {
                             x-model="inputAddLinkValue"
                             @keydown.enter.prevent
                         />
-                        <!-- Button to add the link -->
                         <button type="button" @click="addLink()">Add</button>
                     </div>
                     <span x-text="linkError" class="text-danger"></span>
@@ -280,12 +279,16 @@ class Plugin_Name_Builder {
                                 @dragstart="handleDragStart($event, link.id)" 
                                 @drop="handleDrop($event, link.id)" 
                                 @dragover="handleDragOver($event)"
+                                :class="link.isHidden ? 'hidden-link-class' : ''"
                             >
                                 <div x-show="!link.isEditing">
                                     <span x-text="link.text">Item</span>
                                     <button type="button" class="btn-remove" @click="removeLink(link.id)">x</button>
                                     <button type="button" class="btn-edit" @click="showEditLinkForm(link.id)">
                                         <img class="icon" src="./assets/icons/pen.svg" />
+                                    </button>
+                                    <button type="button" @click="toggleHideLink(link.id)">
+                                        <span x-text="link.isHidden ? 'Unhide' : 'Hide'"></span>
                                     </button>
                                 </div>
                                 <div 
@@ -318,6 +321,7 @@ class Plugin_Name_Builder {
         
             echo $content;
         }
+        
         
     
     

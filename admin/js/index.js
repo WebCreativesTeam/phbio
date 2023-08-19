@@ -3475,7 +3475,11 @@ exports.default = (initLinks = [])=>({
         inputAddLinkValue: "",
         inputEditLinkValue: "",
         linkError: "",
-        links: initLinks,
+        links: initLinks.map((link)=>({
+                id: link.id || Date.now(),
+                text: link.text || "",
+                isHidden: link.isHidden || false
+            })),
         draggingLinkId: null,
         draggedOverLinkId: null,
         isInputFocused: false,
@@ -3483,13 +3487,20 @@ exports.default = (initLinks = [])=>({
             if (this.inputAddLinkValue.length && this.validateURL(this.inputAddLinkValue) && !this.linkExists(this.inputAddLinkValue)) {
                 this.links.push({
                     id: Date.now(),
-                    text: this.inputAddLinkValue
+                    text: this.inputAddLinkValue,
+                    isHidden: false
                 });
                 this.inputAddLinkValue = "";
                 this.linkError = "";
                 console.log(this.links);
             } else if (this.linkExists(this.inputAddLinkValue)) this.linkError = "Link already exists.";
             else this.linkError = "Please enter a valid URL.";
+            console.log("Updated links after adding:", this.links);
+        },
+        toggleHideLink (id) {
+            const link = this.links.find((link)=>link.id === id);
+            if (link) link.isHidden = !link.isHidden;
+            console.log("Updated links after toggling hidden state:", this.links);
         },
         linkExists (link) {
             return this.links.some((item)=>item.text === link);
@@ -3518,6 +3529,7 @@ exports.default = (initLinks = [])=>({
                 console.log(this.links);
             } else if (this.linkExists(this.inputEditLinkValue)) this.linkError = "Link already exists.";
             else this.linkError = "Please enter a valid URL.";
+            console.log("Updated links after editing:", this.links);
         },
         cancelEditLink () {
             this.links = this.links.map((item)=>({
@@ -3527,7 +3539,7 @@ exports.default = (initLinks = [])=>({
         },
         removeLink (id) {
             this.links = this.links.filter((item)=>item.id !== id);
-            console.log(this.links);
+            console.log("Updated links after removing:", this.links);
         },
         validateURL (url) {
             const pattern = new RegExp("^(https?:\\/\\/)?((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|((\\d{1,3}\\.){3}\\d{1,3}))(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*(\\?[;&a-z\\d%_.~+=-]*)?(\\#[-a-z\\d_]*)?$", "i");
@@ -3551,8 +3563,8 @@ exports.default = (initLinks = [])=>({
                 // Reset IDs
                 this.draggingLinkId = null;
                 this.draggedOverLinkId = null;
-                console.log(this.links);
             }
+            console.log("Updated links after drag and drop:", this.links);
         },
         handleDragOver (event) {
             event.preventDefault();
