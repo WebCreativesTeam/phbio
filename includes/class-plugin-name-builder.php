@@ -384,9 +384,7 @@ class Plugin_Name_Builder {
     private static function handle_avatar_upload($field_name, $allowed_types, $max_size, $target_user_id = null) {
         // If a target user ID isn't provided, use the current user's ID
         $user_id = $target_user_id ? $target_user_id : get_current_user_id();
-
-       
-        // If the file field has been posted and the capability is met, handle the upload
+        
         if (isset($_FILES[$field_name])) {
             $file = $_FILES[$field_name];
     
@@ -402,63 +400,48 @@ class Plugin_Name_Builder {
                 return;
             }
     
-            // Rename the file
-            $timestamp = time();
-            $new_filename = $field_name . '_' . $timestamp . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
-    
-            // Move to the desired location
-            $upload = wp_upload_bits($new_filename, null, file_get_contents($file['tmp_name']));
-    
-            if ($upload['error']) {
-                echo '<p class="error">Failed to upload avatar.</p>';
-                return;
+            $uploads_dir = wp_upload_dir();
+            $ph_bio_dir = $uploads_dir['basedir'] . '/ph-bio';
+            if (!file_exists($ph_bio_dir)) {
+                wp_mkdir_p($ph_bio_dir); // Create directory if it doesn't exist
             }
     
-            // Register the file in the media library
-            $wp_filetype = wp_check_filetype($new_filename, null);
-            $attachment = array(
-                'post_mime_type' => $wp_filetype['type'],
-                'post_title' => sanitize_file_name($new_filename),
-                'post_content' => '',
-                'post_status' => 'inherit'
-            );
+            $timestamp = time();
+            $new_filename = $field_name . '_user_' . $user_id . '_' . $timestamp . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+            $target_file_path = $ph_bio_dir . '/' . $new_filename;
     
-            $attach_id = wp_insert_attachment($attachment, $upload['file']);
-            require_once(ABSPATH . 'wp-admin/includes/image.php');
-            $attach_data = wp_generate_attachment_metadata($attach_id, $upload['file']);
-            wp_update_attachment_metadata($attach_id, $attach_data);
+            // Move the uploaded file
+            if (move_uploaded_file($file['tmp_name'], $target_file_path)) {
+                $file_url = $uploads_dir['baseurl'] . '/ph-bio/' . basename($new_filename);
     
-            // Save the URL into the user's meta data
-            update_user_meta($user_id, $field_name, $upload['url']);
+                // Save the URL into the user's meta data
+                update_user_meta($user_id, $field_name, $file_url);
     
-            ?>
-
-            <div class="toast active">
-            
-            <div class="toast-content">
-                
-                <svg class="check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M14.72,8.79l-4.29,4.3L8.78,11.44a1,1,0,1,0-1.41,1.41l2.35,2.36a1,1,0,0,0,.71.29,1,1,0,0,0,.7-.29l5-5a1,1,0,0,0,0-1.42A1,1,0,0,0,14.72,8.79ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"></path></svg>
-                <div class="message">
-                <span class="text text-1">Success</span>
-                <span class="text text-2">Your changes has been saved</span>
+                ?>
+                <div class="toast active">
+                    <div class="toast-content">
+                        <svg class="check" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M14.72,8.79l-4.29,4.3L8.78,11.44a1,1,0,1,0-1.41,1.41l2.35,2.36a1,1,0,0,0,.71.29,1,1,0,0,0,.7-.29l5-5a1,1,0,0,0,0-1.42A1,1,0,0,0,14.72,8.79ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Z"></path></svg>
+                        <div class="message">
+                            <span class="text text-1">Success</span>
+                            <span class="text text-2">Your changes have been saved</span>
+                        </div>
+                    </div>
+                    <div class="progress active"></div>
                 </div>
-            </div>
-            <!-- Remove 'active' class, this is just to show in Codepen thumbnail -->
-            <div class="progress active"></div>
-            </div>
-            <script>
-                setTimeout(() => {
-                    window.location.assign(window.location.href);
-                }, 1500);
-
-            </script>
-            <?php
-            
-
+                <script>
+                    setTimeout(() => {
+                        window.location.assign(window.location.href);
+                    }, 1500);
+                </script>
+                <?php
+            } else {
+                echo '<p class="error">Failed to upload image.</p>';
+            }
         } else {
             echo '<p class="error">Something went wrong.</p>';
         }
     }
+    
     
     
 }

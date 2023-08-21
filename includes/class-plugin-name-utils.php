@@ -103,6 +103,28 @@ class Plugin_Name_Utilities {
     }
     
 
+    public static function delete_old_files_function($filename) {
+        $uploads_dir = wp_upload_dir();
+        $ph_bio_dir = $uploads_dir['basedir'] . '/ph-bio';
+        
+        if (file_exists($ph_bio_dir)) {
+            $files = glob($ph_bio_dir . '/' . $filename); // Get all files with the specified name
+            usort($files, function($a, $b) {
+                return filemtime($a) < filemtime($b); // Sort files by modified time
+            });
+    
+            // Remove the latest file (the first one in the sorted list)
+            array_shift($files);
+    
+            // Delete the rest of the files
+            foreach($files as $file) {
+                if (is_file($file)) {
+                    unlink($file);
+                }
+            }
+        }
+    }
+    
     
 
     
