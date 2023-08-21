@@ -195,7 +195,17 @@ class Plugin_Name {
 		$this->loader->add_action( 'wp_ajax_nopriv_callback', $plugin_ajax, 'callback' );
 		$this->loader->add_action( 'wp_ajax_callback', $plugin_ajax, 'callback' );
 
-		$el_integrate = new Plugin_Name_Elementor_Integration();
+		$fields = [
+			[
+				'name' => 'tag-name-1',
+				'title' => 'Dynamic Tag Name 1',
+				'group' => 'link-in-bio',
+				'categories' => [\Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY]
+			],
+			// Add more fields here
+		];
+		
+		$el_integrate = new Plugin_Name_Elementor_Integration($fields);
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'add_group' );
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'register_tags' );
 	}
