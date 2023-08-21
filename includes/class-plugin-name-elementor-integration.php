@@ -21,7 +21,7 @@ function add_group( $dynamic_tags_manager ) {
 
 function register_tags( $dynamic_tags_manager) {
     $dynamic_tags_manager->register( new \Elementor_Test_Tag() );
-
+//
 }
     
 }
