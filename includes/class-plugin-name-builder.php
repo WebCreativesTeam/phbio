@@ -259,7 +259,7 @@ class Plugin_Name_Builder {
                 <label class="input-label"><?php echo $label; ?></label>
         
                 <main x-data="dataList(<?php echo $links_json; ?>)" x-init="applyScheduling()">
-
+        
                     <div class="input-container">
                         <input 
                             class="input-field-enhanced"
@@ -282,7 +282,8 @@ class Plugin_Name_Builder {
                                 :class="link.isHidden ? 'hidden-link-class' : (link.highlight ? 'highlight-link-class' : '')"
                             >
                                 <div x-show="!link.isEditing">
-                                    <span x-text="link.text">Item</span>
+                                    <span x-text="link.title ? link.title + ': ' + link.text : link.text">Item</span>
+                                    <!-- Show title if it exists, otherwise show the link directly -->
                                     <button type="button" class="btn-remove" @click="removeLink(link.id)">x</button>
                                     <button type="button" class="btn-edit" @click="showEditLinkForm(link.id)">
                                         <img class="icon" src="./assets/icons/pen.svg" />
@@ -301,13 +302,17 @@ class Plugin_Name_Builder {
                                 >
                                     <input 
                                         class="input-field-enhanced"
+                                        x-model="inputEditTitleValue" 
+                                        type="text" 
+                                        placeholder="Edit your link title..." 
+                                        @keydown.enter.prevent
+                                    />
+                                    <input 
+                                        class="input-field-enhanced"
                                         x-model="inputEditLinkValue" 
                                         type="text" 
                                         placeholder="Edit your link..." 
-                                        @keyup.enter="editLink(link.id)" 
                                         @keydown.enter.prevent
-                                        @focus="isInputFocused = true"
-                                        @blur="isInputFocused = false"
                                     />
                                     <button type="button" @click="editLink(link.id)">Save</button>
                                     <button type="button" @click="cancelEditLink()">Cancel</button>
@@ -332,6 +337,7 @@ class Plugin_Name_Builder {
         
             echo $content;
         }
+        
           
     
     

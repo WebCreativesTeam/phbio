@@ -4,9 +4,11 @@ export default (initLinks = []) => ({
 
   inputAddLinkValue: "",
   inputEditLinkValue: "",
+  inputEditTitleValue: "", // Add this line
   linkError: "",
   links: initLinks.map((link) => ({
     id: link.id || Date.now(),
+    title: link.title || "", // This is the added title
     text: link.text || "",
     isHidden: link.isHidden || false,
     highlight: link.highlight || false,
@@ -75,6 +77,7 @@ export default (initLinks = []) => ({
     this.links = this.links.map((item) => {
       if (item.id === id) {
         this.inputEditLinkValue = item.text;
+        this.inputEditTitleValue = item.title; // Update the editing title value
       }
       return {
         ...item,
@@ -91,6 +94,7 @@ export default (initLinks = []) => ({
       this.links = this.links.map((item) => ({
         ...item,
         text: item.id === id ? this.inputEditLinkValue : item.text,
+        title: item.id === id ? this.inputEditTitleValue : item.title, // Update the title in the link list
         isEditing: false,
       }));
       this.linkError = "";

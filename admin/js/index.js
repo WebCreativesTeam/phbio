@@ -3476,9 +3476,11 @@ exports.default = (initLinks = [])=>({
         debugTime: new Date(),
         inputAddLinkValue: "",
         inputEditLinkValue: "",
+        inputEditTitleValue: "",
         linkError: "",
         links: initLinks.map((link)=>({
                 id: link.id || Date.now(),
+                title: link.title || "",
                 text: link.text || "",
                 isHidden: link.isHidden || false,
                 highlight: link.highlight || false,
@@ -3525,7 +3527,10 @@ exports.default = (initLinks = [])=>({
         },
         showEditLinkForm (id) {
             this.links = this.links.map((item)=>{
-                if (item.id === id) this.inputEditLinkValue = item.text;
+                if (item.id === id) {
+                    this.inputEditLinkValue = item.text;
+                    this.inputEditTitleValue = item.title; // Update the editing title value
+                }
                 return {
                     ...item,
                     isEditing: item.id === id
@@ -3537,6 +3542,7 @@ exports.default = (initLinks = [])=>({
                 this.links = this.links.map((item)=>({
                         ...item,
                         text: item.id === id ? this.inputEditLinkValue : item.text,
+                        title: item.id === id ? this.inputEditTitleValue : item.title,
                         isEditing: false
                     }));
                 this.linkError = "";
