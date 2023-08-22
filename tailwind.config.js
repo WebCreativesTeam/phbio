@@ -4,7 +4,7 @@ module.exports = {
     "./admin/class-plugin-name-admin.php",
     "./includes/class-plugin-name-builder.php",
   ],
-  safelist: ["wpcontent"],
+  safelist: ["wpcontent", "ph_logo_hidden"],
 
   theme: {
     extend: {},

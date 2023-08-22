@@ -1017,6 +1017,9 @@ select {
     --tw-text-opacity: 1;
     color: rgb(31 41 55 / var(--tw-text-opacity));
 }
+.ph_logo_hidden {
+    display: none;
+}
 .visible {
     visibility: visible;
 }
@@ -1038,6 +1041,12 @@ select {
 .mb-4 {
     margin-bottom: 1rem;
 }
+.mb-6 {
+    margin-bottom: 1.5rem;
+}
+.ml-2 {
+    margin-left: 0.5rem;
+}
 .ml-4 {
     margin-left: 1rem;
 }
@@ -1056,15 +1065,6 @@ select {
 .mt-6 {
     margin-top: 1.5rem;
 }
-.ml-2 {
-    margin-left: 0.5rem;
-}
-.mb-10 {
-    margin-bottom: 2.5rem;
-}
-.mb-6 {
-    margin-bottom: 1.5rem;
-}
 .block {
     display: block;
 }
@@ -1080,17 +1080,17 @@ select {
 .h-44 {
     height: 11rem;
 }
-.h-full {
-    height: 100%;
-}
 .h-5 {
     height: 1.25rem;
 }
-.w-full {
-    width: 100%;
+.h-full {
+    height: 100%;
 }
 .w-5 {
     width: 1.25rem;
+}
+.w-full {
+    width: 100%;
 }
 .cursor-pointer {
     cursor: pointer;
@@ -1119,11 +1119,11 @@ select {
 .justify-between {
     justify-content: space-between;
 }
-.gap-4 {
-    gap: 1rem;
-}
 .gap-3 {
     gap: 0.75rem;
+}
+.gap-4 {
+    gap: 1rem;
 }
 .rounded {
     border-radius: 0.25rem;
@@ -1159,10 +1159,6 @@ select {
     font-size: 0.875rem;
     line-height: 1.25rem;
 }
-.text-xs {
-    font-size: 0.75rem;
-    line-height: 1rem;
-}
 .font-bold {
     font-weight: 700;
 }
@@ -1173,6 +1169,10 @@ select {
 .text-gray-500 {
     --tw-text-opacity: 1;
     color: rgb(107 114 128 / var(--tw-text-opacity));
+}
+.text-gray-700 {
+    --tw-text-opacity: 1;
+    color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 .text-gray-800 {
     --tw-text-opacity: 1;
@@ -1185,14 +1185,6 @@ select {
 .text-red-600 {
     --tw-text-opacity: 1;
     color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-.text-green-500 {
-    --tw-text-opacity: 1;
-    color: rgb(34 197 94 / var(--tw-text-opacity));
-}
-.text-gray-700 {
-    --tw-text-opacity: 1;
-    color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 .no-underline {
     text-decoration-line: none;
@@ -1213,18 +1205,15 @@ select {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
 }
-
 .hover\:text-gray-700:hover {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
-
 @media (min-width: 640px) {
     .sm\:flex-row {
         flex-direction: row;
     }
 }
-
 @media (min-width: 1024px) {
     .lg\:grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
