@@ -2,3 +2,7 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+.ph_logo_hidden {
+  display: none !important;
+}
