@@ -1018,7 +1018,7 @@ select {
     color: rgb(31 41 55 / var(--tw-text-opacity));
 }
 .ph_logo_hidden {
-    display: none;
+    display: none !important;
 }
 .visible {
     visibility: visible;
