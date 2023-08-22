@@ -18,8 +18,42 @@ class Plugin_Name_Utilities {
 
     public static function is_full_version($user_id) {
         $user = get_userdata($user_id);
+
         return in_array('full-version', (array) $user->roles);
     }
+
+    public static function get_user_maxLinks($user_id) {
+      
+        // Check if user is an admin
+        if (user_can($user_id, 'manage_options')) {
+            return 999; // Virtually no limit for an admin
+        }
+    
+        // Default maxLinks
+        $maxLinks = 5;
+        
+        // Check for full version and retrieve associated maxLinks if available
+        if (self::is_full_version($user_id)) {
+            $full_version_limit = get_user_meta(1, 'limit_links_full', true);
+           
+            if ($full_version_limit) {
+                return (int)$full_version_limit;
+            }
+        }
+        
+        // Check for lite version and retrieve associated maxLinks if available
+        elseif (self::is_lite_version($user_id)) {
+            $lite_version_limit = get_user_meta(1, 'limit_links_lite', true);
+            if ($lite_version_limit) {
+                return (int)$lite_version_limit;
+            }
+        }
+    
+        // Return default maxLinks if no other values found
+        return $maxLinks;
+    }
+    
+    
 
     public static function handle_user_meta($name, $capability, $target_user_id = null) {
         // If a target user ID isn't provided, use the current user's ID

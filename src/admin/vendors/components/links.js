@@ -1,7 +1,7 @@
-export default (initLinks = []) => ({
+export default ({ initLinks = [], initMax }) => ({
   isDebugMode: false,
   debugTime: new Date(), // initialize with the current time
-  maxLinks: 5,
+  maxLinks: initMax,
   maxLinksError: "You have reached the maximum limit.",
   inputAddLinkValue: "",
   inputEditLinkValue: "",
@@ -22,18 +22,21 @@ export default (initLinks = []) => ({
   draggedOverLinkId: null,
   isInputFocused: false,
   addLink() {
-    const maxLinks = 5;
-
+    console.log(this.links.length, this.maxLinks);
     // Check if the link limit is reached
-    if (this.links.length >= maxLinks) {
-      this.linkError = `You can only add up to ${maxLinks} links.`;
+    if (this.links.length >= this.maxLinks) {
+      this.linkError = `You can only add up to ${this.maxLinks} links.`;
+      return;
+    }
+
+    if (this.linkExists(this.inputAddLinkValue)) {
+      this.linkError = "Link already exists.";
       return;
     }
 
     if (
       this.inputAddLinkValue.length &&
-      this.validateURL(this.inputAddLinkValue) &&
-      !this.linkExists(this.inputAddLinkValue)
+      this.validateURL(this.inputAddLinkValue)
     ) {
       this.links.push({
         id: Date.now(),
@@ -43,11 +46,10 @@ export default (initLinks = []) => ({
       this.inputAddLinkValue = "";
       this.linkError = "";
       console.log(this.links);
-    } else if (this.linkExists(this.inputAddLinkValue)) {
-      this.linkError = "Link already exists.";
     } else {
       this.linkError = "Please enter a valid URL.";
     }
+
     console.log("Updated links after adding:", this.links);
   },
 

@@ -265,7 +265,8 @@ class Plugin_Name_Builder {
             $reIndexedArray = array_values(is_array($linksArray) ? $linksArray : []);
         
             $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
-        
+            $links_limit = Plugin_Name_Utilities::get_user_maxLinks($target_user_id);
+            
             // Start the output buffering
             ob_start();
         
@@ -276,8 +277,8 @@ class Plugin_Name_Builder {
                 ?>
                 <label class="input-label"><?php echo $label; ?></label>
         
-                <main x-data="dataList(<?php echo $links_json; ?>)" x-init="applyScheduling()">
-        
+                <main x-data="dataList({initLinks: <?php echo $links_json; ?>, initMax: <?php echo $links_limit; ?>})" x-init="applyScheduling()">
+
                     <div class="input-container">
                         <input 
                             class="input-field-enhanced"
