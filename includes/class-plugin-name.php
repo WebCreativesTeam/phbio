@@ -129,7 +129,6 @@ class Plugin_Name {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-capabilities.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-builder.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-ajax.php';
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-elementor-tags.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-elementor-integration.php';
 
 		/**
