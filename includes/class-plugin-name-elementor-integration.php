@@ -25,11 +25,13 @@ function register_tags( $dynamic_tags_manager) {
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_username.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_profile_photo.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_cover_photo.php';
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_is_logo.php';
     $dynamic_tags_manager->register( new \Elementor_Project_Name_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Bio_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Username_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Profile_Photo_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Cover_Photo_Tag() );
+    $dynamic_tags_manager->register( new \Elementor_Is_Logo_Tag() );
 //
 }
     
