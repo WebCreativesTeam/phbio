@@ -1,7 +1,8 @@
 export default (initLinks = []) => ({
   isDebugMode: false,
   debugTime: new Date(), // initialize with the current time
-
+  maxLinks: 5,
+  maxLinksError: "You have reached the maximum limit.",
   inputAddLinkValue: "",
   inputEditLinkValue: "",
   inputEditTitleValue: "", // Add this line
@@ -21,6 +22,14 @@ export default (initLinks = []) => ({
   draggedOverLinkId: null,
   isInputFocused: false,
   addLink() {
+    const maxLinks = 5;
+
+    // Check if the link limit is reached
+    if (this.links.length >= maxLinks) {
+      this.linkError = `You can only add up to ${maxLinks} links.`;
+      return;
+    }
+
     if (
       this.inputAddLinkValue.length &&
       this.validateURL(this.inputAddLinkValue) &&
@@ -41,6 +50,7 @@ export default (initLinks = []) => ({
     }
     console.log("Updated links after adding:", this.links);
   },
+
   toggleHighlightLink(id) {
     let isCurrentLinkHighlighted = this.links.find(
       (link) => link.id === id

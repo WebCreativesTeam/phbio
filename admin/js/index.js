@@ -3474,6 +3474,8 @@ parcelHelpers.defineInteropFlag(exports);
 exports.default = (initLinks = [])=>({
         isDebugMode: false,
         debugTime: new Date(),
+        maxLinks: 5,
+        maxLinksError: "You have reached the maximum limit.",
         inputAddLinkValue: "",
         inputEditLinkValue: "",
         inputEditTitleValue: "",
@@ -3492,6 +3494,12 @@ exports.default = (initLinks = [])=>({
         draggedOverLinkId: null,
         isInputFocused: false,
         addLink () {
+            const maxLinks = 5;
+            // Check if the link limit is reached
+            if (this.links.length >= maxLinks) {
+                this.linkError = `You can only add up to ${maxLinks} links.`;
+                return;
+            }
             if (this.inputAddLinkValue.length && this.validateURL(this.inputAddLinkValue) && !this.linkExists(this.inputAddLinkValue)) {
                 this.links.push({
                     id: Date.now(),

@@ -290,6 +290,8 @@ class Plugin_Name_Builder {
                         <button type="button" @click="addLink()">Add</button>
                     </div>
                     <span x-text="linkError" class="text-danger"></span>
+                    <span x-text="maxLinksError" x-show="links.length >= maxLinks" class="text-danger"></span>
+
                     <ul>
                         <template x-for="link in links">
                             <li 
@@ -300,8 +302,7 @@ class Plugin_Name_Builder {
                                 :class="link.isHidden ? 'hidden-link-class' : (link.highlight ? 'highlight-link-class' : '')"
                             >
                                 <div x-show="!link.isEditing">
-                                    <span x-text="link.title ? link.title + ': ' + link.text : link.text">Item</span>
-                                    <!-- Show title if it exists, otherwise show the link directly -->
+                                    <span x-text="link.title ? link.title + ': ' + link.text : link.text"></span>
                                     <button type="button" class="btn-remove" @click="removeLink(link.id)">x</button>
                                     <button type="button" class="btn-edit" @click="showEditLinkForm(link.id)">
                                         <img class="icon" src="./assets/icons/pen.svg" />
@@ -309,7 +310,6 @@ class Plugin_Name_Builder {
                                     <button type="button" @click="toggleHideLink(link.id)">
                                         <span x-text="link.isHidden ? 'Unhide' : 'Hide'"></span>
                                     </button>
-                                    <!-- Show the highlight button only if the link is not hidden -->
                                     <button type="button" x-show="!link.isHidden" @click="toggleHighlightLink(link.id)">
                                         <span x-text="link.highlight ? 'Unhighlight' : 'Highlight'"></span>
                                     </button>
@@ -334,7 +334,6 @@ class Plugin_Name_Builder {
                                     />
                                     <button type="button" @click="editLink(link.id)">Save</button>
                                     <button type="button" @click="cancelEditLink()">Cancel</button>
-                                    <!-- Scheduling UI -->
                                     <hr>
                                     <label>Scheduling:</label>
                                     <input type="datetime-local" x-model="link.start_time" placeholder="Start Time">
