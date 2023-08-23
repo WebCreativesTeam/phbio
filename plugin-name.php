@@ -101,3 +101,52 @@ function pfx_run() {
 pfx_run();
 
 
+function display_user_links_shortcode($atts) {
+    // Extract the 'username' from the current request URI
+    $request_uri = $_SERVER['REQUEST_URI'];
+    $path_parts = explode('/', trim($request_uri, '/'));
+    if (count($path_parts) < 2 || $path_parts[0] !== 'bio') {
+        return 'Data will be shown in the user bio page';
+    }
+    $username_meta_value = $path_parts[1];
+
+    // Try to get a user by the custom meta field
+    $args = array(
+        'meta_key'   => 'username',  // Adjust this if the meta field key is different
+        'meta_value' => $username_meta_value,
+        'number'     => 1
+    );
+    $users = get_users($args);
+    
+    // If no user is found, return a message
+    if (empty($users)) {
+        return 'No user found for this page.';
+    }
+
+    $user = $users[0];
+
+    // Fetch the links from the user meta
+    $value = get_user_meta($user->ID, 'links_list', true);
+    $decodedString = urldecode($value);
+    $linksArray = json_decode($decodedString, true);
+
+    /** Re-index to fix any potential indexing issues */
+    $links_list = array_values(is_array($linksArray) ? $linksArray : []);
+
+    // Initialize output
+    $output = '<ul class="user-links-list">';
+
+    // Loop through each link and add to output
+    foreach ($links_list as $link_data) {
+        $url = isset($link_data['text']) ? $link_data['text'] : '';
+        $title = isset($link_data['title']) && $link_data['title'] ? $link_data['title'] : $url;
+        
+        $output .= '<li><a href="' . esc_url($url) . '" class="tracked-link" data-user-id="' . esc_attr($user->ID) . '">' . esc_html($title) . '</a></li>';
+    }
+
+    $output .= '</ul>';
+
+    return $output;
+}
+add_shortcode('display_user_links', 'display_user_links_shortcode');
+

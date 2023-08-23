@@ -144,7 +144,7 @@ class Plugin_Name_Builder {
             </div>
             
 <div class="flex items-center gap-3 mb-6">
-<span class="block text-sm text-gray-500 hover:text-gray-700" x-text="`<?php echo esc_js(site_url()); ?>/` + secureUsername"></span>
+<span class="block text-sm text-gray-500 hover:text-gray-700" x-text="`<?php echo esc_js(site_url('/bio')); ?>/` + secureUsername"></span>
 <svg @click="copyToClipboard" xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="w-5 h-5 cursor-pointer hover:text-gray-700" viewBox="0 0 24 24" fill="currentColor"><path d="M21,8.94a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19.32.32,0,0,0-.09,0A.88.88,0,0,0,14.05,2H10A3,3,0,0,0,7,5V6H6A3,3,0,0,0,3,9V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V9S21,9,21,8.94ZM15,5.41,17.59,8H16a1,1,0,0,1-1-1ZM15,19a1,1,0,0,1-1,1H6a1,1,0,0,1-1-1V9A1,1,0,0,1,6,8H7v7a3,3,0,0,0,3,3h5Zm4-4a1,1,0,0,1-1,1H10a1,1,0,0,1-1-1V5a1,1,0,0,1,1-1h3V7a3,3,0,0,0,3,3h3Z"></path></svg>
 <span x-show="copied" class="ml-2 text-sm text-gray-700">Copied!</span>
 </div>
@@ -267,7 +267,7 @@ class Plugin_Name_Builder {
             $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
             $links_limit = Plugin_Name_Utilities::get_user_maxLinks($target_user_id);
             
-            print_r()
+           
             // Start the output buffering
             ob_start();
         
