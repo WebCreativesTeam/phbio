@@ -1,4 +1,4 @@
-8398
+8406
 127C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@swc\helpers\src\_class_private_method_get.mjs133356801287671427 0
 85C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\src\admin\vendors133358617351941716 1
 96C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\posthtml-render133356801264889497 1
@@ -58,14 +58,14 @@
 113C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\yargs\build\lib\yargs-factory.js133357720397791080 0
 120C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\csso\node_modules\mdn-data\CHANGELOG.md133356801635573408 0
 177C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@parcel\core\test\fixtures\local-plugin-config-pkg\node_modules\parcel-config-local\package.json133356801638453979 0
-86C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\tailwind.config.js133366419315214425 0
+86C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\tailwind.config.js133371506527262500 0
 100C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\sucrase\dist\cli.js133357715436148948 0
 138C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\csso\node_modules\css-tree\lib\syntax\node\Declaration.js133356801675040257 0
 126C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@parcel\transformer-postcss\src\loadConfig.js133356801411381394 0
 104C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@lezer\lr\dist\index.js133356801264828234 0
 108C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\type-fest\source\merge.d.ts133356801269080993 0
 111C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\fs-extra\lib\ensure\symlink.js133357720398045995 0
-76C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes133368266058398428 1
+76C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes133370817004665495 1
 86C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\slash133357720397645939 1
 93C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\caniuse-lite133356801369060979 1
 92C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\graceful-fs133357720394328980 1
@@ -174,7 +174,7 @@
 75C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\src\css133366413267398994 1
 101C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\terser\lib\output.js133358907110214329 0
 84C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\arg133357715434709700 1
-88C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\src\css\tailwind.css133367302206110540 0
+88C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\src\css\tailwind.css133371509766909074 0
 113C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\source-map-js\lib\source-node.js133356801266912869 0
 109C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\csso\lib\restructure\prepare133356801274732848 1
 137C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@swc\helpers\lib\_class_static_private_field_spec_set.js133356801279541785 0
@@ -204,7 +204,7 @@
 111C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@lmdb\lmdb-win32-x64\README.md133356801283134060 0
 99C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\.package-lock.json133358916347830761 0
 100C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\fraction.js\LICENSE133357715433898095 0
-105C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\src\admin\vendors\components\links.js133369072178822226 0
+105C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\src\admin\vendors\components\links.js133371572928716083 0
 87C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\ignore133357720394328980 1
 100C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\tailwindcss\LICENSE133357715438785539 0
 89C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\has-flag133356801264577986 1
@@ -288,7 +288,7 @@
 101C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\resolve-from\license133356801263358832 0
 113C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\css-tree\cjs\syntax\node\Url.cjs133356801278662106 0
 117C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@swc\helpers\src\_async_iterator.mjs133356801287301426 0
-101C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\public\css\plugin-name-public.css133356323935643376 0
+101C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\public\css\plugin-name-public.css133371540400953327 0
 118C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\tailwindcss\src\util\isPlainObject.js133357715508387908 0
 101C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\json5\lib\index.d.ts133356801268450111 0
 85C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\.bin133358916336301819 1
@@ -601,7 +601,7 @@
 167C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@parcel\optimizer-htmlnano\node_modules\css-tree\lib\syntax\pseudo\nth-last-of-type.js133356801274692711 0
 94C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@lezer\common133356801265629526 1
 86C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\fastq133357715435638868 1
-89C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\js\index.js.map133369072179394567 0
+89C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\js\index.js.map133371572930157819 0
 112C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\css-tree\lib\syntax\node\Raw.js133356801353896480 0
 92C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\fraction.js133357715435164615 1
 117C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\caniuse-lite\data\features\webvtt.js133356801367433549 0
@@ -2985,6 +2985,7 @@
 108C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\svgo\plugins\removeAttrs.js133356801274162745 0
 110C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\svgo\plugins\removeDoctype.js133356801274282739 0
 116C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\svgo\plugins\removeEditorsNSData.js133356801274312723 0
+97C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\tags\tag_is_logo.php133371505673294527 0
 115C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@parcel\packager-html\package.json133356801448843208 0
 117C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\svgo\plugins\removeElementsByAttr.js133356801274332784 0
 114C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\postcss-selector-parser\dist\util133357715436430504 1
@@ -3983,6 +3984,7 @@
 103C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\parent-module\index.js133356801262803556 0
 102C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\alpinejs\src\index.js133356796092699672 0
 107C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\parent-module\package.json133356801262243438 0
+81C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\tags133371500842750569 1
 104C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\parent-module\readme.md133356801264047909 0
 91C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\parcel\lib133356801619827496 1
 137C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@parcel\package-manager\test\fixtures\has-foo\subpackage133356801824448752 1
@@ -4551,6 +4553,7 @@
 109C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@nodelib\fs.walk\out\readers133357715436148948 1
 130C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest5.c133356801405978292 0
 126C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\caniuse-lite\data\features\intrinsic-width.js133356801312326520 0
+101C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\tags\tag_cover_photo.php133370853567333039 0
 133C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest_enc.c133356801405618136 0
 106C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@parcel\optimizer-swc\lib133356801478695731 1
 134C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\mtest_enc2.c133356801405647907 0
@@ -5385,6 +5388,7 @@
 131C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\csso\node_modules\css-tree\cjs\syntax\node\CDC.cjs133356801632757538 0
 98C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\csso\lib\usage.js133356801274858002 0
 145C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@parcel\core\test\fixtures\custom-format-infer-type\package.json133356801637735843 0
+93C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\tags\tag_bio.php133370819584984331 0
 131C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\csso\node_modules\css-tree\cjs\syntax\node\CDO.cjs133356801632777611 0
 141C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\csso\node_modules\css-tree\cjs\syntax\node\ClassSelector.cjs133356801632857513 0
 118C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@swc\helpers\lib\_write_only_error.js133356801282173238 0
@@ -6748,7 +6752,7 @@
 106C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\binary-extensions\license133357715433772811 0
 108C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\binary-extensions\readme.md133357715434729700 0
 91C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\base-x\src133356801264788264 1
-106C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name-builder.php133369066795519862 0
+106C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name-builder.php133371573807946342 0
 100C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\base-x\src\index.js133356801262463403 0
 111C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@parcel\fs-search\package.json133356801309497980 0
 103C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\balanced-match\.github133357715434749695 1
@@ -7021,7 +7025,7 @@
 130C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@swc\helpers\_\_wrap_async_generator\package.json133356801287051427 0
 119C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@swc\helpers\_\_ts_values\package.json133356801286931428 0
 121C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@swc\helpers\_\_ts_metadata\package.json133356801286881425 0
-85C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\js\index.js133369072179369261 0
+85C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\js\index.js133371572930047807 0
 122C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@swc\helpers\_\_ts_generator\package.json133356801286855493 0
 121C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@swc\helpers\_\_ts_decorate\package.json133356801286835493 0
 125C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\node_modules\@swc\helpers\_\_to_property_key\package.json133356801286815337 0
@@ -8387,13 +8391,17 @@
 108C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name-activator.php133356323935573661 0
 103C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name-ajax.php133368189044611833 0
 111C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name-capabilities.php133358596521125411 0
+120C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name-elementor-integration.php133371503596912880 0
 103C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name-i18n.php133356323935583396 0
 105C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name-loader.php133356323935583396 0
-104C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name-utils.php133368201206986367 0
-98C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name.php133368336133601183 0
+104C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name-utils.php133371564078958326 0
+98C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\class-plugin-name.php133370817253260589 0
+103C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\tags\tag_profile_photo.php133370852690252978 0
+97C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\tags\tag_project.php133370818619493334 0
+98C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\includes\tags\tag_username.php133370819186681000 0
 77C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\css133366413267378804 1
 83C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\index.php133356323935543369 0
-76C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\js133369072179404470 1
+76C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\js133371572930187850 1
 88C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\js\username.js133367550715229513 0
-86C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\css\main.css133368077171467490 0
+86C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\css\main.css133371545125665126 0
 99C:\Users\iamhi\Local Sites\luca\app\public\wp-content\plugins\phbio\admin\css\plugin-name-admin.css133356323935543369 0
