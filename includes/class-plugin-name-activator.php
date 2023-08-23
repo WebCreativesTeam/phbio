@@ -178,12 +178,13 @@ class Plugin_Name_Activator {
 			id mediumint(9) NOT NULL AUTO_INCREMENT,
 			user_id mediumint(9) NOT NULL,
 			link text NOT NULL,
-			clicks int DEFAULT 0 NOT NULL,
+			clicked_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 			PRIMARY KEY (id)
 		) $charset_collate;";
 	
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta( $sql );
 	}
+	
 
 }

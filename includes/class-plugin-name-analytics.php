@@ -18,18 +18,79 @@ class Plugin_Name_Analytics {
      */
     public static function get_top_performing_link($user_id) {
         global $wpdb;
-
-        // Query to get the top-performing link based on clicks
-        $result = $wpdb->get_row(
+    
+        // First, get the top-performing link based on clicks
+        $top_link = $wpdb->get_row(
             $wpdb->prepare(
-                "SELECT link, clicks FROM " . self::$table_name . " WHERE user_id = %d ORDER BY clicks DESC LIMIT 1",
+                "SELECT link, COUNT(*) as clicks
+                 FROM " . self::$table_name . " 
+                 WHERE user_id = %d 
+                 GROUP BY link 
+                 ORDER BY clicks DESC 
+                 LIMIT 1",
                 $user_id
             ),
             ARRAY_A  // This argument ensures the result is returned as an associative array
         );
-
-        return $result;
+    
+        if (!$top_link) {
+            return null; // No link found
+        }
+    
+        // Next, fetch all timestamps for that link
+        $timestamps = $wpdb->get_col(
+            $wpdb->prepare(
+                "SELECT clicked_at 
+                 FROM " . self::$table_name . " 
+                 WHERE user_id = %d AND link = %s 
+                 ORDER BY clicked_at DESC",
+                $user_id, $top_link['link']
+            )
+        );
+    
+        // Add the timestamps to the result array
+        $top_link['timestamps'] = $timestamps;
+    
+        return $top_link;
     }
+
+    
+    public static function get_all_link_data() {
+        global $wpdb;
+    
+        $table_name = self::$table_name;
+    
+        // Fetch all rows from the table
+        $results = $wpdb->get_results(
+            "SELECT * FROM $table_name ORDER BY user_id, clicked_at DESC",
+            ARRAY_A
+        );
+    
+        // Organize the results by user and link
+        $organized_data = [];
+        foreach ($results as $row) {
+            $user_id = $row['user_id'];
+            $link = $row['link'];
+    
+            if (!isset($organized_data[$user_id])) {
+                $organized_data[$user_id] = [];
+            }
+    
+            if (!isset($organized_data[$user_id][$link])) {
+                $organized_data[$user_id][$link] = [
+                    'clicks' => 0,
+                    'timestamps' => []
+                ];
+            }
+    
+            $organized_data[$user_id][$link]['clicks'] += 1;
+            $organized_data[$user_id][$link]['timestamps'][] = $row['clicked_at'];
+        }
+    
+        return $organized_data;
+    }
+    
+    
 
 }
 
