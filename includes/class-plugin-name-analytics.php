@@ -90,6 +90,22 @@ class Plugin_Name_Analytics {
         return $organized_data;
     }
     
+    public static function get_top_performing_users() {
+        global $wpdb;
+    
+        $table_name = self::$table_name;
+    
+        // Aggregate the clicks by user_id and order by total clicks
+        $results = $wpdb->get_results(
+            "SELECT user_id, COUNT(*) as total_clicks 
+             FROM $table_name 
+             GROUP BY user_id 
+             ORDER BY total_clicks DESC",
+            ARRAY_A
+        );
+    
+        return $results;
+    }
     
 
 }
