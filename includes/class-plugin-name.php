@@ -129,6 +129,7 @@ class Plugin_Name {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-capabilities.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-builder.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-ajax.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-analytics.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-elementor-integration.php';
 
 		/**
@@ -190,6 +191,7 @@ class Plugin_Name {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
 		$plugin_ajax = new Plugin_Ajax( $this->get_plugin_name() );
+		$plugin_analytics = new Plugin_Name_Analytics();
 
 		$this->loader->add_action( 'wp_ajax_nopriv_callback', $plugin_ajax, 'callback' );
 		$this->loader->add_action( 'wp_ajax_callback', $plugin_ajax, 'callback' );
