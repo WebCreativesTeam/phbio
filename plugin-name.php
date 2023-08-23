@@ -56,6 +56,7 @@ define( 'PLUGIN_NAME_BASE_NAME', plugin_basename( __FILE__ ) );
  */
 function pfx_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-activator.php';
+	Plugin_Name_Activator::create_link_clicks_table();
 	Plugin_Name_Activator::activate();
 }
 
@@ -98,3 +99,22 @@ function pfx_run() {
 
 }
 pfx_run();
+
+
+global $wpdb;
+
+$charset_collate = $wpdb->get_charset_collate();
+
+$table_name = $wpdb->prefix . 'link_clicks';
+
+$sql = "CREATE TABLE $table_name (
+    id mediumint(9) NOT NULL AUTO_INCREMENT,
+    user_id mediumint(9) NOT NULL,
+    link text NOT NULL,
+    clicks int DEFAULT 0 NOT NULL,
+    PRIMARY KEY (id)
+) $charset_collate;";
+
+require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+dbDelta( $sql );
+
