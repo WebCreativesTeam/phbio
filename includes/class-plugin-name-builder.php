@@ -267,6 +267,7 @@ class Plugin_Name_Builder {
             $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
             $links_limit = Plugin_Name_Utilities::get_user_maxLinks($target_user_id);
             
+            print_r()
             // Start the output buffering
             ob_start();
         
