@@ -130,7 +130,6 @@ function display_user_links_shortcode($atts) {
     $decodedString = urldecode($value);
     $linksArray = json_decode($decodedString, true);
 
-	print_r(Plugin_Name_Analytics::get_top_performing_link($user->ID));
     /** Re-index to fix any potential indexing issues */
     $links_list = array_values(is_array($linksArray) ? $linksArray : []);
 
