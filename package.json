@@ -4,7 +4,7 @@
   "description": "=== Plugin Human Name ===\r Contributors: Your Name or Your Company Name\r Donate link: https://donate.tld/\r Tags: comments, spam\r Requires at least: X.X\r Tested up to: X.X\r Stable tag: 1.0.0\r License: GPLv2 or later\r License URI: https://www.gnu.org/licenses/gpl-2.0.html",
   "scripts": {
     "watch:admin": "parcel watch ./src/admin/index.js --dist-dir ./admin/js",
-    "watch:public": "parcel watch ./src/public/index.js --dist-dir public",
+    "watch:public": "parcel watch ./src/public/index.js --dist-dir ./public/js",
     "watch:css": "postcss ./src/css/tailwind.css -o ./admin/css/main.css -w"
   },
   "author": "",

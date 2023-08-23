@@ -52,6 +52,49 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 
 		}
 
+		public function handle_link_click() {
+			global $wpdb;
+		
+			if( !isset($_POST['link']) ) {
+				wp_send_json_error('Invalid request');
+				return;
+			}
+		
+			$link = $_POST['link'];
+			$user_id = isset($_POST['user_id']) ? intval($_POST['user_id']) : 0;
+
+			$table_name = $wpdb->prefix . 'link_clicks';
+		
+			// Check if link already exists in the table for the user
+			$existing = $wpdb->get_row( $wpdb->prepare(
+				"SELECT * FROM $table_name WHERE link = %s AND user_id = %d",
+				$link, $user_id
+			) );
+		
+			if ($existing) {
+				// If the link exists, increment the click count
+				$wpdb->update(
+					$table_name,
+					array('clicks' => $existing->clicks + 1), // Data to update
+					array('id' => $existing->id) // Where clause
+				);
+			} else {
+				// If the link doesn't exist, insert a new row
+				$wpdb->insert(
+					$table_name,
+					array(
+						'user_id' => $user_id,
+						'link' => $link,
+						'clicks' => 1
+					)
+				);
+			}
+		
+			wp_send_json_success('Click counted');
+		}
+		
+		
+
 	}
 
 }

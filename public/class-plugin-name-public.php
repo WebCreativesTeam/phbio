@@ -97,7 +97,13 @@ class Plugin_Name_Public {
 			true
 		);
 
-		
+
+		wp_enqueue_script( 'link-tracker', plugin_dir_url( __FILE__ ) . 'js/tracked-link.js', NULL, $this->version, false );
+
+			wp_localize_script( 'link-tracker', 'LinkTracker', array(
+				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'nonce'    => wp_create_nonce( 'plugin' )
+			) );
 
 	}
 

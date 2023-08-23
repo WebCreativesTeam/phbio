@@ -194,6 +194,9 @@ class Plugin_Name {
 		$this->loader->add_action( 'wp_ajax_nopriv_callback', $plugin_ajax, 'callback' );
 		$this->loader->add_action( 'wp_ajax_callback', $plugin_ajax, 'callback' );
 
+		$this->loader->add_action( 'wp_ajax_handle_link_click', $plugin_ajax, 'handle_link_click' );
+		$this->loader->add_action( 'wp_ajax_nopriv_handle_link_click', $plugin_ajax, 'handle_link_click' );
+	 
 		$el_integrate = new Plugin_Name_Elementor_Integration();
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'add_group' );
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'register_tags' );
