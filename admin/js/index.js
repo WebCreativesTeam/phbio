@@ -582,11 +582,13 @@ var _alpinejs = require("alpinejs");
 var _alpinejsDefault = parcelHelpers.interopDefault(_alpinejs);
 var _links = require("./components/links");
 var _linksDefault = parcelHelpers.interopDefault(_links);
+var _analyticsFilter = require("./components/analytics-filter");
 window.Alpine = (0, _alpinejsDefault.default);
 (0, _alpinejsDefault.default).data("dataList", (initLinks = [])=>(0, _linksDefault.default)(initLinks));
+(0, _alpinejsDefault.default).data("analyticsFilter", ()=>(0, _analyticsFilter.analyticsFilter)());
 (0, _alpinejsDefault.default).start();
 
-},{"alpinejs":"69hXP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/links":"gsPSq"}],"69hXP":[function(require,module,exports) {
+},{"alpinejs":"69hXP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/links":"gsPSq","./components/analytics-filter":"fI1UE"}],"69hXP":[function(require,module,exports) {
 // packages/alpinejs/src/scheduler.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -3612,6 +3614,186 @@ exports.default = ({ initLinks = [], initMax })=>({
                     else link.isHidden = false; // Show the link
                 }
             });
+        }
+    });
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fI1UE":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "analyticsFilter", ()=>analyticsFilter);
+const analyticsFilter = ()=>({
+        MONTH_NAMES: [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        DAYS: [
+            "Sun",
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat"
+        ],
+        showDatepicker: false,
+        dateFromYmd: "",
+        dateToYmd: "",
+        outputDateFromValue: "",
+        outputDateToValue: "",
+        dateFromValue: "",
+        dateToValue: "",
+        currentDate: null,
+        dateFrom: null,
+        dateTo: null,
+        endToShow: "",
+        selecting: false,
+        month: "",
+        year: "",
+        no_of_days: [],
+        blankdays: [],
+        setDateRange (range) {
+            const today = new Date();
+            switch(range){
+                case "7days":
+                    this.dateFrom = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6);
+                    this.dateTo = today;
+                    break;
+                case "30days":
+                    this.dateFrom = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 29);
+                    this.dateTo = today;
+                    break;
+                case "90days":
+                    this.dateFrom = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 89);
+                    this.dateTo = today;
+                    break;
+                case "lifetime":
+                    this.dateFrom = new Date(1970, 0, 1);
+                    this.dateTo = today;
+                    break;
+            }
+            this.outputDateValues();
+        },
+        convertFromYmd (dateYmd) {
+            const year = Number(dateYmd.substr(0, 4));
+            const month = Number(dateYmd.substr(5, 2)) - 1;
+            const date = Number(dateYmd.substr(8, 2));
+            return new Date(year, month, date);
+        },
+        convertToYmd (dateObject) {
+            const year = dateObject.getFullYear();
+            const month = dateObject.getMonth() + 1;
+            const date = dateObject.getDate();
+            return year + "-" + ("0" + month).slice(-2) + "-" + ("0" + date).slice(-2);
+        },
+        init () {
+            this.selecting = this.endToShow === "to" && this.dateTo || this.endToShow === "from" && this.dateFrom;
+            if (!this.dateFrom) {
+                if (this.dateFromYmd) this.dateFrom = this.convertFromYmd(this.dateFromYmd);
+            }
+            if (!this.dateTo) {
+                if (this.dateToYmd) this.dateTo = this.convertFromYmd(this.dateToYmd);
+            }
+            if (!this.dateFrom) this.dateFrom = this.dateTo;
+            if (!this.dateTo) this.dateTo = this.dateFrom;
+            if (this.endToShow === "from" && this.dateFrom) this.currentDate = this.dateFrom;
+            else if (this.endToShow === "to" && this.dateTo) this.currentDate = this.dateTo;
+            else this.currentDate = new Date();
+            currentMonth = this.currentDate.getMonth();
+            currentYear = this.currentDate.getFullYear();
+            if (this.month !== currentMonth || this.year !== currentYear) {
+                this.month = currentMonth;
+                this.year = currentYear;
+                this.getNoOfDays();
+            }
+            this.setDateValues();
+        },
+        isToday (date) {
+            const today = new Date();
+            const d = new Date(this.year, this.month, date);
+            return today.toDateString() === d.toDateString();
+        },
+        isDateFrom (date) {
+            const d = new Date(this.year, this.month, date);
+            if (!this.dateFrom) return false;
+            return d.getTime() === this.dateFrom.getTime();
+        },
+        isDateTo (date) {
+            const d = new Date(this.year, this.month, date);
+            if (!this.dateTo) return false;
+            return d.getTime() === this.dateTo.getTime();
+        },
+        isInRange (date) {
+            const d = new Date(this.year, this.month, date);
+            return d > this.dateFrom && d < this.dateTo;
+        },
+        outputDateValues () {
+            if (this.dateFrom) {
+                this.outputDateFromValue = this.dateFrom.toDateString();
+                this.dateFromYmd = this.convertToYmd(this.dateFrom);
+            }
+            if (this.dateTo) {
+                this.outputDateToValue = this.dateTo.toDateString();
+                this.dateToYmd = this.convertToYmd(this.dateTo);
+            }
+        },
+        setDateValues () {
+            if (this.dateFrom) this.dateFromValue = this.dateFrom.toDateString();
+            if (this.dateTo) this.dateToValue = this.dateTo.toDateString();
+        },
+        getDateValue (date, temp) {
+            // if we are in mouse over mode but have not started selecting a range, there is nothing more to do.
+            if (temp && !this.selecting) return;
+            let selectedDate = new Date(this.year, this.month, date);
+            if (this.endToShow === "from") {
+                this.dateFrom = selectedDate;
+                if (!this.dateTo) this.dateTo = selectedDate;
+                else if (selectedDate > this.dateTo) {
+                    this.endToShow = "to";
+                    this.dateFrom = this.dateTo;
+                    this.dateTo = selectedDate;
+                }
+            } else if (this.endToShow === "to") {
+                this.dateTo = selectedDate;
+                if (!this.dateFrom) this.dateFrom = selectedDate;
+                else if (selectedDate < this.dateFrom) {
+                    this.endToShow = "from";
+                    this.dateTo = this.dateFrom;
+                    this.dateFrom = selectedDate;
+                }
+            }
+            this.setDateValues();
+            if (!temp) {
+                if (this.selecting) {
+                    this.outputDateValues();
+                    this.closeDatepicker();
+                }
+                this.selecting = !this.selecting;
+            }
+        },
+        getNoOfDays () {
+            let daysInMonth = new Date(this.year, this.month + 1, 0).getDate();
+            // find where to start calendar day of week
+            let dayOfWeek = new Date(this.year, this.month).getDay();
+            let blankdaysArray = [];
+            for(var i = 1; i <= dayOfWeek; i++)blankdaysArray.push(i);
+            let daysArray = [];
+            for(var i = 1; i <= daysInMonth; i++)daysArray.push(i);
+            this.blankdays = blankdaysArray;
+            this.no_of_days = daysArray;
+        },
+        closeDatepicker () {
+            this.endToShow = "";
+            this.showDatepicker = false;
         }
     });
 

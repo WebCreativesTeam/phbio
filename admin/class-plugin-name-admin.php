@@ -552,6 +552,87 @@ class Plugin_Name_Admin {
 
     <div x-show="activeTab === 'analytics'" class="tab-content">
         <!-- Analytics Content Goes Here -->
+		<div x-data="analyticsFilter()" x-cloak>
+			<!-- Predefined Date Range Filters -->
+<div class="flex flex-wrap mb-4">
+    <button @click="setDateRange('7days')" class="px-4 py-2 mb-2 mr-2 bg-gray-200 rounded hover:bg-gray-300">Last 7 days</button>
+    <button @click="setDateRange('30days')" class="px-4 py-2 mb-2 mr-2 bg-gray-200 rounded hover:bg-gray-300">Last 30 days</button>
+    <button @click="setDateRange('90days')" class="px-4 py-2 mb-2 mr-2 bg-gray-200 rounded hover:bg-gray-300">Last 90 days</button>
+    <button @click="setDateRange('lifetime')" class="px-4 py-2 mb-2 mr-2 bg-gray-200 rounded hover:bg-gray-300">Lifetime</button>
+</div>
+
+<!-- Custom Date Range Picker -->
+<div>
+    <span class="block my-1 font-bold text-gray-700">Results</span>
+    <input type="text" name="date_from" x-model="dateFromYmd">
+    <input type="text" name="date_to" x-model="dateToYmd">
+    <label for="datepicker" class="block mt-3 mb-1 font-bold text-gray-700">Select Date Range</label>
+    <div class="relative" @keydown.escape="closeDatepicker()" @click.outside="closeDatepicker()">
+        <div class="inline-flex items-center mt-3 bg-gray-200 border rounded-md">
+            <input type="text" @click="endToShow = 'from'; init(); showDatepicker = true" x-model="outputDateFromValue" :class="{'font-semibold': endToShow == 'from' }" class="w-40 p-2 border-0 border-r border-gray-300 focus:outline-none rounded-l-md"/>
+            <div class="inline-block h-full px-2">to</div>
+            <input type="text" @click="endToShow = 'to'; init(); showDatepicker = true" x-model="outputDateToValue" :class="{'font-semibold': endToShow == 'to' }" class="w-40 p-2 border-0 border-l border-gray-300 focus:outline-none rounded-r-md"/>
+        </div>
+        <div 
+            class="absolute p-4 mt-2 bg-white rounded-lg shadow" 
+            style="width: 17rem" 
+            x-show="showDatepicker"
+            x-transition
+        >
+            <div class="flex flex-col items-center">
+                <div class="flex items-center justify-between w-full mb-2">
+                    <div>
+                        <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
+                        <span x-text="year" class="ml-1 text-lg font-normal text-gray-600"></span>
+                    </div>
+                    <div>
+                        <button 
+                            type="button"
+                            class="inline-flex p-1 transition duration-100 ease-in-out rounded-full cursor-pointer hover:bg-gray-200" 
+                            @click="if (month == 0) {year--; month=11;} else {month--;} getNoOfDays()">
+                            <svg class="inline-flex w-6 h-6 text-gray-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>  
+                        </button>
+                        <button 
+                            type="button"
+                            class="inline-flex p-1 transition duration-100 ease-in-out rounded-full cursor-pointer hover:bg-gray-200" 
+                            @click="if (month == 11) {year++; month=0;} else {month++;}; getNoOfDays()">
+                            <svg class="inline-flex w-6 h-6 text-gray-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                            </svg>									  
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-wrap w-full mb-3 -mx-1">
+                    <template x-for="(day, index) in DAYS" :key="index">	
+                        <div style="width: 14.26%" class="px-1">
+                            <div x-text="day" class="text-xs font-medium text-center text-gray-800"></div>
+                        </div>
+                    </template>
+                </div>
+                <div class="flex flex-wrap -mx-1">
+                    <template x-for="blankday in blankdays">
+                        <div style="width: 14.28%" class="p-1 text-sm text-center border border-transparent"></div>
+                    </template>	
+                    <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">	
+                        <div style="width: 14.28%">
+                            <div
+                                @click="getDateValue(date, false)"
+                                @mouseover="getDateValue(date, true)"
+                                x-text="date"
+                                class="p-1 text-sm leading-none leading-loose text-center transition duration-100 ease-in-out cursor-pointer"
+                                :class="{'font-bold': isToday(date) == true, 'bg-blue-800 text-white rounded-l-full': isDateFrom(date) == true, 'bg-blue-800 text-white rounded-r-full': isDateTo(date) == true, 'bg-blue-200': isInRange(date) == true }"	
+                            ></div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+		</div>
     </div>
        
     </div>
