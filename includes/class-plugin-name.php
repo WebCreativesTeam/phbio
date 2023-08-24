@@ -130,6 +130,7 @@ class Plugin_Name {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-builder.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-ajax.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-analytics.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-dashboard.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-settings.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-elementor-integration.php';
 
@@ -186,6 +187,7 @@ class Plugin_Name {
 		// $this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
 
 		$plugin_settings = new Plugin_Name_Settings();
+		$plugin_dashboard = new Plugin_Name_Dashboard();
 
 		$this->loader->add_action( 'admin_notices', $plugin_admin, 'disable_notices', 0 );
 		$this->loader->add_action( 'all_admin_notices', $plugin_admin, 'disable_notices', 0 );
