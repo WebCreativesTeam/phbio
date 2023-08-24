@@ -15,6 +15,7 @@ export const analyticsFilter = () => ({
   ],
   DAYS: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   showDatepicker: false,
+  selectedRange: "lifetime",
   dateFromYmd: "",
   dateToYmd: "",
   outputDateFromValue: "",
@@ -32,6 +33,7 @@ export const analyticsFilter = () => ({
   blankdays: [],
 
   setDateRange(range) {
+    this.selectedRange = range;
     const today = new Date();
     switch (range) {
       case "7days":

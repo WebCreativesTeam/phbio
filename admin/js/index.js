@@ -3646,6 +3646,7 @@ const analyticsFilter = ()=>({
             "Sat"
         ],
         showDatepicker: false,
+        selectedRange: "lifetime",
         dateFromYmd: "",
         dateToYmd: "",
         outputDateFromValue: "",
@@ -3662,6 +3663,7 @@ const analyticsFilter = ()=>({
         no_of_days: [],
         blankdays: [],
         setDateRange (range) {
+            this.selectedRange = range;
             const today = new Date();
             switch(range){
                 case "7days":

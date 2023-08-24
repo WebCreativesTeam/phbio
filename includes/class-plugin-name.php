@@ -130,6 +130,7 @@ class Plugin_Name {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-builder.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-ajax.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-analytics.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-settings.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-elementor-integration.php';
 
 		/**
@@ -182,7 +183,10 @@ class Plugin_Name {
 		
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'template_version_mb' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'template_version_field_save' );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
+		// $this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
+
+		$plugin_settings = new Plugin_Name_Settings();
+
 		$this->loader->add_action( 'admin_notices', $plugin_admin, 'disable_notices', 0 );
 		$this->loader->add_action( 'all_admin_notices', $plugin_admin, 'disable_notices', 0 );
 		$this->loader->add_filter( 'manage_users_columns', $plugin_admin, 'user_column_button');
