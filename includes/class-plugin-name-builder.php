@@ -473,7 +473,111 @@ class Plugin_Name_Builder {
         }
         
     
+        public static function social_links_list_field($label, $capability, $target_user_id) {
+            $value = Plugin_Name_Utilities::handle_user_meta('social_links_list', $capability, $target_user_id);
+            
+            $decodedString = urldecode($value);
+            $linksArray = json_decode($decodedString, true);
+            
+            /** Re-index to fix any potential issues */
+            $reIndexedArray = array_values(is_array($linksArray) ? $linksArray : []);
+            
+            $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
+            
+            // Start the output buffering
+            ob_start();
+            
+            // Check capability
+            if (!Plugin_Name_Utilities::check_user_capability($capability)) {
+                echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
+            } else {
+                ?>
+             <main x-data="socialLinks({initLinks: <?php echo $links_json; ?>})">
+    <!-- Add New Link Button -->
+    <button type="button" x-show="links.length < maxLinks" @click="showAddNewLinkForm = !showAddNewLinkForm" class="add-link-btn">Add New Social Link</button>
 
+    <!-- New form that appears when the Add New Social Link button is clicked -->
+    <div x-show="showAddNewLinkForm && !isAnyLinkBeingEdited()">
+        <div class="relative p-5 mt-5">
+            <button @click.prevent="showAddNewLinkForm = false" class="absolute top-0 border-0 cursor-pointer right-2 bg-inherit">
+                <span>&times;</span>
+            </button>
+            
+            <label class="input-label">Icon</label>
+            <input class="input-field-enhanced" x-model="newLink.icon" placeholder="e.g., fa-facebook">
+
+            <label class="input-label">URL</label>
+            <input class="input-field-enhanced" x-model="inputAddLinkValue" placeholder="https://www.example.com">
+
+            <button type="button" @click="addLink()" class="upload-btn">Add Link</button>
+        </div>
+    </div>
+
+    <!-- Displaying Error Messages -->
+    <span x-text="linkError" class="text-danger"></span>
+    <span x-text="maxLinksError" x-show="links.length >= maxLinks" class="text-danger"></span>
+
+    <!-- Existing Social Links Display -->
+    <ul>
+        <template x-for="link in links">
+            <li 
+                class="p-5 m-5 bg-gray-200 border-2 border-dashed rounded-md"
+                x-bind:draggable="!link.isEditing" 
+                @dragstart="handleDragStart($event, link.id)" 
+                @dragend="handleDragEnd($event)" 
+                @drop="handleDrop($event, link.id)" 
+                @dragover="handleDragOver($event)"
+                @dragenter="draggedOverLinkId = link.id" 
+                @dragleave="draggedOverLinkId = null"
+            >
+                <div x-show="!link.isEditing" class="flex items-center justify-between">
+                    <div>
+                        <i :class="link.icon"></i>
+                        <span x-text="link.url" class="text-gray-600"></span>
+                    </div>
+
+                    <div class="flex items-center">
+                       
+                        <button type="button" class="border-0 cursor-pointer bg-inherit" @click="showEditLinkForm(link.id)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></svg>
+                        </button>
+                        <button type="button" class="border-0 cursor-pointer bg-inherit" @click="removeLink(link.id)">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div x-show="link.isEditing && !showAddNewLinkForm">
+                    <div class="p-5 mt-5">
+                        <label class="input-label">Icon</label>
+                        <input class="input-field-enhanced" x-model="link.icon">
+
+                        <label class="input-label">URL</label>
+                        <input class="input-field-enhanced" x-model="inputEditLinkValue">
+
+                        <button type="button" @click="editLink(link.id)" class="upload-btn">Save</button>
+                        <button type="button" @click="cancelEditLink()" class="upload-btn">Cancel</button>
+                    </div>
+                </div>
+            </li>
+        </template>
+    </ul>
+
+    <div x-show="links.length === 0" class="p-5 m-5 text-center bg-gray-200">
+        No social links found.
+    </div>
+</main>
+
+
+                <?php
+            }
+            
+            // Get the content from the output buffer and end buffering
+            $content = ob_get_clean();
+            
+            echo $content;
+        }
+        
     public static function upload_field($field_name, $label, $capability, $allowed_types = array('image/jpeg', 'image/png', 'image/tiff'), $max_size = 2 * 1024 * 102,  $target_user_id) {
         
         $name = $field_name . '_url';
