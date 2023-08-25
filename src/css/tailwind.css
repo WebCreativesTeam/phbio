@@ -344,4 +344,10 @@
     border: 2px solid #0075a2;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
   }
+  .hidden-link-class {
+    @apply opacity-50;
+  }
+  .highlight-link-class {
+    @apply border-orange-400;
+  }
 }
