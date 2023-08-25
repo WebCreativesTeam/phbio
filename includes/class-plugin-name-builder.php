@@ -278,13 +278,14 @@ class Plugin_Name_Builder {
                 <main x-data="dataList({initLinks: <?php echo $links_json; ?>, initMax: <?php echo $links_limit; ?>})" x-init="applyScheduling()">
         
                     <!-- New Add New Link button -->
-                    <button type="button" @click="showAddNewLink()">Add New Link</button>
+                    <button type="button" @click="showAddNewLink()" class="add-link-btn">Add New Link</button>
 
         
                     <!-- New form that appears when the Add New Link button is clicked -->
-                    <div x-show="showAddNewLinkForm">
+                    <div x-show="showAddNewLinkForm" class="relative">
+                    <button @click.prevent="showAddNewLinkForm = false" style="position: absolute; top: 0; left: 0;">Close</button>
                         <label class="input-label">URL</label>
-                        <input class="input-field-enhanced" type="text" x-model="inputAddLinkValue" x-bind:required="showAddNewLinkForm" @keydown.enter.prevent>
+                        <input class="input-field-enhanced" type="text" x-model="inputAddLinkValue" x-bind:required="showAddNewLinkForm">
                         
                         <label class="input-label">Title</label>
                         <input class="input-field-enhanced" x-model="newLink.title">

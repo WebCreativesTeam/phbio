@@ -3549,8 +3549,8 @@ exports.default = ({ initLinks = [], initMax })=>({
             this.links.forEach((link)=>link.isEditing = false);
         },
         showAddNewLink () {
-            this.showAddNewLinkForm = true;
-            this.closeAllEditing();
+            this.showAddNewLinkForm = !this.showAddNewLinkForm; // Toggle the visibility of the form
+            if (this.showAddNewLinkForm) this.closeAllEditing(); // Close all editing forms if showing the "Add New" form
         },
         toggleHideLink (id) {
             const link = this.links.find((link)=>link.id === id);

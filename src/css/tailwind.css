@@ -103,6 +103,10 @@
     @apply px-5 py-2 text-white transition-transform duration-150 transform bg-gray-800 rounded-full shadow-md cursor-pointer hover:scale-105;
   }
 
+  .add-link-btn {
+    @apply w-full px-5 py-3 font-bold text-white transition-transform duration-150 transform bg-gray-800 rounded-full shadow-md cursor-pointer;
+  }
+
   .upload-content {
     @apply flex flex-col items-center justify-center w-full md:items-start;
   }
