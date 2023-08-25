@@ -283,7 +283,9 @@ class Plugin_Name_Builder {
                     <!-- New form that appears when the Add New Link button is clicked -->
                     <div x-show="showAddNewLinkForm">
                         <div class="relative p-5 mt-5">
-                            <button @click.prevent="showAddNewLinkForm = false" class="absolute top-0 border-0 cursor-pointer right-2 bg-inherit">X</button>
+                            <button @click.prevent="showAddNewLinkForm = false" class="absolute top-0 border-0 cursor-pointer right-2 bg-inherit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg>
+                            </button>
                             <label class="input-label">URL</label>
                             <input class="input-field-enhanced" x-model="inputAddLinkValue" x-bind:required="showAddNewLinkForm">
                             <label class="input-label">Title</label>
@@ -326,14 +328,9 @@ class Plugin_Name_Builder {
                                 @dragover="handleDragOver($event)"
                                 :class="link.isHidden ? 'hidden-link-class' : (link.highlight ? 'highlight-link-class' : '') + (link.isDragging ? ' dragging-class' : '')" 
                             >
-                            <div x-show="!link.isEditing">
-                                    <span x-text="link.title ? link.title + ': ' + link.text : link.text"></span>
-                                    <button type="button" class="btn-remove" @click="removeLink(link.id)">x</button>
-                                    <button type="button" class="btn-edit" @click="showEditLinkForm(link.id)">
-
-                                        <img class="icon" src="./assets/icons/pen.svg" />
-                                    </button>
-                                    <div x-data="{ switchState: !link.isHidden }" style="margin-bottom: 2rem;">
+                            <div x-show="!link.isEditing" class="flex items-center justify-between">
+                             <div class="flex flex-col">
+                             <div x-data="{ switchState: !link.isHidden }" style="margin-bottom: 1rem;">
                                         <label class="toggle-label">
                                             <input 
                                                 type="checkbox" 
@@ -341,16 +338,33 @@ class Plugin_Name_Builder {
                                                 @change="toggleHideLink(link.id)"
                                                 style="display: none !important"
                                             >
-                                            <div class="mr-4 toggle">
+                                            <div class="mr-4 toggle toggle--small">
                                                 <div class="toggle__line"></div>
-                                                <div class="toggle__dot"></div>
+                                                <div class="toggle__dot toggle__dot--small"></div>
                                             </div>
                                         </label>
                                     </div>
+                                <span x-text="link.title" class="text-sm font-semibold"></span>
+                                <span x-text="link.text" class="text-gray-600"></span>
+                             </div>
+                             <div class="flex items-center">
+                                 <button type="button" class="border-0 cursor-pointer bg-inherit" @click="showEditLinkForm(link.id)">
 
-                                    <button type="button" x-show="!link.isHidden" @click="toggleHighlightLink(link.id)">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></svg>
+                                 </button>
+                                    <button type="button" class="border-0 cursor-pointer bg-inherit" @click="removeLink(link.id)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg>
+                                    </button>
+                                    
+
+                                    <button class="upload-btn" type="button" x-show="!link.isHidden" @click="toggleHighlightLink(link.id)">
                                         <span x-text="link.highlight ? 'Unhighlight' : 'Highlight'"></span>
                                     </button>
+                                   
+
+                                    
+
+                                    </div>
                                 </div>
                                 <div 
                                     id="editionForm" 

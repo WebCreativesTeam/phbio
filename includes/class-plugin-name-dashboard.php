@@ -369,7 +369,7 @@ class Plugin_Name_Dashboard {
     public function edit__links_tab($user_id) { ?>
         <form method="post">
             <?php Plugin_Name_Builder::link_list_field( 'Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
-            <input type="submit" name="submit_form" value="Submit" class="upload-btn">
+            <input type="submit" name="submit_form" value="Update" class="upload-btn">
         </form>      
     <?php }
 
@@ -395,7 +395,7 @@ class Plugin_Name_Dashboard {
             ?>
 
             <?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio:', Plugin_Name_Capabilities::EDIT_BIO, false, $user_id); ?>
-            <input type="submit" name="submit_form" value="Submit" class="upload-btn">
+            <input type="submit" name="submit_form" value="Update" class="upload-btn">
         </form>
     <?php }
 

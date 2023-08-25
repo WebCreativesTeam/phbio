@@ -50,12 +50,20 @@
     @apply relative inline-block h-8 align-middle rounded-full cursor-pointer w-14 bg-gradient-to-r from-gray-400 to-gray-600;
   }
 
+  .toggle--small {
+    @apply w-12 h-6;
+  }
+
   .toggle__line {
     @apply absolute w-full h-full transition-colors duration-300 rounded-full shadow-inner bg-gradient-to-r from-gray-500 to-gray-700;
   }
 
   .toggle__dot {
     @apply absolute w-6 h-6 transition-transform duration-300 bg-white rounded-full shadow-md top-1 left-1 transform-gpu;
+  }
+
+  .toggle__dot--small {
+    @apply w-4 h-4;
   }
 
   .toggle-label input:checked + .toggle .toggle__dot {
