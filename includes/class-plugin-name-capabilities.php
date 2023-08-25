@@ -8,6 +8,7 @@ class Plugin_Name_Capabilities {
     const EDIT_COVER = 'edit_cover'; // Fixed typo from 'eidt_cover' to 'edit_cover'
     const HIGHLIGHT_LINK = 'highlight_link';
     const MANAGE_WEBSITE_LOGO = 'manage_brand_logo';
+    const CAN_SCHEDULE_LINK = 'can_schedule_link';
 }
 
 new Plugin_Name_Capabilities();

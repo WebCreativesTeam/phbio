@@ -278,7 +278,7 @@ class Plugin_Name_Builder {
                 <main x-data="dataList({initLinks: <?php echo $links_json; ?>, initMax: <?php echo $links_limit; ?>})" x-init="applyScheduling()">
             
                     <!-- New Add New Link button -->
-                    <button type="button" @click="showAddNewLink()" class="add-link-btn">Add New Link</button>
+                    <button type="button" x-show="links.length < maxLinks" @click="showAddNewLink()" class="add-link-btn">Add New Link</button>
         
                     <!-- New form that appears when the Add New Link button is clicked -->
                     <div x-show="showAddNewLinkForm">
@@ -290,7 +290,13 @@ class Plugin_Name_Builder {
                             <input class="input-field-enhanced" x-model="inputAddLinkValue" x-bind:required="showAddNewLinkForm">
                             <label class="input-label">Title</label>
                             <input class="input-field-enhanced" x-model="newLink.title">
-                            <div class="my-3">
+
+
+                            <?php 
+                            if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK)) {
+                                echo '<div class="my-3">Only Full version users can schedule link</div>';
+                            } else { ?>
+                                <div class="my-3">
                                 <label>
                                     <input type="checkbox" x-model="newLink.isScheduled">
                                     Enable Scheduling
@@ -308,6 +314,13 @@ class Plugin_Name_Builder {
                                     <input type="datetime-local" x-model="newLink.end_time">
                                 </div>
                             </div>
+                            
+                            <?php } ?>
+
+                            
+                            
+
+                                
                             
                             <button type="button" @click="addLink()" class="upload-btn">Add Link</button>
                         </div>
@@ -364,9 +377,17 @@ class Plugin_Name_Builder {
                                     </button>
                                     
 
-                                    <button class="upload-btn" type="button" x-show="!link.isHidden" @click="toggleHighlightLink(link.id)">
-                                        <span x-text="link.highlight ? 'Unhighlight' : 'Highlight'"></span>
-                                    </button>
+                                    <?php 
+                                    if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::HIGHLIGHT_LINK)) {
+                                        // DO NOTHING
+                                    } else { ?>
+                                        <button class="upload-btn" type="button" x-show="!link.isHidden" @click="toggleHighlightLink(link.id)">
+                                            <span x-text="link.highlight ? 'Unhighlight' : 'Highlight'"></span>
+                                        </button>
+                                    
+                                    <?php } ?>
+
+                                    
                                    
 
                                     
@@ -384,10 +405,15 @@ class Plugin_Name_Builder {
                                         <label class="input-label">URL</label>
                                         <input class="input-field-enhanced" x-model="inputEditLinkValue" >
 
-                                        <div class="my-3">
+                                       
+
+                                        <?php 
+                                        if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK)) {
+                                            echo '<div class="my-2">Only Full version users can schedule link</div>';
+                                        } else { ?>
+                                         <div class="my-3">
                                             <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
                                         </div>
-                                        
                                         <div class="flex flex-col gap-5 my-5 md:flex-row" x-show="link.isScheduled">
                                             <div class="flex items-center gap-3">
                                                 <label class="input-label"> Start Time</label>
@@ -399,6 +425,12 @@ class Plugin_Name_Builder {
                                                 <input type="datetime-local" x-model="link.end_time">
                                             </div>
                                         </div>
+                                        
+                                        <?php } ?>
+
+                                        
+                                        
+                                       
 
                                         <!-- Image Upload -->
                                         <label class="input-label">Link Image</label>

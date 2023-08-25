@@ -165,7 +165,9 @@ class Plugin_Name_Admin {
 				Plugin_Name_Capabilities::EDIT_LINKS => true,
 				Plugin_Name_Capabilities::EDIT_COVER => true,
 				Plugin_Name_Capabilities::HIGHLIGHT_LINK => true,
-				Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO => true
+				Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO => true,
+				Plugin_Name_Capabilities::CAN_SCHEDULE_LINK => true,
+
 			)
 		);
 		
@@ -179,6 +181,8 @@ class Plugin_Name_Admin {
 		$role->add_cap(Plugin_Name_Capabilities::EDIT_COVER, true);
 		$role->add_cap(Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO, true);
 		$role->add_cap(Plugin_Name_Capabilities::EDIT_LINKS, true);
+		$role->add_cap(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK, true);
+
 		
 		
 
