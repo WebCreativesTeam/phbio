@@ -282,27 +282,41 @@ class Plugin_Name_Builder {
 
         
                     <!-- New form that appears when the Add New Link button is clicked -->
-                    <div x-show="showAddNewLinkForm" class="relative">
-                    <button @click.prevent="showAddNewLinkForm = false" style="position: absolute; top: 0; left: 0;">Close</button>
-                        <label class="input-label">URL</label>
-                        <input class="input-field-enhanced" type="text" x-model="inputAddLinkValue" x-bind:required="showAddNewLinkForm">
+                    <div x-show="showAddNewLinkForm">
+                        <div class="relative p-5 mt-5">
+                            <button @click.prevent="showAddNewLinkForm = false" class="absolute top-0 border-0 cursor-pointer right-2 bg-inherit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg></button>
+                            <label class="input-label">URL</label>
+                        <input class="input-field-enhanced" x-model="inputAddLinkValue" x-bind:required="showAddNewLinkForm">
                         
                         <label class="input-label">Title</label>
                         <input class="input-field-enhanced" x-model="newLink.title">
                         
-                        <label class="input-label">Scheduling Start Time</label>
-                        <input type="datetime-local" x-model="newLink.start_time">
+                        <div class="my-3">
+                            <label>
+                                <input type="checkbox" x-model="newLink.isScheduled">
+                                Enable Scheduling
+                            </label>
+                        </div>
                         
-                        <label class="input-label">Scheduling End Time</label>
-                        <input type="datetime-local" x-model="newLink.end_time">
                         
-                        <label>
-                            <input type="checkbox" x-model="newLink.isScheduled">
-                            Enable Scheduling
-                        </label>
+                        <div class="flex flex-col gap-5 my-5 md:flex-row" x-show="newLink.isScheduled">
+                            <div class="flex items-center gap-3">
+                                <label class="input-label"> Start Time</label>
+                                <input type="datetime-local" x-model="newLink.start_time">             
+                            </div>
+
+                            <div class="flex items-center gap-3">
+                                <label class="input-label"> End Time</label>
+                                <input type="datetime-local" x-model="newLink.end_time">
+                            </div>
+                        </div>
                         
-                        <button type="button" @click="addLink()">Add</button>
-                        <button type="button" @click="showAddNewLinkForm = false">Cancel</button>
+                        
+                        
+                        
+                        <button type="button" @click="addLink()" class="upload-btn">Add Link</button>
+                        </div>
+                        
                     </div>
                     
                     <span x-text="linkError" class="text-danger"></span>
