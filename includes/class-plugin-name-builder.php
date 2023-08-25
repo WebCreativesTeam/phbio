@@ -257,43 +257,57 @@ class Plugin_Name_Builder {
         
         public static function link_list_field($label, $capability, $target_user_id) {
             $value = Plugin_Name_Utilities::handle_user_meta('links_list', $capability, $target_user_id);
-        
+            
             $decodedString = urldecode($value);
             $linksArray = json_decode($decodedString, true);
-        
+            
             /** Re-index to fix the above issue */
             $reIndexedArray = array_values(is_array($linksArray) ? $linksArray : []);
-        
+            
             $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
             $links_limit = Plugin_Name_Utilities::get_user_maxLinks($target_user_id);
-            
-           
+                
             // Start the output buffering
             ob_start();
-        
+            
             // Check capability
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
                 echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
             } else {
                 ?>
-                <label class="input-label"><?php echo $label; ?></label>
-        
                 <main x-data="dataList({initLinks: <?php echo $links_json; ?>, initMax: <?php echo $links_limit; ?>})" x-init="applyScheduling()">
+        
+                    <!-- New Add New Link button -->
+                    <button type="button" @click="showAddNewLink()">Add New Link</button>
 
-                    <div class="input-container">
-                        <input 
-                            class="input-field-enhanced"
-                            placeholder="Type link here..." 
-                            type="text" 
-                            name="links" 
-                            x-model="inputAddLinkValue"
-                            @keydown.enter.prevent
-                        />
+        
+                    <!-- New form that appears when the Add New Link button is clicked -->
+                    <div x-show="showAddNewLinkForm">
+                        <label class="input-label">URL</label>
+                        <input class="input-field-enhanced" type="text" x-model="inputAddLinkValue" x-bind:required="showAddNewLinkForm" @keydown.enter.prevent>
+                        
+                        <label class="input-label">Title</label>
+                        <input class="input-field-enhanced" x-model="newLink.title">
+                        
+                        <label class="input-label">Scheduling Start Time</label>
+                        <input type="datetime-local" x-model="newLink.start_time">
+                        
+                        <label class="input-label">Scheduling End Time</label>
+                        <input type="datetime-local" x-model="newLink.end_time">
+                        
+                        <label>
+                            <input type="checkbox" x-model="newLink.isScheduled">
+                            Enable Scheduling
+                        </label>
+                        
                         <button type="button" @click="addLink()">Add</button>
+                        <button type="button" @click="showAddNewLinkForm = false">Cancel</button>
                     </div>
+                    
                     <span x-text="linkError" class="text-danger"></span>
                     <span x-text="maxLinksError" x-show="links.length >= maxLinks" class="text-danger"></span>
-
+        
+                    <!-- Existing links display -->
                     <ul>
                         <template x-for="link in links">
                             <li 
@@ -307,6 +321,7 @@ class Plugin_Name_Builder {
                                     <span x-text="link.title ? link.title + ': ' + link.text : link.text"></span>
                                     <button type="button" class="btn-remove" @click="removeLink(link.id)">x</button>
                                     <button type="button" class="btn-edit" @click="showEditLinkForm(link.id)">
+
                                         <img class="icon" src="./assets/icons/pen.svg" />
                                     </button>
                                     <button type="button" @click="toggleHideLink(link.id)">
@@ -320,44 +335,31 @@ class Plugin_Name_Builder {
                                     id="editionForm" 
                                     x-show="link.isEditing"
                                 >
-                                    <input 
-                                        class="input-field-enhanced"
-                                        x-model="inputEditTitleValue" 
-                                        type="text" 
-                                        placeholder="Edit your link title..." 
-                                        @keydown.enter.prevent
-                                    />
-                                    <input 
-                                        class="input-field-enhanced"
-                                        x-model="inputEditLinkValue" 
-                                        type="text" 
-                                        placeholder="Edit your link..." 
-                                        @keydown.enter.prevent
-                                    />
+                                    <input class="input-field-enhanced" x-model="inputEditTitleValue" type="text">
+                                    <input class="input-field-enhanced" x-model="inputEditLinkValue" type="text">
                                     <button type="button" @click="editLink(link.id)">Save</button>
                                     <button type="button" @click="cancelEditLink()">Cancel</button>
                                     <hr>
                                     <label>Scheduling:</label>
-                                    <input type="datetime-local" x-model="link.start_time" placeholder="Start Time">
-                                    <input type="datetime-local" x-model="link.end_time" placeholder="End Time">
+                                    <input type="datetime-local" x-model="link.start_time">
+                                    <input type="datetime-local" x-model="link.end_time">
                                     <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
                                 </div>
                             </li>
                         </template>
                     </ul>
+        
                     <input type="hidden" name="links_list" x-model="linksJson" />
                 </main>
-        
                 <?php
             }
-        
+            
             // Get the content from the output buffer and end buffering
             $content = ob_get_clean();
-        
+            
             echo $content;
         }
         
-          
     
     
 

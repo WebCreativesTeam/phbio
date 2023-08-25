@@ -7,6 +7,17 @@ export default ({ initLinks = [], initMax }) => ({
   inputEditLinkValue: "",
   inputEditTitleValue: "", // Add this line
   linkError: "",
+  showAddNewLinkForm: false,
+  newLink: {
+    title: "",
+    text: "", // The URL
+    isHidden: false, // Visibility state
+    highlight: false, // Highlight state
+    isEditing: false, // Edit state
+    isScheduled: false, // Scheduling state
+    start_time: null, // Start time for scheduling
+    end_time: null, // End time for scheduling
+  },
   links: initLinks.map((link) => ({
     id: link.id || Date.now(),
     title: link.title || "", // This is the added title
@@ -41,10 +52,19 @@ export default ({ initLinks = [], initMax }) => ({
       this.links.push({
         id: Date.now(),
         text: this.inputAddLinkValue,
-        isHidden: false,
+        title: this.newLink.title,
+        isHidden: false, // Initially, we're setting the link as visible
+        highlight: this.newLink.highlight,
+        isEditing: false, // The link is not being edited right after adding
+        isScheduled: this.newLink.isScheduled,
+        start_time: this.newLink.start_time,
+        end_time: this.newLink.end_time,
       });
+
       this.inputAddLinkValue = "";
+      this.newLink.title = ""; // Reset the title
       this.linkError = "";
+      this.showAddNewLinkForm = false; // Hide the form
       console.log(this.links);
     } else {
       this.linkError = "Please enter a valid URL.";
@@ -52,7 +72,6 @@ export default ({ initLinks = [], initMax }) => ({
 
     console.log("Updated links after adding:", this.links);
   },
-
   toggleHighlightLink(id) {
     let isCurrentLinkHighlighted = this.links.find(
       (link) => link.id === id
@@ -66,6 +85,14 @@ export default ({ initLinks = [], initMax }) => ({
       }
     });
     console.log("Updated links after toggling highlight:", this.links);
+  },
+  closeAllEditing() {
+    this.links.forEach((link) => (link.isEditing = false));
+  },
+
+  showAddNewLink() {
+    this.showAddNewLinkForm = true;
+    this.closeAllEditing();
   },
 
   toggleHideLink(id) {
@@ -86,6 +113,8 @@ export default ({ initLinks = [], initMax }) => ({
     return encodeURIComponent(json);
   },
   showEditLinkForm(id) {
+    this.showAddNewLinkForm = false; // Hide the "Add New" form
+
     this.links = this.links.map((item) => {
       if (item.id === id) {
         this.inputEditLinkValue = item.text;

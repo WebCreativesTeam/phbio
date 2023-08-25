@@ -3482,6 +3482,17 @@ exports.default = ({ initLinks = [], initMax })=>({
         inputEditLinkValue: "",
         inputEditTitleValue: "",
         linkError: "",
+        showAddNewLinkForm: false,
+        newLink: {
+            title: "",
+            text: "",
+            isHidden: false,
+            highlight: false,
+            isEditing: false,
+            isScheduled: false,
+            start_time: null,
+            end_time: null
+        },
         links: initLinks.map((link)=>({
                 id: link.id || Date.now(),
                 title: link.title || "",
@@ -3510,10 +3521,18 @@ exports.default = ({ initLinks = [], initMax })=>({
                 this.links.push({
                     id: Date.now(),
                     text: this.inputAddLinkValue,
-                    isHidden: false
+                    title: this.newLink.title,
+                    isHidden: false,
+                    highlight: this.newLink.highlight,
+                    isEditing: false,
+                    isScheduled: this.newLink.isScheduled,
+                    start_time: this.newLink.start_time,
+                    end_time: this.newLink.end_time
                 });
                 this.inputAddLinkValue = "";
+                this.newLink.title = ""; // Reset the title
                 this.linkError = "";
+                this.showAddNewLinkForm = false; // Hide the form
                 console.log(this.links);
             } else this.linkError = "Please enter a valid URL.";
             console.log("Updated links after adding:", this.links);
@@ -3525,6 +3544,13 @@ exports.default = ({ initLinks = [], initMax })=>({
                 else link.highlight = false;
             });
             console.log("Updated links after toggling highlight:", this.links);
+        },
+        closeAllEditing () {
+            this.links.forEach((link)=>link.isEditing = false);
+        },
+        showAddNewLink () {
+            this.showAddNewLinkForm = true;
+            this.closeAllEditing();
         },
         toggleHideLink (id) {
             const link = this.links.find((link)=>link.id === id);
@@ -3539,6 +3565,7 @@ exports.default = ({ initLinks = [], initMax })=>({
             return encodeURIComponent(json);
         },
         showEditLinkForm (id) {
+            this.showAddNewLinkForm = false; // Hide the "Add New" form
             this.links = this.links.map((item)=>{
                 if (item.id === id) {
                     this.inputEditLinkValue = item.text;
