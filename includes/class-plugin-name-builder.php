@@ -326,6 +326,7 @@ class Plugin_Name_Builder {
                     <ul>
                         <template x-for="link in links">
                             <li 
+                                class="p-5 m-5 bg-gray-200 border-2 border-dashed rounded-md"
                                 x-bind:draggable="!isInputFocused" 
                                 @dragstart="handleDragStart($event, link.id)" 
                                 @drop="handleDrop($event, link.id)" 
@@ -350,16 +351,36 @@ class Plugin_Name_Builder {
                                     id="editionForm" 
                                     x-show="link.isEditing"
                                 >
-                                    <input class="input-field-enhanced" x-model="inputEditTitleValue" type="text">
-                                    <input class="input-field-enhanced" x-model="inputEditLinkValue" type="text">
-                                    <button type="button" @click="editLink(link.id)">Save</button>
-                                    <button type="button" @click="cancelEditLink()">Cancel</button>
-                                    <hr>
-                                    <label>Scheduling:</label>
-                                    <input type="datetime-local" x-model="link.start_time">
-                                    <input type="datetime-local" x-model="link.end_time">
-                                    <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
+                                    <div class="p-5 mt-5 ">
+                                        <label class="input-label">Title</label>
+                                        <input class="input-field-enhanced" x-model="inputEditTitleValue" >
+
+                                        <label class="input-label">URL</label>
+                                        <input class="input-field-enhanced" x-model="inputEditLinkValue" >
+
+                                        <div class="my-3">
+                                            <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
+                                        </div>
+                                        
+                                        <div class="flex flex-col gap-5 my-5 md:flex-row" x-show="link.isScheduled">
+                                            <div class="flex items-center gap-3">
+                                                <label class="input-label"> Start Time</label>
+                                                <input type="datetime-local" x-model="link.start_time">             
+                                            </div>
+
+                                            <div class="flex items-center gap-3">
+                                                <label class="input-label"> End Time</label>
+                                                <input type="datetime-local" x-model="link.end_time">
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        
+                                        <button type="button" @click="editLink(link.id)" class="upload-btn">Save</button>
+                                        <button type="button" @click="cancelEditLink()" class="upload-btn">Cancel</button>
+                                    </div>
+
                                 </div>
+
                             </li>
                         </template>
                     </ul>
