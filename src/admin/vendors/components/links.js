@@ -17,6 +17,7 @@ export default ({ initLinks = [], initMax }) => ({
     isScheduled: false, // Scheduling state
     start_time: null, // Start time for scheduling
     end_time: null, // End time for scheduling
+    imageFile: "", // default empty state for the new image
   },
   links: initLinks.map((link) => ({
     id: link.id || Date.now(),
@@ -27,6 +28,7 @@ export default ({ initLinks = [], initMax }) => ({
     start_time: link.start_time || null,
     end_time: link.end_time || null,
     isScheduled: link.isScheduled || false,
+    imageFile: link.imageFile || "",
   })),
 
   draggingLinkId: null,
@@ -40,6 +42,7 @@ export default ({ initLinks = [], initMax }) => ({
       return link;
     });
   },
+
   addLink() {
     console.log(this.links.length, this.maxLinks);
     // Check if the link limit is reached
@@ -146,18 +149,33 @@ export default ({ initLinks = [], initMax }) => ({
         ...item,
         text: item.id === id ? this.inputEditLinkValue : item.text,
         title: item.id === id ? this.inputEditTitleValue : item.title, // Update the title in the link list
+        imageFile: item.id === id ? this.inputEditImageFile : item.imageFile, // Update the imageFile in the link list
         isEditing: false,
       }));
       this.linkError = "";
-      console.log(this.links);
     } else if (this.linkExists(this.inputEditLinkValue, id)) {
       this.linkError = "Link already exists.";
     } else {
       this.linkError = "Please enter a valid URL.";
     }
-    console.log("Updated links after editing:", this.links);
   },
 
+  uploadImage(linkId) {
+    const fileInput =
+      this.$refs.linkImageUploadForm.querySelector('input[type="file"]');
+    const file = fileInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        this.inputEditImageFile = e.target.result; // Store the image data in a temporary variable for editing
+        const linkToUpdate = this.links.find((link) => link.id === linkId);
+        if (linkToUpdate) {
+          linkToUpdate.imageFile = e.target.result;
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  },
   cancelEditLink() {
     this.links = this.links.map((item) => ({
       ...item,

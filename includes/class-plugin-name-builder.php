@@ -319,15 +319,22 @@ class Plugin_Name_Builder {
                     <!-- Existing links display -->
                     <ul>
                         <template x-for="link in links">
-                            <li 
-                                class="p-5 m-5 bg-gray-200 border-2 border-dashed rounded-md"
-                                x-bind:draggable="!isInputFocused" 
-                                @dragstart="handleDragStart($event, link.id)" 
-                                @dragend="handleDragEnd($event)" 
-                                @drop="handleDrop($event, link.id)" 
-                                @dragover="handleDragOver($event)"
-                                :class="link.isHidden ? 'hidden-link-class' : (link.highlight ? 'highlight-link-class' : '') + (link.isDragging ? ' dragging-class' : '')" 
-                            >
+                        <li 
+                            class="p-5 m-5 bg-gray-200 border-2 border-dashed rounded-md"
+                            x-bind:draggable="!link.isEditing && !isInputFocused" 
+                            @dragstart="handleDragStart($event, link.id)" 
+                            @dragend="handleDragEnd($event)" 
+                            @drop="handleDrop($event, link.id)" 
+                            @dragover="handleDragOver($event)"
+                            @dragenter="draggedOverLinkId = link.id" 
+                            @dragleave="draggedOverLinkId = null"
+                            :class="{
+                                'drag-over': draggedOverLinkId === link.id,
+                                'hidden-link-class': link.isHidden,
+                                'highlight-link-class': link.highlight,
+                                'dragging-class': link.isDragging
+                            }"
+                        >
                             <div x-show="!link.isEditing" class="flex items-center justify-between">
                              <div class="flex flex-col">
                              <div x-data="{ switchState: !link.isHidden }" style="margin-bottom: 1rem;">
@@ -392,6 +399,20 @@ class Plugin_Name_Builder {
                                                 <input type="datetime-local" x-model="link.end_time">
                                             </div>
                                         </div>
+
+                                        <!-- Image Upload -->
+                                        <label class="input-label">Link Image</label>
+                                        <div class="upload-container">
+                                            <img x-show="link.imageFile" :src="link.imageFile" alt="Uploaded File" class="file-preview">
+                                            <div x-show="!link.imageFile" class="flex items-center justify-center p-2 align-middle file-preview">No Image Uploaded</div>
+                                            <div class="upload-content">
+                                                <form method="post" enctype="multipart/form-data" x-ref="linkImageUploadForm">
+                                                    <label for="link_image" class="block upload-label">Upload Image</label>
+                                                    <input type="file" name="link_image" id="link_image" class="absolute inset-0 w-full h-full opacity-0" accept="image/jpeg,image/png,image/tiff" @change="uploadImage(link.id)" />
+                                                </form>
+                                            </div>
+                                        </div>
+
                                         <hr>
                                         
                                         <button type="button" @click="editLink(link.id)" class="upload-btn">Save</button>

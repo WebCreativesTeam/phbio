@@ -358,4 +358,9 @@
   .highlight-link-class {
     @apply border-orange-400;
   }
+
+  .drag-over {
+    background-color: #e2e8f0; /* Change this to your desired color */
+    border: 2px solid #cbd5e0; /* Change this to your desired border style */
+  }
 }
