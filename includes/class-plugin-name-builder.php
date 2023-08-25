@@ -266,7 +266,7 @@ class Plugin_Name_Builder {
             
             $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
             $links_limit = Plugin_Name_Utilities::get_user_maxLinks($target_user_id);
-                
+            
             // Start the output buffering
             ob_start();
             
@@ -276,47 +276,39 @@ class Plugin_Name_Builder {
             } else {
                 ?>
                 <main x-data="dataList({initLinks: <?php echo $links_json; ?>, initMax: <?php echo $links_limit; ?>})" x-init="applyScheduling()">
-        
+            
                     <!-- New Add New Link button -->
                     <button type="button" @click="showAddNewLink()" class="add-link-btn">Add New Link</button>
-
         
                     <!-- New form that appears when the Add New Link button is clicked -->
                     <div x-show="showAddNewLinkForm">
                         <div class="relative p-5 mt-5">
-                            <button @click.prevent="showAddNewLinkForm = false" class="absolute top-0 border-0 cursor-pointer right-2 bg-inherit"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg></button>
+                            <button @click.prevent="showAddNewLinkForm = false" class="absolute top-0 border-0 cursor-pointer right-2 bg-inherit">X</button>
                             <label class="input-label">URL</label>
-                        <input class="input-field-enhanced" x-model="inputAddLinkValue" x-bind:required="showAddNewLinkForm">
-                        
-                        <label class="input-label">Title</label>
-                        <input class="input-field-enhanced" x-model="newLink.title">
-                        
-                        <div class="my-3">
-                            <label>
-                                <input type="checkbox" x-model="newLink.isScheduled">
-                                Enable Scheduling
-                            </label>
-                        </div>
-                        
-                        
-                        <div class="flex flex-col gap-5 my-5 md:flex-row" x-show="newLink.isScheduled">
-                            <div class="flex items-center gap-3">
-                                <label class="input-label"> Start Time</label>
-                                <input type="datetime-local" x-model="newLink.start_time">             
+                            <input class="input-field-enhanced" x-model="inputAddLinkValue" x-bind:required="showAddNewLinkForm">
+                            <label class="input-label">Title</label>
+                            <input class="input-field-enhanced" x-model="newLink.title">
+                            <div class="my-3">
+                                <label>
+                                    <input type="checkbox" x-model="newLink.isScheduled">
+                                    Enable Scheduling
+                                </label>
                             </div>
-
-                            <div class="flex items-center gap-3">
-                                <label class="input-label"> End Time</label>
-                                <input type="datetime-local" x-model="newLink.end_time">
+                            
+                            <div class="flex flex-col gap-5 my-5 md:flex-row" x-show="newLink.isScheduled">
+                                <div class="flex items-center gap-3">
+                                    <label class="input-label"> Start Time</label>
+                                    <input type="datetime-local" x-model="newLink.start_time">             
+                                </div>
+        
+                                <div class="flex items-center gap-3">
+                                    <label class="input-label"> End Time</label>
+                                    <input type="datetime-local" x-model="newLink.end_time">
+                                </div>
                             </div>
+                            
+                            <button type="button" @click="addLink()" class="upload-btn">Add Link</button>
                         </div>
-                        
-                        
-                        
-                        
-                        <button type="button" @click="addLink()" class="upload-btn">Add Link</button>
-                        </div>
-                        
                     </div>
                     
                     <span x-text="linkError" class="text-danger"></span>
@@ -329,20 +321,33 @@ class Plugin_Name_Builder {
                                 class="p-5 m-5 bg-gray-200 border-2 border-dashed rounded-md"
                                 x-bind:draggable="!isInputFocused" 
                                 @dragstart="handleDragStart($event, link.id)" 
+                                @dragend="handleDragEnd($event)" 
                                 @drop="handleDrop($event, link.id)" 
                                 @dragover="handleDragOver($event)"
-                                :class="link.isHidden ? 'hidden-link-class' : (link.highlight ? 'highlight-link-class' : '')"
+                                :class="link.isHidden ? 'hidden-link-class' : (link.highlight ? 'highlight-link-class' : '') + (link.isDragging ? ' dragging-class' : '')" 
                             >
-                                <div x-show="!link.isEditing">
+                            <div x-show="!link.isEditing">
                                     <span x-text="link.title ? link.title + ': ' + link.text : link.text"></span>
                                     <button type="button" class="btn-remove" @click="removeLink(link.id)">x</button>
                                     <button type="button" class="btn-edit" @click="showEditLinkForm(link.id)">
 
                                         <img class="icon" src="./assets/icons/pen.svg" />
                                     </button>
-                                    <button type="button" @click="toggleHideLink(link.id)">
-                                        <span x-text="link.isHidden ? 'Unhide' : 'Hide'"></span>
-                                    </button>
+                                    <div x-data="{ switchState: !link.isHidden }" style="margin-bottom: 2rem;">
+                                        <label class="toggle-label">
+                                            <input 
+                                                type="checkbox" 
+                                                x-model="switchState" 
+                                                @change="toggleHideLink(link.id)"
+                                                style="display: none !important"
+                                            >
+                                            <div class="mr-4 toggle">
+                                                <div class="toggle__line"></div>
+                                                <div class="toggle__dot"></div>
+                                            </div>
+                                        </label>
+                                    </div>
+
                                     <button type="button" x-show="!link.isHidden" @click="toggleHighlightLink(link.id)">
                                         <span x-text="link.highlight ? 'Unhighlight' : 'Highlight'"></span>
                                     </button>
@@ -380,13 +385,14 @@ class Plugin_Name_Builder {
                                     </div>
 
                                 </div>
-
                             </li>
                         </template>
                     </ul>
-        
+            
                     <input type="hidden" name="links_list" x-model="linksJson" />
                 </main>
+        
+               
                 <?php
             }
             
@@ -396,7 +402,6 @@ class Plugin_Name_Builder {
             echo $content;
         }
         
-    
     
 
     public static function upload_field($field_name, $label, $capability, $allowed_types = array('image/jpeg', 'image/png', 'image/tiff'), $max_size = 2 * 1024 * 102,  $target_user_id) {

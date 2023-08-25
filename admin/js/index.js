@@ -3506,6 +3506,15 @@ exports.default = ({ initLinks = [], initMax })=>({
         draggingLinkId: null,
         draggedOverLinkId: null,
         isInputFocused: false,
+        handleDragEnd (event, id) {
+            this.links = this.links.map((link)=>{
+                if (link.id === id) return {
+                    ...link,
+                    isDragging: false
+                };
+                return link;
+            });
+        },
         addLink () {
             console.log(this.links.length, this.maxLinks);
             // Check if the link limit is reached

@@ -1041,6 +1041,12 @@ select {
 .ph_logo_hidden {
     display: none !important;
 }
+.dragging-class {
+    opacity: 0.5;
+    transform: scale(2);
+    border: 2px solid #0075a2;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  }
 .visible {
     visibility: visible;
 }
@@ -1056,23 +1062,11 @@ select {
 .inset-0 {
     inset: 0px;
 }
-.right-0 {
-    right: 0px;
-}
-.top-0 {
-    top: 0px;
-}
-.right-1 {
-    right: 0.25rem;
-}
 .right-2 {
     right: 0.5rem;
 }
-.m-10 {
-    margin: 2.5rem;
-}
-.m-2 {
-    margin: 0.5rem;
+.top-0 {
+    top: 0px;
 }
 .m-5 {
     margin: 1.25rem;
@@ -1132,11 +1126,11 @@ select {
 .mt-3 {
     margin-top: 0.75rem;
 }
-.mt-6 {
-    margin-top: 1.5rem;
-}
 .mt-5 {
     margin-top: 1.25rem;
+}
+.mt-6 {
+    margin-top: 1.5rem;
 }
 .block {
     display: block;
@@ -1257,11 +1251,11 @@ select {
 .border-0 {
     border-width: 0px;
 }
-.border-4 {
-    border-width: 4px;
-}
 .border-2 {
     border-width: 2px;
+}
+.border-4 {
+    border-width: 4px;
 }
 .border-l {
     border-left-width: 1px;
@@ -1295,24 +1289,12 @@ select {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
-.bg-white {
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
 .bg-inherit {
     background-color: inherit;
 }
-.bg-gray-300 {
+.bg-white {
     --tw-bg-opacity: 1;
-    background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
-.bg-gray-400 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(156 163 175 / var(--tw-bg-opacity));
-}
-.bg-gray-100 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 .object-cover {
     -o-object-fit: cover;
@@ -1337,9 +1319,6 @@ select {
 .px-2 {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-}
-.pl-4 {
-    padding-left: 1rem;
 }
 .text-center {
     text-align: center;
@@ -1409,14 +1388,6 @@ select {
 .no-underline {
     text-decoration-line: none;
 }
-.placeholder-gray-500::-moz-placeholder {
-    --tw-placeholder-opacity: 1;
-    color: rgb(107 114 128 / var(--tw-placeholder-opacity));
-}
-.placeholder-gray-500::placeholder {
-    --tw-placeholder-opacity: 1;
-    color: rgb(107 114 128 / var(--tw-placeholder-opacity));
-}
 .opacity-0 {
     opacity: 0;
 }
@@ -1465,12 +1436,6 @@ select {
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
-}
-
-.focus\:ring-0:focus {
-    --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(0px + var(--tw-ring-offset-width)) var(--tw-ring-color);
-    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
 
 @media (min-width: 640px) {

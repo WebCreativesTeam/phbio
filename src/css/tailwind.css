@@ -337,4 +337,11 @@
   .ph_logo_hidden {
     @apply hidden !important;
   }
+
+  .dragging-class {
+    opacity: 0.5;
+    transform: scale(2);
+    border: 2px solid #0075a2;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  }
 }
