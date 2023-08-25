@@ -91,6 +91,14 @@ class Plugin_Name_Admin {
 			$this->version,
 			'all'
 		);
+
+		wp_enqueue_style(
+			'font-awesome',
+			'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css',
+			array(),
+			$this->version,
+			'all'
+		);
  
 	}
 
