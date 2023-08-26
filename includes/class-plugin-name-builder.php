@@ -566,6 +566,7 @@ class Plugin_Name_Builder {
     <div x-show="links.length === 0" class="p-5 m-5 text-center bg-gray-200">
         No social links found.
     </div>
+    <input type="hidden" name="social_links_list" x-model="linksJson" />
 </main>
 
 

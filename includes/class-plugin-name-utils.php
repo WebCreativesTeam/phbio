@@ -70,6 +70,7 @@ class Plugin_Name_Utilities {
         if (substr($name, -5) === '_list' && isset($_POST[$name]) && self::check_user_capability($capability)) {
             $posted_array = $_POST[$name];  // Assume that this is a JSON string
 
+            
             update_user_meta($user_id, $name, $posted_array);
         
             // Return the updated value
@@ -137,27 +138,7 @@ class Plugin_Name_Utilities {
     }
     
 
-    public static function delete_old_files_function($filename) {
-        $uploads_dir = wp_upload_dir();
-        $ph_bio_dir = $uploads_dir['basedir'] . '/ph-bio';
-        
-        if (file_exists($ph_bio_dir)) {
-            $files = glob($ph_bio_dir . '/' . $filename); // Get all files with the specified name
-            usort($files, function($a, $b) {
-                return filemtime($a) < filemtime($b); // Sort files by modified time
-            });
-    
-            // Remove the latest file (the first one in the sorted list)
-            array_shift($files);
-    
-            // Delete the rest of the files
-            foreach($files as $file) {
-                if (is_file($file)) {
-                    unlink($file);
-                }
-            }
-        }
-    }
+  
     
     
 

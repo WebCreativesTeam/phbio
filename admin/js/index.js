@@ -3860,6 +3860,7 @@ exports.default = ({ initLinks = [] })=>{
         maxLinks: 100,
         linkError: "",
         showAddNewLinkForm: false,
+        maxLinksError: "You have reached the maximum limit.",
         inputAddLinkValue: "",
         inputEditLinkValue: "",
         newLink: {
@@ -3931,6 +3932,7 @@ exports.default = ({ initLinks = [] })=>{
                 this.linkError = "";
             } else if (this.linkExists(this.inputEditLinkValue, id)) this.linkError = "Link already exists.";
             else this.linkError = "Please enter a valid URL.";
+            console.log(this.links);
         },
         cancelEditLink () {
             this.links = this.links.map((item)=>({
@@ -3940,6 +3942,11 @@ exports.default = ({ initLinks = [] })=>{
         },
         removeLink (id) {
             this.links = this.links.filter((item)=>item.id !== id);
+            console.log(this.links);
+        },
+        linksJson () {
+            let json = JSON.stringify(this.links);
+            return encodeURIComponent(json);
         },
         // Add New Link
         addLink () {
@@ -3962,6 +3969,7 @@ exports.default = ({ initLinks = [] })=>{
                 this.linkError = "";
                 this.showAddNewLinkForm = false;
             } else this.linkError = "Please enter a valid URL.";
+            console.log(this.links);
         }
     };
 };

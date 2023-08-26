@@ -3,6 +3,7 @@ export default ({ initLinks = [] }) => {
     maxLinks: 100, // An arbitrary number; you can adjust this as needed
     linkError: "",
     showAddNewLinkForm: false,
+    maxLinksError: "You have reached the maximum limit.",
     inputAddLinkValue: "",
     inputEditLinkValue: "",
     newLink: {
@@ -107,6 +108,8 @@ export default ({ initLinks = [] }) => {
       } else {
         this.linkError = "Please enter a valid URL.";
       }
+
+      console.log(this.links);
     },
 
     cancelEditLink() {
@@ -118,6 +121,11 @@ export default ({ initLinks = [] }) => {
 
     removeLink(id) {
       this.links = this.links.filter((item) => item.id !== id);
+      console.log(this.links);
+    },
+    linksJson() {
+      let json = JSON.stringify(this.links);
+      return encodeURIComponent(json);
     },
 
     // Add New Link
@@ -149,6 +157,7 @@ export default ({ initLinks = [] }) => {
       } else {
         this.linkError = "Please enter a valid URL.";
       }
+      console.log(this.links);
     },
   };
 };
