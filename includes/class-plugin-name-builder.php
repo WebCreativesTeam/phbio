@@ -532,8 +532,8 @@ class Plugin_Name_Builder {
             >
                 <div x-show="!link.isEditing" class="flex items-center justify-between">
                     <div>
-                        <i :class="link.icon"></i>
-                        <span x-text="link.url" class="text-gray-600"></span>
+                        <i :class="link.icon" class="text-lg"></i>
+                       
                     </div>
 
                     <div class="flex items-center">
