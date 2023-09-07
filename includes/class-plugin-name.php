@@ -133,6 +133,8 @@ class Plugin_Name {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-dashboard.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-settings.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-elementor-integration.php';
+		
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/queries/query_links_list.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
@@ -209,6 +211,11 @@ class Plugin_Name {
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'add_group' );
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'register_tags' );
 		$this->loader->add_action( 'elementor/widgets/register', $el_integrate, 'register_widgets' );
+		
+		$el_links_list_query = new Plugin_Query_Links_List();
+		$this->loader->add_action( 'elementor/query/links_list', $el_links_list_query, 'query' );
+		// add_action('elementor/query/links_list', 'links_list');
+
 
 	}
 
