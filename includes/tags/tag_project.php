@@ -18,17 +18,15 @@ class Elementor_Project_Name_Tag extends \Elementor\Core\DynamicTags\Tag {
 		return [ \Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY ];
 	}
     public function render() {
-		// Get the current user
-		$current_user = wp_get_current_user();
+		$current_user = $this->current_user();
 	
-		if (!$current_user->ID) {
-			echo 'No user logged in';
+		if(!$current_user) {
 			return;
 		}
-	
 		// Get the user meta for 'tag-name'
 		$meta_key = 'project';
-		$meta_value = get_user_meta($current_user->ID, $meta_key, true);
+		
+		$meta_value = get_user_meta($current_user, $meta_key, true);
 	
 		if (!$meta_value) {
 			echo 'No meta value found for ' . $meta_key;
@@ -37,6 +35,22 @@ class Elementor_Project_Name_Tag extends \Elementor\Core\DynamicTags\Tag {
 	
 		// Display the value
 		echo esc_html($meta_value);
+	}
+
+	public function current_user() {
+	    global $post;
+
+		// Get the current user
+		$current_post = $post->ID;
+	    $current_user = get_post_meta($current_post, 'associated_user', true);
+
+		
+		if (!$current_user) {
+			echo $this->get_title();
+			return;
+		}
+
+		return $current_user;
 	}
 	
 
