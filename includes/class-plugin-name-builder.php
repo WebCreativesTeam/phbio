@@ -2,7 +2,7 @@
 
 class Plugin_Name_Builder {
     
-    const ERROR_MSG= "This functionality is only available for the Full Version";
+    const ERROR_MSG= "Unlock this feature instantly by going PRO";
 
     public static function text_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true) {
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
