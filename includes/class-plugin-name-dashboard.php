@@ -128,13 +128,11 @@ class Plugin_Name_Dashboard {
                     Plugin_Name_Capabilities::EDIT_PROJECT_NAME, $user_id); 
                     ?>
                 <?php 
-                if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO)) {
-                    echo '<span>Only Full version users can disable website logo</span>';
-                } else {
+                
                     Plugin_Name_Builder::checkbox_field('logo', 
-                    'Disable Website Logo', 
+                    'Hide the PRODUCHERTZ.COM logo', 
                     Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO, $user_id); 
-                }
+                
                     
                  ?>
                 </form>

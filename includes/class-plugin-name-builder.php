@@ -200,8 +200,26 @@ class Plugin_Name_Builder {
         $disabledAttribute = !Plugin_Name_Utilities::check_user_capability($capability) ? 'disabled' : '';
         $initialState = ($value === 'yes') ? 'true' : 'false';
 
+        // Error Message if disabled
+        if (!Plugin_Name_Utilities::check_user_capability($capability)) {
+            echo '<div class="cursor-not-allowed" style="margin-bottom: 2rem; opacity: 0.7;">';
+
+            // Toggle Switcher with Label
+            echo '<label class="cursor-not-allowed toggle-label">';
+            echo '<input class="cursor-not-allowed" type="checkbox disabled" style="display: none !important">';
+            echo '<div class="mr-4 toggle">';
+            echo '<div class="cursor-not-allowed toggle__line"></div>';
+            echo '<div class="cursor-not-allowed toggle__dot"></div>';
+            echo '</div>';
+            echo  esc_html($label);
+            echo '</label>';
+
+            echo '</div>';
+        } else {
         
         echo '<div x-data="{ switchState: ' . $initialState . ' }" style="margin-bottom: 2rem;">';
+
+      
         // Hidden Field
         echo '<input type="hidden" name="' . esc_attr($name) . '" x-bind:value="switchState ? \'yes\' : \'no\'">';
         
@@ -215,12 +233,11 @@ class Plugin_Name_Builder {
         echo esc_html($label);
         echo '</label>';
         
-        // Error Message if disabled
-        if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
-        }
+        
         
         echo '</div>'; // Closing div for x-data
+
+        }
     }
     
     
