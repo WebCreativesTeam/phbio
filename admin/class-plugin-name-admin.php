@@ -202,7 +202,17 @@ class Plugin_Name_Admin {
 		
 	}
 	
-	
+	public static function role_change($user_id, $role, $old_roles) {
+		
+		
+		$meta_key = 'default_template';
+		// Check if the old role was 'subscriber' and the new role is 'editor'
+		if (in_array('full-version', $old_roles) && $role == 'lite-version') {
+			$default = get_user_meta(1, $meta_key, true);
+
+			update_user_meta( $user_id, 'selected_template', $default );
+		}
+	}
 
 	public static function user_column_button($columns) {
 		$columns['edit_btn'] = 'Edit Profile';

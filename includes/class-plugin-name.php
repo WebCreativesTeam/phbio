@@ -179,6 +179,10 @@ class Plugin_Name {
 
 		$plugin_admin = new Plugin_Name_Admin( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
 		$this->loader->add_action( 'init', $plugin_admin, 'role_manager' );
+		$this->loader->add_action('set_user_role', $plugin_admin, 'role_change', 10, 3);
+
+
+
 		$this->loader->add_action( 'init', $plugin_admin, 'template_manager' );
 		$this->loader->add_action( 'init', $plugin_admin, 'user_profile_manager' );
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_profile_elementor_content' );
