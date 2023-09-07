@@ -103,6 +103,82 @@ pfx_run();
 
 
 
+function remove_menu_items_for_role() {
+    if ( current_user_can('lite-version') || current_user_can('full-version') ) {
+        global $menu;
+        $menu = array(); // This will remove all menu items
+    }
+}
+add_action('admin_menu', 'remove_menu_items_for_role', 100);
+
+
+add_action( 'load-profile.php', function() {
+    if( current_user_can('lite-version') || current_user_can('full-version') )
+        exit( wp_safe_redirect( admin_url('?page=profile-editor') ) );
+} );
+
+
+function block_subscriber_access_to_dashboard() {
+    $current_screen = get_current_screen();
+    if (($current_screen->base === 'dashboard' && current_user_can('lite-version')) ||( $current_screen->base === 'dashboard' && current_user_can('full-version'))) {
+        wp_redirect(admin_url('?page=profile-editor'));
+        exit;
+    }
+}
+add_action('current_screen', 'block_subscriber_access_to_dashboard');
+
+
+function redirect_subscribers_on_login($redirect_to, $request, $user) {
+    // Check if the user is a subscriber
+    if (isset($user->roles) && is_array($user->roles) && in_array('lite-version', $user->roles)) {
+        // Redirect to the user's profile page
+        return admin_url('?page=profile-editor');
+    }
+    if (isset($user->roles) && is_array($user->roles) && in_array('full-version', $user->roles)) {
+        // Redirect to the user's profile page
+        return admin_url('?page=profile-editor');
+    }
+    return $redirect_to;
+}
+add_filter('login_redirect', 'redirect_subscribers_on_login', 10, 3);
+
+function remove_entire_admin_sidebar_for_role() {
+    if (  current_user_can('full-version') || current_user_can('lite-version') ) {
+        echo '<style>
+            #adminmenumain, #adminmenu { display: none !important; }
+            #wpcontent, #wpfooter { margin-left: 0 !important; }
+            #wpwrap { background-color: rgb(229 231 235) !important; }
+            #wpadminbar { display: none; }
+        </style>';
+    }
+}
+add_action('admin_head', 'remove_entire_admin_sidebar_for_role');
+
+
+function remove_all_admin_footer_actions_for_role() {
+    if ( current_user_can('full-version') || current_user_can('lite-version') ) {
+        remove_all_actions('in_admin_footer');
+    }
+}
+add_action('admin_footer', 'remove_all_admin_footer_actions_for_role', 1);
+
+
+function remove_admin_footer_version_for_role($default_version) {
+    if ( current_user_can('full-version') || current_user_can('lite-version') ) {
+        return '';
+    }
+    return $default_version;
+}
+add_filter('update_footer', 'remove_admin_footer_version_for_role', 11);
+
+function remove_admin_footer_text_for_role($default_text) {
+    if ( current_user_can('full-version') || current_user_can('lite-version') ) {
+        return '';
+    }
+    return $default_text;
+}
+add_filter('admin_footer_text', 'remove_admin_footer_text_for_role');
+
 
 
 function display_user_links_shortcode($atts) {
