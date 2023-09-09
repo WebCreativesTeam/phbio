@@ -358,9 +358,9 @@ class Plugin_Name_Builder {
                             @dragleave="draggedOverLinkId = null"
                             :class="{
                                 'drag-over': draggedOverLinkId === link.id,
-                                'hidden-link-class': link.isHidden,
-                                'highlight-link-class': link.highlight,
-                                'dragging-class': link.isDragging
+                                'hidden-link-class': linkIsHidden(link.id),
+                                'highlight-link-class': linkIsHighlighted(link.id),
+                                'dragging-class': linkIsDragging(link.id)
                             }"
                         >
                             <div x-show="!link.isEditing" class="flex items-center justify-between">

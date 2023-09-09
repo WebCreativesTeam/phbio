@@ -3572,6 +3572,18 @@ exports.default = ({ initLinks = [], initMax })=>({
             if (link) link.isHidden = !link.isHidden;
             console.log("Updated links after toggling hidden state:", this.links);
         },
+        linkIsHidden (id) {
+            const link = this.links.find((link)=>link.id === id);
+            if (link) return link.isHidden;
+        },
+        linkIsHighlighted (id) {
+            const link = this.links.find((link)=>link.id === id);
+            if (link) return link.highlight;
+        },
+        linkIsDragging (id) {
+            const link = this.links.find((link)=>link.id === id);
+            if (link) return link.isDragging;
+        },
         linkExists (link, excludingId = null) {
             return this.links.some((item)=>item.text === link && item.id !== excludingId);
         },
@@ -3633,7 +3645,6 @@ exports.default = ({ initLinks = [], initMax })=>({
             return !!pattern.test(url);
         },
         handleDragStart (event, id) {
-            console.log(id, event);
             // Combine the link ID and the component ID with a separator (e.g., "|")
             const dragData = `${id}|${this.componentId}`;
             event.dataTransfer.setData("text/plain", dragData);
