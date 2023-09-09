@@ -201,13 +201,27 @@ export default ({ initLinks = [], initMax }) => ({
     return !!pattern.test(url);
   },
   handleDragStart(event, id) {
+    console.log(id, event);
+
     // Combine the link ID and the component ID with a separator (e.g., "|")
     const dragData = `${id}|${this.componentId}`;
     event.dataTransfer.setData("text/plain", dragData);
     this.draggingLinkId = id;
+
+    // Find the closest parent list item
+    const listItem = event.target.closest("li");
+    if (listItem) {
+      // Use the entire list item as the drag image
+      // The last two arguments (0, 0) set the drag image offset
+      event.dataTransfer.setDragImage(listItem, 0, 0);
+    }
   },
   handleDrop(event, id) {
     event.preventDefault();
+
+    // If the drop event target is not the list item, use the event's currentTarget.
+    const dropTarget =
+      event.target.tagName === "li" ? event.target : event.currentTarget;
     this.draggedOverLinkId = id;
 
     const dragData = event.dataTransfer.getData("text/plain");

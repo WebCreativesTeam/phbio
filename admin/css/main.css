@@ -1039,6 +1039,16 @@ select {
     background-color: #e2e8f0; /* Change this to your desired color */
     border: 2px solid #cbd5e0; /* Change this to your desired border style */
   }
+.drag-handle {
+    display: inline-block;
+    padding: 4px;
+    font-size: 18px;
+    cursor: grab;
+    margin-right: 8px;
+  }
+.drag-handle:active {
+    cursor: grabbing;
+  }
 .visible {
     visibility: visible;
 }

@@ -351,9 +351,7 @@ class Plugin_Name_Builder {
                         <template x-for="link in links">
                         <li 
                             class="p-5 m-5 bg-gray-200 border-2 border-dashed rounded-md"
-                            x-bind:draggable="!link.isEditing && !isInputFocused" 
-                            @dragstart="handleDragStart($event, link.id)" 
-                            @dragend="handleDragEnd($event)" 
+                            
                             @drop="handleDrop($event, link.id)" 
                             @dragover="handleDragOver($event)"
                             @dragenter="draggedOverLinkId = link.id" 
@@ -366,6 +364,12 @@ class Plugin_Name_Builder {
                             }"
                         >
                             <div x-show="!link.isEditing" class="flex items-center justify-between">
+                            <div 
+                                x-bind:draggable="!link.isEditing && !isInputFocused" 
+                                @dragstart="handleDragStart($event, link.id)" 
+                                @dragend="handleDragEnd($event, link.id)" 
+                                class="drag-handle"
+                            >⠿</div>
                              <div class="flex flex-col">
                              <div x-data="{ switchState: !link.isHidden }" style="margin-bottom: 1rem;">
                                         <label class="toggle-label">
