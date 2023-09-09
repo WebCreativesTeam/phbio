@@ -74,7 +74,7 @@ class Plugin_Name_Utilities {
         $user_id = get_current_user_id();
 
         // Get Links
-        $value = get_user_meta($user->ID, 'links_list', true);
+        $value = get_user_meta($user_id, 'links_list', true);
 
         $decodedString = urldecode($value);
         $linksArray = json_decode($decodedString, true);
