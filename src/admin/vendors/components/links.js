@@ -21,9 +21,9 @@ export default ({ initLinks = [], initMax }) => ({
     end_time: null, // End time for scheduling
     imageFile: "", // default empty state for the new image
   },
-  links: initLinks.map((link) => ({
+  links: initLinks.slice(0, initMax).map((link) => ({
     id: link.id || Date.now(),
-    title: link.title || "", // This is the added title
+    title: link.title || "",
     text: link.text || "",
     isHidden: link.isHidden || false,
     highlight: link.highlight || false,

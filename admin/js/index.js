@@ -3498,7 +3498,7 @@ exports.default = ({ initLinks = [], initMax })=>({
             end_time: null,
             imageFile: ""
         },
-        links: initLinks.map((link)=>({
+        links: initLinks.slice(0, initMax).map((link)=>({
                 id: link.id || Date.now(),
                 title: link.title || "",
                 text: link.text || "",

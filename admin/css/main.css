@@ -1070,6 +1070,10 @@ select {
     color: rgb(31 41 55 / var(--tw-text-opacity));
     --tw-text-opacity: 0.9;
 }
+.warning-icon {
+    --tw-text-opacity: 1;
+    color: rgb(234 179 8 / var(--tw-text-opacity));
+}
 .visible {
     visibility: visible;
 }
@@ -1140,9 +1144,6 @@ select {
 }
 .ml-5 {
     margin-left: 1.25rem;
-}
-.mr-3 {
-    margin-right: 0.75rem;
 }
 .mr-4 {
     margin-right: 1rem;
@@ -1458,34 +1459,28 @@ select {
 .ease-in-out {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .hover\:bg-gray-200:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
-
 .hover\:text-gray-700:hover {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
-
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
 }
-
 @media (min-width: 640px) {
     .sm\:flex-row {
         flex-direction: row;
     }
 }
-
 @media (min-width: 768px) {
     .md\:flex-row {
         flex-direction: row;
     }
 }
-
 @media (min-width: 1024px) {
     .lg\:grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));

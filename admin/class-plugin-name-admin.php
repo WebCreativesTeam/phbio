@@ -205,13 +205,33 @@ class Plugin_Name_Admin {
 	public static function role_change($user_id, $role, $old_roles) {
 		
 		
+		// Roles if user role is degraded
 		$meta_key = 'default_template';
-		// Check if the old role was 'subscriber' and the new role is 'editor'
+		
 		if (in_array('full-version', $old_roles) && $role == 'lite-version') {
-			$default = get_user_meta(1, $meta_key, true);
 
+			// Set default template back
+			$default = get_user_meta(1, $meta_key, true);
 			update_user_meta( $user_id, 'selected_template', $default );
+
+			// Backup links list
+			$meta_value = get_user_meta($user_id, 'links_list', true);
+			update_user_meta($user_id, '_backup_meta_field', $meta_value);
+			update_user_meta($user_id, '_backup_date', current_time('mysql'));
 		}
+
+		// Roles if user role is upgraded back
+		if (in_array('lite-version', $old_roles) && $role == 'full-version') {
+
+			$backup_value = get_user_meta($user_id, '_backup_meta_field', true);
+			if ($backup_value) {
+				update_user_meta($user_id, 'links_list', $backup_value);
+				delete_user_meta($user_id, '_backup_meta_field');
+				delete_user_meta($user_id, '_backup_date');
+			}
+		}
+
+		
 	}
 
 	public static function user_column_button($columns) {

@@ -454,7 +454,7 @@ class Plugin_Name_Dashboard {
                                         Plugin_Name_Capabilities::EDIT_PROJECT_NAME, false, $user_id, in_array("project", $this->dynamic_tags) ); 
             ?>
 
-            <?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio:', Plugin_Name_Capabilities::EDIT_BIO, false, $user_id, in_array("bio", $this->dynamic_tags)); ?>
+            <?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio', Plugin_Name_Capabilities::EDIT_BIO, false, $user_id, in_array("bio", $this->dynamic_tags)); ?>
             <input type="submit" name="submit_form" value="Update" class="upload-btn">
         </form>
     <?php }
