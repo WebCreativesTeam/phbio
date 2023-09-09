@@ -375,4 +375,12 @@
   .drag-handle:active {
     cursor: grabbing;
   }
+
+  .warning-message {
+    @apply flex items-center p-4 my-5 space-x-4 text-sm text-gray-800 bg-yellow-300 rounded text-opacity-90;
+  }
+
+  .warning-icon {
+    @apply text-yellow-500;
+  }
 }

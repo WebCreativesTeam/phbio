@@ -1049,6 +1049,27 @@ select {
 .drag-handle:active {
     cursor: grabbing;
   }
+.warning-message {
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+}
+.warning-message > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1rem * var(--tw-space-x-reverse));
+    margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.warning-message {
+    border-radius: 0.25rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(253 224 71 / var(--tw-bg-opacity));
+    padding: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: rgb(31 41 55 / var(--tw-text-opacity));
+    --tw-text-opacity: 0.9;
+}
 .visible {
     visibility: visible;
 }
@@ -1119,6 +1140,9 @@ select {
 }
 .ml-5 {
     margin-left: 1.25rem;
+}
+.mr-3 {
+    margin-right: 0.75rem;
 }
 .mr-4 {
     margin-right: 1rem;

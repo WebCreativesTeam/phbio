@@ -3,14 +3,15 @@
 class Plugin_Name_Builder {
     
     const ERROR_MSG= "Unlock this feature instantly by going PRO";
-    const NOT_INCLUDED = "Your current template does not include this";
+    
+    
 
     public static function text_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true, $templateIncluded = true) {
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
         if (!$data && $isValue) $data = $value;
         
         if(!$templateIncluded) {
-            echo self::NOT_INCLUDED;
+            echo Plugin_Name_Utilities::is_not_included_field($label);;
         }
         $char_limit = 0;
         if ($hasLimit) {
@@ -163,7 +164,7 @@ class Plugin_Name_Builder {
     
     public static function textarea_field($name, $value, $label, $capability, $target_user_id, $hasLimit = true, $templateIncluded = true) {
         if(!$templateIncluded) {
-            echo self::NOT_INCLUDED;
+            echo Plugin_Name_Utilities::is_not_included_field($label);;
         }
         
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
@@ -620,7 +621,7 @@ class Plugin_Name_Builder {
         
 
         if(!$templateIncluded) {
-            echo self::NOT_INCLUDED;
+            echo Plugin_Name_Utilities::is_not_included_field($label);;
         }
         $name = $field_name . '_url';
         $image_url = Plugin_Name_Utilities::handle_user_meta($name, Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE,  $target_user_id);
