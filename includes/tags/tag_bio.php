@@ -2,9 +2,11 @@
 
 class Elementor_Bio_Tag extends \Elementor\Core\DynamicTags\Tag {
 
+	private $fieldName = 'bio';
 	public function get_name() {
-		return 'ph_bio';
+		return 'ph__' . $this->fieldName;
 	}
+
 
 	public function get_title() {
 		return esc_html__( 'User Bio', 'textdomain' );

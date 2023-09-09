@@ -1,6 +1,9 @@
 <?php
 
 class Plugin_Name_Dashboard {
+
+    private $dynamic_tags = Array();
+    
     public function __construct() {
         add_action( 'admin_menu', array($this, 'register') );
     }
@@ -16,10 +19,41 @@ class Plugin_Name_Dashboard {
 			100                           
 		);
     }
+
+    private function init_dynamic() {
+        // Get Dynamic Tags
+        $user_id = get_current_user_id(); 
+    
+        $template_id = Plugin_Name_Utilities::handle_user_meta('selected_template', 'read', $user_id);
+        
+        if($template_id === NULL || !$template_id || strlen($template_id) < 1 ) {
+            $template_id = get_user_meta(1, 'default_template', true);		
+        }
+    
+        // Get the dynamic tags from the utility function
+        $dynamic_tags = Plugin_Name_Utilities::get_unique_dynamic_tag_names_from_template($template_id);
+    
+        // Filter the tags that start with "ph__" and remove the prefix
+        $this->dynamic_tags = array_map(function($tag) {
+            return str_replace('ph__', '', $tag);
+        }, array_filter($dynamic_tags, function($tag) {
+            return strpos($tag, 'ph__') === 0;
+        }));
+    
+        
+        return $template_id;
+    }
+    
     
     function render() {
-		$user_id = get_current_user_id(); // default to current logged-in user
 
+        // User
+        $user_id = get_current_user_id(); 
+
+        
+        $template_id__saved = $this->init_dynamic();
+
+        
 		if (current_user_can('administrator') && isset($_GET['user_id']) && is_numeric($_GET['user_id'])) {
 			$user_id = intval($_GET['user_id']); // use user_id from URL if admin
 		}

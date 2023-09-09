@@ -2,9 +2,11 @@
 
 class Elementor_Cover_Photo_Tag extends \Elementor\Core\DynamicTags\Data_Tag {
 
+	private $fieldName = 'cover_photo_url';
 	public function get_name() {
-		return 'ph_cover_photo';
+		return 'ph__' . $this->fieldName;
 	}
+
 
 	public function get_title() {
 		return esc_html__( 'Cover Photo', 'textdomain' );

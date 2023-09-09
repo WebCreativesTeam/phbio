@@ -2,9 +2,11 @@
 
 class Elementor_Project_Name_Tag extends \Elementor\Core\DynamicTags\Tag {
 
+	private $fieldName = 'project';
 	public function get_name() {
-		return 'ph_project';
+		return 'ph__' . $this->fieldName;
 	}
+
 
 	public function get_title() {
 		return esc_html__( 'Project Name', 'textdomain' );

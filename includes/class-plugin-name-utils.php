@@ -138,6 +138,41 @@ class Plugin_Name_Utilities {
     }
     
 
+    public static function get_unique_dynamic_tag_names_from_template($template_id) {
+        // Retrieve the template data based on the template_id
+        $template_data = \Elementor\Plugin::$instance->db->get_builder($template_id);
+        
+        $dynamic_tags = [];
+    
+        // Recursive function to traverse the nested array
+        function traverse($item, &$tags) {
+            if (is_array($item)) {
+                // Check for the __dynamic__ key
+                if (isset($item['__dynamic__']) && is_array($item['__dynamic__'])) {
+                    foreach ($item['__dynamic__'] as $tag) {
+                        // Use regex to extract the name attribute
+                        if (preg_match('/name="([^"]+)"/', $tag, $matches)) {
+                            $tagName = $matches[1];
+                            if ($tagName && !in_array($tagName, $tags)) {
+                                $tags[] = $tagName;
+                            }
+                        }
+                    }
+                }
+    
+                // Traverse deeper
+                foreach ($item as $subitem) {
+                    traverse($subitem, $tags);
+                }
+            }
+        }
+    
+        traverse($template_data, $dynamic_tags);
+    
+        return $dynamic_tags;
+    }
+    
+
   
     
     

@@ -2,8 +2,9 @@
 
 class Elementor_Profile_Photo_Tag extends \Elementor\Core\DynamicTags\Data_Tag {
 
+	private $fieldName = 'profile_photo_url';
 	public function get_name() {
-		return 'ph_profile_photo';
+		return 'ph__' . $this->fieldName;
 	}
 
 	public function get_title() {
