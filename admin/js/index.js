@@ -3479,6 +3479,7 @@ parcelHelpers.defineInteropFlag(exports);
 exports.default = ({ initLinks = [], initMax })=>({
         isDebugMode: false,
         debugTime: new Date(),
+        componentId: Math.random().toString(36).substring(2, 15),
         maxLinks: initMax,
         maxLinksError: "You have reached the maximum limit.",
         inputAddLinkValue: "",
@@ -3632,12 +3633,21 @@ exports.default = ({ initLinks = [], initMax })=>({
             return !!pattern.test(url);
         },
         handleDragStart (event, id) {
-            event.dataTransfer.setData("text/plain", id);
+            // Combine the link ID and the component ID with a separator (e.g., "|")
+            const dragData = `${id}|${this.componentId}`;
+            event.dataTransfer.setData("text/plain", dragData);
             this.draggingLinkId = id;
         },
         handleDrop (event, id) {
             event.preventDefault();
             this.draggedOverLinkId = id;
+            const dragData = event.dataTransfer.getData("text/plain");
+            const [draggedLinkId, draggedComponentId] = dragData.split("|");
+            // Check if the dragged item's component ID matches the current component's ID
+            if (draggedComponentId !== this.componentId.toString()) {
+                console.log("Drag operation occurred from a different component. Ignoring.");
+                return;
+            }
             if (this.draggingLinkId !== this.draggedOverLinkId) {
                 let draggingLink = this.links.find((link)=>link.id == this.draggingLinkId);
                 let draggedOverLink = this.links.find((link)=>link.id == this.draggedOverLinkId);
@@ -3859,6 +3869,7 @@ exports.default = ({ initLinks = [] })=>{
     return {
         maxLinks: 100,
         linkError: "",
+        componentId: Math.random().toString(36).substring(2, 15),
         showAddNewLinkForm: false,
         maxLinksError: "You have reached the maximum limit.",
         inputAddLinkValue: "",
@@ -3887,24 +3898,42 @@ exports.default = ({ initLinks = [] })=>{
         },
         // Drag and Drop Actions
         handleDragStart (event, id) {
-            event.dataTransfer.setData("text/plain", id);
+            // Set the data for transfer as "componentId|linkId"
+            event.dataTransfer.setData("text/plain", `${this.componentId}|${id}`);
             this.draggingLinkId = id;
         },
         handleDrop (event, id) {
             event.preventDefault();
+            // Retrieve the transferred data and split it to get the component ID and link ID
+            const transferredData = event.dataTransfer.getData("text/plain");
+            const [originComponentId, originLinkId] = transferredData.split("|");
+            // If the component ID from the dragged item doesn't match the current component, exit the function
+            if (originComponentId !== this.componentId) {
+                console.log("Tried to drop item from a different component!");
+                return;
+            }
             this.draggedOverLinkId = id;
-            if (this.draggingLinkId !== this.draggedOverLinkId) {
-                const draggingLinkIndex = this.links.findIndex((link)=>link.id == this.draggingLinkId);
+            if (originLinkId !== this.draggedOverLinkId) {
+                const draggingLinkIndex = this.links.findIndex((link)=>link.id == originLinkId);
                 const draggedOverLinkIndex = this.links.findIndex((link)=>link.id == this.draggedOverLinkId);
                 // Swap the links
                 [this.links[draggingLinkIndex], this.links[draggedOverLinkIndex]] = [
                     this.links[draggedOverLinkIndex],
                     this.links[draggingLinkIndex]
                 ];
-                // Reset the dragged IDs
-                this.draggingLinkId = null;
-                this.draggedOverLinkId = null;
             }
+            // Reset the dragged IDs
+            this.draggingLinkId = null;
+            this.draggedOverLinkId = null;
+        },
+        handleDragEnd (event, id) {
+            this.links = this.links.map((link)=>{
+                if (link.id === id) return {
+                    ...link,
+                    isDragging: false
+                };
+                return link;
+            });
         },
         handleDragOver (event) {
             event.preventDefault();

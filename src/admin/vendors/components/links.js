@@ -1,6 +1,8 @@
 export default ({ initLinks = [], initMax }) => ({
   isDebugMode: false,
   debugTime: new Date(), // initialize with the current time
+  componentId: Math.random().toString(36).substring(2, 15),
+
   maxLinks: initMax,
   maxLinksError: "You have reached the maximum limit.",
   inputAddLinkValue: "",
@@ -199,12 +201,26 @@ export default ({ initLinks = [], initMax }) => ({
     return !!pattern.test(url);
   },
   handleDragStart(event, id) {
-    event.dataTransfer.setData("text/plain", id);
+    // Combine the link ID and the component ID with a separator (e.g., "|")
+    const dragData = `${id}|${this.componentId}`;
+    event.dataTransfer.setData("text/plain", dragData);
     this.draggingLinkId = id;
   },
   handleDrop(event, id) {
     event.preventDefault();
     this.draggedOverLinkId = id;
+
+    const dragData = event.dataTransfer.getData("text/plain");
+    const [draggedLinkId, draggedComponentId] = dragData.split("|");
+
+    // Check if the dragged item's component ID matches the current component's ID
+    if (draggedComponentId !== this.componentId.toString()) {
+      console.log(
+        "Drag operation occurred from a different component. Ignoring."
+      );
+      return;
+    }
+
     if (this.draggingLinkId !== this.draggedOverLinkId) {
       let draggingLink = this.links.find(
         (link) => link.id == this.draggingLinkId

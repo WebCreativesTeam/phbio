@@ -2,6 +2,7 @@ export default ({ initLinks = [] }) => {
   return {
     maxLinks: 100, // An arbitrary number; you can adjust this as needed
     linkError: "",
+    componentId: Math.random().toString(36).substring(2, 15),
     showAddNewLinkForm: false,
     maxLinksError: "You have reached the maximum limit.",
     inputAddLinkValue: "",
@@ -42,17 +43,29 @@ export default ({ initLinks = [] }) => {
 
     // Drag and Drop Actions
     handleDragStart(event, id) {
-      event.dataTransfer.setData("text/plain", id);
+      // Set the data for transfer as "componentId|linkId"
+      event.dataTransfer.setData("text/plain", `${this.componentId}|${id}`);
       this.draggingLinkId = id;
     },
 
     handleDrop(event, id) {
       event.preventDefault();
+
+      // Retrieve the transferred data and split it to get the component ID and link ID
+      const transferredData = event.dataTransfer.getData("text/plain");
+      const [originComponentId, originLinkId] = transferredData.split("|");
+
+      // If the component ID from the dragged item doesn't match the current component, exit the function
+      if (originComponentId !== this.componentId) {
+        console.log("Tried to drop item from a different component!");
+        return;
+      }
+
       this.draggedOverLinkId = id;
 
-      if (this.draggingLinkId !== this.draggedOverLinkId) {
+      if (originLinkId !== this.draggedOverLinkId) {
         const draggingLinkIndex = this.links.findIndex(
-          (link) => link.id == this.draggingLinkId
+          (link) => link.id == originLinkId
         );
         const draggedOverLinkIndex = this.links.findIndex(
           (link) => link.id == this.draggedOverLinkId
@@ -63,17 +76,23 @@ export default ({ initLinks = [] }) => {
           this.links[draggedOverLinkIndex],
           this.links[draggingLinkIndex],
         ];
-
-        // Reset the dragged IDs
-        this.draggingLinkId = null;
-        this.draggedOverLinkId = null;
       }
-    },
 
+      // Reset the dragged IDs
+      this.draggingLinkId = null;
+      this.draggedOverLinkId = null;
+    },
+    handleDragEnd(event, id) {
+      this.links = this.links.map((link) => {
+        if (link.id === id) {
+          return { ...link, isDragging: false };
+        }
+        return link;
+      });
+    },
     handleDragOver(event) {
       event.preventDefault();
     },
-
     // Edit and Delete Actions
     showEditLinkForm(id) {
       const link = this.links.find((item) => item.id === id);
