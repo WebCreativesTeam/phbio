@@ -57,6 +57,7 @@ define( 'PLUGIN_NAME_BASE_NAME', plugin_basename( __FILE__ ) );
  */
 function pfx_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-activator.php';
+	Plugin_Name_Activator::create_link_manager_table();
 	Plugin_Name_Activator::create_link_clicks_table();
 	Plugin_Name_Activator::activate();
 }
@@ -239,3 +240,58 @@ function display_user_links_shortcode_listing($atts) {
 add_shortcode('display_user_links_listing', 'display_user_links_shortcode_listing');
 
 
+add_action('updated_user_meta', 'sync_links_list_to_phbio_links', 10, 4);
+add_action('added_user_meta', 'sync_links_list_to_phbio_links', 10, 4);
+
+function sync_links_list_to_phbio_links($meta_id, $user_id, $meta_key, $_meta_value) {
+    if ($meta_key === 'links_list') {
+        $value = get_user_meta($user_id, 'links_list', true);
+        $decodedString = urldecode($value);
+        $linksArray = json_decode($decodedString, true);
+
+        /** Re-index to fix any potential issues */
+        $arr = array_values(is_array($linksArray) ? $linksArray : []);
+        
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'phbio_links';
+        
+        foreach ($arr as $link) {
+            $entry = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d AND user_id = %d", $link['id'], $user_id));
+            
+            if ($entry) {
+                // Update the entry
+                $wpdb->update(
+                    $table_name,
+                    array(
+                        'title' => $link['title'],
+                        'text' => $link['text'],
+                        'isHidden' => $link['isHidden'],
+                        'highlight' => $link['highlight'],
+                        'start_time' => $link['start_time'],
+                        'end_time' => $link['end_time'],
+                        'isScheduled' => $link['isScheduled'],
+                        'imageFile' => $link['imageFile']
+                    ),
+                    array('id' => $link['id'], 'user_id' => $user_id)  // WHERE clause
+                );
+            } else {
+                // Insert a new entry
+                $wpdb->insert(
+                    $table_name,
+                    array(
+                        'user_id' => $user_id,
+                        'id' => $link['id'],
+                        'title' => $link['title'],
+                        'text' => $link['text'],
+                        'isHidden' => $link['isHidden'],
+                        'highlight' => $link['highlight'],
+                        'start_time' => $link['start_time'],
+                        'end_time' => $link['end_time'],
+                        'isScheduled' => $link['isScheduled'],
+                        'imageFile' => $link['imageFile']
+                    )
+                );
+            }
+        }
+    }
+}

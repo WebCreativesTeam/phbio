@@ -185,6 +185,32 @@ class Plugin_Name_Activator {
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta( $sql );
 	}
+
+	static function create_link_manager_table() {
+		global $wpdb;
+		$charset_collate = $wpdb->get_charset_collate();
+		$table_name = $wpdb->prefix . 'phbio_links';
+	
+		if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+			$sql = "CREATE TABLE $table_name (
+				link_id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+				user_id BIGINT(20) UNSIGNED NOT NULL,
+				id BIGINT(20) UNSIGNED NOT NULL,
+				title TEXT NOT NULL,
+				text TEXT NOT NULL,
+				isHidden BOOLEAN,
+				highlight BOOLEAN,
+				start_time DATETIME,
+				end_time DATETIME,
+				isScheduled BOOLEAN,
+				imageFile TEXT,
+				PRIMARY KEY  (link_id)
+			) $charset_collate;";
+	
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			dbDelta($sql);
+		}
+	}
 	
 
 }
