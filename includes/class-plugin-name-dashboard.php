@@ -426,6 +426,7 @@ class Plugin_Name_Dashboard {
     <?php }
     
     public function edit__links_tab($user_id) { ?>
+        <?php echo Plugin_Name_Utilities::current_user_has_backup_links(); ?>
         <form method="post">
             <?php Plugin_Name_Builder::link_list_field( 'Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
             <?php Plugin_Name_Builder::social_links_list_field( 'Manage Social Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>

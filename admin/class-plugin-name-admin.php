@@ -432,8 +432,6 @@ function user_profile_private_redirection() {
 
     
 
-
-
 	
 
 }

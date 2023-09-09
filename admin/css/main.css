@@ -1071,8 +1071,9 @@ select {
     --tw-text-opacity: 0.9;
 }
 .warning-icon {
+    margin-right: 0.75rem;
     --tw-text-opacity: 1;
-    color: rgb(234 179 8 / var(--tw-text-opacity));
+    color: rgb(161 98 7 / var(--tw-text-opacity));
 }
 .visible {
     visibility: visible;

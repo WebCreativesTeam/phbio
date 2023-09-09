@@ -4,12 +4,64 @@
 
 class Plugin_Name_Utilities {
 
+    // Data to delete after, days
+    // IMPORTANT KEEP THIS SAME WITH THE SCHEDULED CLASS'S VALUE 
+    const KEEP_FOR = 1;
+
     public static function is_not_included_field($label) {
         return '<div class="warning-message">
-        <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg>
                                 Your current template does not include <b>' . $label .
                             '</b></div>';
     }
+
+    public static function current_user_has_backup_links() {
+        $user_id = get_current_user_id();
+
+        if(self::user_has_backup($user_id) && self::is_lite_version($user_id)) {
+            return '<div class="warning-message">
+            <svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg>
+                                    You currently have links available, upgrade to backup immediatley. <b>' . self::get_remaining_days_for_user_backup($user_id) . '</b></div>';
+        } else {
+            return '';
+        }
+        
+    }
+
+
+    public static function user_has_backup($user_id) {
+
+        
+        
+        // Check if the _backup_meta_field exists for the user
+        $backup_meta = get_user_meta($user_id, '_backup_meta_field', true);
+        
+        // Return true if it exists, otherwise return false
+        return !empty($backup_meta);
+    }
+    
+    public static function get_remaining_days_for_user_backup($user_id) {
+        $backup_date = get_user_meta($user_id, '_backup_date', true);
+    
+        if (!$backup_date) {
+            return false; // or return null, or any other indication that there's no backup date
+        }
+    
+        $elapsed_time = current_time('timestamp') - strtotime($backup_date);
+        $days_elapsed = $elapsed_time / DAY_IN_SECONDS;
+        $remaining_days = self::KEEP_FOR - $days_elapsed;
+    
+        // If no days left, calculate hours
+        if (floor($remaining_days) == 0) {
+            $hours_elapsed = $elapsed_time / HOUR_IN_SECONDS;
+            $remaining_hours = 24 - $hours_elapsed;
+            return max(0, floor($remaining_hours)) . " hours left";
+        }
+    
+        return max(0, floor($remaining_days)) . " days left"; // ensure we don't get negative numbers
+    }
+    
+    
     
     public static function check_user_capability($capability) {
         if (!current_user_can($capability)) {

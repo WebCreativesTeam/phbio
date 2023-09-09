@@ -381,6 +381,6 @@
   }
 
   .warning-icon {
-    @apply text-yellow-500;
+    @apply mr-3 text-yellow-700;
   }
 }
