@@ -26,12 +26,32 @@ class Plugin_Name_Dashboard {
 		?>
 <div class="dashboard-layout">
 
-<div x-data="{ editMode: false, activeTab: 'profile', showSettings: false, showTemplates: false, activeFilter: 'all' }" 
-     x-init="() => { 
-         if (localStorage.getItem('editMode') !== null) { 
-             editMode = (localStorage.getItem('editMode') === 'true'); 
-         } 
-     }" 
+<div x-data="{ editMode: false, activeTab: 'profile', showSettings: false, showTemplates: false, activeFilter: 'all',
+    saveState: function() {
+            localStorage.setItem('alpineState', JSON.stringify({
+                editMode: this.editMode,
+                activeTab: this.activeTab,
+                showSettings: this.showSettings,
+                showTemplates: this.showTemplates,
+                activeFilter: this.activeFilter
+            }));
+        } }" 
+        x-init="() => { 
+        let storedState = localStorage.getItem('alpineState');
+        if (storedState) {
+            let state = JSON.parse(storedState);
+            editMode = state.editMode;
+            activeTab = state.activeTab;
+            showSettings = state.showSettings;
+            showTemplates = state.showTemplates;
+            activeFilter = state.activeFilter;
+        }
+        $watch('editMode', () => saveState());
+        $watch('activeTab', () => saveState());
+        $watch('showSettings', () => saveState());
+        $watch('showTemplates', () => saveState());
+        $watch('activeFilter', () => saveState());
+    }"
      class="relative main-area"> <!-- Added relative positioning here -->
 
     <!--Top Actions - STARTS HERE -->
@@ -103,7 +123,7 @@ class Plugin_Name_Dashboard {
     
                 <!-- Toggle -->
                 <label class="toggle-label">
-                    <input type="checkbox" x-model="editMode" @change="localStorage.setItem('editMode', editMode)" style="display: none !important">
+                    <input type="checkbox" x-model="editMode" style="display: none !important">
                     <div class="toggle">
                         <div class="toggle__line"></div>
                         <div class="toggle__dot"></div>
