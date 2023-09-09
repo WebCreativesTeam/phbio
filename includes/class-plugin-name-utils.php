@@ -70,6 +70,21 @@ class Plugin_Name_Utilities {
         return true; // Capability met
     }
 
+    public static function get_user_links() {
+        $user_id = get_current_user_id();
+
+        // Get Links
+        $value = get_user_meta($user->ID, 'links_list', true);
+
+        $decodedString = urldecode($value);
+        $linksArray = json_decode($decodedString, true);
+    
+        /** Re-index to fix any potential issues */
+        $arr = array_values(is_array($linksArray) ? $linksArray : []);
+
+        return $arr;
+    }
+
     public static function is_lite_version($user_id) {
         $user = get_userdata($user_id);
         return in_array('lite-version', (array) $user->roles);
