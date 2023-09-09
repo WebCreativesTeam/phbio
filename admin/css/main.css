@@ -311,7 +311,7 @@ select {
     gap: 0.25rem;
     border-radius: 9999px;
     --tw-bg-opacity: 1;
-    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
     padding-left: 0.75rem;
     padding-right: 0.75rem;
     padding-top: 0.25rem;
@@ -547,7 +547,7 @@ select {
     cursor: pointer;
     border-radius: 9999px;
     --tw-bg-opacity: 1;
-    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     padding-top: 0.5rem;
@@ -572,7 +572,7 @@ select {
     cursor: pointer;
     border-radius: 9999px;
     --tw-bg-opacity: 1;
-    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
     padding-left: 1.25rem;
     padding-right: 1.25rem;
     padding-top: 0.75rem;
@@ -893,7 +893,7 @@ select {
 }
 .active-tab {
     --tw-bg-opacity: 1;
-    background-color: rgb(75 85 99 / var(--tw-bg-opacity));
+    background-color: rgb(55 65 81 / var(--tw-bg-opacity));
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
@@ -1431,34 +1431,28 @@ select {
 .ease-in-out {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .hover\:bg-gray-200:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
-
 .hover\:text-gray-700:hover {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
-
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
 }
-
 @media (min-width: 640px) {
     .sm\:flex-row {
         flex-direction: row;
     }
 }
-
 @media (min-width: 768px) {
     .md\:flex-row {
         flex-direction: row;
     }
 }
-
 @media (min-width: 1024px) {
     .lg\:grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));

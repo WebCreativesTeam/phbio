@@ -23,7 +23,7 @@
   }
 
   .template-btn {
-    @apply flex items-center gap-1 px-3 py-1 text-xs text-white transition-transform duration-150 transform bg-gray-800 rounded-full shadow-md cursor-pointer hover:scale-105 sm:gap-2 sm:px-4 sm:py-1 sm:text-sm md:gap-2 md:px-5 md:py-2 md:text-base;
+    @apply flex items-center gap-1 px-3 py-1 text-xs text-white transition-transform duration-150 transform bg-gray-700 rounded-full shadow-md cursor-pointer hover:scale-105 sm:gap-2 sm:px-4 sm:py-1 sm:text-sm md:gap-2 md:px-5 md:py-2 md:text-base;
   }
 
   .settings-btn {
@@ -108,11 +108,11 @@
   }
 
   .upload-btn {
-    @apply px-5 py-2 text-white transition-transform duration-150 transform bg-gray-800 rounded-full shadow-md cursor-pointer hover:scale-105;
+    @apply px-5 py-2 text-white transition-transform duration-150 transform bg-gray-700 rounded-full shadow-md cursor-pointer hover:scale-105;
   }
 
   .add-link-btn {
-    @apply w-full px-5 py-3 font-bold text-white transition-transform duration-150 transform bg-gray-800 rounded-full shadow-md cursor-pointer;
+    @apply w-full px-5 py-3 font-bold text-white transition-transform duration-150 transform bg-gray-700 rounded-full shadow-md cursor-pointer;
   }
 
   .upload-content {
@@ -294,7 +294,7 @@
   }
 
   .active-tab {
-    @apply text-white bg-gray-600;
+    @apply text-white bg-gray-700;
   }
 
   .tab-content {
