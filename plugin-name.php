@@ -232,7 +232,7 @@ function display_user_links_shortcode($atts) {
 add_shortcode('display_user_links', 'display_user_links_shortcode');
 
 function display_user_links_shortcode_listing($atts) {
-    return htmlspecialchars(json_encode(Plugin_Name_Utilities::get_user_links()), ENT_QUOTES, 'UTF-8');
+    return Plugin_Name_Utilities::get_user_links();
     
     
 }
