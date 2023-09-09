@@ -240,7 +240,7 @@ class Plugin_Name_Admin {
 	}
 	
 	public static function user_column_button_cb($val, $column_name, $user_id) {
-		$url = 'admin.php?page=my_custom_page_slug&user_id=';
+		$url = 'admin.php?page=profile-editor&user_id=';
 		if ($column_name == 'edit_btn') {
 			if (Plugin_Name_Utilities::is_lite_version($user_id)) {
 				return '<a href="' . admin_url($url . $user_id) . '" class="button action">Edit Lite Version</a>';
