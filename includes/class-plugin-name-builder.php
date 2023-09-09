@@ -3,11 +3,15 @@
 class Plugin_Name_Builder {
     
     const ERROR_MSG= "Unlock this feature instantly by going PRO";
+    const NOT_INCLUDED = "Your current template does not include this";
 
-    public static function text_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true) {
+    public static function text_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true, $templateIncluded = true) {
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
         if (!$data && $isValue) $data = $value;
         
+        if(!$templateIncluded) {
+            echo self::NOT_INCLUDED;
+        }
         $char_limit = 0;
         if ($hasLimit) {
             // Retrieve the character limit from WordPress for admin user with ID 0
@@ -50,7 +54,11 @@ class Plugin_Name_Builder {
     }
     
     
-    public static function url_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true) {
+    public static function url_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true, $templateIncluded = true) {
+        
+        if(!$templateIncluded) {
+            echo self::NOT_INCLUDED;
+        }
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
         if (!$data && $isValue) $data = $value;
     
@@ -606,8 +614,12 @@ class Plugin_Name_Builder {
             echo $content;
         }
         
-    public static function upload_field($field_name, $label, $capability, $allowed_types = array('image/jpeg', 'image/png', 'image/tiff'), $max_size = 2 * 1024 * 102,  $target_user_id) {
+    public static function upload_field($field_name, $label, $capability, $allowed_types = array('image/jpeg', 'image/png', 'image/tiff'), $max_size = 2 * 1024 * 102,  $target_user_id, $templateIncluded = true) {
         
+
+        if(!$templateIncluded) {
+            echo self::NOT_INCLUDED;
+        }
         $name = $field_name . '_url';
         $image_url = Plugin_Name_Utilities::handle_user_meta($name, Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE,  $target_user_id);
         ?>
