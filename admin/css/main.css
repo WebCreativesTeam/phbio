@@ -1110,9 +1110,6 @@ select {
 .ml-5 {
     margin-left: 1.25rem;
 }
-.mr-2 {
-    margin-right: 0.5rem;
-}
 .mr-4 {
     margin-right: 1rem;
 }
@@ -1173,11 +1170,11 @@ select {
 .w-full {
     width: 100%;
 }
-.cursor-pointer {
-    cursor: pointer;
-}
 .cursor-not-allowed {
     cursor: not-allowed;
+}
+.cursor-pointer {
+    cursor: pointer;
 }
 .resize {
     resize: both;
