@@ -371,7 +371,11 @@ class Plugin_Name_Builder {
                                 class="drag-handle"
                             >⠿</div>
                              <div class="flex flex-col flex-auto ml-5">
-                                <div x-data="{ switchState: !link.isHidden }" style="margin-bottom: 1rem;">
+                                <div x-data="{ switchState: !link.isHidden, init() {
+            this.$watch('link.isHidden', (value) => {
+                this.switchState = !value;
+            });
+        } }" x-init="init()" style="margin-bottom: 1rem;">
                                             <label class="toggle-label">
                                                 <input 
                                                     type="checkbox" 
