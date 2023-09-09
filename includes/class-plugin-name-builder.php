@@ -370,23 +370,23 @@ class Plugin_Name_Builder {
                                 @dragend="handleDragEnd($event, link.id)" 
                                 class="drag-handle"
                             >⠿</div>
-                             <div class="flex flex-col">
-                             <div x-data="{ switchState: !link.isHidden }" style="margin-bottom: 1rem;">
-                                        <label class="toggle-label">
-                                            <input 
-                                                type="checkbox" 
-                                                x-model="switchState" 
-                                                @change="toggleHideLink(link.id)"
-                                                style="display: none !important"
-                                            >
-                                            <div class="mr-4 toggle toggle--small">
-                                                <div class="toggle__line"></div>
-                                                <div class="toggle__dot toggle__dot--small"></div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                <span x-text="link.title" class="text-sm font-semibold"></span>
-                                <span x-text="link.text" class="text-gray-600"></span>
+                             <div class="flex flex-col flex-auto ml-5">
+                                <div x-data="{ switchState: !link.isHidden }" style="margin-bottom: 1rem;">
+                                            <label class="toggle-label">
+                                                <input 
+                                                    type="checkbox" 
+                                                    x-model="switchState" 
+                                                    @change="toggleHideLink(link.id)"
+                                                    style="display: none !important"
+                                                >
+                                                <div class="mr-4 toggle toggle--small">
+                                                    <div class="toggle__line"></div>
+                                                    <div class="toggle__dot toggle__dot--small"></div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    <span x-text="link.title" class="text-sm font-semibold"></span>
+                                    <span x-text="link.text" class="text-gray-600"></span>
                              </div>
                              <div class="flex items-center">
                                  <button type="button" class="border-0 cursor-pointer bg-inherit" @click="showEditLinkForm(link.id)">
@@ -473,6 +473,8 @@ class Plugin_Name_Builder {
                                     </div>
 
                                 </div>
+                          
+                          
                             </li>
                         </template>
                     </ul>
