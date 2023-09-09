@@ -54,11 +54,9 @@ class Plugin_Name_Builder {
     }
     
     
-    public static function url_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true, $templateIncluded = true) {
+    public static function url_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true) {
         
-        if(!$templateIncluded) {
-            echo self::NOT_INCLUDED;
-        }
+        
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
         if (!$data && $isValue) $data = $value;
     
@@ -163,7 +161,11 @@ class Plugin_Name_Builder {
     
     
     
-    public static function textarea_field($name, $value, $label, $capability, $target_user_id, $hasLimit = true) {
+    public static function textarea_field($name, $value, $label, $capability, $target_user_id, $hasLimit = true, $templateIncluded = true) {
+        if(!$templateIncluded) {
+            echo self::NOT_INCLUDED;
+        }
+        
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
         
         $char_limit = null;
