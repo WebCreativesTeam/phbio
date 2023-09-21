@@ -147,7 +147,7 @@ class Plugin_Name_Dashboard {
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19,2H9A3,3,0,0,0,6,5V6H5A3,3,0,0,0,2,9V19a3,3,0,0,0,3,3H15a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V5A3,3,0,0,0,19,2ZM16,19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H16Zm0-9H4V9A1,1,0,0,1,5,8H15a1,1,0,0,1,1,1Zm4,5a1,1,0,0,1-1,1H18V9a3,3,0,0,0-.18-1H20Zm0-9H8V5A1,1,0,0,1,9,4H19a1,1,0,0,1,1,1Z"></path>
                     </svg>
-                    Select Template
+                    Templates
                 </button>
     
                 <!-- Button: Settings (SVG only) -->
@@ -175,7 +175,7 @@ class Plugin_Name_Dashboard {
             <!-- Templates Actions  - STARTS HERE -->
                 <?php self::actions__bar('showSettings', 'settingsForm'); ?>
             <!-- Templates Actions  - ENDS HERE -->
-            <div class="mt-10 ml-5">
+            <div class="mt-10">
                 <!-- Hidden Input for Selected Template -->
                 <form method="post" action="" id="settingsForm">
                 <?php 
@@ -276,10 +276,24 @@ class Plugin_Name_Dashboard {
 
     
 
-    public function area__preview($user_id) { ?>
-       hi
+    public function area__preview($user_id) { 
+        $user_id = get_current_user_id(); 
+
+        $elementor_page_url = get_user_meta( $user_id, 'username', true ); // Replace with the URL of your Elementor page
+        echo '<iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%;"></iframe>';
+        ?> 
+        <script>
+            window.addEventListener("DOMContentLoaded", function() {
+                var iframe = document.querySelector('iframe');
+                iframe.onload = function() {
+                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
+                }
+            });
+        </script>
+
+        <?php
         
-    <?php }
+    }
 
     public function area__templates($user_id) { ?>
        <?php
@@ -291,7 +305,7 @@ class Plugin_Name_Dashboard {
 		<!-- Templates Actions  - ENDS HERE -->
 
 <!-- Filter Section -->
-<div  class="flex items-center justify-start gap-4 mt-10 ml-4">
+<div  class="flex items-center justify-start gap-4 pl-2 mt-10 sm:p-0">
     <span @click="activeFilter = 'all'" :class="{'text-gray-800 font-bold': activeFilter === 'all'}" class="cursor-pointer filter-item">All</span>
     <span @click="activeFilter = 'full'" :class="{'text-gray-800 font-bold': activeFilter === 'full'}" class="cursor-pointer filter-item">Full Version</span>
     <span @click="activeFilter = 'lite'" :class="{'text-gray-800 font-bold': activeFilter === 'lite'}" class="cursor-pointer filter-item">Lite Version</span>
@@ -311,19 +325,19 @@ class Plugin_Name_Dashboard {
 		?>
 
 		<?php if(isset($selected) && strlen($selected) > 0) { ?>
-			<div x-data="{ selectedTemplate: '<?php echo $selected; ?>' }" class="mt-10 ml-4">
+			<div x-data="{ selectedTemplate: '<?php echo $selected; ?>' }" class="mt-10 my-auto w-[95%]">
 		<?php } else { ?>
 			<?php if(isset($default) && strlen($default) > 0) { ?>
-				<div x-data="{ selectedTemplate: '<?php echo $default; ?>' }" class="mt-10 ml-4">
+				<div x-data="{ selectedTemplate: '<?php echo $default; ?>' }" class="mt-10 my-auto w-[95%]">
 			<?php } else { ?>
-				<div x-data="{ selectedTemplate: '' }" class="mt-10 ml-4">
+				<div x-data="{ selectedTemplate: '' }" class="mt-10 my-auto w-[95%]">
 			<?php } ?>
 		<?php } ?>
 		
 
 		
 
-    <div class="grid grid-cols-2 gap-4 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <?php 
         // Get current user role
         $user = wp_get_current_user();
@@ -462,7 +476,7 @@ class Plugin_Name_Dashboard {
 
     public function actions__bar($handle, $formHandler) { ?>
         <!-- Flex container with space between "Back" and "Save" buttons -->
-        <div class="flex items-center justify-between mt-6 ml-4">
+        <div class="flex items-center justify-between mt-6 w-[95%] my-auto">
             <!-- Back Button for Templates -->
             <button @click="<?php echo $handle ?> = false" class="template-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">

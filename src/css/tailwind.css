@@ -11,7 +11,7 @@
   }
 
   .main-area {
-    @apply w-full max-w-screen-lg p-6;
+    @apply w-full max-w-screen-lg py-6;
   }
 
   .actions-area {
@@ -112,7 +112,7 @@
   }
 
   .add-link-btn {
-    @apply w-full px-5 py-3 font-bold text-white transition-transform duration-150 transform bg-gray-700 rounded-full shadow-md cursor-pointer;
+    @apply w-full py-3 font-bold text-white transition-transform duration-150 transform bg-gray-700 rounded-full shadow-md cursor-pointer;
   }
 
   .upload-content {
@@ -286,7 +286,7 @@
   } */
 
   .tab-btn {
-    @apply flex items-center gap-1 px-2 py-1 text-sm font-medium text-gray-700 transition-transform duration-150 transform bg-gray-200 rounded shadow cursor-pointer hover:scale-105 sm:gap-2 sm:px-3 sm:py-2 sm:text-base md:gap-2 md:px-4 md:py-2 md:text-sm;
+    @apply flex items-center gap-1 px-2 py-1 text-xs font-medium text-gray-700 transition-transform duration-150 transform bg-gray-200 rounded shadow cursor-pointer sm:text-sm hover:scale-105 sm:gap-2 sm:px-3 sm:py-2 sm:text-base md:gap-2 md:px-4 md:py-2 md:text-sm;
   }
 
   .tab-btn svg {
@@ -298,12 +298,12 @@
   }
 
   .tab-content {
-    @apply py-4;
+    @apply px-2 py-4;
   }
 
   /* Card */
   .template-card {
-    @apply transition-all duration-300 border-2 border-gray-700 border-solid rounded shadow-none cursor-pointer hover:shadow-md;
+    @apply w-[95%] sm:w-full m-auto transition-all duration-300 border-2 border-gray-700 border-solid rounded shadow-none cursor-pointer hover:shadow-md;
     @apply focus-visible:outline-none focus-visible:shadow-none active:outline-none hover:outline-none focus:outline-none !important;
   }
   .template-card:hover {

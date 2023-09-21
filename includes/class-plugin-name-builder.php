@@ -78,16 +78,20 @@ class Plugin_Name_Builder {
                     return /^[a-zA-Z0-9-_]+$/.test(username);
                 };
                 copyToClipboard = () => {
-        const el = document.createElement('textarea');
-        el.value = '<?php echo esc_js(site_url()); ?>/' + secureUsername;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        copied = true;
-        setTimeout(() => { copied = false; }, 2000); // Reset after 2 seconds
-    };
-    
+                    const el = document.createElement('textarea');
+                    el.value = '<?php echo esc_js(site_url('/bio')); ?>/' + secureUsername;
+                    document.body.appendChild(el);
+                    el.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(el);
+                    copied = true;
+                    setTimeout(() => { copied = false; }, 2000); // Reset after 2 seconds
+                };
+                navigateToLink = () => {
+                    const url = '<?php echo esc_js(site_url('/bio')); ?>/' + secureUsername;
+                    window.open(url, '_blank');
+                };
+
                 checkAvailability = () => {
                     charCount = username.length;
                     if (!isValidUsername()) {
@@ -153,6 +157,7 @@ class Plugin_Name_Builder {
 <div class="flex items-center gap-3 mb-6">
 <span class="block text-sm text-gray-500 hover:text-gray-700" x-text="`<?php echo esc_js(site_url('/bio')); ?>/` + secureUsername"></span>
 <svg @click="copyToClipboard" xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="w-5 h-5 cursor-pointer hover:text-gray-700" viewBox="0 0 24 24" fill="currentColor"><path d="M21,8.94a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19.32.32,0,0,0-.09,0A.88.88,0,0,0,14.05,2H10A3,3,0,0,0,7,5V6H6A3,3,0,0,0,3,9V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V9S21,9,21,8.94ZM15,5.41,17.59,8H16a1,1,0,0,1-1-1ZM15,19a1,1,0,0,1-1,1H6a1,1,0,0,1-1-1V9A1,1,0,0,1,6,8H7v7a3,3,0,0,0,3,3h5Zm4-4a1,1,0,0,1-1,1H10a1,1,0,0,1-1-1V5a1,1,0,0,1,1-1h3V7a3,3,0,0,0,3,3h3Z"></path></svg>
+<svg @click="navigateToLink" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 cursor-pointer hover:text-gray-700" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18,10.82a1,1,0,0,0-1,1V19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V8A1,1,0,0,1,5,7h7.18a1,1,0,0,0,0-2H5A3,3,0,0,0,2,8V19a3,3,0,0,0,3,3H16a3,3,0,0,0,3-3V11.82A1,1,0,0,0,18,10.82Zm3.92-8.2a1,1,0,0,0-.54-.54A1,1,0,0,0,21,2H15a1,1,0,0,0,0,2h3.59L8.29,14.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L20,5.41V9a1,1,0,0,0,2,0V3A1,1,0,0,0,21.92,2.62Z"></path></svg>
 <span x-show="copied" class="ml-2 text-sm text-gray-700">Copied!</span>
 </div>
         </div>
@@ -361,7 +366,7 @@ class Plugin_Name_Builder {
                     <ul>
                         <template x-for="link in links">
                         <li 
-                            class="p-5 m-5 bg-gray-200 border-2 border-dashed rounded-md"
+                            class="p-2 bg-gray-200 border-2 border-dashed rounded-md sm:p-5 sm:m-5"
                             
                             @drop="handleDrop($event, link.id)" 
                             @dragover="handleDragOver($event)"
@@ -381,12 +386,12 @@ class Plugin_Name_Builder {
                                 @dragend="handleDragEnd($event, link.id)" 
                                 class="drag-handle"
                             >⠿</div>
-                             <div class="flex flex-col flex-auto ml-5">
-                                <div x-data="{ switchState: !link.isHidden, init() {
+                             <div class="flex flex-col flex-auto sm:ml-5 ">
+                                <div class="mb-0 sm:mb-4" x-data="{ switchState: !link.isHidden, init() {
             this.$watch('link.isHidden', (value) => {
                 this.switchState = !value;
             });
-        } }" x-init="init()" style="margin-bottom: 1rem;">
+        } }" x-init="init()">
                                             <label class="toggle-label">
                                                 <input 
                                                     type="checkbox" 
@@ -401,15 +406,15 @@ class Plugin_Name_Builder {
                                             </label>
                                         </div>
                                     <span x-text="link.title" class="text-sm font-semibold"></span>
-                                    <span x-text="link.text" class="text-gray-600"></span>
+                                    <span x-text="link.text" class="hidden text-gray-600 sm:block"></span>
                              </div>
                              <div class="flex items-center">
                                  <button type="button" class="border-0 cursor-pointer bg-inherit" @click="showEditLinkForm(link.id)">
 
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></svg>
+                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></svg>
                                  </button>
                                     <button type="button" class="border-0 cursor-pointer bg-inherit" @click="removeLink(link.id)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg>
                                     </button>
                                     
 
@@ -417,8 +422,8 @@ class Plugin_Name_Builder {
                                     if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::HIGHLIGHT_LINK)) {
                                         // DO NOTHING
                                     } else { ?>
-                                        <button class="upload-btn" type="button" x-show="!link.isHidden" @click="toggleHighlightLink(link.id)">
-                                            <span x-text="link.highlight ? 'Unhighlight' : 'Highlight'"></span>
+                                        <button class="px-3 sm:px-5 upload-btn" type="button" x-show="!link.isHidden" @click="toggleHighlightLink(link.id)">
+                                            <span class="text-xs sm:text-sm" x-text="link.highlight ? 'Unhighlight' : 'Highlight'"></span>
                                         </button>
                                     
                                     <?php } ?>
