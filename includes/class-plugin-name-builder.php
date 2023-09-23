@@ -479,7 +479,7 @@ class Plugin_Name_Builder {
                                             <img x-show="link.imageFile" :src="link.imageFile" alt="Uploaded File" class="file-preview">
                                             <div x-show="!link.imageFile" class="flex items-center justify-center p-2 align-middle file-preview">No Image Uploaded</div>
                                             <div class="upload-content">
-                                                <form method="post" enctype="multipart/form-data" x-ref="linkImageUploadForm">
+                                                <form method="post" enctype="multipart/form-data">
                                                     <label for="link_image" class="block upload-label">Upload Image</label>
                                                     <input type="file" name="link_image" id="link_image" class="absolute inset-0 w-full h-full opacity-0" accept="image/jpeg,image/png,image/tiff" @change="uploadImage(link.id)" />
                                                 </form>
