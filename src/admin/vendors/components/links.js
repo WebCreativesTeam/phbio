@@ -181,9 +181,15 @@ export default ({ initLinks = [], initMax }) => ({
   },
 
   uploadImage(linkId) {
+    console.log(linkId, "linkId");
     const fileInput =
       this.$refs.linkImageUploadForm.querySelector('input[type="file"]');
-    const file = fileInput.files[0];
+
+    const file = fileInput.files;
+
+    console.log(file);
+
+    console.log(file, "file");
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {

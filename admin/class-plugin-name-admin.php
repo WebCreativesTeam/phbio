@@ -92,13 +92,13 @@ class Plugin_Name_Admin {
 			'all'
 		);
 
-		wp_enqueue_style(
-			'font-awesome',
-			'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css',
-			array(),
-			$this->version,
-			'all'
-		);
+		wp_enqueue_style( 'font-awesome-icons-webfont-woff', plugin_dir_url( __FILE__ ) . 'fonts/fontawesome-webfont.woff', array(), $this->version, 'all' );
+		wp_enqueue_style( 'font-awesome-icons-list', plugin_dir_url( __FILE__ ) . 'css/font-awesome.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'font-awesome-icons-list-select2', plugin_dir_url( __FILE__ ) . 'css/select2.min.css', array(), $this->version, 'all' );
+    
+    
+    
+    
  
 	}
 
@@ -129,13 +129,27 @@ class Plugin_Name_Admin {
 			false
 		);
 		wp_enqueue_script( 'username', plugin_dir_url( __FILE__ ) . 'js/username.js', NULL, $this->version, false );
-
-			wp_localize_script( 'username', 'plugin', array(
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce'    => wp_create_nonce( 'plugin' )
-			) );
 		
-
+		wp_localize_script( 'username', 'plugin', array(
+			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'nonce'    => wp_create_nonce( 'plugin' )
+			) );
+			
+		wp_enqueue_script(
+			'font-awesome-icons-list-select2',
+			plugin_dir_url( __FILE__ ) . 'js/select2.full.min.js',
+			NULL,
+			$this->version,
+			false
+		);
+		wp_enqueue_script(
+			'font-awesome-picker',
+			plugin_dir_url( __FILE__ ) . 'js/script-main.js',
+			array('jquery'),
+			$this->version,
+			false
+		);
+			
 	}
 
 	public function role_manager( $hook_suffix ) {

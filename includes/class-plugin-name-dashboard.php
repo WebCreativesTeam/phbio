@@ -6,6 +6,7 @@ class Plugin_Name_Dashboard {
     
     public function __construct() {
         add_action( 'admin_menu', array($this, 'register') );
+
     }
     
     public function register() {
@@ -44,6 +45,7 @@ class Plugin_Name_Dashboard {
         return $template_id;
     }
     
+   
     
     function render() {
 

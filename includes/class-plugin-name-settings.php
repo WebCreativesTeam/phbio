@@ -3,8 +3,43 @@
 class Plugin_Name_Settings {
     public function __construct() {
         add_action( 'admin_menu', array($this, 'register') );
+        add_action( 'wp_ajax_fontAwesomeIconListUpdate', array($this, 'fontAwesomeIconListUpdate') );
+
     }
     
+    function fontAwesomeIconListForm() {
+    if (is_user_logged_in()) {
+        $fontAwesomeIconList = get_option('fontAwesomeIconList');
+        if (!$fontAwesomeIconList) $fontAwesomeIconList = ["null"];
+        echo '<script>var fontAwesomeIconList = '.json_encode($fontAwesomeIconList).';var fontAwesomeIconListAjaxURL = "'.admin_url('admin-ajax.php').'";</script>';
+        ?>
+        <style type="text/css" media="all">
+            .select2-selection--multiple{
+                overflow: hidden !important;
+                height: auto !important;
+            }
+        </style>
+        <label class="input-label">Available Icons</label>
+        <div class="textarea-container">
+            <select name="fontAwesomeIconList[]" id="fontAwesomeIconList" class="icons-list-update" data-selected="" multiple></select>
+        </div>
+        
+        <?php
+       
+    }
+    }
+
+    function fontAwesomeIconListUpdate() {
+    if (isset($_POST['fontAwesomeIconList'])) {
+        $fontAwesomeIconList = $_POST['fontAwesomeIconList'];
+        update_option( 'fontAwesomeIconList', $fontAwesomeIconList, false );
+        
+    }else{
+        update_option( 'fontAwesomeIconList', null, false );
+    }
+    wp_send_json_success();
+    }  
+
     public function register() {
         add_menu_page(
 			'Link in Bio Settings',             
@@ -76,10 +111,6 @@ class Plugin_Name_Settings {
             [
                 'type' => 'text_field',
                 'args' => ['private_redirection', 'https://', false, 'Private Redirection', '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11,12H3a1,1,0,0,0-1,1v8a1,1,0,0,0,1,1h8a1,1,0,0,0,1-1V13A1,1,0,0,0,11,12Zm-1,8H4V14h6ZM21.92,2.62a1,1,0,0,0-.54-.54A1,1,0,0,0,21,2H15a1,1,0,0,0,0,2h3.59l-5.3,5.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L20,5.41V9a1,1,0,0,0,2,0V3A1,1,0,0,0,21.92,2.62Z"></path></svg>', 'manage_options', false, $user_id]
-            ],
-            [
-                'type' => 'textarea_field',
-                'args' => ['available_icons', '', 'Set Available Icons', 'manage_options', false, $user_id]
             ]
         ];
     
@@ -90,7 +121,11 @@ class Plugin_Name_Settings {
             if (method_exists('Plugin_Name_Builder', $method)) {
                 call_user_func_array(['Plugin_Name_Builder', $method], $setting['args']);
             }
+
+            
         }
+
+        $this->fontAwesomeIconListForm();
     }
     
     
