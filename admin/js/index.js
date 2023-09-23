@@ -3620,14 +3620,15 @@ exports.default = ({ initLinks = [], initMax })=>({
         uploadImage (linkId) {
             console.log(linkId, "linkId");
             const fileInput = this.$refs.linkImageUploadForm.querySelector('input[type="file"]');
-            const file = fileInput.files;
-            console.log(file);
+            console.log(fileInput);
+            const file = fileInput.files[0];
             console.log(file, "file");
             if (file) {
                 const reader = new FileReader();
                 reader.onload = (e)=>{
                     this.inputEditImageFile = e.target.result; // Store the image data in a temporary variable for editing
                     const linkToUpdate = this.links.find((link)=>link.id === linkId);
+                    console.log(linkToUpdate, "linkToUpdate");
                     if (linkToUpdate) linkToUpdate.imageFile = e.target.result;
                 };
                 reader.readAsDataURL(file);
