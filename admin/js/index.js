@@ -585,13 +585,15 @@ var _linksDefault = parcelHelpers.interopDefault(_links);
 var _analyticsFilter = require("./components/analytics-filter");
 var _socialLinks = require("./components/social-links");
 var _socialLinksDefault = parcelHelpers.interopDefault(_socialLinks);
+var _dashboard = require("./components/dashboard");
 window.Alpine = (0, _alpinejsDefault.default);
 (0, _alpinejsDefault.default).data("dataList", (initLinks = [])=>(0, _linksDefault.default)(initLinks));
 (0, _alpinejsDefault.default).data("socialLinks", (initLinks = [])=>(0, _socialLinksDefault.default)(initLinks));
 (0, _alpinejsDefault.default).data("analyticsFilter", ()=>(0, _analyticsFilter.analyticsFilter)());
+(0, _alpinejsDefault.default).data("dashboard", ()=>(0, _dashboard.dashboard)());
 (0, _alpinejsDefault.default).start();
 
-},{"alpinejs":"69hXP","./components/links":"gsPSq","./components/analytics-filter":"fI1UE","./components/social-links":"jHpkE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"69hXP":[function(require,module,exports) {
+},{"alpinejs":"69hXP","./components/links":"gsPSq","./components/analytics-filter":"fI1UE","./components/social-links":"jHpkE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/dashboard":"lcv74"}],"69hXP":[function(require,module,exports) {
 // packages/alpinejs/src/scheduler.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -4021,6 +4023,27 @@ exports.default = ({ initLinks = [] })=>{
         }
     };
 };
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lcv74":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "dashboard", ()=>dashboard);
+const dashboard = ()=>({
+        editMode: false,
+        activeTab: "profile",
+        showSettings: false,
+        showTemplates: false,
+        activeFilter: "all",
+        saveState: function() {
+            localStorage.setItem("alpineState", JSON.stringify({
+                editMode: this.editMode,
+                activeTab: this.activeTab,
+                showSettings: this.showSettings,
+                showTemplates: this.showTemplates,
+                activeFilter: this.activeFilter
+            }));
+        }
+    });
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["bEyVM","iym3p"], "iym3p", "parcelRequiref22c")
 

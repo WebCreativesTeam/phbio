@@ -64,16 +64,7 @@ class Plugin_Name_Dashboard {
 		?>
 <div class="dashboard-layout">
 
-<div x-data="{ editMode: false, activeTab: 'profile', showSettings: false, showTemplates: false, activeFilter: 'all',
-    saveState: function() {
-            localStorage.setItem('alpineState', JSON.stringify({
-                editMode: this.editMode,
-                activeTab: this.activeTab,
-                showSettings: this.showSettings,
-                showTemplates: this.showTemplates,
-                activeFilter: this.activeFilter
-            }));
-        } }" 
+<div x-data="dashboard" 
         x-init="() => { 
         let storedState = localStorage.getItem('alpineState');
         if (storedState) {
@@ -84,7 +75,6 @@ class Plugin_Name_Dashboard {
             showTemplates = state.showTemplates;
             activeFilter = state.activeFilter;
         }
-        $watch('editMode', () => saveState());
         $watch('activeTab', () => saveState());
         $watch('showSettings', () => saveState());
         $watch('showTemplates', () => saveState());
@@ -194,10 +184,26 @@ class Plugin_Name_Dashboard {
                     
                  ?>
                 </form>
+
+                <?php
+
+                // Check if the user is logged in
+                if( is_user_logged_in() ) {
+                    // Get the logout URL
+                    $logout_url = wp_logout_url();
+
+                    // Create a logout button
+                    echo '<div class="flex"><a href="' . esc_url( $logout_url ) . '" class="no-underline template-btn hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"></path></svg>Logout</a></div>';
+                }
+
+
+
+                ?>
                 
             </div>
        
         <?php
+
     }
     
     
@@ -282,17 +288,24 @@ class Plugin_Name_Dashboard {
         $user_id = get_current_user_id(); 
 
         $elementor_page_url = get_user_meta( $user_id, 'username', true ); // Replace with the URL of your Elementor page
-        echo '<iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%;"></iframe>';
+        echo '<div class="iframe-container"><div class="loaad">Please wait...</div><iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%;"></iframe></div>';
         ?> 
-        <script>
+      <script>
             window.addEventListener("DOMContentLoaded", function() {
                 var iframe = document.querySelector('iframe');
+                var spinner = document.querySelector('.loaad');
                 iframe.onload = function() {
                     iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
+                    spinner.style.display = 'none'; // Hide spinner when iframe is loaded
                 }
-            });
-        </script>
 
+                  // Reload iframe every 30 seconds
+                    setInterval(function(){
+                        iframe.src += '';
+                    }, 10000);
+                    });
+            
+        </script>
         <?php
         
     }

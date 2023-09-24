@@ -1096,6 +1096,18 @@ select {
     --tw-text-opacity: 1;
     color: rgb(161 98 7 / var(--tw-text-opacity));
 }
+.iframe-container {
+    position: relative;
+  }
+iframe {
+    width: 100%;
+    border: none;
+  }
+.loaad {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+  }
 .visible {
     visibility: visible;
 }
@@ -1507,6 +1519,11 @@ select {
 .hover\:text-gray-700:hover {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
+}
+
+.hover\:text-white:hover {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .focus\:outline-none:focus {
