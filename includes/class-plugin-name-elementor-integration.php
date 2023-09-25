@@ -70,7 +70,6 @@ function extend_icon_render( $content, $widget ) {
 
         // Check if the custom_icon_text is set
         if( ! empty( $settings['phbio_icon_text'] ) ) {
-            // Replace 'fas fa-star' with custom_icon_text in the content
             $content = str_replace('fa-facebook', esc_attr( $settings['phbio_icon_text'] ), $content);
         }
     }
