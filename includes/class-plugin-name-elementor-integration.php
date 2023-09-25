@@ -52,7 +52,7 @@ function register_tags( $dynamic_tags_manager) {
 function extend_icon( $element, $args ) {
 	// Add a new control
 	$element->add_control(
-		'phbio_icon_text',
+		'phbio_icon_value',
 		[
 			'label' => __( 'Dynamic Icon', 'elementor' ),
 			'type' => \Elementor\Controls_Manager::TEXT,
@@ -69,8 +69,8 @@ function extend_icon_render( $content, $widget ) {
         $settings = $widget->get_settings_for_display();
 
         // Check if the custom_icon_text is set
-        if( ! empty( $settings['phbio_icon_text'] ) ) {
-            $content = str_replace('fa-facebook', esc_attr( $settings['phbio_icon_text'] ), $content);
+        if( ! empty( $settings['phbio_icon_value'] ) ) {
+            $content = str_replace('fa-facebook', esc_attr( $settings['phbio_icon_value'] ), $content);
         }
     }
     return $content;
