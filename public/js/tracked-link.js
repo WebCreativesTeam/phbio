@@ -1,14 +1,16 @@
 jQuery(document).ready(function ($) {
-  $(".tracked-social-link").on("click", function (e) {
+  $(".tracked-social-link").on("click", "a", function (e) {
+    // Modified Selector
     e.preventDefault();
     var link = $(this).attr("href");
-    var userId = $(this).data("user-id");
+    var userId = $(this).closest(".tracked-social-link").data("user-id"); // Modified Selector
 
+    console.log(link, userId);
     $.post(
       LinkTracker.ajax_url,
       {
         action: "handle_social_link_click",
-        link: link,
+        link: "link",
         user_id: userId,
       },
       function (response) {
@@ -21,6 +23,7 @@ jQuery(document).ready(function ($) {
     );
   });
 });
+
 jQuery(document).ready(function ($) {
   $(".tracked-link").on("click", function (e) {
     e.preventDefault();
