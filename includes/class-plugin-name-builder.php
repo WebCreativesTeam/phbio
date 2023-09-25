@@ -306,43 +306,6 @@ class Plugin_Name_Builder {
             } else {
                 ?>
 
-
-      <!-- <div x-data="{
-  isOpen: false,
-  search: '',
-  selected: 'fa-facebook',
-  options: ['fa-facebook', 'fa-twitter', 'fa-instagram', 'fa-linkedin', 'fa-google', 'fa-pinterest'],
-  selectOption(option) {
-    this.selected = option;
-    this.isOpen = false;
-  },
-  filteredOptions() {
-    if (!this.search) return this.options;
-    const regex = new RegExp(this.search, 'i');
-    return this.options.filter(option => option.match(regex));
-  }
-}">
-    <div @click="isOpen = !isOpen" class="relative cursor-pointer">
-        <div class="flex items-center px-4 py-2 border rounded">
-            <i :class="'fa ' + selected" class="mr-2"></i>
-        </div>
-        <div x-show="isOpen" class="absolute z-10 w-full bg-white border">
-            <input type="text" x-model="search" placeholder="Search..." class="w-full p-2" @click.stop />
-            <template x-for="option in filteredOptions()" :key="option">
-                <div @click.stop="selectOption(option)" class="flex items-center p-2 cursor-pointer hover:bg-gray-200" :class="{'bg-gray-100': selected === option}">
-                    <i :class="'fa ' + option" class="mr-2"></i>
-                </div>
-            </template>
-            <div x-show="!filteredOptions().length" class="p-2">No results found</div>
-        </div>
-    </div>
-    <input type="hidden" name="fontAwesomeIconListUser" x-model="selected">
-</div> -->
-
-
-
-
-
                 <main x-data="socialLinks({initLinks: <?php echo $links_json; ?>})">
                
 
@@ -385,8 +348,11 @@ class Plugin_Name_Builder {
                                 'drag-over': draggedOverLinkId === link.id,
                                 'hidden-link-class': linkIsHidden(link.id),
                                 'dragging-class': linkIsDragging(link.id)
-                            }">
-                                <div x-show="!link.isEditing" class="flex items-center justify-between">
+                            }",
+                           
+                            
+                            >
+                                <div x-show="!link.isEditing" class="flex items-center justify-between" >
                                 <div 
                                     x-bind:draggable="!link.isEditing && !isInputFocused" 
                                     @dragstart="handleDragStart($event, link.id)" 
@@ -405,18 +371,28 @@ class Plugin_Name_Builder {
                                 <div id="editionForm" x-show="link.isEditing">
                                     <div class="p-5 mt-5">
                                         <label class="input-label">Icon</label>
-                                        <select name="fontAwesomeIconListUser" class="fontAwesomeIconListUser input-field-enhanced icons-list-update" x-model="inputEditTitleValue" >
-                                            <?php if ($fontAwesomeIconList): ?>
-                                                <?php foreach ($fontAwesomeIconList as $fontAwesomeIcon): ?>
-                                                    <option value="<?php echo $fontAwesomeIcon ?>" <?php selected($fontAwesomeIconListUser, $fontAwesomeIcon, true) ?>
-                                                    data-icon="<?php echo $fontAwesomeIcon ?>"
-                                                        ><?php echo substr($fontAwesomeIcon, 3) ?></option>
-                                                <?php endforeach ?>
-                                            <?php endif ?>
-                                        </select>
+                                        
                                        
+                                        <div class="px-4 py-4 bg-white rounded" @input="inputEditTitleValue = $event.detail; console.log($event.detail, 'fff')"  x-data="dropdown({selected: link.title, initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })" >
+                                            <div @click="isOpen = !isOpen" class="relative cursor-pointer">
+                                                <div class="flex items-center">
+                                                    <span x-show="!selected" class="mr-2 text-gray-500">Select an icon</span>
+                                                    <i x-show="selected" :class="'fa fa-2x ' + selected" class="mr-2"></i>
+                                                </div>
+                                                <div x-show="isOpen" class="absolute z-10 w-full bg-white border">
+                                                    <input type="text" x-model="search" placeholder="Search..." class="w-full p-2" @click.stop />
+                                                    <template x-for="option in filteredOptions()" :key="option">
+                                                        <div @click.stop="selectOption(option)" class="flex items-center p-2 cursor-pointer hover:bg-gray-200" :class="{'bg-gray-100': selected === option}">
+                                                            <i :class="'fa ' + option" class="mr-2"></i>
+                                                        </div>
+                                                    </template>
+                                                    <div x-show="!filteredOptions().length" class="p-2">No results found</div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="fontAwesomeIconListUser" x-model="selected">
+                                        </div>
                                         <label class="input-label">URL</label>
-                                        <input class="input-field-enhanced" x-model="inputEditLinkValue">
+                                        <input class="input-field-enhanced" x-model="inputEditLinkValue" @input.stop>
                                         <button type="button" @click="editLink(link.id)" class="upload-btn">Save</button>
                                         <button type="button" @click="cancelEditLink()" class="upload-btn">Cancel</button>
                                     </div>

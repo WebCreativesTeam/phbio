@@ -145,12 +145,17 @@ export default ({ initLinks = [] }) => ({
       this.validateURL(this.inputEditLinkValue) &&
       !this.linkExists(this.inputEditLinkValue, id)
     ) {
-      this.links = this.links.map((item) => ({
-        ...item,
-        text: item.id === id ? this.inputEditLinkValue : item.text,
-        title: item.id === id ? this.inputEditTitleValue : item.title,
-        isEditing: false,
-      }));
+      this.links = this.links.map((item) => {
+        console.log("on", item);
+        console.log(this.inputEditTitleValue, "title");
+        console.log(this.inputEditLinkValue, "link");
+        return {
+          ...item,
+          text: item.id === id ? this.inputEditLinkValue : item.text,
+          title: item.id === id ? this.inputEditTitleValue : item.title,
+          isEditing: false,
+        };
+      });
 
       console.log("Link edited successfully: ", this.links);
       this.linkError = "";
