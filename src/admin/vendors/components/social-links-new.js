@@ -87,6 +87,8 @@ export default ({ initLinks = [] }) => ({
       }
       return link;
     });
+
+    console.log("On Drag End", this.links);
   },
   handleDragOver(event) {
     event.preventDefault();

@@ -360,8 +360,7 @@ class Plugin_Name_Builder {
                                     class="drag-handle"
                                 >⠿</div>
                                     <div class="flex flex-col flex-auto sm:ml-5">
-                                        <span x-text="link.title" class="text-sm font-semibold"></span>
-                                        <span x-text="link.text" class="hidden text-gray-600 sm:block"></span>
+                                        <i :class="'fa fa-2x '+ link.title" class="text-sm font-semibold"></i>
                                     </div>
                                     <div class="flex items-center">
                                         <button type="button" class="border-0 cursor-pointer bg-inherit" @click="showEditLinkForm(link.id)"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></svg></button>
@@ -373,7 +372,7 @@ class Plugin_Name_Builder {
                                         <label class="input-label">Icon</label>
                                         
                                        
-                                        <div class="px-4 py-4 bg-white rounded" @input="inputEditTitleValue = $event.detail; console.log($event.detail, 'fff')"  x-data="dropdown({selected: link.title, initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })" >
+                                        <div class="px-4 py-4 bg-white rounded" @input="inputEditTitleValue = $event.detail; "  x-data="dropdown({selected: link.title, initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })">
                                             <div @click="isOpen = !isOpen" class="relative cursor-pointer">
                                                 <div class="flex items-center">
                                                     <span x-show="!selected" class="mr-2 text-gray-500">Select an icon</span>
