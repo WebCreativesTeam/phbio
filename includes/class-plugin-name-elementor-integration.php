@@ -43,7 +43,7 @@ function register_widgets( $widgets_manager ) {
 
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/widgets/widget_copy_input.php';
 
-	$widgets_manager->register( new \Elementor_Custom_Input_Widget() );
+	$widgets_manager->register( new \Elementor_Custom_Icon_Widget() );
 
 }
 
