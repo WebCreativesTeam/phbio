@@ -39,12 +39,45 @@ function register_tags( $dynamic_tags_manager) {
     
 
 
-function register_widgets( $widgets_manager ) {
+// function register_widgets( $widgets_manager ) {
 
-	// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/widgets/widget_copy_input.php';
+// 	// require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/widgets/widget_copy_input.php';
 
-	// $widgets_manager->register( new \Elementor_Custom_Icon_Widget() );
+// 	// $widgets_manager->register( new \Elementor_Custom_Icon_Widget() );
 
+// }
+
+
+
+function extend_icon( $element, $args ) {
+	// Add a new control
+	$element->add_control(
+		'phbio_icon_text',
+		[
+			'label' => __( 'Dynamic Icon', 'elementor' ),
+			'type' => \Elementor\Controls_Manager::TEXT,
+			'placeholder' => __( 'fa-facebook', 'elementor' ),
+			'section' => 'section_icon',
+			'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+		]
+	);
 }
+
+function extend_icon_render( $content, $widget ) {
+    if( 'icon' === $widget->get_name() ) {
+        // Get the settings
+        $settings = $widget->get_settings_for_display();
+
+        // Check if the custom_icon_text is set
+        if( ! empty( $settings['phbio_icon_text'] ) ) {
+            // Replace 'fas fa-star' with custom_icon_text in the content
+            $content = str_replace('fa-facebook', esc_attr( $settings['phbio_icon_text'] ), $content);
+        }
+    }
+    return $content;
+}
+
+
+
 
 }
