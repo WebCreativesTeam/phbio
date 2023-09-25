@@ -10,7 +10,7 @@ jQuery(document).ready(function ($) {
       LinkTracker.ajax_url,
       {
         action: "handle_social_link_click",
-        link: "link",
+        link: link,
         user_id: userId,
       },
       function (response) {
