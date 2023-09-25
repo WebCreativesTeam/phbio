@@ -372,10 +372,10 @@ class Plugin_Name_Builder {
                                         <label class="input-label">Icon</label>
                                         
                                        
-                                        <div class="px-4 py-4 bg-white rounded" @input="inputEditTitleValue = $event.detail; "  x-data="dropdown({selected: link.title, initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })">
+                                        <div class="px-4 py-4 bg-white rounded" @input="inputEditTitleValue = $event.detail; " x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })">
                                             <div @click="isOpen = !isOpen" class="relative cursor-pointer">
                                                 <div class="flex items-center">
-                                                    <span x-show="!selected" class="mr-2 text-gray-500">Select an icon</span>
+                                                    <span x-show="!selected" class="mr-2 text-gray-500">Change Icon</span>
                                                     <i x-show="selected" :class="'fa fa-2x ' + selected" class="mr-2"></i>
                                                 </div>
                                                 <div x-show="isOpen" class="absolute z-10 w-full bg-white border">
