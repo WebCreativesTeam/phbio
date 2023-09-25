@@ -288,6 +288,151 @@ class Plugin_Name_Builder {
         //     )
         // );
         
+        public static function social_links_list_field($label, $capability, $target_user_id) {
+            $value = Plugin_Name_Utilities::handle_user_meta('social_links_list', $capability, $target_user_id);
+            $decodedString = urldecode($value);
+            $linksArray = json_decode($decodedString, true);
+            $reIndexedArray = array_values(is_array($linksArray) ? $linksArray : []);
+            $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
+            
+            $fontAwesomeIconList = get_option('fontAwesomeIconList');
+            $fontAwesomeIconListUser = get_user_meta( $target_user_id, 'fontAwesomeIconListUser', true );
+            $iconsJson = htmlspecialchars(json_encode($fontAwesomeIconList), ENT_QUOTES, 'UTF-8');
+            
+            ob_start();
+            
+            if (!Plugin_Name_Utilities::check_user_capability($capability)) {
+                echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
+            } else {
+                ?>
+
+
+      <!-- <div x-data="{
+  isOpen: false,
+  search: '',
+  selected: 'fa-facebook',
+  options: ['fa-facebook', 'fa-twitter', 'fa-instagram', 'fa-linkedin', 'fa-google', 'fa-pinterest'],
+  selectOption(option) {
+    this.selected = option;
+    this.isOpen = false;
+  },
+  filteredOptions() {
+    if (!this.search) return this.options;
+    const regex = new RegExp(this.search, 'i');
+    return this.options.filter(option => option.match(regex));
+  }
+}">
+    <div @click="isOpen = !isOpen" class="relative cursor-pointer">
+        <div class="flex items-center px-4 py-2 border rounded">
+            <i :class="'fa ' + selected" class="mr-2"></i>
+        </div>
+        <div x-show="isOpen" class="absolute z-10 w-full bg-white border">
+            <input type="text" x-model="search" placeholder="Search..." class="w-full p-2" @click.stop />
+            <template x-for="option in filteredOptions()" :key="option">
+                <div @click.stop="selectOption(option)" class="flex items-center p-2 cursor-pointer hover:bg-gray-200" :class="{'bg-gray-100': selected === option}">
+                    <i :class="'fa ' + option" class="mr-2"></i>
+                </div>
+            </template>
+            <div x-show="!filteredOptions().length" class="p-2">No results found</div>
+        </div>
+    </div>
+    <input type="hidden" name="fontAwesomeIconListUser" x-model="selected">
+</div> -->
+
+
+
+
+
+                <main x-data="socialLinks({initLinks: <?php echo $links_json; ?>})">
+               
+
+                    <button type="button" x-show="links.length < maxLinks" @click="showAddNewLink()" class="add-link-btn">Add New Link</button>
+                    <div x-show="showAddNewLinkForm" @input="console.log($event.detail); newLink.title = $event.detail">
+                        <div class="relative p-5 mt-5">
+                            <button @click.prevent="showAddNewLinkForm = false" class="absolute top-0 border-0 cursor-pointer right-2 bg-inherit"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg></button>
+                            <label class="input-label">Select Icon</label>
+                            <div class="px-4 py-4 bg-white rounded" x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })" >
+                                <div @click="isOpen = !isOpen" class="relative cursor-pointer">
+                                    <div class="flex items-center">
+                                        <span x-show="!selected" class="mr-2 text-gray-500">Select an icon</span>
+                                        <i x-show="selected" :class="'fa fa-2x ' + selected" class="mr-2"></i>
+                                    </div>
+                                    <div x-show="isOpen" class="absolute z-10 w-full bg-white border">
+                                        <input type="text" x-model="search" placeholder="Search..." class="w-full p-2" @click.stop />
+                                        <template x-for="option in filteredOptions()" :key="option">
+                                            <div @click.stop="selectOption(option)" class="flex items-center p-2 cursor-pointer hover:bg-gray-200" :class="{'bg-gray-100': selected === option}">
+                                                <i :class="'fa ' + option" class="mr-2"></i>
+                                            </div>
+                                        </template>
+                                        <div x-show="!filteredOptions().length" class="p-2">No results found</div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="fontAwesomeIconListUser" x-model="selected">
+                            </div>
+
+        
+                            
+                            <label class="input-label">URL</label>
+                            <input class="input-field-enhanced" x-model="inputAddLinkValue" @input.stop>
+                            <button type="button" @click="addLink()" class="upload-btn">Add Link</button>
+                        </div>
+                    </div>
+                    
+                    <span x-text="linkError" class="text-danger"></span>
+                    <ul x-ref="list">
+                        <template x-for="link in links">
+                            <li draggable="true" @dragenter="draggedOverLinkId = link.id" @dragleave="draggedOverLinkId = null" @dragover="handleDragOver($event)" @drop="handleDrop($event, link.id)" class="p-2 bg-gray-200 border-2 border-dashed rounded-md sm:p-5 sm:m-5" :class="{
+                                'drag-over': draggedOverLinkId === link.id,
+                                'hidden-link-class': linkIsHidden(link.id),
+                                'dragging-class': linkIsDragging(link.id)
+                            }">
+                                <div x-show="!link.isEditing" class="flex items-center justify-between">
+                                <div 
+                                    x-bind:draggable="!link.isEditing && !isInputFocused" 
+                                    @dragstart="handleDragStart($event, link.id)" 
+                                    @dragend="handleDragEnd($event, link.id)" 
+                                    class="drag-handle"
+                                >⠿</div>
+                                    <div class="flex flex-col flex-auto sm:ml-5">
+                                        <span x-text="link.title" class="text-sm font-semibold"></span>
+                                        <span x-text="link.text" class="hidden text-gray-600 sm:block"></span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <button type="button" class="border-0 cursor-pointer bg-inherit" @click="showEditLinkForm(link.id)"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></svg></button>
+                                        <button type="button" class="border-0 cursor-pointer bg-inherit" @click="removeLink(link.id)"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg></button>
+                                    </div>
+                                </div>
+                                <div id="editionForm" x-show="link.isEditing">
+                                    <div class="p-5 mt-5">
+                                        <label class="input-label">Icon</label>
+                                        <select name="fontAwesomeIconListUser" class="fontAwesomeIconListUser input-field-enhanced icons-list-update" x-model="inputEditTitleValue" >
+                                            <?php if ($fontAwesomeIconList): ?>
+                                                <?php foreach ($fontAwesomeIconList as $fontAwesomeIcon): ?>
+                                                    <option value="<?php echo $fontAwesomeIcon ?>" <?php selected($fontAwesomeIconListUser, $fontAwesomeIcon, true) ?>
+                                                    data-icon="<?php echo $fontAwesomeIcon ?>"
+                                                        ><?php echo substr($fontAwesomeIcon, 3) ?></option>
+                                                <?php endforeach ?>
+                                            <?php endif ?>
+                                        </select>
+                                       
+                                        <label class="input-label">URL</label>
+                                        <input class="input-field-enhanced" x-model="inputEditLinkValue">
+                                        <button type="button" @click="editLink(link.id)" class="upload-btn">Save</button>
+                                        <button type="button" @click="cancelEditLink()" class="upload-btn">Cancel</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                    <div x-show="links.length === 0" class="p-5 m-5 text-center bg-gray-200">No links found.</div>
+                    <input type="hidden" name="social_links_list" x-model="linksJson" />
+                </main>
+                <?php
+            }
+            $content = ob_get_clean();
+            echo $content;
+        }
+        
         public static function link_list_field($label, $capability, $target_user_id) {
             $value = Plugin_Name_Utilities::handle_user_meta('links_list', $capability, $target_user_id);
             
@@ -516,7 +661,7 @@ class Plugin_Name_Builder {
         }
         
     
-        public static function social_links_list_field($label, $capability, $target_user_id) {
+        public static function social_links_list_field__old($label, $capability, $target_user_id) {
             $value = Plugin_Name_Utilities::handle_user_meta('social_links_list', $capability, $target_user_id);
             
             $decodedString = urldecode($value);

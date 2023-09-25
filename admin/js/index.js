@@ -583,17 +583,20 @@ var _alpinejsDefault = parcelHelpers.interopDefault(_alpinejs);
 var _links = require("./components/links");
 var _linksDefault = parcelHelpers.interopDefault(_links);
 var _analyticsFilter = require("./components/analytics-filter");
-var _socialLinks = require("./components/social-links");
-var _socialLinksDefault = parcelHelpers.interopDefault(_socialLinks);
+var _socialLinksNew = require("./components/social-links-new");
+var _socialLinksNewDefault = parcelHelpers.interopDefault(_socialLinksNew);
 var _dashboard = require("./components/dashboard");
+var _dropdown = require("./components/dropdown");
+var _dropdownDefault = parcelHelpers.interopDefault(_dropdown);
 window.Alpine = (0, _alpinejsDefault.default);
 (0, _alpinejsDefault.default).data("dataList", (initLinks = [])=>(0, _linksDefault.default)(initLinks));
-(0, _alpinejsDefault.default).data("socialLinks", (initLinks = [])=>(0, _socialLinksDefault.default)(initLinks));
+(0, _alpinejsDefault.default).data("dropdown", (initIcons = [], selected = "")=>(0, _dropdownDefault.default)(initIcons, selected));
+(0, _alpinejsDefault.default).data("socialLinks", (initLinks = [])=>(0, _socialLinksNewDefault.default)(initLinks));
 (0, _alpinejsDefault.default).data("analyticsFilter", ()=>(0, _analyticsFilter.analyticsFilter)());
 (0, _alpinejsDefault.default).data("dashboard", ()=>(0, _dashboard.dashboard)());
 (0, _alpinejsDefault.default).start();
 
-},{"alpinejs":"69hXP","./components/links":"gsPSq","./components/analytics-filter":"fI1UE","./components/social-links":"jHpkE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/dashboard":"lcv74"}],"69hXP":[function(require,module,exports) {
+},{"alpinejs":"69hXP","./components/links":"gsPSq","./components/analytics-filter":"fI1UE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/social-links-new":"gu8G2","./components/dashboard":"lcv74","./components/dropdown":"h4fl0"}],"69hXP":[function(require,module,exports) {
 // packages/alpinejs/src/scheduler.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -3883,45 +3886,49 @@ const analyticsFilter = ()=>({
         }
     });
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jHpkE":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gu8G2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-exports.default = ({ initLinks = [] })=>{
-    return {
-        maxLinks: 100,
+exports.default = ({ initLinks = [] })=>({
+        maxLinks: 9999,
         linkError: "",
         componentId: Math.random().toString(36).substring(2, 15),
         showAddNewLinkForm: false,
-        maxLinksError: "You have reached the maximum limit.",
         inputAddLinkValue: "",
         inputEditLinkValue: "",
+        inputEditTitleValue: "",
         newLink: {
-            icon: "",
-            url: ""
+            title: "",
+            text: ""
         },
         links: initLinks.map((link)=>({
                 id: link.id || Date.now(),
-                icon: link.icon || "",
-                url: link.url || ""
+                title: link.title || "",
+                text: link.text || ""
             })),
         draggingLinkId: null,
         draggedOverLinkId: null,
-        isAnyLinkBeingEdited () {
-            return this.links.some((link)=>link.isEditing);
+        isInputFocused: false,
+        linksJson () {
+            let json = JSON.stringify(this.links);
+            return encodeURIComponent(json);
         },
-        // Utility Functions
-        linkExists (url, excludingId = null) {
-            return this.links.some((item)=>item.url === url && item.id !== excludingId);
+        showAddNewLink () {
+            this.showAddNewLinkForm = !this.showAddNewLinkForm;
         },
-        validateURL (url) {
-            const pattern = new RegExp("^(https?:\\/\\/)?((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|((\\d{1,3}\\.){3}\\d{1,3}))(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*(\\?[;&a-z\\d%_.~+=-]*)?(\\#[-a-z\\d_]*)?$", "i");
-            return !!pattern.test(url);
+        linkIsHidden (id) {
+            const link = this.links.find((link)=>link.id === id);
+            if (link) return link.isHidden;
         },
         // Drag and Drop Actions
         handleDragStart (event, id) {
             // Set the data for transfer as "componentId|linkId"
             event.dataTransfer.setData("text/plain", `${this.componentId}|${id}`);
             this.draggingLinkId = id;
+        },
+        linkIsDragging (id) {
+            const link = this.links.find((link)=>link.id === id);
+            if (link) return link.isDragging;
         },
         handleDrop (event, id) {
             event.preventDefault();
@@ -3959,30 +3966,57 @@ exports.default = ({ initLinks = [] })=>{
         handleDragOver (event) {
             event.preventDefault();
         },
-        // Edit and Delete Actions
+        addLink () {
+            // Check if title is not defined or is an empty string
+            if (!this.newLink.title || this.newLink.title.trim() === "") {
+                this.linkError = "Please select an icon";
+                return;
+            }
+            if (this.linkExists(this.inputAddLinkValue)) {
+                this.linkError = "Link already exists.";
+                return;
+            }
+            if (this.inputAddLinkValue.length && this.validateURL(this.inputAddLinkValue)) {
+                const newLink = {
+                    id: Date.now(),
+                    text: this.inputAddLinkValue,
+                    title: this.newLink.title,
+                    isEditing: false
+                };
+                console.log(newLink, "newLink");
+                this.links.push(newLink);
+                console.log("Link added successfully: ", this.links);
+                this.inputAddLinkValue = "";
+                this.newLink.title = "";
+                this.linkError = "";
+                this.showAddNewLinkForm = false;
+            } else this.linkError = "Please enter a valid URL.";
+        },
         showEditLinkForm (id) {
-            const link = this.links.find((item)=>item.id === id);
-            this.inputEditLinkValue = link.url;
             this.showAddNewLinkForm = false;
-            this.links = this.links.map((item)=>({
+            this.links = this.links.map((item)=>{
+                if (item.id === id) {
+                    this.inputEditLinkValue = item.text;
+                    this.inputEditTitleValue = item.title;
+                }
+                return {
                     ...item,
                     isEditing: item.id === id
-                }));
+                };
+            });
         },
         editLink (id) {
             if (this.inputEditLinkValue.length && this.validateURL(this.inputEditLinkValue) && !this.linkExists(this.inputEditLinkValue, id)) {
-                this.links = this.links.map((item)=>{
-                    if (item.id === id) return {
+                this.links = this.links.map((item)=>({
                         ...item,
-                        url: this.inputEditLinkValue,
+                        text: item.id === id ? this.inputEditLinkValue : item.text,
+                        title: item.id === id ? this.inputEditTitleValue : item.title,
                         isEditing: false
-                    };
-                    return item;
-                });
+                    }));
+                console.log("Link edited successfully: ", this.links);
                 this.linkError = "";
             } else if (this.linkExists(this.inputEditLinkValue, id)) this.linkError = "Link already exists.";
             else this.linkError = "Please enter a valid URL.";
-            console.log(this.links);
         },
         cancelEditLink () {
             this.links = this.links.map((item)=>({
@@ -3992,37 +4026,15 @@ exports.default = ({ initLinks = [] })=>{
         },
         removeLink (id) {
             this.links = this.links.filter((item)=>item.id !== id);
-            console.log(this.links);
         },
-        linksJson () {
-            let json = JSON.stringify(this.links);
-            return encodeURIComponent(json);
+        linkExists (link, excludingId = null) {
+            return this.links.some((item)=>item.text === link && item.id !== excludingId);
         },
-        // Add New Link
-        addLink () {
-            if (this.links.length >= this.maxLinks) {
-                this.linkError = `You can only add up to ${this.maxLinks} links.`;
-                return;
-            }
-            if (this.linkExists(this.inputAddLinkValue)) {
-                this.linkError = "Link already exists.";
-                return;
-            }
-            if (this.inputAddLinkValue.length && this.validateURL(this.inputAddLinkValue)) {
-                this.links.push({
-                    id: Date.now(),
-                    icon: this.newLink.icon,
-                    url: this.inputAddLinkValue
-                });
-                this.inputAddLinkValue = "";
-                this.newLink.icon = "";
-                this.linkError = "";
-                this.showAddNewLinkForm = false;
-            } else this.linkError = "Please enter a valid URL.";
-            console.log(this.links);
+        validateURL (url) {
+            const pattern = new RegExp("^(https?:\\/\\/)?(([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|((\\d{1,3}\\.){3}\\d{1,3})(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*(\\?[;&a-z\\d%_.~+=-]*)?(\\#[-a-z\\d_]*)?$", "i");
+            return !!pattern.test(url);
         }
-    };
-};
+    });
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lcv74":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -4042,6 +4054,25 @@ const dashboard = ()=>({
                 showTemplates: this.showTemplates,
                 activeFilter: this.activeFilter
             }));
+        }
+    });
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h4fl0":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = ({ initIcons = [], selected = "" })=>({
+        isOpen: false,
+        search: "",
+        selected,
+        options: initIcons,
+        selectOption (option) {
+            this.selected = option;
+            this.isOpen = false;
+        },
+        filteredOptions () {
+            if (!this.search) return this.options;
+            const regex = new RegExp(this.search, "i");
+            return this.options.filter((option)=>option.match(regex));
         }
     });
 

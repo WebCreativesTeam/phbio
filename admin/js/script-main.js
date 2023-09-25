@@ -18,6 +18,7 @@ jQuery(function () {
       return adapter;
     }
   );
+
   function iformat(icon) {
     var originalOption = icon.element;
     return jQuery(
@@ -28,6 +29,7 @@ jQuery(function () {
         "</span>"
     );
   }
+
   url = document.getElementById("font-awesome-icons-list-css").href;
   fetch(url)
     .then((resp) => resp.text())
@@ -77,7 +79,7 @@ jQuery(function () {
         "fa-inverse",
       ]);
       var classes = classes.filter((x) => !toRemove.has(x));
-      // var sel = document.querySelector("#fontAwesomeIconList");
+
       var sel = document.getElementById("fontAwesomeIconList");
       if (sel !== null) {
         for (i = 0; i < classes.length; ++i) {
@@ -89,49 +91,11 @@ jQuery(function () {
           option.innerText = classes[i];
           sel.appendChild(option);
         }
-        jQuery("#fontAwesomeIconList")
-          .select2({
-            width: "500px",
-            templateResult: iformat,
-            allowHtml: true,
-          })
-          .on("change", function (e) {
-            event.preventDefault();
-            // var form = jQuery('#fontAwesomeIconListForm').serialize();
-            var fontAwesomeIconList = jQuery("#fontAwesomeIconList").val();
-            var action = "fontAwesomeIconListUpdate";
-            jQuery.post(
-              fontAwesomeIconListAjaxURL,
-              {
-                fontAwesomeIconList: fontAwesomeIconList,
-                action: action,
-              },
-              function (data, textStatus, xhr) {}
-            );
-          });
+        jQuery("#fontAwesomeIconList").select2({
+          width: "500px",
+          templateResult: iformat,
+          allowHtml: true,
+        });
       }
-    });
-  jQuery("#fontAwesomeIconListUser")
-    .select2({
-      width: "500px",
-      templateSelection: iformat,
-      templateResult: iformat,
-      allowHtml: true,
-      selectionAdapter: jQuery.fn.select2.amd.require(
-        "customSingleSelectionAdapter"
-      ),
-    })
-    .on("change", function (e) {
-      event.preventDefault();
-      var icon = jQuery(this).val();
-      var action = "fontAwesomeIconListUserUpdate";
-      jQuery.post(
-        fontAwesomeIconListAjaxURL,
-        {
-          fontAwesomeIconListUser: icon,
-          action: action,
-        },
-        function (data, textStatus, xhr) {}
-      );
     });
 });
