@@ -77,6 +77,31 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 		
 			wp_send_json_success('Click counted');
 		}
+		public function handle_social_link_click() {
+			global $wpdb;
+		
+			if (!isset($_POST['link'])) {
+				wp_send_json_error('Invalid request');
+				return;
+			}
+		
+			$link = $_POST['link'];
+			$user_id = isset($_POST['user_id']) ? intval($_POST['user_id']) : 0;
+		
+			$table_name = $wpdb->prefix . 'social_link_clicks';
+		
+			// Insert a new row for the click
+			$wpdb->insert(
+				$table_name,
+				array(
+					'user_id' => $user_id,
+					'link' => $link,
+					'clicked_at' => current_time('mysql')  // Using WordPress function to get current server time
+				)
+			);
+		
+			wp_send_json_success('Click counted');
+		}
 		
 		
 		
