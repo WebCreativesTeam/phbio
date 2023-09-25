@@ -227,7 +227,7 @@ function display_user_links_shortcode($atts) {
         
         $output .= '<li><a href="' . esc_url($url) . '" class="tracked-link" data-user-id="' . esc_attr($user->ID) . '">' . esc_html($title) . '</a></li>';
     }
-
+   
     $output .= '</ul>';
 
     return $output;
