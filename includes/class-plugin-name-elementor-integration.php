@@ -58,6 +58,9 @@ function extend_icon( $element, $args ) {
 			'type' => \Elementor\Controls_Manager::TEXT,
 			'placeholder' => __( 'fa-facebook', 'elementor' ),
 			'section' => 'section_icon',
+			'dynamic' => [
+				'active' => true,
+			],
 			'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 		]
 	);
