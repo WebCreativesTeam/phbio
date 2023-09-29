@@ -208,7 +208,7 @@ class Plugin_Name_Admin {
 		global $pagenow;
 	
 		// Check if we're on our custom page
-		if ( $pagenow == 'admin.php' && isset( $_GET['page'] ) && $_GET['page'] == 'my_custom_page_slug' ) {
+		if ( $pagenow == 'admin.php' && isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor' ) {
 			// Remove all other actions hooked into admin_notices and all_admin_notices
 			remove_all_actions( 'admin_notices' );
 			remove_all_actions( 'all_admin_notices' );
