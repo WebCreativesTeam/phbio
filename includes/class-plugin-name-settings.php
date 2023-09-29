@@ -66,7 +66,9 @@ class Plugin_Name_Settings {
 					<div class="content-edit">
 						<form method="post">
 							<?php self::settings($user_id); ?>
-							<input type="submit" name="submit_form" value="Submit" class="upload-btn">
+                            <div class="save-progress">
+                                <input type="submit" name="submit_form" value="Submit" class="upload-btn">
+                            </div>
 						</form>
 					</div>
 				</div>

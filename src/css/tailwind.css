@@ -108,11 +108,11 @@
   }
 
   .upload-btn {
-    @apply px-5 py-2 text-white transition-transform duration-150 transform bg-gray-700 rounded-full shadow-md cursor-pointer hover:scale-105;
+    @apply px-5 py-2 mt-5 text-white transition-transform duration-150 transform bg-gray-700 rounded-full shadow-md cursor-pointer hover:scale-105;
   }
 
   .add-link-btn {
-    @apply w-full py-3 font-bold text-white transition-transform duration-150 transform bg-gray-700 rounded-full shadow-md cursor-pointer;
+    @apply w-full py-3 my-2 font-bold text-white transition-transform duration-150 transform bg-gray-700 rounded-full shadow-md cursor-pointer;
   }
 
   .upload-content {
@@ -217,7 +217,7 @@
     @apply flex-grow bg-transparent focus:outline-none focus:ring-0 placeholder-gray-500 border-0 !important;
   }
   .input-label {
-    @apply text-sm font-medium text-gray-700;
+    @apply mb-2 text-sm font-medium text-gray-700;
   }
 
   /* Textarea */
@@ -235,7 +235,7 @@
   }
 
   .input-field-enhanced {
-    @apply w-full p-2 pl-4 placeholder-gray-500 bg-white border-0 rounded-lg focus:outline-none focus:ring-0;
+    @apply w-full p-2 pl-4 my-2 placeholder-gray-500 bg-white border-0 rounded-lg focus:outline-none focus:ring-0;
   }
 
   .btn-remove,
@@ -357,7 +357,7 @@
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
   }
   .hidden-link-class {
-    @apply opacity-50;
+    @apply opacity-80;
   }
   .highlight-link-class {
     @apply border-orange-400;
@@ -385,7 +385,7 @@
   }
 
   .warning-icon {
-    @apply mr-3 text-yellow-700;
+    @apply w-10 h-10 mr-3 text-yellow-700 sm:h-6 sm:w-6;
   }
 
   .iframe-container {
@@ -401,5 +401,15 @@
     position: fixed;
     top: 50%;
     left: 50%;
+  }
+  .save-progress {
+    @apply fixed bottom-0 left-0 right-0 py-4 pr-4 text-right bg-gray-100 sm:pr-12 md:pr-14 lg:pr-16 xl:pr-72;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  ul.lists_container li {
+    @apply p-2 my-2 bg-gray-200 border-2 border-dashed rounded-md sm:p-5 sm:m-5;
+  }
+  ul.lists_container li:last-child {
+    @apply mb-20;
   }
 }

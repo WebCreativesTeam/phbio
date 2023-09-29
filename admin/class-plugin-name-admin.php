@@ -355,8 +355,8 @@ class Plugin_Name_Admin {
 		?>
 		<label for="version_field">Version:</label>
 		<select id="version_field" name="version_field">
-			<option value="lite" <?php selected( $value, 'lite' ); ?>>Lite Version</option>
-			<option value="full" <?php selected( $value, 'full' ); ?>>Full Version</option>
+			<option value="lite" <?php selected( $value, 'lite' ); ?>>Free Template</option>
+			<option value="full" <?php selected( $value, 'full' ); ?>>Pro Template</option>
 		</select>
 		<?php
 	}

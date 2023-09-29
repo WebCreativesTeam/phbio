@@ -2,7 +2,7 @@
 
 class Plugin_Name_Builder {
     
-    const ERROR_MSG= "Unlock this feature instantly by going PRO";
+    const ERROR_MSG= "<a href='/pricing' target='___blank'>Unlock this feature instantly by going PRO</a>";
     
     
 
@@ -72,8 +72,9 @@ class Plugin_Name_Builder {
         ?>
     
         <div 
-            x-data="{ copied: false, charCount: <?= strlen($data) ?>, charLimit: <?= $char_limit ?>, username: '<?= esc_attr($data) ?>', secureUsername: '<?= esc_attr($data) ?>', isAvailable: false, isLoading: false, message: '', hasChecked: false }" 
+            x-data="{ typingTimer: '', doneTypingInterval: 2000,  copied: false, charCount: <?= strlen($data) ?>, charLimit: <?= $char_limit ?>, username: '<?= esc_attr($data) ?>', secureUsername: '<?= esc_attr($data) ?>', isAvailable: false, isLoading: false, message: '', hasChecked: false }" 
             x-init="() => {
+                
                 isValidUsername = () => {
                     return /^[a-zA-Z0-9-_]+$/.test(username);
                 };
@@ -127,7 +128,14 @@ class Plugin_Name_Builder {
                         console.error('Error:', error);
                     });
                 };
-            }">
+                onInput = () => {
+                    // Clear the existing timer if there is one
+                    clearTimeout(typingTimer);
+                    
+                    // Set a new timer
+                    typingTimer = setTimeout(checkAvailability, doneTypingInterval);
+                };
+                }">
     
             <label for="<?php echo $name; ?>" class="input-label"><?php echo $label; ?></label>
             <div x-text="message" x-bind:style="'visibility: ' + (hasChecked ? 'visible' : 'hidden')" :class="{'text-blue-400': isAvailable, 'text-red-500': !isAvailable && message !== ''}" ></div>
@@ -139,10 +147,10 @@ class Plugin_Name_Builder {
     
                 // Display the field
                 if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-                    echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="checkAvailability" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" disabled />';
+                    echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="onInput" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" disabled />';
                     echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
                 } else {
-                    echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="checkAvailability" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" />';
+                    echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="onInput" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" />';
                 }
                 
     
@@ -314,7 +322,7 @@ class Plugin_Name_Builder {
                         <div class="relative p-5 mt-5">
                             <button @click.prevent="showAddNewLinkForm = false" class="absolute top-0 border-0 cursor-pointer right-2 bg-inherit"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg></button>
                             <label class="input-label">Select Icon</label>
-                            <div class="px-4 py-4 bg-white rounded" x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })" >
+                            <div class="px-4 py-4 my-2 bg-white rounded" x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })" >
                                 <div @click="isOpen = !isOpen" class="relative cursor-pointer">
                                     <div class="flex items-center">
                                         <span x-show="!selected" class="mr-2 text-gray-500">Select an icon</span>
@@ -342,9 +350,9 @@ class Plugin_Name_Builder {
                     </div>
                     
                     <span x-text="linkError" class="text-danger"></span>
-                    <ul x-ref="list">
+                    <ul x-ref="list" class="lists_container">
                         <template x-for="link in links">
-                            <li draggable="true" @dragenter="draggedOverLinkId = link.id" @dragleave="draggedOverLinkId = null" @dragover="handleDragOver($event)" @drop="handleDrop($event, link.id)" class="p-2 bg-gray-200 border-2 border-dashed rounded-md sm:p-5 sm:m-5" :class="{
+                            <li draggable="true" @dragenter="draggedOverLinkId = link.id" @dragleave="draggedOverLinkId = null" @dragover="handleDragOver($event)" @drop="handleDrop($event, link.id)" :class="{
                                 'drag-over': draggedOverLinkId === link.id,
                                 'hidden-link-class': linkIsHidden(link.id),
                                 'dragging-class': linkIsDragging(link.id)
@@ -372,7 +380,7 @@ class Plugin_Name_Builder {
                                         <label class="input-label">Icon</label>
                                         
                                        
-                                        <div class="px-4 py-4 bg-white rounded" @input="inputEditTitleValue = $event.detail; " x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })">
+                                        <div class="px-4 py-4 my-2 bg-white rounded" @input="inputEditTitleValue = $event.detail; " x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })">
                                             <div @click="isOpen = !isOpen" class="relative cursor-pointer">
                                                 <div class="flex items-center">
                                                     <span x-show="!selected" class="mr-2 text-gray-500">Change Icon</span>
@@ -483,11 +491,9 @@ class Plugin_Name_Builder {
                     <span x-text="maxLinksError" x-show="links.length >= maxLinks" class="text-danger"></span>
         
                     <!-- Existing links display -->
-                    <ul>
+                    <ul class="lists_container">
                         <template x-for="link in links">
-                        <li 
-                            class="p-2 bg-gray-200 border-2 border-dashed rounded-md sm:p-5 sm:m-5"
-                            
+                        <li  
                             @drop="handleDrop($event, link.id)" 
                             @dragover="handleDragOver($event)"
                             @dragenter="draggedOverLinkId = link.id" 
@@ -507,7 +513,7 @@ class Plugin_Name_Builder {
                                 class="drag-handle"
                             >⠿</div>
                              <div class="flex flex-col flex-auto sm:ml-5 ">
-                                <div class="mb-0 sm:mb-4" x-data="{ switchState: !link.isHidden, init() {
+                                <div class="flex mb-0 sm:mb-4 self-baseline" x-data="{ switchState: !link.isHidden, init() {
             this.$watch('link.isHidden', (value) => {
                 this.switchState = !value;
             });
@@ -524,6 +530,7 @@ class Plugin_Name_Builder {
                                                     <div class="toggle__dot toggle__dot--small"></div>
                                                 </div>
                                             </label>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" x-show="link.isScheduled" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20ZM14.09814,9.63379,13,10.26807V7a1,1,0,0,0-2,0v5a1.00025,1.00025,0,0,0,1.5.86621l2.59814-1.5a1.00016,1.00016,0,1,0-1-1.73242Z"></path></svg>
                                         </div>
                                     <span x-text="link.title" class="text-sm font-semibold"></span>
                                     <span x-text="link.text" class="hidden text-gray-600 sm:block"></span>
@@ -681,7 +688,7 @@ class Plugin_Name_Builder {
     <span x-text="maxLinksError" x-show="links.length >= maxLinks" class="text-danger"></span>
 
     <!-- Existing Social Links Display -->
-    <ul>
+    <ul class="lists_container">
         <template x-for="link in links">
             <li 
                 class="p-5 m-5 bg-gray-200 border-2 border-dashed rounded-md"

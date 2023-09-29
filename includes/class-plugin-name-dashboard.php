@@ -322,8 +322,8 @@ class Plugin_Name_Dashboard {
 <!-- Filter Section -->
 <div  class="flex items-center justify-start gap-4 pl-2 mt-10 sm:p-0">
     <span @click="activeFilter = 'all'" :class="{'text-gray-800 font-bold': activeFilter === 'all'}" class="cursor-pointer filter-item">All</span>
-    <span @click="activeFilter = 'full'" :class="{'text-gray-800 font-bold': activeFilter === 'full'}" class="cursor-pointer filter-item">Full Version</span>
-    <span @click="activeFilter = 'lite'" :class="{'text-gray-800 font-bold': activeFilter === 'lite'}" class="cursor-pointer filter-item">Lite Version</span>
+    <span @click="activeFilter = 'lite'" :class="{'text-gray-800 font-bold': activeFilter === 'lite'}" class="cursor-pointer filter-item">Free Template</span>
+    <span @click="activeFilter = 'full'" :class="{'text-gray-800 font-bold': activeFilter === 'full'}" class="cursor-pointer filter-item">Pro Template</span>
 </div>
 
 
@@ -360,7 +360,7 @@ class Plugin_Name_Dashboard {
 
         while( $query->have_posts() ) : $query->the_post(); 
             $version = get_post_meta(get_the_ID(), '_version_key', true);
-            $version_display = ($version == 'lite') ? 'Lite Version' : 'Full Version';
+            $version_display = ($version == 'lite') ? 'Free Template' : 'Pro Template';
             $is_disabled = ($role === 'lite-version' && $version === 'full' && $role !== 'administrator');
             
             if ($is_disabled):
@@ -421,17 +421,17 @@ class Plugin_Name_Dashboard {
             <!-- Tab Buttons - ENDS HERE -->
             <!-- Tabs Content - STARTS HERE -->
                 <!-- Profile Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'profile'" class="tab-content">
+                <div x-show="activeTab === 'profile' && !showTemplates && !showSettings" class="tab-content">
                     <?php self::edit__profile_tab($user_id); ?>
                 </div>
                 <!-- Profile Tab Content - ENDS HERE -->
                 <!-- Links Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'links'" class="tab-content">
+                <div x-show="activeTab === 'links' && !showTemplates && !showSettings" class="tab-content">
                     <?php self::edit__links_tab($user_id); ?>
                 </div>
                 <!-- Links Tab Content - ENDS HERE -->
                 <!-- Analytics Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'analytics'" class="tab-content">
+                <div x-show="activeTab === 'analytics' && !showTemplates && !showSettings" class="tab-content">
                     <?php self::edit__tab_analytics($user_id);?>
                 </div>
                 <!-- Analytics Tab Content - ENDS HERE -->
@@ -459,7 +459,9 @@ class Plugin_Name_Dashboard {
         <form method="post">
             <?php Plugin_Name_Builder::link_list_field( 'Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
             <?php Plugin_Name_Builder::social_links_list_field( 'Manage Social Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
-            <input type="submit" name="submit_form" value="Update" class="upload-btn">
+            <div class="save-progress">
+                <input type="submit" name="submit_form" value="Update" class="upload-btn">
+            </div>
         </form>      
     <?php }
 
@@ -485,7 +487,9 @@ class Plugin_Name_Dashboard {
             ?>
 
             <?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio', Plugin_Name_Capabilities::EDIT_BIO, false, $user_id, in_array("bio", $this->dynamic_tags)); ?>
-            <input type="submit" name="submit_form" value="Update" class="upload-btn">
+            <div class="save-progress">
+                <input type="submit" name="submit_form" value="Update" class="upload-btn">
+            </div>
         </form>
     <?php }
 
