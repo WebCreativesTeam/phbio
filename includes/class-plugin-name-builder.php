@@ -2,7 +2,7 @@
 
 class Plugin_Name_Builder {
     
-    const ERROR_MSG= "<a href='/pricing' target='___blank'>Unlock this feature instantly by going PRO</a>";
+    const ERROR_MSG= "<a href='/pricing' class='no-underline font-semi-bold' target='___blank'>Unlock this feature instantly by going PRO</a>";
     
     
 
@@ -42,7 +42,7 @@ class Plugin_Name_Builder {
             // Display the field
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
                 echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' disabled />';
-                echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
+                echo '<p class="description">' . self::ERROR_MSG . '</p>';
             } else {
                 echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' x-on:input="charCount = $event.target.value.length" />';
             }
@@ -148,7 +148,7 @@ class Plugin_Name_Builder {
                 // Display the field
                 if (!Plugin_Name_Utilities::check_user_capability($capability)) {
                     echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="onInput" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" disabled />';
-                    echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
+                    echo '<p class="description">' . self::ERROR_MSG . '</p>';
                 } else {
                     echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="onInput" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" />';
                 }
@@ -202,7 +202,7 @@ class Plugin_Name_Builder {
     
         if (!Plugin_Name_Utilities::check_user_capability($capability)) {
             echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="textarea-field" rows="4" disabled style="resize: none !important;">' . esc_textarea($data) . '</textarea>';
-            echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
+            echo '<p class="description">' . self::ERROR_MSG . '</p>';
         } else {
             echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="textarea-field" rows="4" ' . ($char_limit ? 'x-bind:maxlength="' . esc_attr($char_limit) . '" x-on:input="charCount = $event.target.value.length"' : '') . ' style="resize: none !important;">' . esc_textarea($data) . '</textarea>';
             if ($hasLimit && $char_limit) {
@@ -310,14 +310,14 @@ class Plugin_Name_Builder {
             ob_start();
             
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-                echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
+                echo '<p class="description">' . self::ERROR_MSG . '</p>';
             } else {
                 ?>
 
                 <main x-data="socialLinks({initLinks: <?php echo $links_json; ?>})">
                
 
-                    <button type="button" x-show="links.length < maxLinks" @click="showAddNewLink()" class="add-link-btn">Add New Link</button>
+                    <button type="button" x-show="links.length < maxLinks" @click="showAddNewLink()" class="add-link-btn">Add New Social Icon</button>
                     <div x-show="showAddNewLinkForm" @input="console.log($event.detail); newLink.title = $event.detail">
                         <div class="relative p-5 mt-5">
                             <button @click.prevent="showAddNewLinkForm = false" class="absolute top-0 border-0 cursor-pointer right-2 bg-inherit"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg></button>
@@ -433,7 +433,7 @@ class Plugin_Name_Builder {
             
             // Check capability
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-                echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
+                echo '<p class="description">' . self::ERROR_MSG . '</p>';
             } else {
                 ?>
                 <main x-data="dataList({initLinks: <?php echo $links_json; ?>, initMax: <?php echo $links_limit; ?>})" x-init="applyScheduling()">
@@ -659,7 +659,7 @@ class Plugin_Name_Builder {
             
             // Check capability
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-                echo '<p class="description">' . esc_html(self::ERROR_MSG) . '</p>';
+                echo '<p class="description">' . self::ERROR_MSG . '</p>';
             } else {
                 ?>
              <main x-data="socialLinks({initLinks: <?php echo $links_json; ?>})">
@@ -757,6 +757,11 @@ class Plugin_Name_Builder {
         }
         $name = $field_name . '_url';
         $image_url = Plugin_Name_Utilities::handle_user_meta($name, Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE,  $target_user_id);
+        
+        if(!Plugin_Name_Utilities::check_user_capability($capability)) {
+            echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg><span>' . self::ERROR_MSG . '</span></div>';
+
+        }
         ?>
 
         <div class="upload-container <?php if(!Plugin_Name_Utilities::check_user_capability($capability)) { echo 'no-hover' ; } ?>">
@@ -773,7 +778,6 @@ class Plugin_Name_Builder {
                 if(!Plugin_Name_Utilities::check_user_capability($capability)) {
                     echo '<label for="' . esc_attr($name) . '" class="block upload-label">' . esc_html($label) . '</label>';
                     echo '<input type="file" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="absolute inset-0 w-full h-full opacity-0" disabled />';
-                    echo '<p class="mt-2 text-center text-red-600">' . esc_html(self::ERROR_MSG) . '</p>';
                 } else {
                     echo '<form method="post" enctype="multipart/form-data">';
                     echo '<label for="' . esc_attr($name) . '" class="block upload-label">' . esc_html($label) . '</label>';

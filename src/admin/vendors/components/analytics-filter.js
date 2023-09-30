@@ -64,8 +64,16 @@ export const analyticsFilter = () => ({
         this.dateFrom = new Date(1970, 0, 1);
         this.dateTo = today;
         break;
+      case "custom":
+        this.dateFrom = null;
+        this.dateTo = null;
+        break;
     }
-    this.outputDateValues();
+
+    // Only call outputDateValues if the selected range is not 'custom'.
+    if (this.selectedRange !== "custom") {
+      this.outputDateValues();
+    }
   },
   convertFromYmd(dateYmd) {
     const year = Number(dateYmd.substr(0, 4));
@@ -117,6 +125,15 @@ export const analyticsFilter = () => ({
       this.year = currentYear;
       this.getNoOfDays();
     }
+
+    if (
+      !this.selectedRange ||
+      this.selectedRange === "" ||
+      this.selectedRange === "lifetime"
+    ) {
+      this.setDateRange("lifetime");
+    }
+
     this.setDateValues();
   },
 
@@ -179,6 +196,10 @@ export const analyticsFilter = () => ({
       return;
     }
     let selectedDate = new Date(this.year, this.month, date);
+    if (this.selectedRange === "custom" && !this.selecting) {
+      return;
+    }
+
     if (this.endToShow === "from") {
       this.dateFrom = selectedDate;
       if (!this.dateTo) {
@@ -203,7 +224,11 @@ export const analyticsFilter = () => ({
     if (!temp) {
       if (this.selecting) {
         this.outputDateValues();
-        this.closeDatepicker();
+        if (this.selectedRange === "custom") {
+          // Do something if needed when the custom range is selected
+        } else {
+          this.closeDatepicker();
+        }
       }
       this.selecting = !this.selecting;
     }

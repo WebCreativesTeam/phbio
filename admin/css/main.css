@@ -832,9 +832,6 @@ select {
 }
 .textarea-container span {
     margin: 0px !important;
-    margin-bottom: 2rem !important;
-    margin-top: 0.5rem !important;
-    width: 100% !important;
     border-width: 0px !important;
     padding: 0px !important;
     outline: 2px solid transparent !important;

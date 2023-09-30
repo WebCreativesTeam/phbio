@@ -276,7 +276,7 @@
     @apply relative;
   }
   .textarea-container span {
-    @apply outline-none p-0 m-0 border-0 mb-8 mt-2 w-full !important;
+    @apply outline-none p-0 m-0 border-0 !important;
     background-color: rgb(243 244 246 / var(--tw-bg-opacity)) !important;
   }
 
