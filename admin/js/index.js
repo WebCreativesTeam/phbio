@@ -588,15 +588,17 @@ var _socialLinksNewDefault = parcelHelpers.interopDefault(_socialLinksNew);
 var _dashboard = require("./components/dashboard");
 var _dropdown = require("./components/dropdown");
 var _dropdownDefault = parcelHelpers.interopDefault(_dropdown);
+var _linkManager = require("./components/link-manager");
 window.Alpine = (0, _alpinejsDefault.default);
 (0, _alpinejsDefault.default).data("dataList", (initLinks = [])=>(0, _linksDefault.default)(initLinks));
 (0, _alpinejsDefault.default).data("dropdown", (initIcons = [], selected = "")=>(0, _dropdownDefault.default)(initIcons, selected));
 (0, _alpinejsDefault.default).data("socialLinks", (initLinks = [])=>(0, _socialLinksNewDefault.default)(initLinks));
 (0, _alpinejsDefault.default).data("analyticsFilter", ()=>(0, _analyticsFilter.analyticsFilter)());
 (0, _alpinejsDefault.default).data("dashboard", ()=>(0, _dashboard.dashboard)());
+(0, _alpinejsDefault.default).data("linkManager", ()=>(0, _linkManager.linkManager)());
 (0, _alpinejsDefault.default).start();
 
-},{"alpinejs":"69hXP","./components/links":"gsPSq","./components/analytics-filter":"fI1UE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/social-links-new":"gu8G2","./components/dashboard":"lcv74","./components/dropdown":"h4fl0"}],"69hXP":[function(require,module,exports) {
+},{"alpinejs":"69hXP","./components/links":"gsPSq","./components/analytics-filter":"fI1UE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/social-links-new":"gu8G2","./components/dashboard":"lcv74","./components/dropdown":"h4fl0","./components/link-manager":"hlcQ7"}],"69hXP":[function(require,module,exports) {
 // packages/alpinejs/src/scheduler.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -3622,26 +3624,6 @@ exports.default = ({ initLinks = [], initMax })=>({
             } else if (this.linkExists(this.inputEditLinkValue, id)) this.linkError = "Link already exists.";
             else this.linkError = "Please enter a valid URL.";
         },
-        uploadImage (linkId) {
-            const fileInput = document.querySelector("#link_image");
-            const file = fileInput.files[0];
-            if (file) {
-                let formData = new FormData();
-                formData.append("action", "link_upload_image");
-                formData.append("file", file);
-                formData.append("nonce", plugin.nonce); // Replace with your nonce variable
-                fetch(plugin.ajax_url, {
-                    // Replace with your ajax URL variable
-                    method: "POST",
-                    body: formData
-                }).then((response)=>response.text()).then((url)=>{
-                    const linkToUpdate = this.links.find((link)=>link.id === linkId);
-                    if (linkToUpdate) linkToUpdate.imageFile = url;
-                }).catch((error)=>{
-                    console.error("Error during the image upload:", error);
-                });
-            }
-        },
         cancelEditLink () {
             this.links = this.links.map((item)=>({
                     ...item,
@@ -4094,6 +4076,29 @@ exports.default = ({ initIcons = [], selected = "" })=>({
             if (!this.search) return this.options;
             const regex = new RegExp(this.search, "i");
             return this.options.filter((option)=>option.match(regex));
+        }
+    });
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hlcQ7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "linkManager", ()=>linkManager);
+const linkManager = ()=>({
+        isOpen: false,
+        removeImage: function(index) {
+            if (!confirm("Are you sure you want to remove this image?")) return;
+            let data = new FormData();
+            data.append("action", "handle_remove_gallery_image");
+            data.append("index", index);
+            fetch(plugin.ajax_url, {
+                method: "POST",
+                body: data
+            }).then((response)=>response.json()).then((data)=>{
+                if (data.success) location.reload();
+                else alert("Failed to remove image");
+            }).catch((err)=>{
+                console.log(err);
+            });
         }
     });
 

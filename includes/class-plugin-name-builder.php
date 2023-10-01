@@ -857,6 +857,108 @@ class Plugin_Name_Builder {
         }
     }
     
+    public static function upload_gallery_field($field_name, $label, $capability, $allowed_types = array('image/jpeg', 'image/png', 'image/tiff'), $max_size = 2 * 1024 * 1024, $target_user_id = null) {
+        $name = $field_name . '_urls';
+        $image_urls = get_user_meta($target_user_id, $name, true);
+        $image_urls = $image_urls ? json_decode($image_urls, true) : array();
+    
+        if(!Plugin_Name_Utilities::check_user_capability($capability)) {
+            echo '<div class="warning-message"><span>' . self::ERROR_MSG . '</span></div>';
+            return;
+        }
+        ?>
+        
+        <div x-data="linkManager" class="flex flex-col gap-2 my-5">
+
+            <div @click="isOpen = !isOpen" class="text-sm cursor-pointer input-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18,15V5a3,3,0,0,0-3-3H5A3,3,0,0,0,2,5V15a3,3,0,0,0,3,3H15A3,3,0,0,0,18,15ZM4,5A1,1,0,0,1,5,4H15a1,1,0,0,1,1,1V9.36L14.92,8.27a2.56,2.56,0,0,0-1.81-.75h0a2.58,2.58,0,0,0-1.81.75l-.91.91-.81-.81a2.93,2.93,0,0,0-4.11,0L4,9.85Zm.12,10.45A.94.94,0,0,1,4,15V12.67L6.88,9.79a.91.91,0,0,1,1.29,0L9,10.6Zm8.6-5.76a.52.52,0,0,1,.39-.17h0a.52.52,0,0,1,.39.17L16,12.18V15a1,1,0,0,1-1,1H6.4ZM21,6a1,1,0,0,0-1,1V17a3,3,0,0,1-3,3H7a1,1,0,0,0,0,2H17a5,5,0,0,0,5-5V7A1,1,0,0,0,21,6Z"></path></svg>
+                    Manage Image Gallery
+                    
+               
+            </div>
+            
+            <div x-show="isOpen" class="flex flex-col gap-2 p-4 bg-gray-100">
+                <div class="py-2 upload-content">
+                    <form method="post" enctype="multipart/form-data">
+                        <label class="relative block transition-all duration-300 cursor-pointer upload-label hover:bg-gray-200">
+                        <svg class="cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.71,11.29a1,1,0,0,0-.33-.21,1,1,0,0,0-.76,0,1,1,0,0,0-.33.21l-2,2a1,1,0,0,0,1.42,1.42l.29-.3V17a1,1,0,0,0,2,0V14.41l.29.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42ZM20,8.94a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19l-.1,0A1.1,1.1,0,0,0,13.06,2H7A3,3,0,0,0,4,5V19a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V9S20,9,20,8.94ZM14,5.41,16.59,8H15a1,1,0,0,1-1-1ZM18,19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V5A1,1,0,0,1,7,4h5V7a3,3,0,0,0,3,3h3Z"></path></svg>
+                            <input type="file" name="<?php echo esc_attr($name); ?>" id="<?php echo esc_attr($name); ?>" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="<?php echo implode(',', $allowed_types); ?>" onchange="this.form.submit()" />
+                        </label>
+                        <input type="submit" value="Upload" class="hidden px-3 py-1 mt-2 text-white transition-all duration-300 bg-blue-500 rounded upload-btn hover:bg-blue-600" />
+                    </form>
+                </div>
+                <?php
+                if(!empty($image_urls)) {
+                    echo '<div class="flex flex-wrap gap-2 overflow-auto max-h-96">';
+                    foreach ($image_urls as $key => $image_url) {
+                        echo '<div class="relative w-1/8">';
+                        echo '<img src="' . esc_attr($image_url) . '" alt="Uploaded File" class="object-cover w-24 h-24 file-preview">';
+                        echo '<svg @click="removeImage(' . $key . ')" class="absolute top-0 right-0 w-6 h-6 text-red-500 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>';
+                        echo '</div>';
+                    }
+                    echo '</div>';
+                } else {
+                    echo '<div class="flex items-start p-2 align-left"> No Files Uploaded </div>';
+                }
+                ?>
+            </div>
+        </div>
+        <?php
+    
+        if(isset($_FILES[$name]) && Plugin_Name_Utilities::check_user_capability($capability)) {
+            self::handle_gallery_upload($name, $allowed_types, $max_size, $target_user_id);
+        }
+    }
+    
+    
+    
+    
+    
+    private static function handle_gallery_upload($name, $allowed_types, $max_size, $target_user_id = null) {
+        $user_id = $target_user_id ? $target_user_id : get_current_user_id();
+        
+        if(isset($_FILES[$name])) {
+            $file = $_FILES[$name];
+            
+            if(!in_array($file['type'], $allowed_types)) {
+                echo '<p class="error">Invalid file type. Only JPG, JPEG, PNG, and TIFF are allowed.</p>';
+                return;
+            }
+            
+            if($file['size'] > $max_size) {
+                echo '<p class="error">File size exceeded. Maximum file size is ' . ($max_size / 1024) . 'KB.</p>';
+                return;
+            }
+            
+            $uploads_dir = wp_upload_dir();
+            $ph_bio_dir = $uploads_dir['basedir'] . '/ph-bio';
+            
+            if(!file_exists($ph_bio_dir)) {
+                wp_mkdir_p($ph_bio_dir);
+            }
+            
+            $timestamp = time();
+            $new_filename = $name . '_user_' . $user_id . '_' . $timestamp . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+            $target_file_path = $ph_bio_dir . '/' . $new_filename;
+            
+            if(move_uploaded_file($file['tmp_name'], $target_file_path)) {
+                $file_url = $uploads_dir['baseurl'] . '/ph-bio/' . basename($new_filename);
+                
+                $image_urls = get_user_meta($user_id, $name, true);
+                $image_urls = $image_urls ? json_decode($image_urls, true) : array();
+                $image_urls[] = $file_url;
+                
+                update_user_meta($user_id, $name, json_encode($image_urls));
+            } else {
+                echo '<p class="error">Failed to upload image.</p>';
+            }
+        } else {
+            echo '<p class="error">Something went wrong.</p>';
+        }
+    }
+    
+    
+    
     
     
 }

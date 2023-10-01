@@ -180,23 +180,6 @@ export default ({ initLinks = [], initMax }) => ({
     }
   },
 
-  uploadImage(linkId) {
-    const fileInput = this.$el;
-    const file = fileInput.files[0];
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        this.inputEditImageFile = e.target.result; // Store the image data in a temporary variable for editing
-        const linkToUpdate = this.links.find((link) => link.id === linkId);
-        if (linkToUpdate) {
-          linkToUpdate.imageFile = e.target.result;
-        }
-      };
-      console.log("k");
-      reader.readAsDataURL(file);
-    }
-  },
   cancelEditLink() {
     this.links = this.links.map((item) => ({
       ...item,

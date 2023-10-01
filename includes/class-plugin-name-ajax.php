@@ -103,6 +103,23 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 			wp_send_json_success('Click counted');
 		}
 		
+		public function handle_remove_gallery_image() {
+
+			$index = isset($_POST['index']) ? intval($_POST['index']) : -1;
+			$name = 'img_gallery_urls'; // Replace with your actual field name
+			
+			$user_id = get_current_user_id();
+			$image_urls = get_user_meta($user_id, $name, true);
+			$image_urls = $image_urls ? json_decode($image_urls, true) : array();
+			if($index >= 0 && $index < count($image_urls)) {
+				unset($image_urls[$index]);
+				$image_urls = array_values($image_urls); // Re-index the array
+				update_user_meta($user_id, $name, json_encode($image_urls));
+				wp_send_json_success();
+			} else {
+				wp_send_json_error();
+			}
+		}
 		
 		
 

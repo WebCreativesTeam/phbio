@@ -460,7 +460,11 @@ class Plugin_Name_Dashboard {
     
     public function edit__links_tab($user_id) { ?>
         <?php echo Plugin_Name_Utilities::current_user_has_backup_links(); ?>
+
+        <?php Plugin_Name_Builder::upload_gallery_field('img_gallery', 'Image Gallery', Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>
+
         <form method="post">
+            
             <?php Plugin_Name_Builder::link_list_field( 'Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
             <?php Plugin_Name_Builder::social_links_list_field( 'Manage Social Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
             <div class="save-progress">
@@ -472,6 +476,7 @@ class Plugin_Name_Dashboard {
     public function edit__profile_tab($user_id) { ?>
         <?php Plugin_Name_Builder::upload_field('profile_photo', 'Profile Photo', Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id, in_array("profile_photo_url", $this->dynamic_tags)); ?>
         <?php Plugin_Name_Builder::upload_field('cover_photo', 'Cover Photo', Plugin_Name_Capabilities::EDIT_COVER, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id, in_array("cover_photo_url", $this->dynamic_tags)); ?>
+        
         <form method="post">
             <?php 
             Plugin_Name_Builder::url_field('username', 
