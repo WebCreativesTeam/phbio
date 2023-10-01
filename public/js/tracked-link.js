@@ -40,7 +40,7 @@ jQuery(document).ready(function ($) {
       },
       function (response) {
         if (response.success) {
-          window.location.href = link;
+          //
         } else {
           alert("Error tracking click");
         }
