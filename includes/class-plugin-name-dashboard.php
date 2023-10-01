@@ -461,7 +461,6 @@ class Plugin_Name_Dashboard {
     public function edit__links_tab($user_id) { ?>
         <?php echo Plugin_Name_Utilities::current_user_has_backup_links(); ?>
 
-        <?php Plugin_Name_Builder::upload_gallery_field('img_gallery', 'Image Gallery', Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id); ?>
 
         <form method="post">
             

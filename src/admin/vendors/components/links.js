@@ -44,6 +44,48 @@ export default ({ initLinks = [], initMax }) => ({
       return link;
     });
   },
+  uploadImage(linkId) {
+    // Find the file input using the event object
+    const fileInputs = document.querySelectorAll(
+      `input[data-link-id='${linkId}']`
+    );
+    if (!fileInputs || fileInputs.length === 0) return; // Exit if no file input is found
+
+    const fileInput = fileInputs[0];
+    const file = fileInput?.files[0];
+    if (!file) return; // Exit if no file is selected
+
+    const formData = new FormData();
+    formData.append("action", "handle_image_upload");
+
+    formData.append("file", file); // 'file' is the key your server is expecting
+
+    // Replace plugin.ajax_url with the actual URL you are posting the file to.
+    fetch(plugin.ajax_url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json()) // Assuming server responds with json
+      .then((data) => {
+        if (data.success) {
+          // Assuming the server returns an object with a 'fileUrl' property
+          this.links = this.links.map((link) => {
+            console.log(data);
+            if (link.id === linkId) {
+              console.log(link, "before");
+              link.imageFile = data.data.fileUrl;
+              console.log(link, "after");
+            }
+            return link;
+          });
+        } else {
+          console.error("Error uploading file:", data.data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error uploading file:", error);
+      });
+  },
 
   addLink() {
     console.log(this.links.length, this.maxLinks);

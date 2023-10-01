@@ -428,6 +428,10 @@ class Plugin_Name_Builder {
             $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
             $links_limit = Plugin_Name_Utilities::get_user_maxLinks($target_user_id);
             
+
+            $image_urls = get_user_meta($target_user_id, 'img_gallery_urls', true); // Fetching existing URLs
+            $image_urls = $image_urls ? json_decode($image_urls, true) : array(); // Decoding the JSON string to an array
+
             // Start the output buffering
             ob_start();
             
@@ -608,11 +612,10 @@ class Plugin_Name_Builder {
                                             <div class="upload-content">
                                                 <form method="post" enctype="multipart/form-data">
                                                     <label for="link_image" class="block upload-label">Upload Image</label>
-                                                    <input type="file" name="link_image" id="link_image" class="absolute inset-0 w-full h-full opacity-0" accept="image/jpeg,image/png,image/tiff" @change="uploadImage(link.id)" />
+                                                    <input type="file" name="link_image" class="absolute inset-0 w-full h-full opacity-0" accept="image/jpeg,image/png,image/tiff" @change="uploadImage(link.id)" :data-link-id="link.id" />
                                                 </form>
                                             </div>
                                         </div>
-
                                         <hr>
                                         
                                         <button type="button" @click="editLink(link.id)" class="upload-btn">Save</button>
@@ -873,8 +876,6 @@ class Plugin_Name_Builder {
             <div @click="isOpen = !isOpen" class="text-sm cursor-pointer input-container">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18,15V5a3,3,0,0,0-3-3H5A3,3,0,0,0,2,5V15a3,3,0,0,0,3,3H15A3,3,0,0,0,18,15ZM4,5A1,1,0,0,1,5,4H15a1,1,0,0,1,1,1V9.36L14.92,8.27a2.56,2.56,0,0,0-1.81-.75h0a2.58,2.58,0,0,0-1.81.75l-.91.91-.81-.81a2.93,2.93,0,0,0-4.11,0L4,9.85Zm.12,10.45A.94.94,0,0,1,4,15V12.67L6.88,9.79a.91.91,0,0,1,1.29,0L9,10.6Zm8.6-5.76a.52.52,0,0,1,.39-.17h0a.52.52,0,0,1,.39.17L16,12.18V15a1,1,0,0,1-1,1H6.4ZM21,6a1,1,0,0,0-1,1V17a3,3,0,0,1-3,3H7a1,1,0,0,0,0,2H17a5,5,0,0,0,5-5V7A1,1,0,0,0,21,6Z"></path></svg>
                     Manage Image Gallery
-                    
-               
             </div>
             
             <div x-show="isOpen" class="flex flex-col gap-2 p-4 bg-gray-100">

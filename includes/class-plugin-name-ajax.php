@@ -120,6 +120,56 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 				wp_send_json_error();
 			}
 		}
+
+		public function handle_image_upload() {
+			$response = ['success' => false, 'data' => 'Unknown Error'];
+			$field_name = 'file'; // Adjust as needed
+			$allowed_types = ['image/jpeg', 'image/png', 'image/tiff'];
+			$max_size = 2 * 1024 * 1024; // 2 MB
+			
+			$target_user_id = get_current_user_id(); // Adjust as needed
+			
+			if (!isset($_FILES[$field_name])) {
+				$response['data'] = 'No file uploaded.';
+				wp_send_json($response);
+			}
+			
+			$file = $_FILES[$field_name];
+			
+			if (!in_array($file['type'], $allowed_types)) {
+				$response['data'] = 'Invalid file type. Only JPG, JPEG, PNG, and TIFF are allowed.';
+				wp_send_json($response);
+			}
+			
+			if ($file['size'] > $max_size) {
+				$response['data'] = 'File size exceeded. Maximum file size is ' . ($max_size / 1024) . 'KB.';
+				wp_send_json($response);
+			}
+			
+			$uploads_dir = wp_upload_dir();
+			$custom_dir = $uploads_dir['basedir'] . '/ph-bio';
+			
+			if (!file_exists($custom_dir)) {
+				wp_mkdir_p($custom_dir);
+			}
+			
+			$timestamp = time();
+			$new_filename = $field_name . '_user_' . $target_user_id . '_' . $timestamp . '.' . pathinfo($file['name'], PATHINFO_EXTENSION);
+			$target_file_path = $custom_dir . '/' . $new_filename;
+			
+			if (move_uploaded_file($file['tmp_name'], $target_file_path)) {
+				$file_url = $uploads_dir['baseurl'] . '/ph-bio/' . $new_filename;
+				update_user_meta($target_user_id, $field_name, $file_url);
+				$response['success'] = true;
+				$response['data'] = ['fileUrl' => $file_url, 'message' => 'Your changes have been saved'];
+			} else {
+				$response['data'] = 'Failed to upload image.';
+			}
+			
+			wp_send_json($response);
+		}
+		
+		
 		
 		
 

@@ -217,6 +217,9 @@ class Plugin_Name {
 		$this->loader->add_action( 'wp_ajax_handle_remove_gallery_image', $plugin_ajax, 'handle_remove_gallery_image' );
 		$this->loader->add_action( 'wp_ajax_nopriv_handle_remove_gallery_image', $plugin_ajax, 'handle_remove_gallery_image' );
 	 
+		$this->loader->add_action( 'wp_ajax_handle_image_upload', $plugin_ajax, 'handle_image_upload' );
+		$this->loader->add_action( 'wp_ajax_nopriv_handle_image_upload', $plugin_ajax, 'handle_image_upload' );
+	 
 		$el_integrate = new Plugin_Name_Elementor_Integration();
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'add_group' );
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'register_tags' );
