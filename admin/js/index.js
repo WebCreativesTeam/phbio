@@ -3492,6 +3492,7 @@ exports.default = ({ initLinks = [], initMax })=>({
         inputAddLinkValue: "",
         inputEditLinkValue: "",
         inputEditTitleValue: "",
+        inputEditImageFile: "",
         linkError: "",
         showAddNewLinkForm: false,
         newLink: {
@@ -3530,9 +3531,8 @@ exports.default = ({ initLinks = [], initMax })=>({
         },
         uploadImage (linkId) {
             // Find the file input using the event object
-            const fileInputs = document.querySelectorAll(`input[data-link-id='${linkId}']`);
-            if (!fileInputs || fileInputs.length === 0) return; // Exit if no file input is found
-            const fileInput = fileInputs[0];
+            const fileInput = document.querySelector(`input[data-link-id='${linkId}']`);
+            if (!fileInput) return; // Exit if no file input is found
             const file = fileInput?.files[0];
             if (!file) return; // Exit if no file is selected
             const formData = new FormData();
@@ -3548,9 +3548,8 @@ exports.default = ({ initLinks = [], initMax })=>({
                 this.links = this.links.map((link)=>{
                     console.log(data);
                     if (link.id === linkId) {
-                        console.log(link, "before");
                         link.imageFile = data.data.fileUrl;
-                        console.log(link, "after");
+                        this.inputEditImageFile = data.data.fileUrl;
                     }
                     return link;
                 });
@@ -3586,7 +3585,6 @@ exports.default = ({ initLinks = [], initMax })=>({
                 this.newLink.title = ""; // Reset the title
                 this.linkError = "";
                 this.showAddNewLinkForm = false; // Hide the form
-                console.log(this.links);
             } else this.linkError = "Please enter a valid URL.";
             console.log("Updated links after adding:", this.links);
         },
@@ -3635,6 +3633,7 @@ exports.default = ({ initLinks = [], initMax })=>({
                 if (item.id === id) {
                     this.inputEditLinkValue = item.text;
                     this.inputEditTitleValue = item.title; // Update the editing title value
+                    this.inputEditImageFile = item.imageFile;
                 }
                 return {
                     ...item,
@@ -3644,13 +3643,15 @@ exports.default = ({ initLinks = [], initMax })=>({
         },
         editLink (id) {
             if (this.inputEditLinkValue.length && this.validateURL(this.inputEditLinkValue) && !this.linkExists(this.inputEditLinkValue, id)) {
-                this.links = this.links.map((item)=>({
+                this.links = this.links.map((item)=>{
+                    return {
                         ...item,
                         text: item.id === id ? this.inputEditLinkValue : item.text,
                         title: item.id === id ? this.inputEditTitleValue : item.title,
                         imageFile: item.id === id ? this.inputEditImageFile : item.imageFile,
                         isEditing: false
-                    }));
+                    };
+                });
                 this.linkError = "";
             } else if (this.linkExists(this.inputEditLinkValue, id)) this.linkError = "Link already exists.";
             else this.linkError = "Please enter a valid URL.";
