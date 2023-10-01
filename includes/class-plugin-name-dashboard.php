@@ -210,10 +210,10 @@ class Plugin_Name_Dashboard {
 
     public function component__range_picker() { ?>
         <!-- Custom Date Range Picker -->
-        <div>
-            <span class="block my-1 font-bold text-gray-700">Results</span>
-            <input type="text" name="date_from" x-model="dateFromYmd">
-            <input type="text" name="date_to" x-model="dateToYmd">
+        <div x-show=" selectedRange == 'custom' ">
+            <!-- <span class="block my-1 font-bold text-gray-700">Results</span> -->
+            <input type="hidden" name="date_from" x-model="dateFromYmd">
+            <input type="hidden" name="date_to" x-model="dateToYmd">
             <label for="datepicker" class="block mt-3 mb-1 font-bold text-gray-700">Select Date Range</label>
             <div class="relative" @keydown.escape="closeDatepicker()" @click.outside="closeDatepicker()">
                 <div class="inline-flex items-center mt-3 bg-gray-200 border rounded-md">
@@ -451,6 +451,9 @@ class Plugin_Name_Dashboard {
             </div>
 
             <?php self::component__range_picker(); ?>
+            <?php
+                var_dump(Plugin_Name_Analytics::get_top_performing_social_link($user_id));
+            ?>
         </div>  
 
     <?php }

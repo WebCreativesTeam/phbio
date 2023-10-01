@@ -4,10 +4,12 @@
 class Plugin_Name_Analytics {
 
     private static $table_name;
+    private static $social_table_name;
 
     public function __construct() {
         global $wpdb;
         self::$table_name = $wpdb->prefix . 'link_clicks';
+        self::$social_table_name = $wpdb->prefix . 'social_link_clicks';
     }
 
     /**
@@ -42,6 +44,49 @@ class Plugin_Name_Analytics {
             $wpdb->prepare(
                 "SELECT clicked_at 
                  FROM " . self::$table_name . " 
+                 WHERE user_id = %d AND link = %s 
+                 ORDER BY clicked_at DESC",
+                $user_id, $top_link['link']
+            )
+        );
+    
+        // Add the timestamps to the result array
+        $top_link['timestamps'] = $timestamps;
+    
+        return $top_link;
+    }
+    /**
+     * Get the top-performing link for a given user ID.
+     *
+     * @param int $user_id
+     * @return array|null Link data or null if no data found.
+     */
+    public static function get_top_performing_social_link($user_id) {
+        global $wpdb;
+    
+        // First, get the top-performing link based on clicks
+        $top_link = $wpdb->get_row(
+            $wpdb->prepare(
+                "SELECT link, COUNT(*) as clicks
+                 FROM " . self::$social_table_name . " 
+                 WHERE user_id = %d 
+                 GROUP BY link 
+                 ORDER BY clicks DESC 
+                 LIMIT 1",
+                $user_id
+            ),
+            ARRAY_A  // This argument ensures the result is returned as an associative array
+        );
+    
+        if (!$top_link) {
+            return null; // No link found
+        }
+    
+        // Next, fetch all timestamps for that link
+        $timestamps = $wpdb->get_col(
+            $wpdb->prepare(
+                "SELECT clicked_at 
+                 FROM " . self::$social_table_name . " 
                  WHERE user_id = %d AND link = %s 
                  ORDER BY clicked_at DESC",
                 $user_id, $top_link['link']

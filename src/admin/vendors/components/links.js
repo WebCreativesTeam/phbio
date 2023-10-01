@@ -193,6 +193,7 @@ export default ({ initLinks = [], initMax }) => ({
           linkToUpdate.imageFile = e.target.result;
         }
       };
+      console.log("k");
       reader.readAsDataURL(file);
     }
   },

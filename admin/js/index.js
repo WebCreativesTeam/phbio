@@ -3623,16 +3623,23 @@ exports.default = ({ initLinks = [], initMax })=>({
             else this.linkError = "Please enter a valid URL.";
         },
         uploadImage (linkId) {
-            const fileInput = this.$el;
+            const fileInput = document.querySelector("#link_image");
             const file = fileInput.files[0];
             if (file) {
-                const reader = new FileReader();
-                reader.onload = (e)=>{
-                    this.inputEditImageFile = e.target.result; // Store the image data in a temporary variable for editing
+                let formData = new FormData();
+                formData.append("action", "link_upload_image");
+                formData.append("file", file);
+                formData.append("nonce", plugin.nonce); // Replace with your nonce variable
+                fetch(plugin.ajax_url, {
+                    // Replace with your ajax URL variable
+                    method: "POST",
+                    body: formData
+                }).then((response)=>response.text()).then((url)=>{
                     const linkToUpdate = this.links.find((link)=>link.id === linkId);
-                    if (linkToUpdate) linkToUpdate.imageFile = e.target.result;
-                };
-                reader.readAsDataURL(file);
+                    if (linkToUpdate) linkToUpdate.imageFile = url;
+                }).catch((error)=>{
+                    console.error("Error during the image upload:", error);
+                });
             }
         },
         cancelEditLink () {
