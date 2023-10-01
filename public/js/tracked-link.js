@@ -25,10 +25,10 @@ jQuery(document).ready(function ($) {
 });
 
 jQuery(document).ready(function ($) {
-  $(".tracked-link").on("click", function (e) {
+  $(".tracked-link").on("click", "a", function (e) {
     e.preventDefault();
     var link = $(this).attr("href");
-    var userId = $(this).data("user-id");
+    var userId = $(this).closest(".tracked-link").data("user-id");
 
     $.post(
       LinkTracker.ajax_url,
