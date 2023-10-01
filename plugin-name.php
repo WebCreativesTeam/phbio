@@ -257,6 +257,22 @@ function sync_links_list_to_phbio_links($meta_id, $user_id, $meta_key, $_meta_va
         global $wpdb;
         $table_name = $wpdb->prefix . 'phbio_links';
         
+
+        // Step 1: Collect all IDs from the Application
+        $app_ids = array_column($arr, 'id');
+
+        // Step 2: Fetch all IDs from the Database
+        $db_ids_result = $wpdb->get_results($wpdb->prepare("SELECT id FROM $table_name WHERE user_id = %d", $user_id), ARRAY_A);
+        $db_ids = array_column($db_ids_result, 'id');
+
+        // Step 3: Find the Difference
+        $ids_to_delete = array_diff($db_ids, $app_ids);
+
+        // Step 4: Delete Rows
+        foreach($ids_to_delete as $id) {
+            $wpdb->delete($table_name, array('id' => $id, 'user_id' => $user_id));
+        }
+
         foreach ($arr as $link) {
             $entry = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d AND user_id = %d", $link['id'], $user_id));
             
