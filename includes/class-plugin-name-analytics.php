@@ -57,7 +57,7 @@ class Plugin_Name_Analytics {
     // }
 
 
-    public static function get_top_performing_links($user_id, $limit = 3, $start_date = null, $end_date = null) 
+    public static function get_top_performing_links($user_id, $limit = 3, $start_date = null, $end_date = null) {
 
         // Increment the end_date by one day
         $end_date_dt = new DateTime($end_date);
@@ -112,7 +112,7 @@ class Plugin_Name_Analytics {
         $end_date_dt->modify('+1 day');
         $end_date = $end_date_dt->format('Y-m-d');
 
-        
+
         global $wpdb;
     
         // Create the base SQL query
