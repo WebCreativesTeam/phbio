@@ -65,6 +65,7 @@ class Plugin_Name_Analytics {
         $end_date = $end_date_dt->format('Y-m-d');
 
 
+
         global $wpdb;
         
         // Create the base SQL query
@@ -113,6 +114,7 @@ class Plugin_Name_Analytics {
         $end_date = $end_date_dt->format('Y-m-d');
 
 
+     
         global $wpdb;
     
         // Create the base SQL query
