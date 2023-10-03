@@ -454,6 +454,9 @@ class Plugin_Name_Dashboard {
             <?php
                 echo "Top Performing Links";
                 var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id));
+                echo "Total Page Views";
+                var_dump(Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true)));
+                
             ?>
         </div>  
 

@@ -87,6 +87,22 @@ class Plugin_Name_Analytics {
         return $link_names;
     }
     
+    public static function get_total_views_for_page($page_link) {
+        global $wpdb;
+    
+        // Get the total views for the specified page_link
+        $views = $wpdb->get_var(
+            $wpdb->prepare(
+                "SELECT COUNT(*) 
+                 FROM {$wpdb->prefix}page_views 
+                 WHERE page_link = %s",
+                $page_link
+            )
+        );
+    
+        return (string)$views;
+    }
+    
     
     /**
      * Get the top-performing link for a given user ID.
