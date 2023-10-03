@@ -3,7 +3,7 @@ jQuery(document).ready(function ($) {
   if (!getCookie("page_viewed")) {
     $.ajax({
       type: "POST",
-      url: plugin.ajax_url,
+      url: BioTracker.ajax_url,
       data: {
         action: "handle_record_page_view",
         page_link: window.location.href,
