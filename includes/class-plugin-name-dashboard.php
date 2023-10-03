@@ -461,8 +461,7 @@ class Plugin_Name_Dashboard {
                     $date_from = $_POST['date_from'];
                     $date_to = $_POST['date_to'];
             
-                    echo $date_to;
-                    echo $date_from;
+                   
                     echo "Top Performing Links";
                     var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id, 10,  $date_from, $date_to));
                     echo "Total Page Views";

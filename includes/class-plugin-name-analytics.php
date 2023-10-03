@@ -57,32 +57,32 @@ class Plugin_Name_Analytics {
     // }
 
 
-    public static function get_top_performing_links($user_id, $limit = 3, $start_date, $end_date) {
+    public static function get_top_performing_links($user_id, $limit = 3, $start_date = null, $end_date = null) {
         global $wpdb;
         
-        // Get the top-performing links based on clicks within the date range
-        $top_links = $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT link
+        $query = "SELECT link
                  FROM " . self::$table_name . " 
-                 WHERE user_id = %d 
-                 AND clicked_at BETWEEN %s AND %s
-                 GROUP BY link 
-                 ORDER BY COUNT(*) DESC 
-                 LIMIT %d",
-                $user_id,
-                $start_date,
-                $end_date,
-                $limit  // This parameter determines the number of links to retrieve
-            ),
-            ARRAY_A  // This argument ensures the result is returned as an associative array
-        );
+                 WHERE user_id = %d";
+                 
+        $params = array($user_id);
         
-        if (!$top_links) {
-            return null; // No links found
+        if ($start_date && $end_date) {
+            $query .= " AND clicked_at BETWEEN %s AND %s";
+            array_push($params, $start_date, $end_date);
         }
         
-        // Extract link names from the associative arrays
+        $query .= " GROUP BY link 
+                   ORDER BY COUNT(*) DESC 
+                   LIMIT %d";
+                   
+        array_push($params, $limit);
+        
+        $top_links = $wpdb->get_results($wpdb->prepare($query, $params), ARRAY_A);
+        
+        if (!$top_links) {
+            return null;
+        }
+        
         $link_names = array_map(function($link_info) {
             return $link_info['link'];
         }, $top_links);
@@ -90,22 +90,21 @@ class Plugin_Name_Analytics {
         return $link_names;
     }
     
-    
-    public static function get_total_views_for_page($page_link, $start_date, $end_date) {
+    public static function get_total_views_for_page($page_link, $start_date = null, $end_date = null) {
         global $wpdb;
     
-        // Get the total views for the specified page_link within the date range
-        $views = $wpdb->get_var(
-            $wpdb->prepare(
-                "SELECT COUNT(*) 
-                 FROM {$wpdb->prefix}page_views 
-                 WHERE page_link = %s 
-                 AND viewed_at BETWEEN %s AND %s",
-                $page_link,
-                $start_date,
-                $end_date
-            )
-        );
+        $query = "SELECT COUNT(*) 
+                  FROM {$wpdb->prefix}page_views 
+                  WHERE page_link = %s";
+                  
+        $params = array($page_link);
+        
+        if ($start_date && $end_date) {
+            $query .= " AND viewed_at BETWEEN %s AND %s";
+            array_push($params, $start_date, $end_date);
+        }
+    
+        $views = $wpdb->get_var($wpdb->prepare($query, $params));
     
         return (string)$views;
     }
