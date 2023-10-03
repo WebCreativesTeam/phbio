@@ -18,43 +18,70 @@ class Plugin_Name_Analytics {
      * @param int $user_id
      * @return array|null Link data or null if no data found.
      */
-    public static function get_top_performing_link($user_id) {
-        global $wpdb;
+    // public static function get_top_performing_link($user_id) {
+    //     global $wpdb;
     
-        // First, get the top-performing link based on clicks
-        $top_link = $wpdb->get_row(
+    //     // First, get the top-performing link based on clicks
+    //     $top_link = $wpdb->get_row(
+    //         $wpdb->prepare(
+    //             "SELECT link, COUNT(*) as clicks
+    //              FROM " . self::$table_name . " 
+    //              WHERE user_id = %d 
+    //              GROUP BY link 
+    //              ORDER BY clicks DESC 
+    //              LIMIT 1",
+    //             $user_id
+    //         ),
+    //         ARRAY_A  // This argument ensures the result is returned as an associative array
+    //     );
+    
+    //     if (!$top_link) {
+    //         return null; // No link found
+    //     }
+    
+    //     // Next, fetch all timestamps for that link
+    //     $timestamps = $wpdb->get_col(
+    //         $wpdb->prepare(
+    //             "SELECT clicked_at 
+    //              FROM " . self::$table_name . " 
+    //              WHERE user_id = %d AND link = %s 
+    //              ORDER BY clicked_at DESC",
+    //             $user_id, $top_link['link']
+    //         )
+    //     );
+    
+    //     // Add the timestamps to the result array
+    //     $top_link['timestamps'] = $timestamps;
+    
+    //     return $top_link;
+    // }
+
+
+    public static function get_top_performing_links($user_id, $limit = 3) {
+        global $wpdb;
+        
+        // Get the top-performing links based on clicks
+        $top_links = $wpdb->get_results(
             $wpdb->prepare(
-                "SELECT link, COUNT(*) as clicks
+                "SELECT link
                  FROM " . self::$table_name . " 
                  WHERE user_id = %d 
                  GROUP BY link 
-                 ORDER BY clicks DESC 
-                 LIMIT 1",
-                $user_id
+                 ORDER BY COUNT(*) DESC 
+                 LIMIT %d",
+                $user_id,
+                $limit  // This parameter determines the number of links to retrieve
             ),
             ARRAY_A  // This argument ensures the result is returned as an associative array
         );
-    
-        if (!$top_link) {
-            return null; // No link found
+        
+        if (!$top_links) {
+            return null; // No links found
         }
-    
-        // Next, fetch all timestamps for that link
-        $timestamps = $wpdb->get_col(
-            $wpdb->prepare(
-                "SELECT clicked_at 
-                 FROM " . self::$table_name . " 
-                 WHERE user_id = %d AND link = %s 
-                 ORDER BY clicked_at DESC",
-                $user_id, $top_link['link']
-            )
-        );
-    
-        // Add the timestamps to the result array
-        $top_link['timestamps'] = $timestamps;
-    
-        return $top_link;
+        
+        return $top_links;
     }
+    
     /**
      * Get the top-performing link for a given user ID.
      *
