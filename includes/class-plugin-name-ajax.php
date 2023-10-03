@@ -172,8 +172,8 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 		public function handle_record_page_view() {
 			global $wpdb;
 		
-			$page_link = $_POST['page_link'];
-		
+			$page_link = $_POST['pageLink'];
+		    $response['page_link'] = $page_link;
 			// Record the view in your database
 			$wpdb->insert(
 				"{$wpdb->prefix}page_views",
