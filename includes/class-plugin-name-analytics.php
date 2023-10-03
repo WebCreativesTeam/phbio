@@ -79,8 +79,14 @@ class Plugin_Name_Analytics {
             return null; // No links found
         }
         
-        return $top_links;
+        // Extract link names from the associative arrays
+        $link_names = array_map(function($link_info) {
+            return $link_info['link'];
+        }, $top_links);
+        
+        return $link_names;
     }
+    
     
     /**
      * Get the top-performing link for a given user ID.
