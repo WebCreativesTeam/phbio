@@ -60,29 +60,35 @@ class Plugin_Name_Analytics {
     public static function get_top_performing_links($user_id, $limit = 3, $start_date = null, $end_date = null) {
         global $wpdb;
         
-        $query = "SELECT link
-                 FROM " . self::$table_name . " 
-                 WHERE user_id = %d";
-                 
-        $params = array($user_id);
+        // Create the base SQL query
+        $sql = "SELECT link
+                FROM " . self::$table_name . " 
+                WHERE user_id = %d";
         
+        // If the start and end dates are provided, add them to the SQL query
         if ($start_date && $end_date) {
-            $query .= " AND clicked_at BETWEEN %s AND %s";
-            array_push($params, $start_date, $end_date);
+            $sql .= " AND clicked_at >= %s AND clicked_at <= %s";
         }
         
-        $query .= " GROUP BY link 
-                   ORDER BY COUNT(*) DESC 
-                   LIMIT %d";
-                   
-        array_push($params, $limit);
+        // Add the GROUP BY and ORDER BY clauses to the SQL query
+        $sql .= " GROUP BY link 
+                  ORDER BY COUNT(*) DESC 
+                  LIMIT %d";
         
-        $top_links = $wpdb->get_results($wpdb->prepare($query, $params), ARRAY_A);
+        // Prepare the SQL query
+        if ($start_date && $end_date) {
+            // If the start and end dates are provided, include them in the prepare method
+            $top_links = $wpdb->get_results($wpdb->prepare($sql, $user_id, $start_date, $end_date, $limit), ARRAY_A);
+        } else {
+            // If the start and end dates are NOT provided, exclude them from the prepare method
+            $top_links = $wpdb->get_results($wpdb->prepare($sql, $user_id, $limit), ARRAY_A);
+        }
         
         if (!$top_links) {
-            return null;
+            return null; // No links found
         }
         
+        // Extract link names from the associative arrays
         $link_names = array_map(function($link_info) {
             return $link_info['link'];
         }, $top_links);
@@ -90,21 +96,28 @@ class Plugin_Name_Analytics {
         return $link_names;
     }
     
+    
     public static function get_total_views_for_page($page_link, $start_date = null, $end_date = null) {
         global $wpdb;
     
-        $query = "SELECT COUNT(*) 
-                  FROM {$wpdb->prefix}page_views 
-                  WHERE page_link = %s";
-                  
-        $params = array($page_link);
-        
+        // Create the base SQL query
+        $sql = "SELECT COUNT(*) 
+                FROM {$wpdb->prefix}page_views 
+                WHERE page_link = %s";
+    
+        // If the start and end dates are provided, add them to the SQL query
         if ($start_date && $end_date) {
-            $query .= " AND viewed_at BETWEEN %s AND %s";
-            array_push($params, $start_date, $end_date);
+            $sql .= " AND viewed_at >= %s AND viewed_at <= %s";
         }
     
-        $views = $wpdb->get_var($wpdb->prepare($query, $params));
+        // Prepare the SQL query
+        if ($start_date && $end_date) {
+            // If the start and end dates are provided, include them in the prepare method
+            $views = $wpdb->get_var($wpdb->prepare($sql, $page_link, $start_date, $end_date));
+        } else {
+            // If the start and end dates are NOT provided, exclude them from the prepare method
+            $views = $wpdb->get_var($wpdb->prepare($sql, $page_link));
+        }
     
         return (string)$views;
     }
