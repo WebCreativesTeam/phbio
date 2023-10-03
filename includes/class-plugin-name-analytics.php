@@ -57,9 +57,14 @@ class Plugin_Name_Analytics {
     // }
 
 
-    public static function get_top_performing_links($user_id, $limit = 3, $start_date = null, $end_date = null) {
-        echo $start_date;
-        echo $end_date;
+    public static function get_top_performing_links($user_id, $limit = 3, $start_date = null, $end_date = null) 
+
+        // Increment the end_date by one day
+        $end_date_dt = new DateTime($end_date);
+        $end_date_dt->modify('+1 day');
+        $end_date = $end_date_dt->format('Y-m-d');
+
+
         global $wpdb;
         
         // Create the base SQL query
@@ -82,10 +87,7 @@ class Plugin_Name_Analytics {
             // If the start and end dates are provided, include them in the prepare method
             $top_links = $wpdb->get_results($wpdb->prepare($sql, $user_id, $start_date, $end_date, $limit), ARRAY_A);
 
-             // Increment the end_date by one day
-            $end_date_dt = new DateTime($end_date);
-            $end_date_dt->modify('+1 day');
-            $end_date = $end_date_dt->format('Y-m-d');
+          
         } else {
             // If the start and end dates are NOT provided, exclude them from the prepare method
             $top_links = $wpdb->get_results($wpdb->prepare($sql, $user_id, $limit), ARRAY_A);
@@ -105,8 +107,12 @@ class Plugin_Name_Analytics {
     
     
     public static function get_total_views_for_page($page_link, $start_date = null, $end_date = null) {
-        echo $start_date;
-        echo $end_date;
+        // Increment the end_date by one day
+        $end_date_dt = new DateTime($end_date);
+        $end_date_dt->modify('+1 day');
+        $end_date = $end_date_dt->format('Y-m-d');
+
+        
         global $wpdb;
     
         // Create the base SQL query
@@ -117,10 +123,7 @@ class Plugin_Name_Analytics {
         // If the start and end dates are provided, add them to the SQL query
         if ($start_date && $end_date) {
             $sql .= " AND viewed_at >= %s AND viewed_at <= %s";
-             // Increment the end_date by one day
-            $end_date_dt = new DateTime($end_date);
-            $end_date_dt->modify('+1 day');
-            $end_date = $end_date_dt->format('Y-m-d');
+             
         }
     
         // Prepare the SQL query
