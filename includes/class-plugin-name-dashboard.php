@@ -210,6 +210,7 @@ class Plugin_Name_Dashboard {
 
     public function component__range_picker() { ?>
         <!-- Custom Date Range Picker -->
+        <form id="analyticsFilterForm" method="POST">
         <div x-show=" selectedRange == 'custom' ">
             <!-- <span class="block my-1 font-bold text-gray-700">Results</span> -->
             <input type="hidden" name="date_from" x-model="dateFromYmd">
@@ -279,6 +280,8 @@ class Plugin_Name_Dashboard {
                 </div>
             </div>
         </div>
+            <input type="submit" value="Filter" />
+          </form>
             
     <?php }
 
@@ -451,11 +454,29 @@ class Plugin_Name_Dashboard {
             </div>
 
             <?php self::component__range_picker(); ?>
+          
             <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
+                    $date_from = $_POST['date_from'];
+                    $date_to = $_POST['date_to'];
+            
+                    echo $date_to;
+                    echo $date_from;
+                    echo "Top Performing Links";
+                    var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id, 10,  $date_from, $date_to));
+                    echo "Total Page Views";
+                    var_dump(Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), $date_from, $date_to));
+                   
+                } 
+            } else {
                 echo "Top Performing Links";
-                var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id));
+                var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id, 10,  '1970-01-01', date("Y-m-d")));
                 echo "Total Page Views";
-                var_dump(Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true)));
+                var_dump(Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), '1970-01-01', date("Y-m-d")));
+               
+            }
+            
                 
             ?>
         </div>  

@@ -57,19 +57,22 @@ class Plugin_Name_Analytics {
     // }
 
 
-    public static function get_top_performing_links($user_id, $limit = 3) {
+    public static function get_top_performing_links($user_id, $limit = 3, $start_date, $end_date) {
         global $wpdb;
         
-        // Get the top-performing links based on clicks
+        // Get the top-performing links based on clicks within the date range
         $top_links = $wpdb->get_results(
             $wpdb->prepare(
                 "SELECT link
                  FROM " . self::$table_name . " 
                  WHERE user_id = %d 
+                 AND clicked_at BETWEEN %s AND %s
                  GROUP BY link 
                  ORDER BY COUNT(*) DESC 
                  LIMIT %d",
                 $user_id,
+                $start_date,
+                $end_date,
                 $limit  // This parameter determines the number of links to retrieve
             ),
             ARRAY_A  // This argument ensures the result is returned as an associative array
@@ -87,21 +90,26 @@ class Plugin_Name_Analytics {
         return $link_names;
     }
     
-    public static function get_total_views_for_page($page_link) {
+    
+    public static function get_total_views_for_page($page_link, $start_date, $end_date) {
         global $wpdb;
     
-        // Get the total views for the specified page_link
+        // Get the total views for the specified page_link within the date range
         $views = $wpdb->get_var(
             $wpdb->prepare(
                 "SELECT COUNT(*) 
                  FROM {$wpdb->prefix}page_views 
-                 WHERE page_link = %s",
-                $page_link
+                 WHERE page_link = %s 
+                 AND viewed_at BETWEEN %s AND %s",
+                $page_link,
+                $start_date,
+                $end_date
             )
         );
     
         return (string)$views;
     }
+    
     
     
     /**
