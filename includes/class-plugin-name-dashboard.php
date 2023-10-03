@@ -452,6 +452,7 @@ class Plugin_Name_Dashboard {
 
             <?php self::component__range_picker(); ?>
             <?php
+                echo "Top Performing Links";
                 var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id));
             ?>
         </div>  

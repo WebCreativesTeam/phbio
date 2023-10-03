@@ -105,6 +105,10 @@ class Plugin_Name_Public {
 				'nonce'    => wp_create_nonce( 'plugin' )
 			) );
 
+		if(is_singular('hb-user-profile')) {
+			wp_enqueue_script('bio-tracker', plugin_dir_url(__FILE__) . 'js/tracked-bio.js', array( 'jquery' ), $this->version, true);
+		}
+
 	}
 
 	/**

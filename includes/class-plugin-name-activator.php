@@ -185,6 +185,25 @@ class Plugin_Name_Activator {
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta( $sql );
 	}
+
+	static function create_page_views_table() {
+		global $wpdb;
+	
+		$charset_collate = $wpdb->get_charset_collate();
+		$table_name = $wpdb->prefix . 'page_views';
+	
+		$sql = "CREATE TABLE $table_name (
+			id mediumint(9) NOT NULL AUTO_INCREMENT,
+			viewed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+			page_link text NOT NULL,
+			PRIMARY KEY (id)
+		) $charset_collate;";
+	
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		dbDelta( $sql );
+	}
+
+	
 	static function create_social_link_clicks_table() {
 		global $wpdb;
 	

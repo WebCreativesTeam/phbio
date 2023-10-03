@@ -220,6 +220,9 @@ class Plugin_Name {
 		$this->loader->add_action( 'wp_ajax_handle_image_upload', $plugin_ajax, 'handle_image_upload' );
 		$this->loader->add_action( 'wp_ajax_nopriv_handle_image_upload', $plugin_ajax, 'handle_image_upload' );
 	 
+		$this->loader->add_action( 'wp_ajax_handle_record_page_view', $plugin_ajax, 'handle_record_page_view' );
+		$this->loader->add_action( 'wp_ajax_nopriv_handle_record_page_view', $plugin_ajax, 'handle_record_page_view' );
+	 
 		$el_integrate = new Plugin_Name_Elementor_Integration();
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'add_group' );
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'register_tags' );

@@ -60,6 +60,7 @@ function pfx_activate() {
 	Plugin_Name_Activator::create_link_manager_table();
 	Plugin_Name_Activator::create_social_link_manager_table();
 	Plugin_Name_Activator::create_link_clicks_table();
+	Plugin_Name_Activator::create_page_views_table();
 	Plugin_Name_Activator::create_social_link_clicks_table();
 	Plugin_Name_Activator::activate();
 }
