@@ -174,6 +174,7 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 		
 			$page_link = $_POST['pageLink'];
 		    $response['page_link'] = $page_link;
+			
 			// Record the view in your database
 			$wpdb->insert(
 				"{$wpdb->prefix}page_views",
@@ -181,8 +182,9 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 					'page_link' => $page_link,
 					'viewed_at' => current_time('mysql')
 				],
-				['%d', '%s', '%s']
+				['%s', '%s']
 			);
+			
 			$response['success'] = true;
 		
 			wp_send_json($response);
