@@ -58,6 +58,8 @@ class Plugin_Name_Analytics {
 
 
     public static function get_top_performing_links($user_id, $limit = 3, $start_date = null, $end_date = null) {
+        echo $start_date;
+        echo $end_date;
         global $wpdb;
         
         // Create the base SQL query
@@ -98,6 +100,8 @@ class Plugin_Name_Analytics {
     
     
     public static function get_total_views_for_page($page_link, $start_date = null, $end_date = null) {
+        echo $start_date;
+        echo $end_date;
         global $wpdb;
     
         // Create the base SQL query
