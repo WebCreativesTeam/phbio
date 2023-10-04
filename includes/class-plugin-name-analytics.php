@@ -18,58 +18,22 @@ class Plugin_Name_Analytics {
      * @param int $user_id
      * @return array|null Link data or null if no data found.
      */
-    // public static function get_top_performing_link($user_id) {
-    //     global $wpdb;
-    
-    //     // First, get the top-performing link based on clicks
-    //     $top_link = $wpdb->get_row(
-    //         $wpdb->prepare(
-    //             "SELECT link, COUNT(*) as clicks
-    //              FROM " . self::$table_name . " 
-    //              WHERE user_id = %d 
-    //              GROUP BY link 
-    //              ORDER BY clicks DESC 
-    //              LIMIT 1",
-    //             $user_id
-    //         ),
-    //         ARRAY_A  // This argument ensures the result is returned as an associative array
-    //     );
-    
-    //     if (!$top_link) {
-    //         return null; // No link found
-    //     }
-    
-    //     // Next, fetch all timestamps for that link
-    //     $timestamps = $wpdb->get_col(
-    //         $wpdb->prepare(
-    //             "SELECT clicked_at 
-    //              FROM " . self::$table_name . " 
-    //              WHERE user_id = %d AND link = %s 
-    //              ORDER BY clicked_at DESC",
-    //             $user_id, $top_link['link']
-    //         )
-    //     );
-    
-    //     // Add the timestamps to the result array
-    //     $top_link['timestamps'] = $timestamps;
-    
-    //     return $top_link;
-    // }
+   
 
 
-    public static function get_top_performing_links($user_id, $limit = 3, $start_date = null, $end_date = null) {
+    public static function get_top_performing_links($user_id, $limit = 999, $start_date = null, $end_date = null, $clicks = false) {
 
         // Increment the end_date by one day
-        $end_date_dt = new DateTime($end_date);
-        $end_date_dt->modify('+1 day');
-        $end_date = $end_date_dt->format('Y-m-d');
-
-
-
+        if ($end_date) {
+            $end_date_dt = new DateTime($end_date);
+            $end_date_dt->modify('+1 day');
+            $end_date = $end_date_dt->format('Y-m-d');
+        }
+    
         global $wpdb;
         
         // Create the base SQL query
-        $sql = "SELECT link
+        $sql = "SELECT link, COUNT(*) as click_count
                 FROM " . self::$table_name . " 
                 WHERE user_id = %d";
         
@@ -83,61 +47,133 @@ class Plugin_Name_Analytics {
                   ORDER BY COUNT(*) DESC 
                   LIMIT %d";
         
-        // Prepare the SQL query
+        // Prepare and execute the SQL query
         if ($start_date && $end_date) {
-            // If the start and end dates are provided, include them in the prepare method
             $top_links = $wpdb->get_results($wpdb->prepare($sql, $user_id, $start_date, $end_date, $limit), ARRAY_A);
-
-          
         } else {
-            // If the start and end dates are NOT provided, exclude them from the prepare method
             $top_links = $wpdb->get_results($wpdb->prepare($sql, $user_id, $limit), ARRAY_A);
         }
         
         if (!$top_links) {
             return null; // No links found
         }
+    
+        // Check if $clicks is true and adjust the returned data accordingly
+        if ($clicks) {
+            return $top_links; // Return the links and their click counts
+        } else {
+            // Extract link names from the associative arrays
+            $link_names = array_map(function($link_info) {
+                return $link_info['link'];
+            }, $top_links);
+            return $link_names; // Return only the link names
+        }
+    }
+    
+    public static function get_total_clicks_for_link($link_id) {
+        global $wpdb;
+    
+        // Create the SQL query
+        $sql = "SELECT COUNT(*) 
+                FROM " . self::$table_name . " 
+                WHERE link_id = %d";
+    
+        // Prepare and execute the SQL query
+        $total_clicks = $wpdb->get_var($wpdb->prepare($sql, $link_id));
         
-        // Extract link names from the associative arrays
-        $link_names = array_map(function($link_info) {
-            return $link_info['link'];
-        }, $top_links);
-        
-        return $link_names;
+        return (int)$total_clicks;
     }
     
     
     public static function get_total_views_for_page($page_link, $start_date = null, $end_date = null) {
         // Increment the end_date by one day
-        $end_date_dt = new DateTime($end_date);
-        $end_date_dt->modify('+1 day');
-        $end_date = $end_date_dt->format('Y-m-d');
-
-
+        if ($end_date) {
+            $end_date_dt = new DateTime($end_date);
+            $end_date_dt->modify('+1 day');
+            $end_date = $end_date_dt->format('Y-m-d');
+        }
      
         global $wpdb;
     
-        // Create the base SQL query
-        $sql = "SELECT COUNT(*) 
-                FROM {$wpdb->prefix}page_views 
-                WHERE page_link = %s";
-    
+        // Create the base SQL query for total views
+        $sql_total_views = "SELECT COUNT(*) 
+                    FROM {$wpdb->prefix}page_views 
+                    WHERE page_link = %s";
+        
+        // Create the base SQL query for daily views
+        $sql_daily_views = "SELECT COUNT(*) as daily_views, DATE(viewed_at) as view_date
+                    FROM {$wpdb->prefix}page_views 
+                    WHERE page_link = %s";
+        
         // If the start and end dates are provided, add them to the SQL query
         if ($start_date && $end_date) {
-            $sql .= " AND viewed_at >= %s AND viewed_at <= %s";
-             
+            $sql_total_views .= " AND viewed_at >= %s AND viewed_at <= %s";
+            $sql_daily_views .= " AND viewed_at >= %s AND viewed_at <= %s";
         }
-    
-        // Prepare the SQL query
+        
+        $sql_daily_views .= " GROUP BY view_date
+                               ORDER BY view_date DESC";
+        
+        // Prepare and execute the SQL query
         if ($start_date && $end_date) {
-            // If the start and end dates are provided, include them in the prepare method
-            $views = $wpdb->get_var($wpdb->prepare($sql, $page_link, $start_date, $end_date));
+            $total_views = $wpdb->get_var($wpdb->prepare($sql_total_views, $page_link, $start_date, $end_date));
+            $daily_views = $wpdb->get_results($wpdb->prepare($sql_daily_views, $page_link, $start_date, $end_date), ARRAY_A);
         } else {
-            // If the start and end dates are NOT provided, exclude them from the prepare method
-            $views = $wpdb->get_var($wpdb->prepare($sql, $page_link));
+            $total_views = $wpdb->get_var($wpdb->prepare($sql_total_views, $page_link));
+            $daily_views = $wpdb->get_results($wpdb->prepare($sql_daily_views, $page_link), ARRAY_A);
         }
     
-        return (string)$views;
+        // Returning both total and daily views
+        return array(
+            'total_views' => (string)$total_views,
+            'daily_views' => $daily_views
+        );
+    }
+    
+    public static function calculate_ctr($page_link, $start_date = null, $end_date = null) {
+        global $wpdb;
+    
+        // Increment the end_date by one day if it is set
+        if ($end_date) {
+            $end_date_dt = new DateTime($end_date);
+            $end_date_dt->modify('+1 day');
+            $end_date = $end_date_dt->format('Y-m-d');
+        }
+    
+        // SQL to get total views
+        $sql_views = "SELECT COUNT(*) 
+                      FROM {$wpdb->prefix}page_views 
+                      WHERE page_link = %s";
+                      
+        // SQL to get total clicks
+        $sql_clicks = "SELECT COUNT(*) 
+                       FROM " . self::$table_name . " 
+                       WHERE link = %s";
+    
+        // Apply date filters if they are set
+        if ($start_date && $end_date) {
+            $sql_views .= " AND viewed_at >= %s AND viewed_at <= %s";
+            $sql_clicks .= " AND clicked_at >= %s AND clicked_at <= %s";
+            
+            $total_views = $wpdb->get_var($wpdb->prepare($sql_views, $page_link, $start_date, $end_date));
+            $total_clicks = $wpdb->get_var($wpdb->prepare($sql_clicks, $page_link, $start_date, $end_date));
+        } else {
+            $total_views = $wpdb->get_var($wpdb->prepare($sql_views, $page_link));
+            $total_clicks = $wpdb->get_var($wpdb->prepare($sql_clicks, $page_link));
+        }
+    
+        // Check if views are greater than 0 to avoid division by zero
+        if($total_views > 0) {
+            $ctr = ($total_clicks / $total_views) * 100;
+        } else {
+            $ctr = 0;
+        }
+    
+        return array(
+            'total_views' => (int)$total_views,
+            'total_clicks' => (int)$total_clicks,
+            'ctr' => round($ctr, 2) // rounding to two decimal places for cleaner display
+        );
     }
     
     

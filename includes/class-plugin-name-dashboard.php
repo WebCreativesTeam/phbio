@@ -463,16 +463,16 @@ class Plugin_Name_Dashboard {
             
                    
                     echo "Top Performing Links";
-                    var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id, 10,  $date_from, $date_to));
+                    var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  $date_from, $date_to, Plugin_Name_Utilities::is_full_version($user_id)));
                     echo "Total Page Views";
                     var_dump(Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), $date_from, $date_to));
                    
                 } 
             } else {
                 echo "Top Performing Links";
-                var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id, 10,  '1970-01-01', date("Y-m-d")));
+                var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  '1970-01-01', date("Y-m-d")), Plugin_Name_Utilities::is_full_version($user_id));
                 echo "Total Page Views";
-                var_dump(Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), '1970-01-01', date("Y-m-d")));
+                var_dump(Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), '1970-01-01', date("Y-m-d")), );
                
             }
             
