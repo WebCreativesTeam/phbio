@@ -21,7 +21,7 @@ class Plugin_Name_Analytics {
    
 
 
-    public static function get_top_performing_links($user_id, $limit = 999, $start_date = null, $end_date = null, $clicks = false) {
+     public static function get_top_performing_links($user_id, $limit = 999, $start_date = null, $end_date = null, $clicks = false) {
 
         // Increment the end_date by one day
         if ($end_date) {
@@ -31,7 +31,7 @@ class Plugin_Name_Analytics {
         }
     
         global $wpdb;
-        
+    
         // Create the base SQL query
         $sql = "SELECT link, COUNT(*) as click_count
                 FROM " . self::$table_name . " 
@@ -55,20 +55,35 @@ class Plugin_Name_Analytics {
         }
         
         if (!$top_links) {
-            return null; // No links found
+            return '<p>No links found.</p>'; // No links found
         }
     
-        // Check if $clicks is true and adjust the returned data accordingly
-        if ($clicks) {
-            return $top_links; // Return the links and their click counts
+        // Start the HTML table
+        $table_html = '<table border="1">';
+        
+        // Add table headers
+        if($clicks) {
+            $table_html .= '<tr><th>Link</th><th>Click Count</th></tr>';
         } else {
-            // Extract link names from the associative arrays
-            $link_names = array_map(function($link_info) {
-                return $link_info['link'];
-            }, $top_links);
-            return $link_names; // Return only the link names
+            $table_html .= '<tr><th>Link</th></tr>';
         }
+    
+        // Add table rows
+        foreach ($top_links as $link_info) {
+            $table_html .= '<tr>';
+            $table_html .= '<td>' . esc_html($link_info['link']) . '</td>';
+            if ($clicks) {
+                $table_html .= '<td>' . intval($link_info['click_count']) . '</td>';
+            }
+            $table_html .= '</tr>';
+        }
+        
+        // End the HTML table
+        $table_html .= '</table>';
+    
+        return $table_html;
     }
+    
     
     public static function get_total_clicks_for_link($link_id) {
         global $wpdb;
