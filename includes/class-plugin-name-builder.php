@@ -166,6 +166,43 @@ class Plugin_Name_Builder {
 <span class="block text-sm text-gray-500 hover:text-gray-700" x-text="`<?php echo esc_js(site_url('/bio')); ?>/` + secureUsername"></span>
 <svg @click="copyToClipboard" xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="w-5 h-5 cursor-pointer hover:text-gray-700" viewBox="0 0 24 24" fill="currentColor"><path d="M21,8.94a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19.32.32,0,0,0-.09,0A.88.88,0,0,0,14.05,2H10A3,3,0,0,0,7,5V6H6A3,3,0,0,0,3,9V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V9S21,9,21,8.94ZM15,5.41,17.59,8H16a1,1,0,0,1-1-1ZM15,19a1,1,0,0,1-1,1H6a1,1,0,0,1-1-1V9A1,1,0,0,1,6,8H7v7a3,3,0,0,0,3,3h5Zm4-4a1,1,0,0,1-1,1H10a1,1,0,0,1-1-1V5a1,1,0,0,1,1-1h3V7a3,3,0,0,0,3,3h3Z"></path></svg>
 <svg @click="navigateToLink" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 cursor-pointer hover:text-gray-700" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18,10.82a1,1,0,0,0-1,1V19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V8A1,1,0,0,1,5,7h7.18a1,1,0,0,0,0-2H5A3,3,0,0,0,2,8V19a3,3,0,0,0,3,3H16a3,3,0,0,0,3-3V11.82A1,1,0,0,0,18,10.82Zm3.92-8.2a1,1,0,0,0-.54-.54A1,1,0,0,0,21,2H15a1,1,0,0,0,0,2h3.59L8.29,14.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L20,5.41V9a1,1,0,0,0,2,0V3A1,1,0,0,0,21.92,2.62Z"></path></svg>
+<div
+  x-data="{ 'showModal': false }"
+  @keydown.escape="showModal = false"
+>
+    <!-- Trigger for Modal -->
+    <button type="button" @click="showModal = true">Share</button>
+
+    <!-- Modal -->
+    <div
+        class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
+        x-show="showModal"
+    >
+        <!-- Modal inner -->
+        <div
+            class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+            @click.away="showModal = false"
+            x-transition:enter="motion-safe:ease-out duration-300"
+            x-transition:enter-start="opacity-0 scale-90"
+            x-transition:enter-end="opacity-100 scale-100"
+        >
+            <!-- Title / Close-->
+            <div class="flex items-center justify-between">
+                <h5 class="mr-3 text-black max-w-none">Share Bio Link</h5>
+
+                <button type="button" class="z-50 cursor-pointer" @click="showModal = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- content -->
+            <?php echo do_shortcode('[Sassy_Social_Share type="normal" url="' . site_url('/bio') . '/' . get_user_meta( get_current_user_id(), 'username', true ) .  '"]'); ?>
+
+        </div>
+    </div>
+</div>
 <span x-show="copied" class="ml-2 text-sm text-gray-700">Copied!</span>
 </div>
         </div>
@@ -536,8 +573,15 @@ class Plugin_Name_Builder {
                                             </label>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" x-show="link.isScheduled" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20ZM14.09814,9.63379,13,10.26807V7a1,1,0,0,0-2,0v5a1.00025,1.00025,0,0,0,1.5.86621l2.59814-1.5a1.00016,1.00016,0,1,0-1-1.73242Z"></path></svg>
                                         </div>
-                                    <span x-text="link.title" class="text-sm font-semibold"></span>
-                                    <span x-text="link.text" class="hidden text-gray-600 sm:block"></span>
+                                    <div class="flex flex-row items-center gap-4">
+                                        <div class="w-24">
+                                            <img :src="link.imageFile" class="w-full">
+                                        </div>
+                                     <div>
+                                        <span x-text="link.title" class="text-sm font-semibold"></span>
+                                        <span x-text="link.text" class="hidden text-gray-600 sm:block"></span>
+                                     </div>
+                                    </div>
                              </div>
                              <div class="flex items-center">
                                  <button type="button" class="border-0 cursor-pointer bg-inherit" @click="showEditLinkForm(link.id)">
