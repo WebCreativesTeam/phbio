@@ -228,9 +228,12 @@ export default ({ initLinks = [], initMax }) => ({
       isEditing: false,
     }));
   },
+
   removeLink(id) {
-    this.links = this.links.filter((item) => item.id !== id);
-    console.log("Updated links after removing:", this.links);
+    if (confirm("Are you sure you want to delete this link?")) {
+      this.links = this.links.filter((item) => item.id !== id);
+      console.log("Updated links after removing:", this.links);
+    }
   },
   validateURL(url) {
     const pattern = new RegExp(

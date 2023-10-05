@@ -3664,8 +3664,10 @@ exports.default = ({ initLinks = [], initMax })=>({
                 }));
         },
         removeLink (id) {
-            this.links = this.links.filter((item)=>item.id !== id);
-            console.log("Updated links after removing:", this.links);
+            if (confirm("Are you sure you want to delete this link?")) {
+                this.links = this.links.filter((item)=>item.id !== id);
+                console.log("Updated links after removing:", this.links);
+            }
         },
         validateURL (url) {
             const pattern = new RegExp("^(https?:\\/\\/)?((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|((\\d{1,3}\\.){3}\\d{1,3}))(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*(\\?[;&a-z\\d%_.~+=-]*)?(\\#[-a-z\\d_]*)?$", "i");
