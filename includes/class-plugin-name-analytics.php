@@ -21,7 +21,7 @@ class Plugin_Name_Analytics {
    
 
 
-     public static function get_top_performing_links($user_id, $limit = 999, $start_date = null, $end_date = null, $clicks = false) {
+    public static function get_top_performing_links($user_id, $limit = 999, $start_date = null, $end_date = null, $clicks = false) {
 
         // Increment the end_date by one day
         if ($end_date) {
@@ -62,20 +62,23 @@ class Plugin_Name_Analytics {
         $table_html = '<table border="1">';
         
         // Add table headers
-        if($clicks) {
-            $table_html .= '<tr><th>Link</th><th>Click Count</th></tr>';
-        } else {
-            $table_html .= '<tr><th>Link</th></tr>';
+        $table_html .= '<tr><th>Rank</th><th>Link</th>';
+        if ($clicks) {
+            $table_html .= '<th>Click Count</th>';
         }
+        $table_html .= '</tr>';
     
         // Add table rows
+        $rank = 1;
         foreach ($top_links as $link_info) {
             $table_html .= '<tr>';
+            $table_html .= '<td>' . $rank . '</td>';
             $table_html .= '<td>' . esc_html($link_info['link']) . '</td>';
             if ($clicks) {
                 $table_html .= '<td>' . intval($link_info['click_count']) . '</td>';
             }
             $table_html .= '</tr>';
+            $rank++; // Increment the rank
         }
         
         // End the HTML table
@@ -110,11 +113,6 @@ class Plugin_Name_Analytics {
      
         global $wpdb;
     
-        // Create the base SQL query for total views
-        $sql_total_views = "SELECT COUNT(*) 
-                    FROM {$wpdb->prefix}page_views 
-                    WHERE page_link = %s";
-        
         // Create the base SQL query for daily views
         $sql_daily_views = "SELECT COUNT(*) as daily_views, DATE(viewed_at) as view_date
                     FROM {$wpdb->prefix}page_views 
@@ -122,28 +120,35 @@ class Plugin_Name_Analytics {
         
         // If the start and end dates are provided, add them to the SQL query
         if ($start_date && $end_date) {
-            $sql_total_views .= " AND viewed_at >= %s AND viewed_at <= %s";
             $sql_daily_views .= " AND viewed_at >= %s AND viewed_at <= %s";
         }
         
         $sql_daily_views .= " GROUP BY view_date
-                               ORDER BY view_date DESC";
+                               ORDER BY view_date ASC"; // ASC for chronological order in line chart
         
         // Prepare and execute the SQL query
         if ($start_date && $end_date) {
-            $total_views = $wpdb->get_var($wpdb->prepare($sql_total_views, $page_link, $start_date, $end_date));
             $daily_views = $wpdb->get_results($wpdb->prepare($sql_daily_views, $page_link, $start_date, $end_date), ARRAY_A);
         } else {
-            $total_views = $wpdb->get_var($wpdb->prepare($sql_total_views, $page_link));
             $daily_views = $wpdb->get_results($wpdb->prepare($sql_daily_views, $page_link), ARRAY_A);
         }
     
-        // Returning both total and daily views
+        // Extracting labels and data for Chart.js
+        $labels = array_map(function($entry) {
+            return $entry['view_date'];
+        }, $daily_views);
+    
+        $data = array_map(function($entry) {
+            return $entry['daily_views'];
+        }, $daily_views);
+    
+        // Returning data for Chart.js
         return array(
-            'total_views' => (string)$total_views,
-            'daily_views' => $daily_views
+            'labels' => $labels,
+            'data' => $data
         );
     }
+    
     
     public static function calculate_ctr($page_link, $start_date = null, $end_date = null) {
         global $wpdb;

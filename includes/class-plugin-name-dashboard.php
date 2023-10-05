@@ -463,16 +463,38 @@ class Plugin_Name_Dashboard {
             
                    
                     echo "Top Performing Links";
-                    var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  $date_from, $date_to, Plugin_Name_Utilities::is_full_version($user_id)));
+                    echo Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  $date_from, $date_to, Plugin_Name_Utilities::is_full_version($user_id));
                     echo "Total Page Views";
-                    var_dump(Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), $date_from, $date_to));
+                    $views = Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), $date_from, $date_to);
+                    ?>
+
                    
+
+                    <?php
                 } 
             } else {
                 echo "Top Performing Links";
-                var_dump(Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  '1970-01-01', date("Y-m-d")), Plugin_Name_Utilities::is_full_version($user_id));
+                echo Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  '1970-01-01', date("Y-m-d"), Plugin_Name_Utilities::is_full_version($user_id));
                 echo "Total Page Views";
-                var_dump(Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), '1970-01-01', date("Y-m-d")), );
+                $views = Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), '1970-01-01', date("Y-m-d"));
+                ?>
+                <!-- Storing Data -->
+                <div id="chartData" data-chart='<?php echo json_encode($views); ?>'></div>
+
+                <!-- Canvas for Rendering Chart -->
+                <canvas id="myChart" width="400" height="200"></canvas>
+           <script>
+window.onload = () => {
+  // Assume data from PHP is rendered as below
+  const chartDataElement = document.getElementById("chartData");
+  const chartData = JSON.parse(chartDataElement.getAttribute("data-chart"));
+
+  renderChart(chartData);
+};
+
+            </script>
+
+                <?php
                
             }
             

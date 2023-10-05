@@ -88,13 +88,14 @@ class Plugin_Name_Utilities {
 
     public static function is_lite_version($user_id) {
         $user = get_userdata($user_id);
+
         return in_array('lite-version', (array) $user->roles);
     }
 
     public static function is_full_version($user_id) {
         $user = get_userdata($user_id);
-
-        return in_array('full-version', (array) $user->roles);
+        
+        return in_array('full-version', $user->roles);
     }
 
     public static function get_user_maxLinks($user_id) {
