@@ -137,7 +137,7 @@ class Plugin_Name_Builder {
                 };
                 }">
     
-            <label for="<?php echo $name; ?>" class="input-label"><?php echo $label; ?></label>
+            <label for="<?php echo $name; ?>" class="mt-3 input-label"><?php echo $label; ?></label>
             <div x-text="message" x-bind:style="'visibility: ' + (hasChecked ? 'visible' : 'hidden')" :class="{'text-blue-400': isAvailable, 'text-red-500': !isAvailable && message !== ''}" ></div>
     
             <div class="input-container">
@@ -363,7 +363,7 @@ class Plugin_Name_Builder {
                                 <div @click="isOpen = !isOpen" class="relative cursor-pointer">
                                     <div class="flex items-center">
                                         <span x-show="!selected" class="mr-2 text-gray-500">Select an icon</span>
-                                        <i x-show="selected" :class="'fa fa-2x ' + selected" class="mr-2"></i>
+                                        <i x-show="selected" :class="'fa fa-2x ' + selected" class="mr-2 "></i>
                                     </div>
                                     <div x-show="isOpen" class="absolute z-10 w-full bg-white border">
                                         <input type="text" x-model="search" placeholder="Search..." class="w-full p-2" @click.stop />
@@ -405,7 +405,7 @@ class Plugin_Name_Builder {
                                     class="drag-handle"
                                 >⠿</div>
                                     <div class="flex flex-col flex-auto sm:ml-5">
-                                        <i :class="'fa fa-2x '+ link.title" class="text-sm font-semibold"></i>
+                                        <i :class="'fa fa-2x '+ link.title" class="text-sm font-semibold  text-[#F1441E]"></i>
                                     </div>
                                     <div class="flex items-center">
                                         <button type="button" class="border-0 cursor-pointer bg-inherit" @click="showEditLinkForm(link.id)"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></svg></button>
@@ -438,7 +438,7 @@ class Plugin_Name_Builder {
                                         <label class="input-label">URL</label>
                                         <input class="input-field-enhanced" x-model="inputEditLinkValue" @input.stop>
                                         <button type="button" @click="editLink(link.id)" class="upload-btn">Save</button>
-                                        <button type="button" @click="cancelEditLink()" class="upload-btn">Cancel</button>
+                                        <button type="button" @click="cancelEditLink()" class="bg-[#171717] border-[#171717] upload-btn">Cancel</button>
                                     </div>
                                 </div>
                             </li>
@@ -553,7 +553,7 @@ class Plugin_Name_Builder {
                                 @dragend="handleDragEnd($event, link.id)" 
                                 class="drag-handle"
                             >⠿</div>
-                             <div class="flex flex-col flex-auto sm:ml-5 ">
+                             <div class="flex flex-row flex-auto gap-2 sm:gap-4 sm:ml-5">
                                 <div class="flex mb-0 sm:mb-4 self-baseline" x-data="{ switchState: !link.isHidden, init() {
             this.$watch('link.isHidden', (value) => {
                 this.switchState = !value;
@@ -571,33 +571,37 @@ class Plugin_Name_Builder {
                                                     <div class="toggle__dot toggle__dot--small"></div>
                                                 </div>
                                             </label>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" x-show="link.isScheduled" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20ZM14.09814,9.63379,13,10.26807V7a1,1,0,0,0-2,0v5a1.00025,1.00025,0,0,0,1.5.86621l2.59814-1.5a1.00016,1.00016,0,1,0-1-1.73242Z"></path></svg>
                                         </div>
-                                    <div class="flex flex-row items-center gap-4">
-                                        <div class="w-24">
-                                            <img :src="link.imageFile" class="w-full">
-                                        </div>
-                                     <div>
+                                    <div class="flex flex-col items-baseline gap-4 ">
+                                    <div>
                                         <span x-text="link.title" class="text-sm font-semibold"></span>
                                         <span x-text="link.text" class="hidden text-gray-600 sm:block"></span>
                                      </div>
+                                        <div class="flex flex-row gap-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 cursor-pointer sm:w-6" :class="{ 'text-[#F1441E]': link.imageFile}" @click="showEditLinkForm(link.id)" viewBox="0 0 24 24" fill="currentColor">
+<path d="M 4 4 C 2.9069372 4 2 4.9069372 2 6 L 2 18 C 2 19.093063 2.9069372 20 4 20 L 20 20 C 21.093063 20 22 19.093063 22 18 L 22 6 C 22 4.9069372 21.093063 4 20 4 L 4 4 z M 4 6 L 20 6 L 20 18 L 4 18 L 4 6 z M 14.5 11 L 11 15 L 8.5 12.5 L 5.7773438 16 L 18.25 16 L 14.5 11 z"></path>
+</svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" @click="showEditLinkForm(link.id)" class="w-4 cursor-pointer sm:w-6" :class="{ 'text-[#F1441E]': link.isScheduled }" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20ZM14.09814,9.63379,13,10.26807V7a1,1,0,0,0-2,0v5a1.00025,1.00025,0,0,0,1.5.86621l2.59814-1.5a1.00016,1.00016,0,1,0-1-1.73242Z"></path></svg>
+                                        <button type="button" class="border-0 cursor-pointer bg-inherit" @click="showEditLinkForm(link.id)">
+
+<svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></svg>
+</button>
+   <button type="button" class="border-0 cursor-pointer bg-inherit" @click="removeLink(link.id)">
+   <svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg>
+   </button>
+                                        </div>
+                                     
                                     </div>
                              </div>
                              <div class="flex items-center">
-                                 <button type="button" class="border-0 cursor-pointer bg-inherit" @click="showEditLinkForm(link.id)">
-
-                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></svg>
-                                 </button>
-                                    <button type="button" class="border-0 cursor-pointer bg-inherit" @click="removeLink(link.id)">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg>
-                                    </button>
+                                 
                                     
 
                                     <?php 
                                     if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::HIGHLIGHT_LINK)) {
                                         // DO NOTHING
                                     } else { ?>
-                                        <button class="px-3 sm:px-5 upload-btn" type="button" x-show="!link.isHidden" @click="toggleHighlightLink(link.id)">
+                                        <button class="px-3 mt-0 sm:px-5 upload-btn" type="button" x-show="!link.isHidden" @click="toggleHighlightLink(link.id)">
                                             <span class="text-xs sm:text-sm" x-text="link.highlight ? 'Unhighlight' : 'Highlight'"></span>
                                         </button>
                                     
@@ -627,7 +631,7 @@ class Plugin_Name_Builder {
                                         if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK)) {
                                             echo '<div class="my-2">Only Full version users can schedule link</div>';
                                         } else { ?>
-                                         <div class="my-3">
+                                         <div class="mt-5 mb-7">
                                             <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
                                         </div>
                                         <div class="flex flex-col gap-5 my-5 md:flex-row" x-show="link.isScheduled">
@@ -649,8 +653,8 @@ class Plugin_Name_Builder {
                                        
 
                                         <!-- Image Upload -->
-                                        <label class="input-label">Link Image</label>
-                                        <div class="upload-container">
+                                        <label class="input-label ">Link Image</label>
+                                        <div class="mt-6 upload-container">
                                             <img x-show="link.imageFile" :src="link.imageFile" alt="Uploaded File" class="file-preview">
                                             <div x-show="!link.imageFile" class="flex items-center justify-center p-2 align-middle file-preview">No Image Uploaded</div>
                                             <div class="upload-content">
@@ -664,7 +668,7 @@ class Plugin_Name_Builder {
                                         <hr>
                                         
                                         <button type="button" @click="editLink(link.id)" class="upload-btn">Save</button>
-                                        <button type="button" @click="cancelEditLink()" class="upload-btn">Cancel</button>
+                                        <button type="button" @click="cancelEditLink()" class="bg-[#171717] border-[#171717] upload-btn">Cancel</button>
                                     </div>
 
                                 </div>
@@ -774,7 +778,7 @@ class Plugin_Name_Builder {
                         <input class="input-field-enhanced" x-model="inputEditLinkValue">
 
                         <button type="button" @click="editLink(link.id)" class="upload-btn">Save</button>
-                        <button type="button" @click="cancelEditLink()" class="upload-btn">Cancel</button>
+                        <button type="button" @click="cancelEditLink()" class="bg-[#171717] border-[#171717] upload-btn">Cancel</button>
                     </div>
                 </div>
             </li>

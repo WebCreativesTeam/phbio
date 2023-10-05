@@ -129,7 +129,7 @@ class Plugin_Name_Dashboard {
 	}
     public function top_actions() { ?>
 
-            <h1 x-text="!editMode ? 'Edit Mode' : 'Preview Mode' " class="page-title"></h1>
+            <h1 x-text="!editMode ? 'Link In Bio - Edit Mode' : 'Preview Mode' " class="page-title"></h1>
     
             <!-- New Flex Container for Buttons and Toggle -->
             <div class="action-buttons">
@@ -190,10 +190,10 @@ class Plugin_Name_Dashboard {
                 // Check if the user is logged in
                 if( is_user_logged_in() ) {
                     // Get the logout URL
-                    $logout_url = wp_logout_url();
+                    $back = site_url('/my-account');
 
                     // Create a logout button
-                    echo '<div class="flex"><a href="' . esc_url( $logout_url ) . '" class="no-underline template-btn hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"></path></svg>Logout</a></div>';
+                    echo '<div class="flex"><a href="' . esc_url( $back ) . '" class="no-underline template-btn bg-[#171717] border-[#171717] hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"></path></svg>Go back to My Account</a></div>';
                 }
 
 
@@ -369,7 +369,7 @@ class Plugin_Name_Dashboard {
             if ($is_disabled):
         ?>
             <div class="no-underline opacity-50 template-card" x-show="activeFilter === 'all' || activeFilter === '<?php echo $version; ?>'" >
-                <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="object-cover w-full mb-2 rounded-t h-44">
+                <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="object-cover w-full mb-2 h-44">
                 <div class="p-1">
                     <div class="flex flex-col items-baseline mb-4 ml-4 sm:flex-row">
                         <span class="template-version"><?php echo $version_display; ?></span>
@@ -382,8 +382,8 @@ class Plugin_Name_Dashboard {
                @click.prevent="selectedTemplate = '<?php the_ID(); ?>'" 
                class="no-underline template-card"
 			   x-show="activeFilter === 'all' || activeFilter === '<?php echo $version; ?>'" 
-               :class="{ 'border-gray-800 rounded shadow-xl border-4 transition-all': selectedTemplate === '<?php the_ID(); ?>' }">
-                <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="object-cover w-full mb-2 rounded-t h-44">
+               :class="{ 'border-[#F1441E] rounded shadow-xl border-2 transition-all': selectedTemplate === '<?php the_ID(); ?>' }">
+                <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="object-cover w-full mb-2 h-44">
                 <div class="p-1">
                     <div class="flex flex-col items-baseline mb-4 ml-4 sm:flex-row">
                         <span class="template-version"><?php echo $version_display; ?></span>
@@ -551,7 +551,7 @@ window.onload = () => {
         <!-- Flex container with space between "Back" and "Save" buttons -->
         <div class="flex items-center justify-between mt-6 w-[95%] my-auto">
             <!-- Back Button for Templates -->
-            <button @click="<?php echo $handle ?> = false" class="template-btn">
+            <button @click="<?php echo $handle ?> = false" class="template-btn bg-[#171717] border-[#171717]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
                 </svg>
