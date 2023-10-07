@@ -67,7 +67,7 @@ class Plugin_Name_Settings {
 						<form method="post">
 							<?php self::settings($user_id); ?>
                             <div class="save-progress">
-                                <input type="submit" name="submit_form" value="Submit" class="upload-btn">
+                                <input type="submit" name="submit_form" value="Submit" class="h-10 mt-0 upload-btn">
                             </div>
 						</form>
 					</div>

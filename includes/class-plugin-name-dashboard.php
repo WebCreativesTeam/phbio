@@ -62,6 +62,16 @@ class Plugin_Name_Dashboard {
 			$user_id = intval($_GET['user_id']); // use user_id from URL if admin
 		}
 		?>
+        <div class="flex flex-row items-center justify-between bg-[#171717] w-full">
+            LOGO
+            <div class="flex flex-row justify-between">
+                <div class="flex flex-row justify-around">
+                    Link 1
+                    Link 2
+                </div>
+                Button
+            </div>
+        </div>
 <div class="dashboard-layout">
 
 <div x-data="dashboard" 
@@ -463,38 +473,20 @@ class Plugin_Name_Dashboard {
             
                    
                     echo "Top Performing Links";
-                    echo Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  $date_from, $date_to, Plugin_Name_Utilities::is_full_version($user_id));
+                    echo do_shortcode('[wpdatatable id=2]');
+                    // echo Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  $date_from, $date_to, Plugin_Name_Utilities::is_full_version($user_id));
                     echo "Total Page Views";
                     $views = Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), $date_from, $date_to);
-                    ?>
-
-                   
-
-                    <?php
+                    
                 } 
             } else {
                 echo "Top Performing Links";
-                echo Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  '1970-01-01', date("Y-m-d"), Plugin_Name_Utilities::is_full_version($user_id));
+                echo do_shortcode('[wpdatatable id=2]');
+
+                // echo Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  '1970-01-01', date("Y-m-d"), Plugin_Name_Utilities::is_full_version($user_id));
                 echo "Total Page Views";
                 $views = Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), '1970-01-01', date("Y-m-d"));
-                ?>
-                <!-- Storing Data -->
-                <div id="chartData" data-chart='<?php echo json_encode($views); ?>'></div>
-
-                <!-- Canvas for Rendering Chart -->
-                <canvas id="myChart" width="400" height="200"></canvas>
-           <script>
-window.onload = () => {
-  // Assume data from PHP is rendered as below
-  const chartDataElement = document.getElementById("chartData");
-  const chartData = JSON.parse(chartDataElement.getAttribute("data-chart"));
-
-  renderChart(chartData);
-};
-
-            </script>
-
-                <?php
+                
                
             }
             
@@ -513,7 +505,7 @@ window.onload = () => {
             <?php Plugin_Name_Builder::link_list_field( 'Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
             <?php Plugin_Name_Builder::social_links_list_field( 'Manage Social Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
             <div class="save-progress">
-                <input type="submit" name="submit_form" value="Update" class="upload-btn">
+                <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 upload-btn">
             </div>
         </form>      
     <?php }
@@ -542,7 +534,7 @@ window.onload = () => {
 
             <?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio', Plugin_Name_Capabilities::EDIT_BIO, false, $user_id, in_array("bio", $this->dynamic_tags)); ?>
             <div class="save-progress">
-                <input type="submit" name="submit_form" value="Update" class="upload-btn">
+                <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 upload-btn">
             </div>
         </form>
     <?php }
