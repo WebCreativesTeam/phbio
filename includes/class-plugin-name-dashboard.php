@@ -485,10 +485,11 @@ class Plugin_Name_Dashboard {
             } else {
                 echo "Top Performing Links";
                 if(Plugin_Name_Utilities::is_full_version($user_id)) {
-                    echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ']');
+                    echo do_shortcode('[wpdatatable id=2 var1=1970-01-01 var2=' . date("Y-m-d") . ']');
                 } else {
-                    echo do_shortcode('[wpdatatable id=4 var1=' . $date_from . ' var2=' . $date_to . ']');
+                    echo do_shortcode('[wpdatatable id=4 var1=1970-01-01 var2=' . date("Y-m-d") . ']');
                 }
+               
 
 
                 echo "Total Page Views";
