@@ -492,6 +492,7 @@ class Plugin_Name_Dashboard {
                     echo do_shortcode('[wpdatatable id=4 var1=1970-01-01 var2=' . date("Y-m-d") . ']');
                 }
                 echo get_user_meta($user_id, 'username', true);
+                echo var_dump('[wpdatatable id=7 var1=' . get_user_meta($user_id, 'username', true) . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
                 echo do_shortcode('[wpdatatable id=7 var1=' . get_user_meta($user_id, 'username', true) . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
                 echo "Total Page Views";
                 echo do_shortcode('[wpdatachart id=2]');
