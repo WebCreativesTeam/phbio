@@ -473,14 +473,22 @@ class Plugin_Name_Dashboard {
             
                    
                     echo "Top Performing Links";
-                    echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ']');
+                    if(Plugin_Name_Utilities::is_full_version($user_id)) {
+                        echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ']');
+                    } else {
+                        echo do_shortcode('[wpdatatable id=4 var1=' . $date_from . ' var2=' . $date_to . ']');
+                    }
                     echo "Total Page Views";
                     $views = Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), $date_from, $date_to);
                     
                 } 
             } else {
                 echo "Top Performing Links";
-                echo do_shortcode('[wpdatatable id=2 var1=1970-01-01 var2=' . date("Y-m-d") . ']');
+                if(Plugin_Name_Utilities::is_full_version($user_id)) {
+                    echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ']');
+                } else {
+                    echo do_shortcode('[wpdatatable id=4 var1=' . $date_from . ' var2=' . $date_to . ']');
+                }
 
 
                 echo "Total Page Views";
