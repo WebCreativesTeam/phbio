@@ -195,13 +195,14 @@ class Plugin_Name_Activator {
 		$sql = "CREATE TABLE $table_name (
 			id mediumint(9) NOT NULL AUTO_INCREMENT,
 			viewed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-			page_link text NOT NULL,
+			post_id mediumint(9) NOT NULL,
 			PRIMARY KEY (id)
 		) $charset_collate;";
 	
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta( $sql );
 	}
+	
 
 	
 	static function create_social_link_clicks_table() {

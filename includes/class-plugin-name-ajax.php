@@ -168,27 +168,62 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 			
 			wp_send_json($response);
 		}
+
 		
 		public function handle_record_page_view() {
 			global $wpdb;
-		
-			$page_link = $_POST['pageLink'];
-		    $response['page_link'] = $page_link;
+			
+			// Ensure post_id is provided and is a number
+			if (!isset($_POST['post_id']) || !is_numeric($_POST['post_id'])) {
+				wp_send_json(['success' => false, 'error' => 'Invalid post ID']);
+				return;
+			}
+			
+			$post_id = intval($_POST['post_id']);  // Sanitize as integer
 			
 			// Record the view in your database
-			$wpdb->insert(
+			$insert_result = $wpdb->insert(
 				"{$wpdb->prefix}page_views",
 				[
-					'page_link' => $page_link,
+					'post_id' => $post_id,
 					'viewed_at' => current_time('mysql')
 				],
-				['%s', '%s']
+				['%d', '%s']  // post_id is a number, viewed_at is a string
 			);
 			
-			$response['success'] = true;
+			// Check whether the insert was successful
+			if($insert_result) {
+				$response['success'] = true;
+			} else {
+				$response['success'] = false;
+				$response['error'] = $wpdb->last_error;
+			}
+		
+			$response['post_id'] = $post_id;
 		
 			wp_send_json($response);
 		}
+		
+		// public function handle_record_page_view() {
+		// 	global $wpdb;
+		
+		// 	$page_link = $_POST['pageLink'];
+		//     $response['page_link'] = $page_link;
+			
+		// 	// Record the view in your database
+		// 	$wpdb->insert(
+		// 		"{$wpdb->prefix}page_views",
+		// 		[
+		// 			'page_link' => $page_link,
+		// 			'viewed_at' => current_time('mysql')
+		// 		],
+		// 		['%s', '%s']
+		// 	);
+			
+		// 	$response['success'] = true;
+		
+		// 	wp_send_json($response);
+		// }
 		
 		
 		
