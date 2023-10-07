@@ -479,7 +479,8 @@ class Plugin_Name_Dashboard {
                         echo do_shortcode('[wpdatatable id=4 var1=' . $date_from . ' var2=' . $date_to . ']');
                     }
                     echo "Total Page Views";
-                    $views = Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), $date_from, $date_to);
+                    echo do_shortcode('[wpdatachart id=2 var1=test-new var2=' . $date_from . ' var3=' . $date_to . ']');
+                   
                     
                 } 
             } else {
@@ -489,6 +490,8 @@ class Plugin_Name_Dashboard {
                 } else {
                     echo do_shortcode('[wpdatatable id=4 var1=1970-01-01 var2=' . date("Y-m-d") . ']');
                 }
+                echo do_shortcode('[wpdatachart id=2 var1=test-new var2=1970-01-01 var3=' . date("Y-m-d") . ']');
+
                
 
 
