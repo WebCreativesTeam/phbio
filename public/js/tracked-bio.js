@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-  var page = window.location.href.replace(/\/$/, "").split("/").pop();
+  var postId = document.querySelector("article").id.split("-")[1];
   // Check if cookie is not set
   if (!getCookie("page_viewed")) {
     $.ajax({
@@ -7,7 +7,7 @@ jQuery(document).ready(function ($) {
       url: BioTracker.ajax_url,
       data: {
         action: "handle_record_page_view",
-        pageLink: page,
+        post_id: postId,
       },
     });
     // Set cookie for 1 day
