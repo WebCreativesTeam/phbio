@@ -473,7 +473,7 @@ class Plugin_Name_Dashboard {
             
                    
                     echo "Top Performing Links";
-                    echo do_shortcode('[wpdatatable id=2]');
+                    echo do_shortcode('[wpdatatable id=2 var1="' . $date_from . '"]');
                     // echo Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  $date_from, $date_to, Plugin_Name_Utilities::is_full_version($user_id));
                     echo "Total Page Views";
                     $views = Plugin_Name_Analytics::get_total_views_for_page(get_user_meta($user_id, 'username', true), $date_from, $date_to);
@@ -481,7 +481,8 @@ class Plugin_Name_Dashboard {
                 } 
             } else {
                 echo "Top Performing Links";
-                echo do_shortcode('[wpdatatable id=2]');
+                echo do_shortcode('[wpdatatable id=2 var1="' . $date_from . '"]');
+
 
                 // echo Plugin_Name_Analytics::get_top_performing_links($user_id, 999,  '1970-01-01', date("Y-m-d"), Plugin_Name_Utilities::is_full_version($user_id));
                 echo "Total Page Views";
