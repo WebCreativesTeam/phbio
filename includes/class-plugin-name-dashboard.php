@@ -177,7 +177,7 @@ class Plugin_Name_Dashboard {
             <!-- Templates Actions  - STARTS HERE -->
                 <?php self::actions__bar('showSettings', 'settingsForm'); ?>
             <!-- Templates Actions  - ENDS HERE -->
-            <div class="mt-10">
+            <div class="mt-10 w-[89%] sm:w-[94%] mx-auto">
                 <!-- Hidden Input for Selected Template -->
                 <form method="post" action="" id="settingsForm">
                 <?php 
