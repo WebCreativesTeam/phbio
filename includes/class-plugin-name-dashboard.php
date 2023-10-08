@@ -353,12 +353,12 @@ class Plugin_Name_Dashboard {
 		?>
 
 		<?php if(isset($selected) && strlen($selected) > 0) { ?>
-			<div x-data="{ selectedTemplate: '<?php echo $selected; ?>' }" class="mt-10 my-auto w-[95%]">
+			<div x-data="{ selectedTemplate: '<?php echo $selected; ?>' }" class="mt-10 m-auto w-[95%]">
 		<?php } else { ?>
 			<?php if(isset($default) && strlen($default) > 0) { ?>
-				<div x-data="{ selectedTemplate: '<?php echo $default; ?>' }" class="mt-10 my-auto w-[95%]">
+				<div x-data="{ selectedTemplate: '<?php echo $default; ?>' }" class="mt-10 m-auto w-[95%]">
 			<?php } else { ?>
-				<div x-data="{ selectedTemplate: '' }" class="mt-10 my-auto w-[95%]">
+				<div x-data="{ selectedTemplate: '' }" class="mt-10 m-auto w-[95%]">
 			<?php } ?>
 		<?php } ?>
 		
