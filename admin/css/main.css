@@ -1383,6 +1383,9 @@ body {
 .w-full {
     width: 100%;
 }
+.w-\[90\%\] {
+    width: 90%;
+}
 .flex-auto {
     flex: 1 1 auto;
 }
@@ -1782,6 +1785,9 @@ body {
 }
 
 @media (min-width: 768px) {
+    .md\:w-\[95\%\] {
+        width: 95%;
+    }
     .md\:flex-row {
         flex-direction: row;
     }
