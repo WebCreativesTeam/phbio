@@ -1191,6 +1191,10 @@ input[type="checkbox"],
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
+body {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
+}
 .visible {
     visibility: visible;
 }

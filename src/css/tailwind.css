@@ -431,4 +431,8 @@
   #wpbody-content {
     @apply bg-white;
   }
+
+  body {
+    @apply bg-white !important;
+  }
 }
