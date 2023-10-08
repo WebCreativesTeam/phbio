@@ -547,8 +547,7 @@ class Plugin_Name_Dashboard {
 
             <?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio', Plugin_Name_Capabilities::EDIT_BIO, false, $user_id, in_array("bio", $this->dynamic_tags)); ?>
             <div class="save-progress">
-                <input type="submit" name="submit_form" value="
-                Update" class="h-10 mt-0 text-base upload-btn sm:text-sm">
+                <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 text-base upload-btn sm:text-sm">
             </div>
         </form>
     <?php }
