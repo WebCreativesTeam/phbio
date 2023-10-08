@@ -466,6 +466,9 @@ class Plugin_Name_Dashboard {
             <?php self::component__range_picker(); ?>
           
             <?php
+            $title = get_user_meta($user_id, 'username', true);
+            $post = get_page_by_path( $title, OBJECT, 'hb-user-profile' );
+           
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
                     $date_from = $_POST['date_from'];
@@ -478,7 +481,7 @@ class Plugin_Name_Dashboard {
                     } else {
                         echo do_shortcode('[wpdatatable id=4 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
                     }
-                    echo do_shortcode('[wpdatatable id=7 var1=' . get_current_user_id() . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
                     echo "Total Page Views";
                     echo do_shortcode('[wpdatachart id=2]');
                    
@@ -491,7 +494,7 @@ class Plugin_Name_Dashboard {
                 } else {
                     echo do_shortcode('[wpdatatable id=4 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
                 }
-                echo do_shortcode('[wpdatatable id=7 var1=' . get_current_user_id() . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
+                echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
                 echo "Total Page Views";
                 echo do_shortcode('[wpdatachart id=2]');
 
