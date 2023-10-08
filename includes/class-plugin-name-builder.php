@@ -473,12 +473,12 @@ class Plugin_Name_Builder {
                             <div class="flex flex-col gap-5 my-5 md:flex-row" x-show="newLink.isScheduled">
                                 <div class="flex items-center gap-3">
                                     <label class="input-label"> Start Time</label>
-                                    <input type="datetime-local" x-model="newLink.start_time">             
+                                    <input class="schedule_time" type="datetime-local" x-model="newLink.start_time" value="<?php echo date("Y-m-d\TH:i:s"); ?>">             
                                 </div>
         
                                 <div class="flex items-center gap-3">
                                     <label class="input-label"> End Time</label>
-                                    <input type="datetime-local" x-model="newLink.end_time">
+                                    <input class="schedule_time" type="datetime-local" x-model="newLink.end_time" value="<?php echo date("Y-m-d\TH:i:s"); ?>">
                                 </div>
                             </div>
                             
@@ -603,12 +603,12 @@ class Plugin_Name_Builder {
                                         <div class="flex flex-col gap-5 my-5 md:flex-row" x-show="link.isScheduled">
                                             <div class="flex items-center gap-3">
                                                 <label class="input-label"> Start Time</label>
-                                                <input type="datetime-local" x-model="link.start_time">             
+                                                <input type="datetime-local" x-model="link.start_time" value="<?php echo date("Y-m-d\TH:i"); ?>">             
                                             </div>
 
                                             <div class="flex items-center gap-3">
                                                 <label class="input-label"> End Time</label>
-                                                <input type="datetime-local" x-model="link.end_time">
+                                                <input type="datetime-local" x-model="link.end_time" value="<?php echo date("Y-m-d\TH:i"); ?>">
                                             </div>
                                         </div>
                                         

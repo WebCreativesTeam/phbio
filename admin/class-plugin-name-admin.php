@@ -87,7 +87,7 @@ class Plugin_Name_Admin {
 		global $pagenow;
 	
 		// Check if we're on our custom page
-		if ( $pagenow == 'admin.php' && isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor' ) {
+		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') ) {
 			wp_enqueue_style(
 				'main',
 				plugin_dir_url( __FILE__ ) . 'css/main.css',

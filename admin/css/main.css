@@ -478,7 +478,7 @@ select {
     height: 100%;
     width: 100%;
     --tw-bg-opacity: 1;
-    background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 /** Upload Field **/
 .upload-container {
@@ -1219,14 +1219,11 @@ input[type="checkbox"],
 .right-2 {
     right: 0.5rem;
 }
-.top-0 {
-    top: 0px;
-}
 .right-5 {
     right: 1.25rem;
 }
-.top-1 {
-    top: 0.25rem;
+.top-0 {
+    top: 0px;
 }
 .top-5 {
     top: 1.25rem;
@@ -1444,6 +1441,9 @@ input[type="checkbox"],
 .rounded {
     border-radius: 0.25rem;
 }
+.rounded-\[10px\] {
+    border-radius: 10px;
+}
 .rounded-full {
     border-radius: 9999px;
 }
@@ -1452,9 +1452,6 @@ input[type="checkbox"],
 }
 .rounded-md {
     border-radius: 0.375rem;
-}
-.rounded-\[10px\] {
-    border-radius: 10px;
 }
 .rounded-l-full {
     border-top-left-radius: 9999px;
@@ -1500,6 +1497,10 @@ input[type="checkbox"],
     --tw-border-opacity: 1;
     border-color: rgb(23 23 23 / var(--tw-border-opacity));
 }
+.border-\[\#D2D2D2\] {
+    --tw-border-opacity: 1;
+    border-color: rgb(210 210 210 / var(--tw-border-opacity));
+}
 .border-\[\#F1441E\] {
     --tw-border-opacity: 1;
     border-color: rgb(241 68 30 / var(--tw-border-opacity));
@@ -1510,10 +1511,6 @@ input[type="checkbox"],
 }
 .border-transparent {
     border-color: transparent;
-}
-.border-\[\#D2D2D2\] {
-    --tw-border-opacity: 1;
-    border-color: rgb(210 210 210 / var(--tw-border-opacity));
 }
 .bg-\[\#171717\] {
     --tw-bg-opacity: 1;
@@ -1539,16 +1536,16 @@ input[type="checkbox"],
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
+.bg-gray-50 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
 .bg-inherit {
     background-color: inherit;
 }
 .bg-white {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-.bg-gray-50 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 .object-cover {
     -o-object-fit: cover;
@@ -1560,6 +1557,9 @@ input[type="checkbox"],
 .p-1 {
     padding: 0.25rem;
 }
+.p-10 {
+    padding: 2.5rem;
+}
 .p-2 {
     padding: 0.5rem;
 }
@@ -1568,12 +1568,6 @@ input[type="checkbox"],
 }
 .p-5 {
     padding: 1.25rem;
-}
-.p-7 {
-    padding: 1.75rem;
-}
-.p-10 {
-    padding: 2.5rem;
 }
 .px-1 {
     padding-left: 0.25rem;

@@ -263,7 +263,7 @@ class Plugin_Name_Dashboard {
                                 </button>
                             </div>
                         </div>
-                        <div class="flex flex-wrap w-full mb-3 -mx-1">
+                        <div class="flex w-full mb-3 -mx-1">
                             <template x-for="(day, index) in DAYS" :key="index">	
                                 <div style="width: 14.26%" class="px-1">
                                     <div x-text="day" class="text-xs font-medium text-center text-gray-800"></div>
