@@ -84,13 +84,19 @@ class Plugin_Name_Admin {
 			'all'
 		);
 
-		wp_enqueue_style(
-			'main',
-			plugin_dir_url( __FILE__ ) . 'css/main.css',
-			array(),
-			$this->version,
-			'all'
-		);
+		global $pagenow;
+	
+		// Check if we're on our custom page
+		if ( $pagenow == 'admin.php' && isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor' ) {
+			wp_enqueue_style(
+				'main',
+				plugin_dir_url( __FILE__ ) . 'css/main.css',
+				array(),
+				$this->version,
+				'all'
+			);
+			
+		}
 
 		wp_enqueue_style( 'font-awesome-icons-webfont-woff', plugin_dir_url( __FILE__ ) . 'fonts/fontawesome-webfont.woff', array(), $this->version, 'all' );
 		wp_enqueue_style( 'font-awesome-icons-list', plugin_dir_url( __FILE__ ) . 'css/font-awesome.min.css', array(), $this->version, 'all' );
