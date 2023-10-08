@@ -8,7 +8,7 @@
   }
   .dashboard-layout {
     font-family: Poppins !important;
-    @apply flex items-start justify-center font-sans text-gray-800 bg-white;
+    @apply flex items-start justify-center h-screen font-sans text-gray-800 bg-white;
   }
 
   .main-area {
