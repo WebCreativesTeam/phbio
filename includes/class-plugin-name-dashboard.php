@@ -518,7 +518,7 @@ class Plugin_Name_Dashboard {
             <?php Plugin_Name_Builder::link_list_field( 'Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
             <?php Plugin_Name_Builder::social_links_list_field( 'Manage Social Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
             <div class="save-progress">
-                <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 upload-btn">
+                <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 text-base upload-btn sm:text-sm">
             </div>
         </form>      
     <?php }
@@ -547,7 +547,7 @@ class Plugin_Name_Dashboard {
 
             <?php Plugin_Name_Builder::textarea_field('bio', 'Bio', 'Bio', Plugin_Name_Capabilities::EDIT_BIO, false, $user_id, in_array("bio", $this->dynamic_tags)); ?>
             <div class="save-progress">
-                <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 upload-btn">
+                <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 text-base upload-btn sm:text-sm">
             </div>
         </form>
     <?php }
