@@ -333,7 +333,7 @@ class Plugin_Name_Dashboard {
 		<!-- Templates Actions  - ENDS HERE -->
 
 <!-- Filter Section -->
-<div  class="flex items-center justify-start gap-4 pl-2 mt-10 sm:p-0">
+<div  class="flex w-[89%] sm:w-[94%] mx-auto items-center justify-start gap-4 pl-2 mt-10 sm:p-0">
     <span @click="activeFilter = 'all'" :class="{'text-gray-800 font-bold': activeFilter === 'all'}" class="cursor-pointer filter-item">All</span>
     <span @click="activeFilter = 'lite'" :class="{'text-gray-800 font-bold': activeFilter === 'lite'}" class="cursor-pointer filter-item">Free Template</span>
     <span @click="activeFilter = 'full'" :class="{'text-gray-800 font-bold': activeFilter === 'full'}" class="cursor-pointer filter-item">Pro Template</span>
