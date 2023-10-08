@@ -6,7 +6,13 @@ module.exports = {
     "./includes/class-plugin-name-dashboard.php",
     "./includes/class-plugin-name-settings.php",
   ],
-  safelist: ["wpcontent", "ph_logo_hidden", "warning-message", "warning-icon"],
+  safelist: [
+    "wpbody-content",
+    "wpcontent",
+    "ph_logo_hidden",
+    "warning-message",
+    "warning-icon",
+  ],
 
   theme: {
     extend: {},
