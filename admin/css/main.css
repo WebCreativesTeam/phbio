@@ -1364,6 +1364,9 @@ input[type="checkbox"],
 .w-full {
     width: 100%;
 }
+.w-3 {
+    width: 0.75rem;
+}
 .flex-auto {
     flex: 1 1 auto;
 }
