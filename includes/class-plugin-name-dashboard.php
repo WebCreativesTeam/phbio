@@ -139,7 +139,7 @@ class Plugin_Name_Dashboard {
 	}
     public function top_actions() { ?>
 
-            <h1 x-text="!editMode ? 'Link In Bio - Edit Mode' : 'Preview Mode' " class="page-title"></h1>
+            <h1 x-text="!editMode ? 'Edit Mode' : 'Preview Mode' " class="page-title"></h1>
     
             <!-- New Flex Container for Buttons and Toggle -->
             <div class="action-buttons">
