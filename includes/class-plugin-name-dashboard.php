@@ -554,7 +554,7 @@ class Plugin_Name_Dashboard {
 
     public function actions__bar($handle, $formHandler) { ?>
         <!-- Flex container with space between "Back" and "Save" buttons -->
-        <div class="flex items-center justify-between mt-6 w-[95%] my-auto">
+        <div class="flex items-center justify-between mt-6 w-[89%] sm:w-[94%] m-auto">
             <!-- Back Button for Templates -->
             <button @click="<?php echo $handle ?> = false" class="template-btn bg-[#171717] border-[#171717]">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">

@@ -1386,6 +1386,9 @@ body {
 .w-\[90\%\] {
     width: 90%;
 }
+.w-\[89\%\] {
+    width: 89%;
+}
 .flex-auto {
     flex: 1 1 auto;
 }
@@ -1761,6 +1764,9 @@ body {
     }
     .sm\:w-6 {
         width: 1.5rem;
+    }
+    .sm\:w-\[94\%\] {
+        width: 94%;
     }
     .sm\:grid-cols-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
