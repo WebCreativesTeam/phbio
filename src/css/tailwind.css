@@ -310,7 +310,7 @@
   }
 
   .tab-content {
-    @apply px-2 py-4;
+    @apply px-2 pt-4 pb-6;
   }
 
   /* Card */
