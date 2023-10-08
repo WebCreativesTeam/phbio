@@ -8,7 +8,7 @@
   }
   .dashboard-layout {
     font-family: Poppins !important;
-    @apply flex items-start justify-center pl-3 font-sans text-gray-800 bg-white sm:pl-5 md:pl-7;
+    @apply flex items-start justify-center font-sans text-gray-800 bg-white;
   }
 
   .main-area {
@@ -79,7 +79,7 @@
   }
   .content-settings,
   .content-templates {
-    @apply absolute top-0 left-0 z-10 w-full h-full bg-white;
+    @apply absolute top-0 left-0 z-10 w-full bg-white;
   }
 
   .content-title {
