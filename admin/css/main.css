@@ -850,9 +850,15 @@ select {
     margin-top: 2rem;
     margin-bottom: 2rem;
     display: flex;
+    justify-content: center;
     gap: 1rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+}
+@media (min-width: 768px) {
+    .tab-headers {
+        justify-content: flex-start;
+    }
 }
 /* .tab-btn {
     @apply flex items-center gap-2 px-4 py-2 font-medium text-gray-700 transition-transform duration-150 transform bg-gray-200 rounded shadow cursor-pointer hover:scale-105;

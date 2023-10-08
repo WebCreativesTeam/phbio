@@ -290,7 +290,7 @@
 
   /* Tabs */
   .tab-headers {
-    @apply flex gap-4 px-2 my-8;
+    @apply flex justify-center gap-4 px-2 my-8 md:justify-start;
   }
 
   /* .tab-btn {
