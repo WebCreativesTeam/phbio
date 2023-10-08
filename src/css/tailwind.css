@@ -16,7 +16,7 @@
   }
 
   .actions-area {
-    @apply flex items-center justify-between mb-6;
+    @apply flex items-center justify-between px-2 mb-6;
   }
 
   .action-buttons {
@@ -290,7 +290,7 @@
 
   /* Tabs */
   .tab-headers {
-    @apply flex gap-4 my-8;
+    @apply flex gap-4 px-2 my-8;
   }
 
   /* .tab-btn {

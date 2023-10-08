@@ -297,6 +297,8 @@ select {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 .action-buttons {
     display: flex;
@@ -849,6 +851,8 @@ select {
     margin-bottom: 2rem;
     display: flex;
     gap: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
 }
 /* .tab-btn {
     @apply flex items-center gap-2 px-4 py-2 font-medium text-gray-700 transition-transform duration-150 transform bg-gray-200 rounded shadow cursor-pointer hover:scale-105;
