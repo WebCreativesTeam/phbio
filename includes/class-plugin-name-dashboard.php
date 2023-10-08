@@ -485,7 +485,7 @@ class Plugin_Name_Dashboard {
                     echo "Total Page Views";
                     echo do_shortcode('[wpdatachart id=2]');
                     echo "Click Through Rate";
-                    echo do_shortcode('[wpdatatable id=13 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
                    
                     
                 } 
@@ -500,7 +500,7 @@ class Plugin_Name_Dashboard {
                 echo "Total Page Views";
                 echo do_shortcode('[wpdatachart id=2]');
                 echo "Click Through Rate";
-                echo do_shortcode('[wpdatatable id=13 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
+                echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
 
                
 
