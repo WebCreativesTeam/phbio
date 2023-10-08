@@ -7,7 +7,7 @@
     @apply bg-white p-0 !important;
   }
   .dashboard-layout {
-    font-family: Poppins !important;
+    font-family: "Poppins", sans-serif !important;
     @apply flex items-start justify-center h-screen font-sans text-gray-800 bg-white;
   }
 

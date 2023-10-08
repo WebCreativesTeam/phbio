@@ -275,7 +275,7 @@ select {
     padding: 0px !important;
 }
 .dashboard-layout {
-    font-family: Poppins !important;
+    font-family: "Poppins", sans-serif !important;
     display: flex;
     height: 100vh;
     align-items: flex-start;
@@ -1246,6 +1246,10 @@ body {
     margin-left: -0.25rem;
     margin-right: -0.25rem;
 }
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
 .my-1 {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
@@ -1261,14 +1265,6 @@ body {
 .my-5 {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
-}
-.my-auto {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-.mx-auto {
-    margin-left: auto;
-    margin-right: auto;
 }
 .mb-0 {
     margin-bottom: 0px;
@@ -1300,6 +1296,9 @@ body {
 .ml-4 {
     margin-left: 1rem;
 }
+.mr-1 {
+    margin-right: 0.25rem;
+}
 .mr-2 {
     margin-right: 0.5rem;
 }
@@ -1323,12 +1322,6 @@ body {
 }
 .mt-6 {
     margin-top: 1.5rem;
-}
-.mr-1 {
-    margin-right: 0.25rem;
-}
-.mt-1 {
-    margin-top: 0.25rem;
 }
 .block {
     display: block;
@@ -1387,17 +1380,14 @@ body {
 .w-6 {
     width: 1.5rem;
 }
-.w-\[95\%\] {
-    width: 95%;
-}
-.w-full {
-    width: 100%;
+.w-\[89\%\] {
+    width: 89%;
 }
 .w-\[90\%\] {
     width: 90%;
 }
-.w-\[89\%\] {
-    width: 89%;
+.w-full {
+    width: 100%;
 }
 .flex-auto {
     flex: 1 1 auto;
@@ -1624,9 +1614,6 @@ body {
 .pl-2 {
     padding-left: 0.5rem;
 }
-.pt-\[0\.5px\] {
-    padding-top: 0.5px;
-}
 .pt-\[1px\] {
     padding-top: 1px;
 }
@@ -1635,6 +1622,10 @@ body {
 }
 .align-middle {
     vertical-align: middle;
+}
+.text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
 .text-lg {
     font-size: 1.125rem;
@@ -1647,10 +1638,6 @@ body {
 .text-xs {
     font-size: 0.75rem;
     line-height: 1rem;
-}
-.text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
 }
 .font-bold {
     font-weight: 700;
@@ -1739,32 +1726,26 @@ body {
 .ease-in-out {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .hover\:bg-blue-600:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
-
 .hover\:bg-gray-200:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
-
 .hover\:text-gray-700:hover {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
-
 .hover\:text-white:hover {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
 }
-
 @media (min-width: 640px) {
     .sm\:mb-4 {
         margin-bottom: 1rem;
@@ -1805,7 +1786,6 @@ body {
         line-height: 1.25rem;
     }
 }
-
 @media (min-width: 768px) {
     .md\:w-\[95\%\] {
         width: 95%;
@@ -1814,7 +1794,6 @@ body {
         flex-direction: row;
     }
 }
-
 @media (min-width: 1024px) {
     .lg\:grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
