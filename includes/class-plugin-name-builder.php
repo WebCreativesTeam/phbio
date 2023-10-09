@@ -2,9 +2,9 @@
 
 class Plugin_Name_Builder {
     
-    const ERROR_MSG= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock this feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span></a>";
-    const ERROR_MAX_LINK_MSG= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>You have hit the link limit. <span class='text-[#F1441E] font-bold'>Upgrade Now !</span></a>";
-    const ERROR_LINK_SCHEDULING= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Go PRO Now !</span></a>";
+    const ERROR_MSG= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock this feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
+    const ERROR_MAX_LINK_MSG= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>You have hit the link limit. <span class='text-[#F1441E] font-bold'>Upgrade Now </span>!</a>";
+    const ERROR_LINK_SCHEDULING= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Go PRO Now </span>!</a>";
     
     
 
@@ -167,7 +167,7 @@ class Plugin_Name_Builder {
             
 <div class="flex flex-col items-start gap-3 mb-6 sm:items-center sm:flex-row">
 <span class="block text-sm text-gray-500 hover:text-gray-700" x-text="`<?php echo esc_js(site_url('/bio')); ?>/` + secureUsername"></span>
-<div class="flex flex-row">
+<div class="flex flex-row gap-4 sm:gap-2">
 <svg @click="copyToClipboard" xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="w-5 h-5 cursor-pointer hover:text-gray-700" viewBox="0 0 24 24" fill="currentColor"><path d="M21,8.94a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19.32.32,0,0,0-.09,0A.88.88,0,0,0,14.05,2H10A3,3,0,0,0,7,5V6H6A3,3,0,0,0,3,9V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V9S21,9,21,8.94ZM15,5.41,17.59,8H16a1,1,0,0,1-1-1ZM15,19a1,1,0,0,1-1,1H6a1,1,0,0,1-1-1V9A1,1,0,0,1,6,8H7v7a3,3,0,0,0,3,3h5Zm4-4a1,1,0,0,1-1,1H10a1,1,0,0,1-1-1V5a1,1,0,0,1,1-1h3V7a3,3,0,0,0,3,3h3Z"></path></svg>
 <svg @click="navigateToLink" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 cursor-pointer hover:text-gray-700" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18,10.82a1,1,0,0,0-1,1V19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V8A1,1,0,0,1,5,7h7.18a1,1,0,0,0,0-2H5A3,3,0,0,0,2,8V19a3,3,0,0,0,3,3H16a3,3,0,0,0,3-3V11.82A1,1,0,0,0,18,10.82Zm3.92-8.2a1,1,0,0,0-.54-.54A1,1,0,0,0,21,2H15a1,1,0,0,0,0,2h3.59L8.29,14.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L20,5.41V9a1,1,0,0,0,2,0V3A1,1,0,0,0,21.92,2.62Z"></path></svg>
 
@@ -325,9 +325,9 @@ class Plugin_Name_Builder {
 
                     <button type="button" x-show="links.length < maxLinks" @click="showAddNewLink()" class="add-link-btn">Add New Social Icon</button>
                     <div x-show="showAddNewLinkForm" @input="console.log($event.detail); newLink.title = $event.detail">
-                        <div class="relative p-10 mt-5 bg-gray-50 m-5 border-solid rounded-[10px] border-[1px] border-[#D2D2D2]">
+                        <div class="relative p-10 mt-5 bg-gray-50 m-5 border-solid rounded-[10px] border-[1px] border-[#F1441E]">
 
-                            <button @click.prevent="showAddNewLinkForm = false" class="absolute border-0 cursor-pointer top-5 right-5 bg-inherit"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg></button>
+                            <button @click.prevent="showAddNewLinkForm = false" class="absolute text-gray-700 border-0 cursor-pointer top-5 right-5 bg-inherit "><svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" class="sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg></button>
                             <label class="input-label">Select Icon</label>
                             <div class="px-4 py-4 my-2 bg-white rounded" x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })" >
                                 <div @click="isOpen = !isOpen" class="relative cursor-pointer">
@@ -452,11 +452,11 @@ class Plugin_Name_Builder {
             
                     <!-- New Add New Link button -->
                     <button type="button" x-show="links.length < maxLinks" @click="showAddNewLink()" class="add-link-btn">Add New Link</button>
-        
+                   
                     <!-- New form that appears when the Add New Link button is clicked -->
                     <div x-show="showAddNewLinkForm">
-                        <div class="relative p-10 mt-5 bg-gray-50 m-5 border-solid rounded-[10px] border-[1px] border-[#D2D2D2]">
-                            <button @click.prevent="showAddNewLinkForm = false" class="absolute border-0 cursor-pointer top-5 right-5 bg-inherit">
+                        <div class="relative p-10 mt-5 bg-gray-50 m-5 border-solid rounded-[10px] border-[1px] border-[#F1441E]">
+                            <button @click.prevent="showAddNewLinkForm = false" class="absolute text-gray-700 border-0 cursor-pointer top-5 right-5 bg-inherit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg>
                             </button>
                             <label class="input-label">URL</label>
