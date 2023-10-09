@@ -441,4 +441,8 @@ html.wp-toolbar {
   body {
     @apply bg-white !important;
   }
+
+  .table-wrapper {
+    @apply border-[#D2D2D2] bg-gray-50 border-[1px] border-solid rounded-xl;
+  }
 }

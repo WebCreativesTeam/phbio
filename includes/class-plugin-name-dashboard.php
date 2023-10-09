@@ -504,7 +504,7 @@ class Plugin_Name_Dashboard {
                 } 
             } else {
                 echo "<div class='mt-3 mb-0 input-label'>Top Performing Links</div>";
-                echo "<div class='rounded-xl'>";        
+                echo "<div class='table-wrapper'>";        
                 if(Plugin_Name_Utilities::is_full_version($user_id)) {
                     echo do_shortcode('[wpdatatable id=2 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
                 } else {
