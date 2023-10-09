@@ -1782,6 +1782,9 @@ html.wp-toolbar {
     .sm\:flex-row {
         flex-direction: row;
     }
+    .sm\:items-center {
+        align-items: center;
+    }
     .sm\:gap-4 {
         gap: 1rem;
     }
