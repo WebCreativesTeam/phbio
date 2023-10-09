@@ -421,7 +421,7 @@ html.wp-toolbar {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   ul.lists_container li {
-    @apply p-2 my-2 bg-gray-50 border-[1px] border-solid rounded-[10px] sm:p-5 sm:m-5 border-[#D2D2D2];
+    @apply p-2 my-4 bg-gray-50 border-[1px] border-solid rounded-[10px] sm:p-5 sm:m-5 border-[#D2D2D2];
   }
   ul.lists_container li:last-child {
     @apply mb-20;
