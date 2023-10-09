@@ -424,7 +424,7 @@ html.wp-toolbar {
     @apply p-2 my-4 bg-gray-50 border-[1px] border-solid rounded-[10px] sm:p-5 sm:m-5 border-[#D2D2D2];
   }
   ul.lists_container li:last-child {
-    @apply mb-20;
+    @apply mb-14;
   }
 
   input[type="checkbox"],

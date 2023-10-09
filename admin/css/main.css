@@ -1193,7 +1193,7 @@ ul.lists_container li {
     }
 }
 ul.lists_container li:last-child {
-    margin-bottom: 5rem;
+    margin-bottom: 3.5rem;
 }
 input[type="checkbox"],
   input[type="checkbox"]:checked,
