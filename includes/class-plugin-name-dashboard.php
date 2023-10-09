@@ -2,6 +2,9 @@
 
 class Plugin_Name_Dashboard {
 
+    const ERROR_HIDE_LOGO= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock the 'Hide Website Logo' feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO </span></a>";
+
+
     private $dynamic_tags = Array();
     
     public function __construct() {
@@ -186,12 +189,15 @@ class Plugin_Name_Dashboard {
                     Plugin_Name_Capabilities::EDIT_PROJECT_NAME, $user_id); 
                     ?>
                 <?php 
-                
+
+                    if(!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO)) {
+                        echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg><span>' . self::ERROR_HIDE_LOGO . '</span></div>';
+                    }       
                     Plugin_Name_Builder::checkbox_field('logo', 
                     'Hide the PRODUCHERTZ.COM logo', 
                     Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO, $user_id); 
                 
-                    
+                   
                  ?>
                 </form>
 
@@ -543,6 +549,7 @@ class Plugin_Name_Dashboard {
                                         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13.3,12.22A4.92,4.92,0,0,0,15,8.5a5,5,0,0,0-10,0,4.92,4.92,0,0,0,1.7,3.72A8,8,0,0,0,2,19.5a1,1,0,0,0,2,0,6,6,0,0,1,12,0,1,1,0,0,0,2,0A8,8,0,0,0,13.3,12.22ZM10,11.5a3,3,0,1,1,3-3A3,3,0,0,1,10,11.5ZM21.71,9.13a1,1,0,0,0-1.42,0l-2,2-.62-.63a1,1,0,0,0-1.42,0,1,1,0,0,0,0,1.41l1.34,1.34a1,1,0,0,0,1.41,0l2.67-2.67A1,1,0,0,0,21.71,9.13Z"></path></svg>', 
                                         Plugin_Name_Capabilities::EDIT_PROJECT_NAME, false, $user_id); 
             ?>
+            
             <?php 
             Plugin_Name_Builder::text_field('project',
                                         'Project / Artist', 

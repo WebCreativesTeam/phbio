@@ -2,8 +2,8 @@
 
 class Plugin_Name_Builder {
     
-    const ERROR_MSG= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock this feature instantly by <span class='text-[#F1441E]'>Going PRO</span></a>";
-    const ERROR_LINK_SCHEDULING= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock links scheduling option. <span class='text-[#F1441E]'>Go PRO Now !</span></a>";
+    const ERROR_MSG= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock this feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span></a>";
+    const ERROR_LINK_SCHEDULING= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Go PRO Now !</span></a>";
     
     
 
@@ -73,6 +73,7 @@ class Plugin_Name_Builder {
         ?>
     
         <div 
+            class="mt-10"
             x-data="{ typingTimer: '', doneTypingInterval: 2000,  copied: false, charCount: <?= strlen($data) ?>, charLimit: <?= $char_limit ?>, username: '<?= esc_attr($data) ?>', secureUsername: '<?= esc_attr($data) ?>', isAvailable: false, isLoading: false, message: '', hasChecked: false }" 
             x-init="() => {
                 
@@ -194,7 +195,7 @@ class Plugin_Name_Builder {
             }
         }
     
-        echo '<label for="' . esc_attr($name) . '" class="textarea-label">' . esc_html($label) . '</label>';
+        echo '<label for="' . esc_attr($name) . '" class="input-label">' . esc_html($label) . '</label>';
     
         if ($hasLimit && $char_limit) {
             echo '<div class="textarea-container" x-data="{ charCount: ' . strlen($data) . ', charLimit: ' . $char_limit . ' }">';
@@ -358,7 +359,8 @@ class Plugin_Name_Builder {
                             <li draggable="true" @dragenter="draggedOverLinkId = link.id" @dragleave="draggedOverLinkId = null" @dragover="handleDragOver($event)" @drop="handleDrop($event, link.id)" :class="{
                                 'drag-over': draggedOverLinkId === link.id,
                                 'hidden-link-class': linkIsHidden(link.id),
-                                'dragging-class': linkIsDragging(link.id)
+                                'dragging-class': linkIsDragging(link.id),
+                                'on-edit': link.isEditing
                             }",
                            
                             
@@ -462,7 +464,7 @@ class Plugin_Name_Builder {
 
                             <?php 
                             if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK)) {
-                                echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path></svg><span>' . self::ERROR_LINK_SCHEDULING . '</span></div>';
+                                echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path></svg><span>' . self::ERROR_LINK_SCHEDULING . '</span></div>';
 
                             } else { ?>
                                 <div class="my-3">

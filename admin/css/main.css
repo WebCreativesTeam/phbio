@@ -735,15 +735,6 @@ select {
     color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 /* Textarea */
-.textarea-label {
-    margin-top: 1rem;
-    display: block;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    font-weight: 500;
-    --tw-text-opacity: 1;
-    color: rgb(55 65 81 / var(--tw-text-opacity));
-}
 .textarea-field {
     margin-bottom: 2.5rem !important;
     margin-top: 0.5rem !important;
@@ -927,7 +918,7 @@ select {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     padding-top: 1rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 5rem;
 }
 /* Card */
 .template-card {
