@@ -481,7 +481,7 @@ class Plugin_Name_Dashboard {
                     $date_to = $_POST['date_to'];
             
                    
-                    echo "<div class='mt-3 input-label'>Top Performing Links</div>";
+                    echo "<div class='mt-3 mb-0 input-label'>Top Performing Links</div>";
                     if(Plugin_Name_Utilities::is_full_version($user_id)) {
                         echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
                     } else {
@@ -497,7 +497,7 @@ class Plugin_Name_Dashboard {
                     
                 } 
             } else {
-                echo "<div class='mt-3 input-label'>Top Performing Links</div>";
+                echo "<div class='mt-3 mb-0 input-label'>Top Performing Links</div>";
                 if(Plugin_Name_Utilities::is_full_version($user_id)) {
                     echo do_shortcode('[wpdatatable id=2 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
                 } else {
