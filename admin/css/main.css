@@ -1211,6 +1211,7 @@ body {
     background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
 }
 .table-wrapper {
+    margin-top: 1rem;
     border-radius: 0.75rem;
     border-width: 1px;
     border-style: solid;

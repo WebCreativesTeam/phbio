@@ -443,6 +443,6 @@ html.wp-toolbar {
   }
 
   .table-wrapper {
-    @apply border-[#D2D2D2] bg-gray-50 border-[1px] border-solid rounded-xl pt-[10px] px-[10px];
+    @apply border-[#D2D2D2] bg-gray-50 border-[1px] border-solid rounded-xl pt-[10px] px-[10px] mt-4;
   }
 }
