@@ -1270,6 +1270,9 @@ body {
 .m-auto {
     margin: auto;
 }
+.m-0 {
+    margin: 0px;
+}
 .-mx-1 {
     margin-left: -0.25rem;
     margin-right: -0.25rem;
@@ -1786,6 +1789,9 @@ html.wp-toolbar {
     outline-offset: 2px;
 }
 @media (min-width: 640px) {
+    .sm\:m-5 {
+        margin: 1.25rem;
+    }
     .sm\:mx-5 {
         margin-left: 1.25rem;
         margin-right: 1.25rem;

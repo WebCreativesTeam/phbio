@@ -455,7 +455,7 @@ class Plugin_Name_Builder {
                    
                     <!-- New form that appears when the Add New Link button is clicked -->
                     <div x-show="showAddNewLinkForm">
-                        <div class="relative p-10 mt-5 bg-gray-50 m-5 border-solid rounded-[10px] border-[1px] border-[#F1441E]">
+                        <div class="relative p-10 my-5 bg-gray-50 m-0 sm:m-5 border-solid rounded-[10px] border-[1px] border-[#F1441E]">
                             <button @click.prevent="showAddNewLinkForm = false" class="absolute text-gray-700 border-0 cursor-pointer top-5 right-5 bg-inherit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"></path></svg>
                             </button>
