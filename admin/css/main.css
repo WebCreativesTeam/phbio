@@ -1218,6 +1218,9 @@ body {
     border-color: rgb(210 210 210 / var(--tw-border-opacity));
     --tw-bg-opacity: 1;
     background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
 }
 .visible {
     visibility: visible;
