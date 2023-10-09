@@ -174,7 +174,10 @@ export default ({ initLinks = [] }) => ({
     }));
   },
   removeLink(id) {
-    this.links = this.links.filter((item) => item.id !== id);
+    if (confirm("Are you sure you want to delete this social icon?")) {
+      this.links = this.links.filter((item) => item.id !== id);
+      console.log("Updated links after removing:", this.links);
+    }
   },
   linkExists(link, excludingId = null) {
     return this.links.some(

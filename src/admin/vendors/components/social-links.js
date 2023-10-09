@@ -139,15 +139,11 @@ export default ({ initLinks = [] }) => {
     },
 
     removeLink(id) {
-      this.links = this.links.filter((item) => item.id !== id);
-      console.log(this.links);
+      if (confirm("Are you sure you want to delete this link?")) {
+        this.links = this.links.filter((item) => item.id !== id);
+        console.log("Updated links after removing:", this.links);
+      }
     },
-    // removeLink(id) {
-    //   if (confirm("Are you sure you want to delete this link?")) {
-    //     this.links = this.links.filter((item) => item.id !== id);
-    //     console.log("Updated links after removing:", this.links);
-    //   }
-    // },
     linksJson() {
       let json = JSON.stringify(this.links);
       return encodeURIComponent(json);
