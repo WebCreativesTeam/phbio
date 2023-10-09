@@ -19,7 +19,7 @@ html.wp-toolbar {
   }
 
   .actions-area {
-    @apply flex items-center justify-between px-2 mb-6;
+    @apply flex items-center justify-between px-6 mb-6 md:px-2;
   }
 
   .action-buttons {
