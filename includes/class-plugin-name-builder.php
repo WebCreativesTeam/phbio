@@ -2,7 +2,8 @@
 
 class Plugin_Name_Builder {
     
-    const ERROR_MSG= "<a href='/pricing' class='no-underline font-semi-bold' target='___blank'>Unlock this feature instantly by going PRO</a>";
+    const ERROR_MSG= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock this feature instantly by <span class='text-[#F1441E]'>Going PRO</span></a>";
+    const ERROR_LINK_SCHEDULING= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock links scheduling option. <span class='text-[#F1441E]'>Go PRO Now !</span></a>";
     
     
 
@@ -461,7 +462,8 @@ class Plugin_Name_Builder {
 
                             <?php 
                             if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK)) {
-                                echo '<div class="my-3">Only Full version users can schedule link</div>';
+                                echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path></svg><span>' . self::ERROR_LINK_SCHEDULING . '</span></div>';
+
                             } else { ?>
                                 <div class="my-3">
                                 <label>
@@ -508,7 +510,8 @@ class Plugin_Name_Builder {
                                 'drag-over': draggedOverLinkId === link.id,
                                 'hidden-link-class': linkIsHidden(link.id),
                                 'highlight-link-class': linkIsHighlighted(link.id),
-                                'dragging-class': linkIsDragging(link.id)
+                                'dragging-class': linkIsDragging(link.id),
+                                'on-edit': link.isEditing
                             }"
                         >
                             <div x-show="!link.isEditing" class="flex items-center justify-between">
@@ -544,10 +547,10 @@ class Plugin_Name_Builder {
                                      </div>
                                         <div class="flex flex-row items-start gap-4">
                                             
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 cursor-pointer sm:w-6" :class="{ 'text-[#F1441E]': link.imageFile}" @click="showEditLinkForm(link.id)" viewBox="0 0 576 512" fill="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="pt-[2px] w-4 cursor-pointer sm:w-6" :class="{ 'text-[#F1441E]': link.imageFile}" @click="showEditLinkForm(link.id)" viewBox="0 0 576 512" fill="currentColor">
 <path d="M160 32c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160zM396 138.7l96 144c4.9 7.4 5.4 16.8 1.2 24.6S480.9 320 472 320H328 280 200c-9.2 0-17.6-5.3-21.6-13.6s-2.9-18.2 2.9-25.4l64-80c4.6-5.7 11.4-9 18.7-9s14.2 3.3 18.7 9l17.3 21.6 56-84C360.5 132 368 128 376 128s15.5 4 20 10.7zM192 128a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120z"/>
 </svg>
-<svg xmlns="http://www.w3.org/2000/svg" @click="showEditLinkForm(link.id)" class="w-3 cursor-pointer sm:w-4" :class="{ 'text-[#F1441E]': link.isScheduled }"  viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" @click="showEditLinkForm(link.id)" class="pt-[2px] w-3 cursor-pointer sm:w-4" :class="{ 'text-[#F1441E]': link.isScheduled }"  viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"/></svg>
                                         <button type="button" class="p-0 border-0 cursor-pointer bg-inherit" @click="showEditLinkForm(link.id)">
 
 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 p-0 sm:w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M5,18H9.24a1,1,0,0,0,.71-.29l6.92-6.93h0L19.71,8a1,1,0,0,0,0-1.42L15.47,2.29a1,1,0,0,0-1.42,0L11.23,5.12h0L4.29,12.05a1,1,0,0,0-.29.71V17A1,1,0,0,0,5,18ZM14.76,4.41l2.83,2.83L16.17,8.66,13.34,5.83ZM6,13.17l5.93-5.93,2.83,2.83L8.83,16H6ZM21,20H3a1,1,0,0,0,0,2H21a1,1,0,0,0,0-2Z"></path></svg>
@@ -595,7 +598,8 @@ class Plugin_Name_Builder {
 
                                         <?php 
                                         if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK)) {
-                                            echo '<div class="my-2">Only Full version users can schedule link</div>';
+                                            echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 warning-icon" viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path></svg><span>' . self::ERROR_LINK_SCHEDULING . '</span></div>';
+
                                         } else { ?>
                                          <div class="mt-5 mb-7">
                                             <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
@@ -619,13 +623,12 @@ class Plugin_Name_Builder {
                                        
 
                                         <!-- Image Upload -->
-                                        <label class="input-label ">Link Image</label>
                                         <div class="mt-6 upload-container">
                                             <img x-show="link.imageFile" :src="link.imageFile" alt="Uploaded File" class="file-preview">
                                             <div x-show="!link.imageFile" class="flex items-center justify-center p-2 align-middle file-preview">No Image Uploaded</div>
                                             <div class="upload-content">
                                                 <form method="post" enctype="multipart/form-data">
-                                                    <label for="link_image" class="block upload-label">Upload Image</label>
+                                                    <label for="link_image" class="block upload-label">Upload Link Image</label>
                                                     <input type="file" name="link_image" class="absolute inset-0 w-full h-full opacity-0"  accept="image/jpeg,image/png,image/tiff" @change="uploadImage(link.id)" :data-link-id="link.id" />
                                                     <input type="hidden" x-model="inputEditImageFile" />
                                                 </form>
@@ -777,7 +780,7 @@ class Plugin_Name_Builder {
         $image_url = Plugin_Name_Utilities::handle_user_meta($name, Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE,  $target_user_id);
         
         if(!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg><span>' . self::ERROR_MSG . '</span></div>';
+            echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 warning-icon" viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path></svg><span>' . self::ERROR_MSG . '</span></div>';
 
         }
         ?>

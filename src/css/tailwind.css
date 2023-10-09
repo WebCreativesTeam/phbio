@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html.wp-toolbar {
+  padding: 0px !important;
+}
 @layer components {
   #wpcontent {
     @apply bg-white p-0 !important;
@@ -225,7 +228,7 @@
     @apply flex-grow bg-transparent focus:outline-none focus:ring-0 placeholder-gray-500 border-0 !important;
   }
   .input-label {
-    @apply mb-2 text-sm font-medium text-gray-700;
+    @apply mt-1 mb-3 text-[14px] font-bold text-black uppercase;
   }
 
   /* Textarea */
@@ -234,7 +237,7 @@
   }
 
   .textarea-field {
-    @apply w-full p-4 mb-8 text-white  mt-2 transition-all bg-[#171717] rounded-md focus:ring-0 focus:border-transparent focus:outline-none border-0 resize-y placeholder-gray-500 !important;
+    @apply w-full p-4 mb-10 text-white  mt-2 transition-all bg-[#171717] rounded-md focus:ring-0 focus:border-transparent focus:outline-none border-0 resize-y placeholder-gray-500 !important;
   }
 
   /* LINKS LIST */
@@ -243,7 +246,7 @@
   }
 
   .input-field-enhanced {
-    @apply w-full p-2 pl-4 my-2 placeholder-gray-500 bg-white border-0 rounded-lg focus:outline-none focus:ring-0;
+    @apply w-full p-2 pl-4 mt-2 mb-5 placeholder-gray-500 bg-white border-0 rounded-lg focus:outline-none focus:ring-0;
   }
 
   .btn-remove,
@@ -341,6 +344,9 @@
     @apply inline-block text-xs text-white font-bold rounded bg-[#171717] mr-2 mb-2 px-1 py-0.5 sm:px-2;
   }
 
+  .on-edit {
+    @apply border-[#F1441E] !important;
+  }
   .template-desc {
     @apply text-sm italic text-gray-700 no-underline;
   }
@@ -393,7 +399,7 @@
   }
 
   .warning-icon {
-    @apply w-10 h-10 mr-3 text-yellow-700 sm:h-6 sm:w-6;
+    @apply w-10 h-10 text-[#F1441E] sm:h-6 sm:w-6;
   }
 
   .iframe-container {

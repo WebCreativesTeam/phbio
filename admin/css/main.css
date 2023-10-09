@@ -726,12 +726,13 @@ select {
     box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000) !important;
 }
 .input-label {
-    margin-bottom: 0.5rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    font-weight: 500;
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
     --tw-text-opacity: 1;
-    color: rgb(55 65 81 / var(--tw-text-opacity));
+    color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 /* Textarea */
 .textarea-label {
@@ -744,7 +745,7 @@ select {
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 .textarea-field {
-    margin-bottom: 2rem !important;
+    margin-bottom: 2.5rem !important;
     margin-top: 0.5rem !important;
     width: 100% !important;
     resize: vertical !important;
@@ -780,7 +781,7 @@ select {
 /* LINKS LIST */
 .input-field-enhanced {
     margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
     width: 100%;
     border-radius: 0.5rem;
     border-width: 0px;
@@ -1038,6 +1039,10 @@ select {
         padding-right: 0.5rem;
     }
 }
+.on-edit {
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(241 68 30 / var(--tw-border-opacity)) !important;
+}
 /* Filter */
 .filter-item {
     font-size: 0.875rem;
@@ -1104,11 +1109,10 @@ select {
     --tw-text-opacity: 0.9;
 }
 .warning-icon {
-    margin-right: 0.75rem;
     height: 2.5rem;
     width: 2.5rem;
     --tw-text-opacity: 1;
-    color: rgb(161 98 7 / var(--tw-text-opacity));
+    color: rgb(241 68 30 / var(--tw-text-opacity));
 }
 @media (min-width: 640px) {
     .warning-icon {
@@ -1617,6 +1621,9 @@ body {
 .pt-\[1px\] {
     padding-top: 1px;
 }
+.pt-\[2px\] {
+    padding-top: 2px;
+}
 .text-center {
     text-align: center;
 }
@@ -1725,6 +1732,10 @@ body {
 }
 .ease-in-out {
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html.wp-toolbar {
+  padding: 0px !important;
 }
 .hover\:bg-blue-600:hover {
     --tw-bg-opacity: 1;
