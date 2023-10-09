@@ -387,7 +387,7 @@ class Plugin_Name_Dashboard {
             <div class="no-underline opacity-50 template-card" x-show="activeFilter === 'all' || activeFilter === '<?php echo $version; ?>'" >
                 <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="object-cover w-full mb-2 h-44">
                 <div class="p-1">
-                    <div class="flex flex-col items-baseline mb-4 ml-4 sm:flex-row">
+                    <div class="flex flex-col items-baseline mb-4 sm:flex-row">
                         <span class="template-version"><?php echo $version_display; ?></span>
                         <h2 class="template-title"><?php the_title(); ?></h2>
                     </div>
