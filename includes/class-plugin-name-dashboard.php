@@ -308,7 +308,9 @@ class Plugin_Name_Dashboard {
         $user_id = get_current_user_id(); 
 
         $elementor_page_url = get_user_meta( $user_id, 'username', true ); // Replace with the URL of your Elementor page
-        echo '<div class="iframe-container"><div class="loaad">
+        
+        echo '<div class="iframe-container">
+        <div class="loaad">
         <div id="loading-spin"></div>
         Please hold on for a moment while we prepare your Link in Bio preview.</div><iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%;"></iframe></div>';
         ?> 

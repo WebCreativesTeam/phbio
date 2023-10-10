@@ -417,7 +417,8 @@ html.wp-toolbar {
     flex-direction: column;
     position: fixed;
     top: 50%;
-    left: 30%;
+    left: 0;
+    right: 0;
   }
 
   #loading-spin {
