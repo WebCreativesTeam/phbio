@@ -4,7 +4,7 @@ class Plugin_Name_Builder {
     
     const ERROR_MSG= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock this feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
     const ERROR_MAX_LINK_MSG= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>You have hit the link limit. <span class='text-[#F1441E] font-bold'>Upgrade Now </span>!</a>";
-    const ERROR_LINK_SCHEDULING= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Go PRO Now </span>!</a>";
+    const ERROR_LINK_SCHEDULING= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Go PRO now</span>!</a>";
     
     
 
@@ -339,7 +339,7 @@ class Plugin_Name_Builder {
                                         <input type="text" x-model="search" placeholder="Search..." class="w-full p-2" @click.stop />
                                         <template x-for="option in filteredOptions()" :key="option">
                                             <div @click.stop="selectOption(option)" class="flex items-center p-2 cursor-pointer hover:bg-gray-200" :class="{'bg-gray-100': selected === option}">
-                                                <i :class="'fa ' + option" class="mr-2"></i>
+                                                <i :class="'fa fa-2x ' + option" class="mr-2"></i>
                                             </div>
                                         </template>
                                         <div x-show="!filteredOptions().length" class="p-2">No results found</div>
@@ -398,7 +398,7 @@ class Plugin_Name_Builder {
                                                     <input type="text" x-model="search" placeholder="Search..." class="w-full p-2" @click.stop />
                                                     <template x-for="option in filteredOptions()" :key="option">
                                                         <div @click.stop="selectOption(option)" class="flex items-center p-2 cursor-pointer hover:bg-gray-200" :class="{'bg-gray-100': selected === option}">
-                                                            <i :class="'fa ' + option" class="mr-2"></i>
+                                                            <i :class="'fa fa-2x ' + option" class="mr-2"></i>
                                                         </div>
                                                     </template>
                                                     <div x-show="!filteredOptions().length" class="p-2">No results found</div>
@@ -502,7 +502,7 @@ class Plugin_Name_Builder {
                     
                     <span x-text="linkError" class="text-danger"></span>
                     <div x-show="links.length >= maxLinks" class="warning-message">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 warning-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 warning-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path>
                         </svg>
                         <span><?php echo self::ERROR_MAX_LINK_MSG; ?></span> 
@@ -614,12 +614,12 @@ class Plugin_Name_Builder {
                                         <div class="flex flex-col gap-5 my-5 md:flex-row" x-show="link.isScheduled">
                                             <div class="flex items-center gap-3">
                                                 <label class="input-label"> Start Time</label>
-                                                <input type="datetime-local" x-model="link.start_time" value="<?php echo date("Y-m-d\TH:i"); ?>">             
+                                                <input type="datetime-local" x-model="link.start_time" value="<?php echo date("Y-m-d\TH:i"); ?>" min="<?php echo date("Y-m-d\TH:i"); ?>">             
                                             </div>
 
                                             <div class="flex items-center gap-3">
                                                 <label class="input-label"> End Time</label>
-                                                <input type="datetime-local" x-model="link.end_time" value="<?php echo date("Y-m-d\TH:i"); ?>">
+                                                <input type="datetime-local" x-model="link.end_time" value="<?php echo date("Y-m-d\TH:i"); ?>" min="<?php echo date("Y-m-d\TH:i"); ?>">
                                             </div>
                                         </div>
                                         
@@ -714,7 +714,7 @@ class Plugin_Name_Builder {
     <!-- Displaying Error Messages -->
     <span x-text="linkError" class="text-danger"></span>
     <div x-show="links.length >= maxLinks" class="warning-message">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 warning-icon" viewBox="0 0 448 512" fill="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 warning-icon" viewBox="0 0 448 512" fill="currentColor">
             <path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path>
         </svg>
         <span><?php echo self::ERROR_MAX_LINK_MSG; ?></span> 
@@ -793,9 +793,11 @@ class Plugin_Name_Builder {
         $image_url = Plugin_Name_Utilities::handle_user_meta($name, Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE,  $target_user_id);
         
         if(!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 warning-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg><span>' . self::ERROR_MSG . '</span></div>';
+            echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 warning-icon" viewBox="0 0 576 512" fill="#f1441e"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/> </svg><span>' . self::ERROR_MSG . '</span></div>';
 
         }
+        
+         
         ?>
 
         <div class="upload-container <?php if(!Plugin_Name_Utilities::check_user_capability($capability)) { echo 'no-hover' ; } ?>">

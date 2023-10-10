@@ -190,14 +190,14 @@ class Plugin_Name_Dashboard {
                     ?>
                 <?php 
 
-                    if(!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO)) {
-                        echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg><span>' . self::ERROR_HIDE_LOGO . '</span></div>';
-                    }       
+                         
                     Plugin_Name_Builder::checkbox_field('logo', 
                     'Hide the PRODUCHERTZ.COM logo', 
                     Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO, $user_id); 
                 
-                   
+                    if(!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO)) {
+                        echo '<div class="mt-6 warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 warning-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg><span>' . self::ERROR_HIDE_LOGO . '</span></div>';
+                    }  
                  ?>
                 </form>
 
