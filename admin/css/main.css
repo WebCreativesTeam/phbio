@@ -1264,18 +1264,22 @@ body {
 .z-10 {
     z-index: 10;
 }
+.m-0 {
+    margin: 0px;
+}
 .m-5 {
     margin: 1.25rem;
 }
 .m-auto {
     margin: auto;
 }
-.m-0 {
-    margin: 0px;
-}
 .-mx-1 {
     margin-left: -0.25rem;
     margin-right: -0.25rem;
+}
+.mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
 }
 .mx-auto {
     margin-left: auto;
@@ -1297,9 +1301,8 @@ body {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
 }
-.mx-0 {
-    margin-left: 0px;
-    margin-right: 0px;
+.-mt-\[1px\] {
+    margin-top: -1px;
 }
 .mb-0 {
     margin-bottom: 0px;
@@ -1546,10 +1549,6 @@ body {
     --tw-border-opacity: 1;
     border-color: rgb(23 23 23 / var(--tw-border-opacity));
 }
-.border-\[\#D2D2D2\] {
-    --tw-border-opacity: 1;
-    border-color: rgb(210 210 210 / var(--tw-border-opacity));
-}
 .border-\[\#F1441E\] {
     --tw-border-opacity: 1;
     border-color: rgb(241 68 30 / var(--tw-border-opacity));
@@ -1768,26 +1767,32 @@ body {
 html.wp-toolbar {
   padding: 0px !important;
 }
+
 .hover\:bg-blue-600:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
+
 .hover\:bg-gray-200:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
+
 .hover\:text-gray-700:hover {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
+
 .hover\:text-white:hover {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
 }
+
 @media (min-width: 640px) {
     .sm\:m-5 {
         margin: 1.25rem;
@@ -1823,11 +1828,11 @@ html.wp-toolbar {
     .sm\:items-center {
         align-items: center;
     }
-    .sm\:gap-4 {
-        gap: 1rem;
-    }
     .sm\:gap-2 {
         gap: 0.5rem;
+    }
+    .sm\:gap-4 {
+        gap: 1rem;
     }
     .sm\:p-0 {
         padding: 0px;
@@ -1841,6 +1846,7 @@ html.wp-toolbar {
         line-height: 1.25rem;
     }
 }
+
 @media (min-width: 768px) {
     .md\:w-\[95\%\] {
         width: 95%;
@@ -1849,6 +1855,7 @@ html.wp-toolbar {
         flex-direction: row;
     }
 }
+
 @media (min-width: 1024px) {
     .lg\:grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
