@@ -163,7 +163,7 @@ class Plugin_Name_Admin {
 		// Adding 'lite-version' user role with custom capabilities
 		add_role(
 			'lite-version',
-			'Lite Version',
+			'Free Member',
 			array(
 				'read' => true,
 				Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE => true,
@@ -176,7 +176,7 @@ class Plugin_Name_Admin {
 		// Adding 'full-version' user role with custom capabilities
 		add_role(
 			'full-version',
-			'Full Version',
+			'Pro Member',
 			array(
 				'read' => true,
 				Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE => true,
