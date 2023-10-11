@@ -249,6 +249,14 @@ html.wp-toolbar {
     @apply w-full p-2 pl-4 mt-2 mb-5 placeholder-gray-500 bg-white border-0 rounded-lg focus:outline-none focus:ring-0;
   }
 
+  .input-container.input-container-enhanced {
+    @apply py-0 text-gray-700 bg-white;
+  }
+
+  .input-container.input-container-enhanced input {
+    @apply pl-0 my-0 text-gray-700;
+  }
+
   .btn-remove,
   .btn-edit {
     @apply p-1 ml-2 text-white transition-colors duration-150 rounded-full;
