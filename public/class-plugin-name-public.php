@@ -106,6 +106,9 @@ class Plugin_Name_Public {
 			) );
 
 		if(is_singular('hb-user-profile')) {
+			wp_enqueue_script( 'borah_dynamic_grid', plugin_dir_url( __FILE__ ) . 'js/borah_dynamic_grid.js', NULL, $this->version, false );
+
+
 			wp_enqueue_script('bio-tracker', plugin_dir_url(__FILE__) . 'js/tracked-bio.js', array( 'jquery' ), $this->version, true);
 		    // Localize the script to pass data
 			wp_localize_script('bio-tracker', 'BioTracker', array(
