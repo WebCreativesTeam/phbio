@@ -74,6 +74,9 @@ html.wp-toolbar {
     @apply transform translate-x-6 bg-[#F1441E];
   }
 
+  .setting-page-wrap {
+    @apply mb-52;
+  }
   .content-preview,
   .content-edit,
   .content-settings,

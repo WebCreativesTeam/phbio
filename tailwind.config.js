@@ -7,6 +7,7 @@ module.exports = {
     "./includes/class-plugin-name-settings.php",
   ],
   safelist: [
+    "setting-page-wrap",
     "wpbody-content",
     "wpcontent",
     "ph_logo_hidden",
