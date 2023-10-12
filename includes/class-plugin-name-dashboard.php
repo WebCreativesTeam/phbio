@@ -514,8 +514,10 @@ class Plugin_Name_Dashboard {
                     echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
                     echo "</div>";
                     echo "<div class='mt-3 input-label'>Total Page Views</div>";
-                    
+                    echo "<div class='table-wrapper'>";        
                     echo do_shortcode('[wpdatachart id=2]');
+                    echo "</div>";
+
                     echo "<div class='mt-3 input-label'>Click Through Rate</div>";
                     echo "<div class='rounded-xl'>";
                     echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
@@ -536,7 +538,9 @@ class Plugin_Name_Dashboard {
                 echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
                 echo "</div>";
                 echo "<div class='mt-3 input-label'>Total Page Views</div>";
+                echo "<div class='table-wrapper'>";        
                 echo do_shortcode('[wpdatachart id=2]');
+                echo "</div>";
                 echo "<div class='mt-3 input-label'>Click Through Rate</div>";
                 echo "<div class='rounded-xl'>";        
                 echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
