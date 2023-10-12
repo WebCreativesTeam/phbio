@@ -24,7 +24,7 @@ class Plugin_Name_Dashboard {
         'read',             
         'profile-editor',        
         array($this, 'render'),       
-        'dashicons-admin-generic',    
+        'dashicons-editor-unlink',    
         100                           
     );
     }

@@ -214,7 +214,7 @@ class Plugin_Name_Admin {
 		global $pagenow;
 	
 		// Check if we're on our custom page
-		if ( $pagenow == 'admin.php' && isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor' ) {
+		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') ) {
 			// Remove all other actions hooked into admin_notices and all_admin_notices
 			remove_all_actions( 'admin_notices' );
 			remove_all_actions( 'all_admin_notices' );
