@@ -55,7 +55,7 @@ class Plugin_Name_Settings {
     public function render() {
 		$user_id = get_current_user_id();
 		?>
-			<div class="dashboard-layout mb-52">
+			<div class="dashboard-layout setting-page-wrap">
 				<div class="main-area">
 					<div class="actions-area">
 					    <div class="title-area">
