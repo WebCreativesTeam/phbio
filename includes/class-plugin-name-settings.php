@@ -42,13 +42,13 @@ class Plugin_Name_Settings {
 
     public function register() {
         add_menu_page(
-			'Link in Bio Settings',             
-			'Link in Bio Settings',                
+			'Link in Bio',             
+			'Link in Bio',                
 			'manage_options',             
 			'linkin-bio-settings',        
 			array($this, 'render'),       
-			'dashicons-admin-generic',    
-			100                           
+			'dashicons-editor-unlink',    
+			20                          
 		);
     }
     

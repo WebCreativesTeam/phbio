@@ -14,14 +14,17 @@ class Plugin_Name_Dashboard {
     }
     
     public function register() {
-       add_menu_page(
-			'Profile',             
-			'Profile',                
+       add_submenu_page('linkin-bio-settings', 'New Template', 'New Template', 'manage_options', 'post-new.php?post_type=template-manager');
+       add_submenu_page('linkin-bio-settings', 'Manage Templates', 'Manage Templates', 'manage_options', 'edit.php?post_type=template-manager');
+       add_submenu_page('linkin-bio-settings', 'User Profiles', 'User Profiles', 'manage_options', 'edit.php?post_type=hb-user-profile');
+
+       add_submenu_page(
+        'linkin-bio-settings',
+			'My Profile',             
+			'My Profile',                
 			'read',             
 			'profile-editor',        
 			array($this, 'render'),       
-			'dashicons-admin-generic',    
-			100                           
 		);
     }
 
