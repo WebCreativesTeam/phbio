@@ -55,7 +55,7 @@ class Plugin_Name_Settings {
     public function render() {
 		$user_id = get_current_user_id();
 		?>
-			<div class="dashboard-layout setting-page-wrap">
+			<div class="dashboard-layout">
 				<div class="main-area">
 					<div class="actions-area">
 					    <div class="title-area">
@@ -63,7 +63,7 @@ class Plugin_Name_Settings {
 							<h1 class="page-title"> Link In Bio Settings </h1>		
 						</div>
 					</div>
-					<div class="content-edit">
+					<div class="content-edit setting-page-wrap">
 						<form method="post">
 							<?php self::settings($user_id); ?>
                             <div class="save-progress">

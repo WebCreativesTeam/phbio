@@ -75,7 +75,7 @@ html.wp-toolbar {
   }
 
   .setting-page-wrap {
-    @apply mb-52;
+    @apply pb-52;
   }
   .content-preview,
   .content-edit,
