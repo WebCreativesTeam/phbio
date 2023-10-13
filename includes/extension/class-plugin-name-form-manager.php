@@ -6,8 +6,25 @@ class FormManager {
     public function __construct() {
         add_action('acf/include_fields', array($this, 'add_acf_fields'));
         add_action('acf/init', array($this, 'add_acf_options_page'));
-    }
+        add_action( 'admin_menu', array($this, 'register') );
 
+    }
+    
+    public function register() {
+       add_submenu_page('linkin-bio-settings', 'New Template', 'New Template', 'manage_options', 'post-new.php?post_type=template-manager');
+       add_submenu_page('linkin-bio-settings', 'Manage Templates', 'Manage Templates', 'manage_options', 'edit.php?post_type=template-manager');
+       add_submenu_page('linkin-bio-settings', 'User Profiles', 'User Profiles', 'manage_options', 'edit.php?post_type=hb-user-profile');
+
+       add_menu_page(
+        'My Profile',             
+        'My Profile',                
+        'read',             
+        'profile-editor',        
+        array($this, 'render'),       
+        'dashicons-editor-unlink',    
+        100                           
+    );
+    }
     public function add_acf_fields() {
         if ( ! function_exists( 'acf_add_local_field_group' ) ) {
             return;
