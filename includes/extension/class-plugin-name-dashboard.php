@@ -12,7 +12,7 @@ class Press_Kit_Dashboard {
             'Press Kit',             
             'Press Kit',                
             'manage_options',             
-            'press-kit-settings',        
+            'presskit-settings',        
             array($this, 'render'),       
             'dashicons-excerpt-view',    
             21                         

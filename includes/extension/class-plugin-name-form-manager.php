@@ -156,7 +156,7 @@ class FormManager {
         acf_add_options_page( array(
             'page_title' => 'Form Manager',
             'menu_slug' => 'presskit-form-manager',
-            'icon_url' => 'dashicons-media-text',
+            'parent_slug' => 'presskit-settings',
             'position' => '',
             'redirect' => false,
             'autoload' => true,
