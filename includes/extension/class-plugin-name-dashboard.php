@@ -14,7 +14,7 @@ class Press_Kit_Dashboard {
             'manage_options',             
             'press-kit-settings',        
             array($this, 'render'),       
-            'dashicons-editor-unlink',    
+            'dashicons-excerpt-view',    
             21                         
         );
     }
