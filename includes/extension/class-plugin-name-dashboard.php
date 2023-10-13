@@ -8,16 +8,15 @@ class Press_Kit_Dashboard {
     }
     
     public function register() {
-    
-    add_menu_page(
-        'Press Kit',             
-        'Press Kit',                
-        'manage_options',             
-        'press-kit-settings',        
-        array($this, 'render'),       
-        'dashicons-editor-unlink',    
-        21                         
-    );
+        add_menu_page(
+            'Press Kit',             
+            'Press Kit',                
+            'manage_options',             
+            'press-kit-settings',        
+            array($this, 'render'),       
+            'dashicons-editor-unlink',    
+            21                         
+        );
     }
 
     public function render() {
