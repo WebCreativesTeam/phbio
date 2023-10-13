@@ -4,5 +4,9 @@
  */
 
 li#toplevel_page_linkin-bio-settings {
-  padding: 10px 0px 10px 0px !important;
+  padding-top: 10px !important;
+}
+
+li#toplevel_page_press-kit-settings {
+  padding-bottom: 10px !important;
 }
