@@ -20,15 +20,7 @@ class Press_Kit_Dashboard {
        add_submenu_page('presskit-settings', 'Manage Templates', 'Manage Templates', 'manage_options', 'edit.php?post_type=pkit-template');
        add_submenu_page('presskit-settings', 'User Press Kits', 'User Press Kits', 'manage_options', 'edit.php?post_type=hb-user-pkit');
 
-        add_menu_page(
-            'Press Kit',             
-            'Press Kit',                
-            'manage_options',             
-            'presskit-settings',        
-            array($this, 'xyz'),       
-            'dashicons-excerpt-view',    
-            21                         
-        );
+        
 
         add_menu_page(
             'My Press Kit',             
@@ -41,10 +33,7 @@ class Press_Kit_Dashboard {
         );
     }
 
-    public function xyz() {
-        echo "Hi";
-    }
-
+   
     private function init_dynamic() {
         // Get Dynamic Tags
         $user_id = get_current_user_id(); 
