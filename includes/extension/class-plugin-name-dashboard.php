@@ -20,7 +20,7 @@ class Press_Kit_Dashboard {
     );
     }
 
-    render() {
+    public function render() {
         echo "Hi";
     }
     
