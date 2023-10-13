@@ -190,10 +190,13 @@ class Plugin_Name {
 
 		$this->loader->add_action( 'init', $plugin_admin, 'template_manager' );
 		$this->loader->add_action( 'init', $plugin_admin, 'user_profile_manager' );
+		$this->loader->add_action( 'init', $plugin_admin, 'pkit_template_manager' );
+		$this->loader->add_action( 'init', $plugin_admin, 'user_pkit_manager' );
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_profile_elementor_content' );
 		$this->loader->add_action( 'template_redirect', $plugin_admin, 'user_profile_private_redirection' );
 		
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'template_version_mb' );
+		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'pkit_template_version_mb' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'template_version_field_save' );
 		// $this->loader->add_action( 'admin_menu', $plugin_admin, 'admin_menu' );
 

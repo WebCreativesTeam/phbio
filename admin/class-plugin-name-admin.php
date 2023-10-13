@@ -87,7 +87,7 @@ class Plugin_Name_Admin {
 		global $pagenow;
 	
 		// Check if we're on our custom page
-		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') ) {
+		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') || ( isset( $_GET['page'] ) && $_GET['page'] == 'my-presskit') || ( isset( $_GET['page'] ) && $_GET['page'] == 'presskit-settings') ) {
 			wp_enqueue_style(
 				'main',
 				plugin_dir_url( __FILE__ ) . 'css/main.css',
@@ -214,7 +214,7 @@ class Plugin_Name_Admin {
 		global $pagenow;
 	
 		// Check if we're on our custom page
-		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') ) {
+		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') || ( isset( $_GET['page'] ) && $_GET['page'] == 'my-presskit') || ( isset( $_GET['page'] ) && $_GET['page'] == 'presskit-settings') ) {
 			// Remove all other actions hooked into admin_notices and all_admin_notices
 			remove_all_actions( 'admin_notices' );
 			remove_all_actions( 'all_admin_notices' );
@@ -309,6 +309,41 @@ class Plugin_Name_Admin {
 	
 		register_post_type( 'template-manager', $args );
 	}
+	public static function pkit_template_manager( $hook_suffix ) {
+		$labels = array(
+			'name'               => _x( 'Templates', 'post type general name', 'text-domain' ),
+			'singular_name'      => _x( 'Template', 'post type singular name', 'text-domain' ),
+			'menu_name'          => _x( 'Template Manager', 'admin menu', 'text-domain' ),
+			'name_admin_bar'     => _x( 'Template', 'add new on admin bar', 'text-domain' ),
+			'add_new'            => _x( 'Add New', 'template', 'text-domain' ),
+			'add_new_item'       => __( 'Add New Template', 'text-domain' ),
+			'new_item'           => __( 'New Template', 'text-domain' ),
+			'edit_item'          => __( 'Edit Template', 'text-domain' ),
+			'view_item'          => __( 'View Template', 'text-domain' ),
+			'all_items'          => __( 'All Templates', 'text-domain' ),
+			'search_items'       => __( 'Search Templates', 'text-domain' ),
+			'not_found'          => __( 'No templates found.', 'text-domain' ),
+			'not_found_in_trash' => __( 'No templates found in Trash.', 'text-domain' )
+		);
+	
+		$args = array(
+			'labels'             => $labels,
+			'description'        => __( 'Description.', 'text-domain' ),
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => false,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => 'pkit-template' ),
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+			'supports'           => array( 'title', 'editor', 'thumbnail' )
+		);
+	
+		register_post_type( 'pkit-template', $args );
+	}
 
 	public static function user_profile_manager( $hook_suffix ) {
 		$labels = array(
@@ -345,6 +380,41 @@ class Plugin_Name_Admin {
 	
 		register_post_type( 'hb-user-profile', $args );
 	}
+	public static function user_pkit_manager( $hook_suffix ) {
+		$labels = array(
+			'name'               => _x( 'User Press Kits', 'post type general name', 'text-domain' ),
+			'singular_name'      => _x( 'User Press Kit', 'post type singular name', 'text-domain' ),
+			'menu_name'          => _x( 'User Press Kits', 'admin menu', 'text-domain' ),
+			'name_admin_bar'     => _x( 'User Press Kit', 'add new on admin bar', 'text-domain' ),
+			'add_new'            => _x( 'Add New', 'User Press Kits', 'text-domain' ),
+			'add_new_item'       => __( 'Add New User Press Kit', 'text-domain' ),
+			'new_item'           => __( 'New User Press Kit', 'text-domain' ),
+			'edit_item'          => __( 'Edit User Press Kit', 'text-domain' ),
+			'view_item'          => __( 'View User Press Kit', 'text-domain' ),
+			'all_items'          => __( 'All User Press Kits', 'text-domain' ),
+			'search_items'       => __( 'Search User Press Kits', 'text-domain' ),
+			'not_found'          => __( 'No User Press Kits found.', 'text-domain' ),
+			'not_found_in_trash' => __( 'No User Press Kits found in Trash.', 'text-domain' )
+		);
+	
+		$args = array(
+			'labels'             => $labels,
+			'description'        => __( 'User Press Kits.', 'text-domain' ),
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => false,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => 'presskit' ),
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => null,
+			'supports'           => array( 'title', 'editor', 'thumbnail' )
+		);
+	
+		register_post_type( 'hb-user-pkit', $args );
+	}
 	
 
      function template_version_mb( $hook_suffix ) {
@@ -353,6 +423,14 @@ class Plugin_Name_Admin {
 			__( 'Version', 'text-domain' ),
 			array($this, 'template_version_field'),    
 			'template-manager'
+		);
+	}
+     function pkit_template_version_mb( $hook_suffix ) {
+		add_meta_box(
+			'version_id',
+			__( 'Version', 'text-domain' ),
+			array($this, 'template_version_field'),    
+			'pkit-template'
 		);
 	}
 
