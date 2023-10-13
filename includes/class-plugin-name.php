@@ -139,7 +139,7 @@ class Plugin_Name {
 
 
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/extension/class-plugin-name-form-manager.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/extension/class-plugin-name-extension.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
