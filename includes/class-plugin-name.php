@@ -137,6 +137,10 @@ class Plugin_Name {
 		
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/queries/query_links_list.php';
 
+
+
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/extension/class-plugin-name-form-manager.php';
+
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
