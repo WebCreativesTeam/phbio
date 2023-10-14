@@ -28,11 +28,12 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 			}
 
             $username = $_POST['username'];
+            $type = $_POST['type'];
 
             // Check if the CPT with this permalink exists
             $args = array(
                 'name'        => $username,
-                'post_type'   => 'hb-user-profile',
+                'post_type'   => $type,
                 'post_status' => 'publish',
                 'numberposts' => 1
             );

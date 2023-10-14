@@ -169,44 +169,83 @@ class Plugin_Name_Utilities {
 
 
             // Sync with hb-user-profile cpt
-    if ($name === "username") {
-        // Search for a hb-user-profile post associated with this user
-        $args = array(
-            'post_type' => 'hb-user-profile',
-            'meta_query' => array(
-                array(
-                    'key' => 'associated_user',
-                    'value' => $user_id,
-                    'compare' => '='
-                )
-            )
-        );
-        $query = new WP_Query($args);
+            if ($name === "username") {
+                // Search for a hb-user-profile post associated with this user
+                $args = array(
+                    'post_type' => 'hb-user-profile',
+                    'meta_query' => array(
+                        array(
+                            'key' => 'associated_user',
+                            'value' => $user_id,
+                            'compare' => '='
+                        )
+                    )
+                );
+                $query = new WP_Query($args);
 
-        // If there's an existing post, update it
-        if ($query->have_posts()) {
-            $query->the_post();
-            $post_id = get_the_ID();
-            wp_update_post(array(
-                'ID' => $post_id,
-                'post_name' => $posted_value, // Update the slug (URL) of the post
-                'post_title' => $posted_value // Update the title of the post
-            ));
-        } else {
-            // If not, create a new one
-            $post_id = wp_insert_post(array(
-                'post_type' => 'hb-user-profile',
-                'post_status' => 'publish',
-                'post_name' => $posted_value, // Set the slug (URL) of the post
-                'post_title' => $posted_value, // Set the title of the post
-                'meta_input' => array(
-                    'associated_user' => $user_id
-                )
-            ));
-        }
-        // Reset the WP_Query
-        wp_reset_postdata();
-    }
+                // If there's an existing post, update it
+                if ($query->have_posts()) {
+                    $query->the_post();
+                    $post_id = get_the_ID();
+                    wp_update_post(array(
+                        'ID' => $post_id,
+                        'post_name' => $posted_value, // Update the slug (URL) of the post
+                        'post_title' => $posted_value // Update the title of the post
+                    ));
+                } else {
+                    // If not, create a new one
+                    $post_id = wp_insert_post(array(
+                        'post_type' => 'hb-user-profile',
+                        'post_status' => 'publish',
+                        'post_name' => $posted_value, // Set the slug (URL) of the post
+                        'post_title' => $posted_value, // Set the title of the post
+                        'meta_input' => array(
+                            'associated_user' => $user_id
+                        )
+                    ));
+                }
+                // Reset the WP_Query
+                wp_reset_postdata();
+            }
+            // Sync with hb-user-profile cpt
+            if ($name === "pkit_username") {
+                // Search for a hb-user-profile post associated with this user
+                $args = array(
+                    'post_type' => 'hb-user-pkit',
+                    'meta_query' => array(
+                        array(
+                            'key' => 'associated_pkit_user',
+                            'value' => $user_id,
+                            'compare' => '='
+                        )
+                    )
+                );
+                $query = new WP_Query($args);
+
+                // If there's an existing post, update it
+                if ($query->have_posts()) {
+                    $query->the_post();
+                    $post_id = get_the_ID();
+                    wp_update_post(array(
+                        'ID' => $post_id,
+                        'post_name' => $posted_value, // Update the slug (URL) of the post
+                        'post_title' => $posted_value // Update the title of the post
+                    ));
+                } else {
+                    // If not, create a new one
+                    $post_id = wp_insert_post(array(
+                        'post_type' => 'hb-user-pkit',
+                        'post_status' => 'publish',
+                        'post_name' => $posted_value, // Set the slug (URL) of the post
+                        'post_title' => $posted_value, // Set the title of the post
+                        'meta_input' => array(
+                            'associated_pkit_user' => $user_id
+                        )
+                    ));
+                }
+                // Reset the WP_Query
+                wp_reset_postdata();
+            }
         }
     
         // Retrieve the updated value for the field

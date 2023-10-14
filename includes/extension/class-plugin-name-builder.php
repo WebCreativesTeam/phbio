@@ -5,6 +5,128 @@ class Press_Kit_Builder {
 
     const ERROR_LANG_PRO= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock an additional language instantly by <span class='text-[#F1441E] font-bold'>Going PRO </span></a>";
 
+    public static function url_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true) {
+        
+        
+        $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
+        if (!$data && $isValue) $data = $value;
+    
+        $char_limit = 0;
+        if ($hasLimit) {
+            $char_limit_key = 'limit_' . $name;
+            $char_limit = get_metadata('user', 1, $char_limit_key, true);
+            if (!$char_limit) {
+                $hasLimit = false;  // Disable the limit if char_limit is unset
+            }
+        }
+        ?>
+    
+        <div 
+            class="mt-10"
+            x-data="{ typingTimer: '', doneTypingInterval: 2000,  copied: false, charCount: <?= strlen($data) ?>, charLimit: <?= $char_limit ?>, username: '<?= esc_attr($data) ?>', secureUsername: '<?= esc_attr($data) ?>', isAvailable: false, isLoading: false, message: '', hasChecked: false }" 
+            x-init="() => {
+                
+                isValidUsername = () => {
+                    return /^[a-zA-Z0-9-_]+$/.test(username);
+                };
+                copyToClipboard = () => {
+                    const el = document.createElement('textarea');
+                    el.value = '<?php echo esc_js(site_url('/presskit')); ?>/' + secureUsername;
+                    document.body.appendChild(el);
+                    el.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(el);
+                    copied = true;
+                    setTimeout(() => { copied = false; }, 2000); // Reset after 2 seconds
+                };
+                navigateToLink = () => {
+                    const url = '<?php echo esc_js(site_url('/presskit')); ?>/' + secureUsername;
+                    window.open(url, '_blank');
+                };
+
+                checkAvailability = () => {
+                    charCount = username.length;
+                    if (!isValidUsername()) {
+                        message = 'Invalid username.';
+                        hasChecked = true;
+                        return;  // Exit the function without making the AJAX request
+                    }
+    
+                    isLoading = true;
+                    hasChecked = true;
+                    let formData = new FormData();
+                    formData.append('action', 'callback');
+                    formData.append('username', username);
+                    formData.append('type', 'hb-user-pkit');
+                    formData.append('nonce', plugin.nonce);
+    
+                    fetch(plugin.ajax_url, {
+                        method: 'POST',
+                        body: formData,
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        isLoading = false;
+                        isAvailable = data.available;
+                        message = data.available ? 'Username is available.' : 'Username is already taken.';
+                        if(data.available) {
+                            secureUsername = username; 
+                        } else {
+                            secureUsername = '<?= esc_js($data) ?>'; 
+                        }
+                    })
+                    .catch(error => {
+                        isLoading = false;
+                        console.error('Error:', error);
+                    });
+                };
+                onInput = () => {
+                    // Clear the existing timer if there is one
+                    clearTimeout(typingTimer);
+                    
+                    // Set a new timer
+                    typingTimer = setTimeout(checkAvailability, doneTypingInterval);
+                };
+                }">
+    
+            <label for="<?php echo $name; ?>" class="mt-3 input-label"><?php echo $label; ?></label>
+            <div x-text="message" x-bind:style="'visibility: ' + (hasChecked ? 'visible' : 'hidden')" :class="{'text-blue-400': isAvailable, 'text-red-500': !isAvailable && message !== ''}" ></div>
+    
+            <div class="input-container">
+                <?php
+                // SVG icon
+                echo $icon;
+    
+                // Display the field
+                if (!Plugin_Name_Utilities::check_user_capability($capability)) {
+                    echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="onInput" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" disabled />';
+                    echo '<p class="description">' . self::ERROR_MSG . '</p>';
+                } else {
+                    echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="onInput" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" />';
+                }
+                
+    
+                // The hidden input which holds the real value to be saved
+                echo '<input type="hidden" name="' . esc_attr($name) . '" x-model="secureUsername" />';
+                if ($hasLimit) {
+                    echo '<span class="char-counter" x-text="`${charCount} / ${charLimit}`"></span>';
+                }
+                ?>
+            </div>
+            
+<div class="flex flex-col items-start gap-3 mb-6 sm:items-center sm:flex-row" x-show="secureUsername">
+<span class="block text-sm text-gray-500 hover:text-gray-700" x-text="`<?php echo esc_js(site_url('/presskit')); ?>/` + secureUsername"></span>
+<div class="flex flex-row gap-4 sm:gap-2">
+<svg @click="copyToClipboard" xmlns="http://www.w3.org/2000/svg" width="24" height="24" class="w-5 h-5 cursor-pointer hover:text-gray-700" viewBox="0 0 24 24" fill="currentColor"><path d="M21,8.94a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19.32.32,0,0,0-.09,0A.88.88,0,0,0,14.05,2H10A3,3,0,0,0,7,5V6H6A3,3,0,0,0,3,9V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V9S21,9,21,8.94ZM15,5.41,17.59,8H16a1,1,0,0,1-1-1ZM15,19a1,1,0,0,1-1,1H6a1,1,0,0,1-1-1V9A1,1,0,0,1,6,8H7v7a3,3,0,0,0,3,3h5Zm4-4a1,1,0,0,1-1,1H10a1,1,0,0,1-1-1V5a1,1,0,0,1,1-1h3V7a3,3,0,0,0,3,3h3Z"></path></svg>
+<svg @click="navigateToLink" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 cursor-pointer hover:text-gray-700" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18,10.82a1,1,0,0,0-1,1V19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V8A1,1,0,0,1,5,7h7.18a1,1,0,0,0,0-2H5A3,3,0,0,0,2,8V19a3,3,0,0,0,3,3H16a3,3,0,0,0,3-3V11.82A1,1,0,0,0,18,10.82Zm3.92-8.2a1,1,0,0,0-.54-.54A1,1,0,0,0,21,2H15a1,1,0,0,0,0,2h3.59L8.29,14.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L20,5.41V9a1,1,0,0,0,2,0V3A1,1,0,0,0,21.92,2.62Z"></path></svg>
+
+<span x-show="copied" class="ml-2 text-sm text-gray-700">Copied!</span>
+</div>
+</div>
+        </div>
+        <?php
+    }
+    
     public static function language_select($name, $value, $label, $capability, $target_user_id) {
 
         if(!Plugin_Name_Utilities::is_full_version($target_user_id)) {

@@ -597,7 +597,7 @@ class Press_Kit_Dashboard {
         
         <form method="post">
             <?php 
-            Plugin_Name_Builder::url_field('pkit_username', 
+            Press_Kit_Builder::url_field('pkit_username', 
                                         'Username', 
                                         false,
                                         'Username', 
