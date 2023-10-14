@@ -453,7 +453,7 @@ class Press_Kit_Dashboard {
                 </button>
                 <button :class="{ 'active-tab': activeTab === 'forms' }" @click="activeTab = 'forms'" class="tab-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.11,15.39,8.23,19.27a2.47,2.47,0,0,1-3.5,0,2.46,2.46,0,0,1,0-3.5l3.88-3.88a1,1,0,1,0-1.42-1.42L3.31,14.36a4.48,4.48,0,0,0,6.33,6.33l3.89-3.88a1,1,0,0,0-1.42-1.42Zm-3.28-.22a1,1,0,0,0,.71.29,1,1,0,0,0,.71-.29l4.92-4.92a1,1,0,1,0-1.42-1.42L8.83,13.75A1,1,0,0,0,8.83,15.17ZM21,18H20V17a1,1,0,0,0-2,0v1H17a1,1,0,0,0,0,2h1v1a1,1,0,0,0,2,0V20h1a1,1,0,0,0,0-2Zm-4.19-4.47,3.88-3.89a4.48,4.48,0,0,0-6.33-6.33L10.47,7.19a1,1,0,1,0,1.42,1.42l3.88-3.88a2.47,2.47,0,0,1,3.5,0,2.46,2.46,0,0,1,0,3.5l-3.88,3.88a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0Z"></path></svg>
-                    Links
+                    Artist Details
                 </button>
                 <button :class="{ 'active-tab': activeTab === 'analytics' }" @click="activeTab = 'analytics'" class="tab-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M5,12a1,1,0,0,0-1,1v8a1,1,0,0,0,2,0V13A1,1,0,0,0,5,12ZM10,2A1,1,0,0,0,9,3V21a1,1,0,0,0,2,0V3A1,1,0,0,0,10,2ZM20,16a1,1,0,0,0-1,1v4a1,1,0,0,0,2,0V17A1,1,0,0,0,20,16ZM15,8a1,1,0,0,0-1,1V21a1,1,0,0,0,2,0V9A1,1,0,0,0,15,8Z"></path></svg>
@@ -467,11 +467,11 @@ class Press_Kit_Dashboard {
                     <?php self::edit__profile_tab($user_id); ?>
                 </div>
                 <!-- Profile Tab Content - ENDS HERE -->
-                <!-- Links Tab Content - STARTS HERE -->
+                <!-- Artist Details Tab Content - STARTS HERE -->
                 <div x-show="activeTab === 'forms' && !showTemplates && !showSettings" class="tab-content">
                     <?php self::edit__forms_tab($user_id); ?>
                 </div>
-                <!-- Links Tab Content - ENDS HERE -->
+                <!-- Artist Details Tab Content - ENDS HERE -->
                 <!-- Analytics Tab Content - STARTS HERE -->
                 <div x-show="activeTab === 'analytics' && !showTemplates && !showSettings" class="tab-content">
                     <?php self::edit__tab_analytics($user_id);?>
@@ -616,6 +616,8 @@ class Press_Kit_Dashboard {
 
             <?php
             Press_Kit_Builder::language_select('pkit_lang', 'en', 'Language', Plugin_Name_Capabilities::PRESSKIT_LANG, $user_id);
+			$xyz = get_user_meta($user_id, 'pkit_lang', true);
+            echo $xyz;
             ?>
             <div class="save-progress">
                 <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 text-base upload-btn sm:text-sm">
