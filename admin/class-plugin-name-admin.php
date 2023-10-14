@@ -411,7 +411,7 @@ class Plugin_Name_Admin {
 			'rewrite'            => array( 'slug' => 'presskit' ),
 			'capability_type'    => 'post',
 			'has_archive'        => true,
-			'hierarchical'       => false,
+			'hierarchical'       => true,
 			'menu_position'      => null,
 			'supports'           => array( 'title', 'editor', 'thumbnail' )
 		);

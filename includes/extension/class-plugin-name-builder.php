@@ -23,7 +23,7 @@ class Press_Kit_Builder {
     
         <div 
             class="mt-10"
-            x-data="{ typingTimer: '', doneTypingInterval: 2000,  copied: false, charCount: <?= strlen($data) ?>, charLimit: <?= $char_limit ?>, username: '<?= esc_attr($data) ?>', secureUsername: '<?= esc_attr($data) ?>', isAvailable: false, isLoading: false, message: '', hasChecked: false }" 
+            x-data="{ typingTimer: '', doneTypingInterval: 2000,  copied: false, charCount: <?php echo strlen($data); ?>, charLimit: <?php echo $char_limit; ?>, username: '<?php echo esc_attr($data); ?>', secureUsername: '<?php echo esc_attr($data); ?>', isAvailable: false, isLoading: false, message: '', hasChecked: false }" 
             x-init="() => {
                 
                 isValidUsername = () => {
@@ -72,7 +72,7 @@ class Press_Kit_Builder {
                         if(data.available) {
                             secureUsername = username; 
                         } else {
-                            secureUsername = '<?= esc_js($data) ?>'; 
+                            secureUsername = '<?php echo esc_js($data) ?>'; 
                         }
                     })
                     .catch(error => {
