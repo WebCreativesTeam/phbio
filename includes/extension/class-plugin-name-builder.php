@@ -19,6 +19,8 @@ class Press_Kit_Builder {
                 $hasLimit = false;  // Disable the limit if char_limit is unset
             }
         }
+
+        var_dump($char_limit);
         ?>
     
         <div 
