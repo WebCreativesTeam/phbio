@@ -190,11 +190,54 @@ class Press_Kit_Dashboard {
             <div class="mt-10 w-[89%] sm:w-[94%] mx-auto">
                 <!-- Hidden Input for Selected Template -->
                 <form method="post" action="" id="settingsForm">
-                <?php 
-                    Plugin_Name_Builder::checkbox_field('public', 
-                    'Enable Public Access', 
-                    Plugin_Name_Capabilities::EDIT_PROJECT_NAME, $user_id); 
-                    ?>
+                <?php
+                    $user_id = get_current_user_id();
+
+                    $args = array(
+                        'post_type' => 'hb-user-pkit',
+                        'meta_query' => array(
+                            array(
+                                'key' => 'associated_pkit_user',
+                                'value' => $user_id,
+                                'compare' => '='
+                            )
+                        ),
+                        'numberposts' => 1,
+                    );
+
+                    // Get the parent post
+                    $parent = get_posts($args);
+
+                    if (!empty($parent)) {
+                        $parent_id = $parent[0]->ID;
+
+                        $args_children = array(
+                            'post_type' => 'hb-user-pkit',
+                            'post_parent' => $parent_id,
+                            'numberposts' => -1,
+                            'post_status' => 'publish',
+                        );
+
+                        $children = get_posts($args_children);
+
+                        $children_array = array();
+
+                        foreach ($children as $child) {
+                            // Create an associative array: [ID => slug]
+                            $children_array[$child->ID] = $child->post_name;
+                        }
+
+
+                        // Loop through the associative array
+                        foreach ($children_array as $i => $lang) {
+                            // Call the function for each ID and slug
+                            Plugin_Name_Builder::checkbox_field('public_' . $i, 
+                                'Enable Public Access for "' . ucfirst($lang) . '"', 
+                                Plugin_Name_Capabilities::EDIT_PROJECT_NAME, $user_id); 
+                        }
+                    }
+                ?>
+
                 <?php 
 
                          
@@ -616,8 +659,6 @@ class Press_Kit_Dashboard {
 
             <?php
             Press_Kit_Builder::language_select('pkit_lang', 'en', 'Language', Plugin_Name_Capabilities::PRESSKIT_LANG, $user_id);
-			$xyz = get_user_meta($user_id, 'pkit_lang', true);
-            echo $xyz;
             ?>
             <div class="save-progress">
                 <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 text-base upload-btn sm:text-sm">

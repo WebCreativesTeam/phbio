@@ -529,6 +529,45 @@ function user_profile_private_redirection() {
             }
         }
     }
+    if (is_singular('hb-user-pkit')) {
+        
+		
+	
+		if($post->post_parent !== 0) {
+				// Get the associated user for this CPT post (assuming you've saved the user ID in the post meta with key 'associated_user')
+				$user_id = get_post_meta($post->post_parent, 'associated_pkit_user', true);
+			
+			
+				// Exclude the associated user and administrators from the redirection
+				if (get_current_user_id() == $user_id || current_user_can('manage_options')) {
+					return;
+				}
+				
+				// Get the 'public' meta for this user and this child post
+				$public = get_user_meta($user_id, 'public_' . $post->ID, true);
+				
+				// If 'public' is NOT set to 'yes', perform the redirection
+				if ($public !== 'yes') {
+            
+					// Get the private redirection URL set for user ID '1'
+					$redirection_url = get_user_meta(1, 'private_pkit_redirection', true);
+		
+					// If the redirection URL is set, redirect to it. Otherwise, redirect to the 404 page.
+					if (!empty($redirection_url)) {
+						wp_redirect($redirection_url);
+						exit;
+					} else {
+						global $wp_query;
+						$wp_query->set_404();
+						status_header(404);
+						get_template_part(404);
+						exit;
+					}
+				}
+			
+		}
+	}
+	
 }
 
     

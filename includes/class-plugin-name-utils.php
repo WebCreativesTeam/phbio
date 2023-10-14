@@ -247,53 +247,57 @@ class Plugin_Name_Utilities {
                 wp_reset_postdata();
 
 
-                 // Create or update subpages
-    $xyz = get_user_meta($user_id, 'pkit_lang', true);
-    $langs = explode(',', $xyz);
-
-    foreach ($langs as $lang) {
-        $args = array(
-            'post_type' => 'hb-user-pkit',
-            'post_parent' => $post_id,
-            'name' => $lang
-        );
-        $subpage_query = new WP_Query($args);
-        
-        if ($subpage_query->have_posts()) {
-            $subpage_query->the_post();
-            wp_update_post(array(
-                'ID' => get_the_ID(),
-                'post_title' => ucfirst($lang) 
-            ));
-        } else {
-            wp_insert_post(array(
-                'post_type' => 'hb-user-pkit',
-                'post_status' => 'publish',
-                'post_parent' => $post_id,
-                'post_name' => $lang, 
-                'post_title' => ucfirst($lang) 
-            ));
-        }
-        // Reset the WP_Query
-        wp_reset_postdata();
-    }
-
-    // Unpublish other subpages
-    $args = array(
-        'post_type' => 'hb-user-pkit',
-        'post_parent' => $post_id,
-        'numberposts' => -1,
-    );
-    $all_subpages_query = get_posts($args); // using get_posts to avoid conflicts with postdata
-
-    foreach ($all_subpages_query as $subpage) {
-        if (!in_array($subpage->post_name, $langs)) {
-            wp_update_post(array(
-                'ID' => $subpage->ID,
-                'post_status' => 'draft'
-            ));
-        }
-    }
+            
+                // Create or update subpages
+                $xyz = get_user_meta($user_id, 'pkit_lang', true);
+                $langs = explode(',', $xyz);
+            
+                foreach ($langs as $lang) {
+                    $args = array(
+                        'post_type' => 'hb-user-pkit',
+                        'post_parent' => $post_id,
+                        'name' => $lang,
+                        'post_status' => array('publish', 'draft')  // Include drafts in the search
+                    );
+                    $subpage_query = new WP_Query($args);
+                    
+                    if ($subpage_query->have_posts()) {
+                        $subpage_query->the_post();
+                        wp_update_post(array(
+                            'ID' => get_the_ID(),
+                            'post_title' => ucfirst($lang),
+                            'post_status' => 'publish' // Ensure it's published
+                        ));
+                    } else {
+                        wp_insert_post(array(
+                            'post_type' => 'hb-user-pkit',
+                            'post_status' => 'publish',
+                            'post_parent' => $post_id,
+                            'post_name' => $lang, 
+                            'post_title' => ucfirst($lang)
+                        ));
+                    }
+                    // Reset the WP_Query
+                    wp_reset_postdata();
+                }
+            
+                // Unpublish other subpages
+                $args = array(
+                    'post_type' => 'hb-user-pkit',
+                    'post_parent' => $post_id,
+                    'numberposts' => -1,
+                    'post_status' => 'publish'  // Only consider published subpages
+                );
+                $all_subpages_query = get_posts($args);
+            
+                foreach ($all_subpages_query as $subpage) {
+                    if (!in_array($subpage->post_name, $langs)) {
+                        wp_update_post(array(
+                            'ID' => $subpage->ID,
+                            'post_status' => 'draft'
+                        ));
+                    }
+                }
             }
         }
     
