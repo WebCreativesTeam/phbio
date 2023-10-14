@@ -298,6 +298,8 @@ class Plugin_Name_Utilities {
                         ));
                     }
                 }
+
+                wp_reset_postdata();
             }
         }
     
