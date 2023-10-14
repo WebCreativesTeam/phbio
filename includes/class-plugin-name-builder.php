@@ -13,7 +13,7 @@ class Plugin_Name_Builder {
         if (!$data && $isValue) $data = $value;
         
         if(!$templateIncluded) {
-            echo Plugin_Name_Utilities::is_not_included_field($label);;
+            echo Plugin_Name_Utilities::is_not_included_field($label);
         }
         $char_limit = 0;
         if ($hasLimit) {
@@ -1006,6 +1006,7 @@ class Plugin_Name_Builder {
             echo '<p class="error">Something went wrong.</p>';
         }
     }
+    
     
     
     

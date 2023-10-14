@@ -588,17 +588,20 @@ var _socialLinksNewDefault = parcelHelpers.interopDefault(_socialLinksNew);
 var _dashboard = require("./components/dashboard");
 var _dropdown = require("./components/dropdown");
 var _dropdownDefault = parcelHelpers.interopDefault(_dropdown);
+var _lang = require("./components/lang");
+var _langDefault = parcelHelpers.interopDefault(_lang);
 var _linkManager = require("./components/link-manager");
 window.Alpine = (0, _alpinejsDefault.default);
 (0, _alpinejsDefault.default).data("dataList", (initLinks = [])=>(0, _linksDefault.default)(initLinks));
 (0, _alpinejsDefault.default).data("dropdown", (initIcons = [], selected = "")=>(0, _dropdownDefault.default)(initIcons, selected));
+(0, _alpinejsDefault.default).data("lang", (allowMultiple = false, selected = "")=>(0, _langDefault.default)(allowMultiple, selected));
 (0, _alpinejsDefault.default).data("socialLinks", (initLinks = [])=>(0, _socialLinksNewDefault.default)(initLinks));
 (0, _alpinejsDefault.default).data("analyticsFilter", ()=>(0, _analyticsFilter.analyticsFilter)());
 (0, _alpinejsDefault.default).data("dashboard", ()=>(0, _dashboard.dashboard)());
 (0, _alpinejsDefault.default).data("linkManager", ()=>(0, _linkManager.linkManager)());
 (0, _alpinejsDefault.default).start();
 
-},{"alpinejs":"69hXP","./components/links":"gsPSq","./components/analytics-filter":"fI1UE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/social-links-new":"gu8G2","./components/dashboard":"lcv74","./components/dropdown":"h4fl0","./components/link-manager":"hlcQ7"}],"69hXP":[function(require,module,exports) {
+},{"alpinejs":"69hXP","./components/links":"gsPSq","./components/analytics-filter":"fI1UE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/social-links-new":"gu8G2","./components/dashboard":"lcv74","./components/dropdown":"h4fl0","./components/link-manager":"hlcQ7","./components/lang":"bpmMv"}],"69hXP":[function(require,module,exports) {
 // packages/alpinejs/src/scheduler.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -4135,6 +4138,44 @@ const linkManager = ()=>({
             }).catch((err)=>{
                 console.log(err);
             });
+        }
+    });
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bpmMv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = ({ selected = "", allowMultiple = false })=>({
+        isOpen: false,
+        allowMultiple,
+        selected: selected.split(","),
+        options: {
+            en: "English",
+            it: "Italian",
+            es: "Spanish",
+            de: "German",
+            fr: "French",
+            pt: "Portuguese"
+        },
+        canOpenDropdown () {
+            return this.allowMultiple && this.selected.length < 2 || this.selected.length === 0;
+        },
+        selectOption (option) {
+            if (this.allowMultiple) {
+                if (!this.selected.includes(option) && this.selected.length < 2) this.selected.push(option);
+                else this.selected = this.selected.filter((sel)=>sel !== option);
+            } else this.selected = [
+                option
+            ];
+            this.isOpen = false;
+        },
+        removeOption (option) {
+            this.selected = this.selected.filter((sel)=>sel !== option);
+        },
+        isSelected (option) {
+            return this.selected.includes(option);
+        },
+        selectedAsString () {
+            return this.selected.join(",");
         }
     });
 

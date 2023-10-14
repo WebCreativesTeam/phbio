@@ -942,7 +942,7 @@ select {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     padding-top: 1rem;
-    padding-bottom: 5rem;
+    padding-bottom: 20rem;
 }
 @media (min-width: 768px) {
     .tab-content {
@@ -1282,6 +1282,17 @@ body {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
 .visible {
     visibility: visible;
 }
@@ -1317,6 +1328,9 @@ body {
 }
 .m-0 {
     margin: 0px;
+}
+.m-1 {
+    margin: 0.25rem;
 }
 .m-5 {
     margin: 1.25rem;
@@ -1376,6 +1390,12 @@ body {
 .mb-7 {
     margin-bottom: 1.75rem;
 }
+.ml-0 {
+    margin-left: 0px;
+}
+.ml-0\.5 {
+    margin-left: 0.125rem;
+}
 .ml-1 {
     margin-left: 0.25rem;
 }
@@ -1430,8 +1450,14 @@ body {
 .h-10 {
     height: 2.5rem;
 }
+.h-2 {
+    height: 0.5rem;
+}
 .h-24 {
     height: 6rem;
+}
+.h-4 {
+    height: 1rem;
 }
 .h-44 {
     height: 11rem;
@@ -1445,8 +1471,14 @@ body {
 .h-full {
     height: 100%;
 }
+.max-h-64 {
+    max-height: 16rem;
+}
 .max-h-96 {
     max-height: 24rem;
+}
+.w-2 {
+    width: 0.5rem;
 }
 .w-24 {
     width: 6rem;
@@ -1477,6 +1509,9 @@ body {
 }
 .flex-auto {
     flex: 1 1 auto;
+}
+.flex-shrink-0 {
+    flex-shrink: 0;
 }
 .cursor-not-allowed {
     cursor: not-allowed;
@@ -1538,6 +1573,9 @@ body {
 .overflow-auto {
     overflow: auto;
 }
+.overflow-y-auto {
+    overflow-y: auto;
+}
 .rounded {
     border-radius: 0.25rem;
 }
@@ -1552,9 +1590,6 @@ body {
 }
 .rounded-md {
     border-radius: 0.375rem;
-}
-.rounded-xl {
-    border-radius: 0.75rem;
 }
 .rounded-l-full {
     border-top-left-radius: 9999px;
@@ -1642,9 +1677,24 @@ body {
 .bg-inherit {
     background-color: inherit;
 }
+.bg-red-100 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(254 226 226 / var(--tw-bg-opacity));
+}
+.bg-red-600 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
 .bg-white {
     --tw-bg-opacity: 1;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.bg-\[\#F1441E\] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(241 68 30 / var(--tw-bg-opacity));
+}
+.bg-transparent {
+    background-color: transparent;
 }
 .object-cover {
     -o-object-fit: cover;
@@ -1683,6 +1733,14 @@ body {
 .px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
+}
+.py-0 {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.py-0\.5 {
+    padding-top: 0.125rem;
+    padding-bottom: 0.125rem;
 }
 .py-1 {
     padding-top: 0.25rem;
@@ -1770,6 +1828,10 @@ body {
     --tw-text-opacity: 1;
     color: rgb(239 68 68 / var(--tw-text-opacity));
 }
+.text-red-800 {
+    --tw-text-opacity: 1;
+    color: rgb(153 27 27 / var(--tw-text-opacity));
+}
 .text-white {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1830,9 +1892,25 @@ html.wp-toolbar {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
+.hover\:text-red-700:hover {
+    --tw-text-opacity: 1;
+    color: rgb(185 28 28 / var(--tw-text-opacity));
+}
 .hover\:text-white:hover {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.hover\:text-\[\#F1441E\]:hover {
+    --tw-text-opacity: 1;
+    color: rgb(241 68 30 / var(--tw-text-opacity));
+}
+.focus\:text-red-700:focus {
+    --tw-text-opacity: 1;
+    color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+.focus\:text-\[\#F1441E\]:focus {
+    --tw-text-opacity: 1;
+    color: rgb(241 68 30 / var(--tw-text-opacity));
 }
 .focus\:outline-none:focus {
     outline: 2px solid transparent;

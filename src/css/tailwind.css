@@ -324,7 +324,7 @@ html.wp-toolbar {
   }
 
   .tab-content {
-    @apply px-6 pt-4 pb-20 md:px-2;
+    @apply px-6 pt-4 pb-80 md:px-2;
   }
 
   /* Card */

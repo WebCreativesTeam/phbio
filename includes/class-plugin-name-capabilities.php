@@ -9,6 +9,8 @@ class Plugin_Name_Capabilities {
     const HIGHLIGHT_LINK = 'highlight_link';
     const MANAGE_WEBSITE_LOGO = 'manage_brand_logo';
     const CAN_SCHEDULE_LINK = 'can_schedule_link';
+
+    const PRESSKIT_LANG = 'can_manage_langs';
 }
 
 new Plugin_Name_Capabilities();

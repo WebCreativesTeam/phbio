@@ -170,6 +170,7 @@ class Plugin_Name_Admin {
 				Plugin_Name_Capabilities::EDIT_PROJECT_NAME => true,
 				Plugin_Name_Capabilities::EDIT_BIO => true,
 				Plugin_Name_Capabilities::EDIT_LINKS => true,
+				Plugin_Name_Capabilities::PRESSKIT_LANG => true,
 			)
 		);
 	
@@ -187,6 +188,8 @@ class Plugin_Name_Admin {
 				Plugin_Name_Capabilities::HIGHLIGHT_LINK => true,
 				Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO => true,
 				Plugin_Name_Capabilities::CAN_SCHEDULE_LINK => true,
+				Plugin_Name_Capabilities::PRESSKIT_LANG => true,
+
 
 			)
 		);
