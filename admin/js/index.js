@@ -3778,7 +3778,7 @@ const analyticsFilter = ()=>({
         setDateRange (range, submitForm = false) {
             this.selectedRange = range;
             // Save the selected range in local storage
-            if (this.selectedRange !== "custom") localStorage.setItem("selectedRange", this.selectedRange);
+            localStorage.setItem("selectedRange", this.selectedRange);
             const today = new Date();
             switch(range){
                 case "7days":
