@@ -332,6 +332,11 @@ class Plugin_Name_Builder {
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 448 512" fill="currentColor"><path d="M170.5 51.6L151.5 80h145l-19-28.4c-1.5-2.2-4-3.6-6.7-3.6H177.1c-2.7 0-5.2 1.3-6.7 3.6zm147-26.6L354.2 80H368h48 8c13.3 0 24 10.7 24 24s-10.7 24-24 24h-8V432c0 44.2-35.8 80-80 80H112c-44.2 0-80-35.8-80-80V128H24c-13.3 0-24-10.7-24-24S10.7 80 24 80h8H80 93.8l36.7-55.1C140.9 9.4 158.4 0 177.1 0h93.7c18.7 0 36.2 9.4 46.6 24.9zM80 128V432c0 17.7 14.3 32 32 32H336c17.7 0 32-14.3 32-32V128H80zm80 64V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16zm80 0V400c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-8.8 7.2-16 16-16s16 7.2 16 16z"/></svg>                           
                             
                             </button>
+
+                            <div class="flex flex-row items-center gap-2 uppercase font-semibold text-sm sm:text-[1rem] mb-10">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="text-[#f1441e] text-[14px]" fill="currentColor"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg>
+                                <span>You're adding a new social icon</span>
+                            </div>
                             <label class="input-label">Select Icon</label>
                             <div class="px-4 py-4 my-2 bg-white rounded" x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })" >
                                 <div @click="isOpen = !isOpen" class="relative cursor-pointer">
@@ -397,6 +402,11 @@ class Plugin_Name_Builder {
                                 </div>
                                 <div id="editionForm" x-show="link.isEditing">
                                     <div class="p-5 mt-5">
+
+                                        <div class="flex flex-row items-center gap-2 uppercase font-semibold text-sm sm:text-[1rem] mb-10">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="text-[#f1441e] text-[14px]" fill="currentColor"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg>
+                                            <span>You're editing your social icon</span>
+                                        </div>
                                         <label class="input-label">Icon</label>
                                         
                                        
@@ -476,6 +486,10 @@ class Plugin_Name_Builder {
                             
                             </button>
                             
+                            <div class="flex flex-row items-center gap-2 uppercase font-semibold text-sm sm:text-[1rem] mb-10">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="text-[#f1441e] text-[14px]" fill="currentColor"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg>
+                                <span>You're adding a new link</span>
+                            </div>
                             <label class="input-label">Title</label>
                             <div class="input-container-enhanced input-container shadow-og">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#F1441E]" fill="currentColor" viewBox="0 0 512 512"><path d="M453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-52.1 52.1 0 0-1-1 0 0-16-16-96-96-17-17 52.1-52.1c25-25 65.5-25 90.5 0zM241 114.9c-9.4-9.4-24.6-9.4-33.9 0L105 217c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L173.1 81c28.1-28.1 73.7-28.1 101.8 0L288 94.1l17 17 96 96 16 16 1 1-17 17L229.5 412.5c-48 48-109.2 80.8-175.8 94.1l-25 5c-7.9 1.6-16-.9-21.7-6.6s-8.1-13.8-6.6-21.7l5-25c13.3-66.6 46.1-127.8 94.1-175.8L254.1 128 241 114.9z"/></svg>
@@ -493,7 +507,7 @@ class Plugin_Name_Builder {
                                 echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path></svg><span>' . self::ERROR_LINK_SCHEDULING . '</span></div>';
 
                             } else { ?>
-                                <div class="my-3 text-[15px]">
+                                <div class="my-3 text-sm sm:text-[15px]">
                                 <label>
                                     <input type="checkbox" x-model="newLink.isScheduled">
                                     Enable Scheduling
@@ -575,7 +589,7 @@ class Plugin_Name_Builder {
                                         </div>
                                     <div class="flex flex-col items-baseline gap-4 ">
                                     <div>
-                                        <span x-text="link.title" class="text-[17px] font-semibold"></span>
+                                        <span x-text="link.title" class="text-sm sm:text-[17px] font-semibold"></span>
                                         <span x-text="link.text" class="hidden text-gray-600 sm:block sm:pt-2"></span>
                                      </div>
                                         <div class="flex flex-row items-start gap-4">
@@ -619,6 +633,10 @@ class Plugin_Name_Builder {
                                     x-show="link.isEditing"
                                 >
                                     <div class="p-5 mt-5 ">
+                                        <div class="flex flex-row items-center gap-2 uppercase font-semibold text-sm sm:text-[1rem] mb-10">
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="text-[#f1441e] text-[14px]" fill="currentColor"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg>
+                                            <span>You're editing your link</span>
+                                        </div>
                                         <label class="input-label">Title</label>
                                         <div class="input-container-enhanced input-container shadow-og">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#F1441E]" fill="currentColor" viewBox="0 0 512 512"><path d="M453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-52.1 52.1 0 0-1-1 0 0-16-16-96-96-17-17 52.1-52.1c25-25 65.5-25 90.5 0zM241 114.9c-9.4-9.4-24.6-9.4-33.9 0L105 217c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L173.1 81c28.1-28.1 73.7-28.1 101.8 0L288 94.1l17 17 96 96 16 16 1 1-17 17L229.5 412.5c-48 48-109.2 80.8-175.8 94.1l-25 5c-7.9 1.6-16-.9-21.7-6.6s-8.1-13.8-6.6-21.7l5-25c13.3-66.6 46.1-127.8 94.1-175.8L254.1 128 241 114.9z"/></svg>

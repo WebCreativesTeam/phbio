@@ -231,7 +231,7 @@ html.wp-toolbar {
     @apply flex-grow bg-transparent focus:outline-none focus:ring-0 placeholder-gray-500 border-0 !important;
   }
   .input-label {
-    @apply mt-1 mb-3 text-[16px] font-bold text-black uppercase;
+    @apply mt-1 mb-3 text-sm sm:text-[1rem] font-bold text-black uppercase;
   }
 
   /* Textarea */
