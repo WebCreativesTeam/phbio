@@ -1298,6 +1298,9 @@ body {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+.ctr-table-icon {
+    vertical-align: middle;
+}
 .sr-only {
     position: absolute;
     width: 1px;

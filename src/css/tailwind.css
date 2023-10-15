@@ -498,4 +498,8 @@ html.wp-toolbar {
   .icon-state.icon-active {
     @apply text-[#F1441E];
   }
+
+  .ctr-table-icon {
+    @apply align-middle;
+  }
 }

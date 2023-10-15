@@ -8,6 +8,7 @@ module.exports = {
     "./includes/extension/class-plugin-name-dashboard.php",
     "./includes/class-plugin-name-settings.php",
     "./includes/extension/class-plugin-name-settings.php",
+    "./src/admin/vendors/wpdataTables.js",
   ],
   safelist: [
     "setting-page-wrap",
