@@ -485,11 +485,11 @@ html.wp-toolbar {
   }
 
   .table-wrapper {
-    @apply border-[1px] border-solid rounded-xl pt-[10px] px-[10px] mt-4;
+    @apply rounded-xl pt-[10px] px-[10px] mt-4;
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.28);
   }
   .chart-wraper {
-    @apply border-[1px] border-solid rounded-xl py-[25px] px-[10px] mt-4;
+    @apply rounded-xl py-[25px] px-[10px] mt-4;
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.28);
   }
 

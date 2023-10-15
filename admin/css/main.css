@@ -1266,8 +1266,6 @@ body {
 .table-wrapper {
     margin-top: 1rem;
     border-radius: 0.75rem;
-    border-width: 1px;
-    border-style: solid;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
@@ -1276,8 +1274,6 @@ body {
 .chart-wraper {
     margin-top: 1rem;
     border-radius: 0.75rem;
-    border-width: 1px;
-    border-style: solid;
     padding-top: 25px;
     padding-bottom: 25px;
     padding-left: 10px;
