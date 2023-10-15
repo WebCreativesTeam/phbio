@@ -244,13 +244,35 @@ class Plugin_Name_Utilities {
                     ));
                 }
                 // Reset the WP_Query
-                wp_reset_postdata();
+                wp_reset_postdata();  
+            }
 
+            if ($name === "pkit_lang") { 
 
-            
-                // Create or update subpages
-                $xyz = get_user_meta($user_id, 'pkit_lang', true);
-                $langs = explode(',', $xyz);
+                // Search for a hb-user-profile post associated with this user
+                $args = array(
+                    'post_type' => 'hb-user-pkit',
+                    'meta_query' => array(
+                        array(
+                            'key' => 'associated_pkit_user',
+                            'value' => $user_id,
+                            'compare' => '='
+                        )
+                    )
+                );
+                $query = new WP_Query($args);
+
+                // Use get_posts and directly retrieve the first post ID
+                $post_ids = get_posts($args);
+
+                if (!empty($post_ids)) {
+                    $post_id = $post_ids[0];  // Get the first post ID
+                } else {
+                    return;
+                }
+
+                echo $posted_value;
+                $langs = explode(',', $posted_value);
             
                 foreach ($langs as $lang) {
                     $args = array(
