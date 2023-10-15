@@ -32,8 +32,12 @@ export const analyticsFilter = () => ({
   no_of_days: [],
   blankdays: [],
 
-  setDateRange(range) {
+  setDateRange(range, submitForm = false) {
     this.selectedRange = range;
+    // Save the selected range in local storage
+    if (this.selectedRange !== "custom") {
+      localStorage.setItem("selectedRange", this.selectedRange);
+    }
     const today = new Date();
     switch (range) {
       case "7days":
@@ -73,6 +77,12 @@ export const analyticsFilter = () => ({
     // Only call outputDateValues if the selected range is not 'custom'.
     if (this.selectedRange !== "custom") {
       this.outputDateValues();
+    }
+
+    if (submitForm) {
+      setTimeout(function () {
+        document.getElementById("analyticsFilterForm").submit();
+      }, 500);
     }
   },
   convertFromYmd(dateYmd) {
@@ -125,12 +135,15 @@ export const analyticsFilter = () => ({
       this.year = currentYear;
       this.getNoOfDays();
     }
+    // Retrieve the selected range from local storage
+    const savedRange = localStorage.getItem("selectedRange");
 
-    if (
-      !this.selectedRange ||
-      this.selectedRange === "" ||
-      this.selectedRange === "lifetime"
-    ) {
+    console.log(savedRange);
+    // Check if there's a saved range and if it matches the existing selected range
+    if (savedRange) {
+      this.setDateRange(savedRange);
+    }
+    if (!this.selectedRange || this.selectedRange === "") {
       this.setDateRange("lifetime");
     }
 
