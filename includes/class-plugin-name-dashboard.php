@@ -508,12 +508,12 @@ class Plugin_Name_Dashboard {
                 
             ?>
             <!-- Predefined Date Range Filters -->
-            <div class="flex items-center justify-start gap-4 mb-4">
-                <span @click="setDateRange('lifetime')" :class="{'font-bold text-gray-800': selectedRange == 'lifetime'}" class="cursor-pointer filter-item">Lifetime</span>
-                <span @click="setDateRange('7days')" :class="{'font-bold text-gray-800': selectedRange == '7days'}" class="cursor-pointer filter-item">Last 7 days</span>
-                <span @click="setDateRange('30days')" :class="{'font-bold text-gray-800': selectedRange == '30days'}" class="cursor-pointer filter-item">Last 30 days</span>
-                <span @click="setDateRange('90days')" :class="{'font-bold text-gray-800': selectedRange == '90days'}" class="cursor-pointer filter-item">Last 90 days</span>
-                <span @click="setDateRange('custom')" :class="{'font-bold text-gray-800': selectedRange == 'custom'}" class="cursor-pointer filter-item">Custom</span>
+            <div class="flex items-center justify-center gap-1 my-10">
+                <span @click="setDateRange('lifetime')" :class="{' text-white bg-[#F1441E]': selectedRange == 'lifetime'}" class="cursor-pointer filter-item rounded-md hover:text-white hover:bg-[#F1441E] px-3 py-1">Lifetime</span>
+                <span @click="setDateRange('90days')" :class="{' text-white bg-[#F1441E]': selectedRange == '90days'}" class="cursor-pointer filter-item rounded-md hover:text-white hover:bg-[#F1441E] px-3 py-1">Last 90 days</span>
+                <span @click="setDateRange('30days')" :class="{' text-white bg-[#F1441E]': selectedRange == '30days'}" class="cursor-pointer filter-item rounded-md hover:text-white hover:bg-[#F1441E] px-3 py-1">Last 30 days</span>
+                <span @click="setDateRange('7days')" :class="{' text-white bg-[#F1441E]': selectedRange == '7days'}" class="cursor-pointer filter-item rounded-md hover:text-white hover:bg-[#F1441E] px-3 py-1">Last 7 days</span>
+                <span @click="setDateRange('custom')" :class="{' text-white bg-[#F1441E]': selectedRange == 'custom'}" class="cursor-pointer filter-item rounded-md hover:text-white hover:bg-[#F1441E] px-3 py-1">Custom</span>
             </div>
 
             <?php self::component__range_picker(); ?>

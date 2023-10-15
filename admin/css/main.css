@@ -1266,9 +1266,10 @@ body {
 .table-wrapper {
     margin-top: 1rem;
     border-radius: 0.75rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    padding-top: 10px;
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.28);
 }
 .chart-wraper {
@@ -1375,6 +1376,10 @@ body {
 .my-5 {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
+}
+.my-10 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
 }
 .mb-0 {
     margin-bottom: 0px;
@@ -1576,6 +1581,9 @@ body {
 }
 .gap-5 {
     gap: 1.25rem;
+}
+.gap-1 {
+    gap: 0.25rem;
 }
 .self-baseline {
     align-self: baseline;
@@ -1906,6 +1914,10 @@ html.wp-toolbar {
 .hover\:bg-gray-200:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+.hover\:bg-\[\#F1441E\]:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(241 68 30 / var(--tw-bg-opacity));
 }
 .hover\:text-\[\#F1441E\]:hover {
     --tw-text-opacity: 1;
