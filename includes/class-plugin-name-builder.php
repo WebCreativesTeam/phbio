@@ -338,7 +338,7 @@ class Plugin_Name_Builder {
                                 <span>You're adding a new social icon</span>
                             </div>
                             <label class="input-label">Select Icon</label>
-                            <div class="px-4 py-4 my-2 bg-white rounded" x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })" >
+                            <div class="px-4 py-4 my-2 bg-white rounded shadow-og" x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })" >
                                 <div @click="isOpen = !isOpen" class="relative cursor-pointer">
                                     <div class="flex items-center">
                                         <span x-show="!selected" class="mr-2 text-gray-500">Select an icon</span>
@@ -360,7 +360,7 @@ class Plugin_Name_Builder {
         
                             
                             <label class="input-label">URL</label>
-                            <div class="input-container-enhanced input-container">
+                            <div class="input-container-enhanced input-container shadow-og">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#F1441E]" fill="currentColor" viewBox="0 0 640 512"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>
                                 <input class="input-field-enhanced" x-model="inputAddLinkValue" @input.stop>
                             </div>
@@ -410,7 +410,7 @@ class Plugin_Name_Builder {
                                         <label class="input-label">Icon</label>
                                         
                                        
-                                        <div class="px-4 py-4 my-2 bg-white rounded" @input="inputEditTitleValue = $event.detail; " x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })">
+                                        <div class="px-4 py-4 my-2 bg-white rounded shadow-og" @input="inputEditTitleValue = $event.detail; " x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })">
                                             <div @click="isOpen = !isOpen" class="relative cursor-pointer">
                                                 <div class="flex items-center">
                                                     <span x-show="!selected" class="mr-2 text-gray-500">Change Icon</span>
@@ -429,7 +429,7 @@ class Plugin_Name_Builder {
                                             <input type="hidden" name="fontAwesomeIconListUser" x-model="selected">
                                         </div>
                                         <label class="input-label">URL</label>
-                                        <div class="input-container-enhanced input-container">
+                                        <div class="input-container-enhanced input-container shadow-og">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#F1441E]" fill="currentColor" viewBox="0 0 640 512"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg>
                                             <input class="input-field-enhanced" x-model="inputEditLinkValue" @input.stop>
                                         </div>
