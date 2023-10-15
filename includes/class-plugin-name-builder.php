@@ -333,7 +333,7 @@ class Plugin_Name_Builder {
                             
                             </button>
 
-                            <div class="flex flex-row items-center gap-2 mb-10 text-sm font-semibold uppercase sm:text-base">
+                            <div class="flex flex-row items-center gap-2 mb-10 text-xs font-semibold uppercase sm:text-sm md:text-base">
                                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="text-[#f1441e] text-[14px]" fill="currentColor"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg>
                                 <span>You're adding a new social icon</span>
                             </div>
@@ -403,7 +403,7 @@ class Plugin_Name_Builder {
                                 <div id="editionForm" x-show="link.isEditing">
                                     <div class="p-5 mt-5">
 
-                                        <div class="flex flex-row items-center gap-2 mb-10 text-sm font-semibold uppercase sm:text-base">
+                                        <div class="flex flex-row items-center gap-2 mb-10 text-xs font-semibold uppercase sm:text-sm md:text-base">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="text-[#f1441e] text-[14px]" fill="currentColor"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg>
                                             <span>You're editing your social icon</span>
                                         </div>
@@ -632,7 +632,7 @@ class Plugin_Name_Builder {
                                     x-show="link.isEditing"
                                 >
                                     <div class="p-5 mt-5 ">
-                                        <div class="flex flex-row items-center gap-2 mb-10 text-sm font-semibold uppercase sm:text-base">
+                                        <div class="flex flex-row items-center gap-2 mb-10 text-xs font-semibold uppercase sm:text-sm md:text-base">
                                             <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="text-[#f1441e] text-[14px]" fill="currentColor"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/></svg>
                                             <span>You're editing your link</span>
                                         </div>
