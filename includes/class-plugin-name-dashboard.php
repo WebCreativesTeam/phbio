@@ -480,6 +480,33 @@ class Plugin_Name_Dashboard {
 
     public function edit__tab_analytics($user_id) { ?>
         <div x-data="analyticsFilter()" x-init="init" x-cloak>
+
+        <?php
+            $title = get_user_meta($user_id, 'username', true);
+            $post = get_page_by_path( $title, OBJECT, 'hb-user-profile' );
+           
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
+                    $date_from = $_POST['date_from'];
+                    $date_to = $_POST['date_to'];
+          
+                    echo "<div class='table-wrapper'>";     
+                    echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo "</div>";
+
+                   
+                } 
+            } else {
+               
+                echo "<div class='table-wrapper'>";       
+                echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
+                echo "</div>";
+
+               
+            }
+            
+                
+            ?>
             <!-- Predefined Date Range Filters -->
             <div class="flex items-center justify-start gap-4 mb-4">
                 <span @click="setDateRange('lifetime')" :class="{'font-bold text-gray-800': selectedRange == 'lifetime'}" class="cursor-pointer filter-item">Lifetime</span>
@@ -492,9 +519,7 @@ class Plugin_Name_Dashboard {
             <?php self::component__range_picker(); ?>
           
             <?php
-            $title = get_user_meta($user_id, 'username', true);
-            $post = get_page_by_path( $title, OBJECT, 'hb-user-profile' );
-           
+          
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
                     $date_from = $_POST['date_from'];
@@ -519,7 +544,6 @@ class Plugin_Name_Dashboard {
                     echo do_shortcode('[wpdatachart id=2]');
                     echo "</div>";
 
-                    echo "<div class='mt-3 input-label'>Click Through Rate</div>";
                     echo "<div class='table-wrapper'>";     
                     echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
                     echo "</div>";
@@ -550,7 +574,6 @@ class Plugin_Name_Dashboard {
                 echo "<div class='chart-wraper'>";        
                 echo do_shortcode('[wpdatachart id=2]');
                 echo "</div>";
-                echo "<div class='mt-3 input-label'>Click Through Rate</div>";
                 echo "<div class='table-wrapper'>";       
                 echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
                 echo "</div>";
