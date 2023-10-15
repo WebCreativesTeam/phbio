@@ -575,8 +575,9 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"iym3p":[function(require,module,exports) {
 var _alpine = require("./vendors/alpine");
+var _wpdataTables = require("./vendors/wpdataTables");
 
-},{"./vendors/alpine":"eCjjK"}],"eCjjK":[function(require,module,exports) {
+},{"./vendors/alpine":"eCjjK","./vendors/wpdataTables":"aGF4C"}],"eCjjK":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _alpinejs = require("alpinejs");
 var _alpinejsDefault = parcelHelpers.interopDefault(_alpinejs);
@@ -4179,6 +4180,19 @@ exports.default = ({ selected = "", allowMultiple = false })=>({
         }
     });
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["bEyVM","iym3p"], "iym3p", "parcelRequiref22c")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aGF4C":[function(require,module,exports) {
+window.onload = function() {
+    // Select the TH element
+    var th = document.querySelector("th.column-total_views");
+    // Check if the TH element exists
+    if (th) {
+        // Your SVG code as a string
+        var svgString = '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="text-red text-14" fill="currentColor"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"></path></svg>';
+        // Append the SVG string to the TH innerHTML
+        th.innerHTML += svgString;
+    }
+};
+
+},{}]},["bEyVM","iym3p"], "iym3p", "parcelRequiref22c")
 
 //# sourceMappingURL=index.js.map
