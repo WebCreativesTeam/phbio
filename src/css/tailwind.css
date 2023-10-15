@@ -11,7 +11,7 @@ html.wp-toolbar {
   }
   .dashboard-layout {
     font-family: "Poppins", sans-serif !important;
-    @apply flex items-start justify-center h-screen font-sans text-gray-800 bg-white;
+    @apply flex items-start justify-center h-screen text-gray-800 bg-white;
   }
 
   .main-area {
