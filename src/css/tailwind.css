@@ -486,10 +486,13 @@ html.wp-toolbar {
 
   .table-wrapper {
     @apply rounded-xl py-[10px] px-[10px] mt-4;
+    color: gray !important;
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.28);
   }
   .chart-wraper {
     @apply rounded-xl py-[25px] px-[10px] mt-4;
+    color: gray !important;
+
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.28);
   }
 
