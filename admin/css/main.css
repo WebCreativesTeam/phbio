@@ -1568,7 +1568,7 @@ body {
     > tr {
     border-bottom-width: 1px;
     --tw-border-opacity: 1;
-    border-bottom-color: rgb(42 42 42 / var(--tw-border-opacity));
+    border-bottom-color: rgb(220 220 220 / var(--tw-border-opacity));
     padding-left: 0px;
     font-size: 1rem;
     line-height: 2rem;
@@ -2233,34 +2233,42 @@ body {
 html.wp-toolbar {
   padding: 0px !important;
 }
+
 .hover\:bg-blue-600:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
+
 .hover\:bg-gray-200:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
+
 .hover\:text-\[\#F1441E\]:hover {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+
 .hover\:text-gray-700:hover {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
+
 .hover\:text-white:hover {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+
 .focus\:text-\[\#F1441E\]:focus {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
 }
+
 @media (min-width: 640px) {
     .sm\:m-5 {
         margin: 1.25rem;
@@ -2329,6 +2337,7 @@ html.wp-toolbar {
         line-height: 1.25rem;
     }
 }
+
 @media (min-width: 768px) {
     .md\:w-\[95\%\] {
         width: 95%;
@@ -2341,6 +2350,7 @@ html.wp-toolbar {
         line-height: 1.5rem;
     }
 }
+
 @media (min-width: 1024px) {
     .lg\:grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
