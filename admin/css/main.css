@@ -1497,7 +1497,8 @@ body {
     --tw-text-opacity: 1 !important;
     color: rgb(255 0 249 / var(--tw-text-opacity)) !important;
 }
-.column-total_clicks svg.ctr-table-icon {
+.column-total_clicks svg.ctr-table-icon,
+  .column-empty_clicks svg.ctr-table-icon {
     --tw-text-opacity: 1 !important;
     color: rgb(241 68 30 / var(--tw-text-opacity)) !important;
 }

@@ -578,7 +578,8 @@ html.wp-toolbar {
   .column-total_views svg.ctr-table-icon {
     @apply text-[#ff00f9] !important;
   }
-  .column-total_clicks svg.ctr-table-icon {
+  .column-total_clicks svg.ctr-table-icon,
+  .column-empty_clicks svg.ctr-table-icon {
     @apply text-[#f1441e] !important;
   }
   .column-ctr svg.ctr-table-icon {

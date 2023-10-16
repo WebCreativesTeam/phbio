@@ -3,6 +3,7 @@ window.onload = function () {
   var th_views = document.querySelector("th.column-total_views");
   var th_clicks = document.querySelector("th.column-total_clicks");
   var th_ctr = document.querySelector("th.column-ctr");
+  var th_empty_clicks = document.querySelector("th.column-empty_clicks");
 
   // Check if the TH element exists
   if (th_views) {
@@ -28,6 +29,13 @@ window.onload = function () {
 
     // Append the SVG string to the TH innerHTML
     th_ctr.innerHTML = svgString + th_ctr.innerHTML;
+  }
+  if (th_empty_clicks) {
+    // Your SVG code as a string
+    var svgString =
+      '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512" class="ctr-table-icon" fill="currentColor"><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></svg>';
+    // Append the SVG string to the TH innerHTML
+    th_empty_clicks.innerHTML = svgString + th_empty_clicks.innerHTML;
   }
 
   // Execute the function
