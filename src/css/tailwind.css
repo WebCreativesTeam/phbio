@@ -528,7 +528,7 @@ html.wp-toolbar {
   }
 
   .empty-analytic {
-    @apply flex flex-col justify-center px-1 sm:px-3 py-16 items-center;
+    @apply flex flex-col justify-center px-0 sm:px-3 py-16 items-center;
   }
 
   .empty-analytic .analytic-empty-title {

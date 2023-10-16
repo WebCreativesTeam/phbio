@@ -31,26 +31,45 @@ window.onload = function () {
   }
 };
 
-// JavaScript function to check for an element with a specific class within a table
+// Function to check if the table is empty
 function checkEmptyTable(tableID) {
-  // Construct the selector for the specific table
-  var selector = ".wpDataTableID-" + tableID + " .dataTables_empty";
+  // Select the specific table by its unique class. Replace wpDataTableID with your actual unique identifier
+  var table = document.querySelector(".wpDataTableID-" + tableID);
 
-  // Check if the element exists
-  var isEmpty = document.querySelector(selector) !== null;
-
-  // If the table is empty
-  if (isEmpty) {
-    // You can hide the table wrapper or perform other actions here
-    var tableWrapper = document.querySelector(".table-wrapper");
-    if (tableWrapper) {
-      tableWrapper.style.display = "none"; // hide the table wrapper
-    }
-
-    // For the purpose of this example, we're returning true if the table is empty
-    return true;
-  }
-
-  // Return false if the table isn't empty
-  return false;
+  // Check if the "dataTables_empty" element exists within this table
+  return table && table.querySelector(".dataTables_empty");
 }
+
+// Function to process an array of table IDs
+function processTables() {
+  // Select all elements with the "empty-analytic" class
+  var emptyAnalytics = document.querySelectorAll(".empty-analytic");
+
+  // Iterate over the emptyAnalytics elements
+  emptyAnalytics.forEach(function (emptyAnalytic) {
+    // Get the data-wptable attribute, which contains the table IDs
+    var tableIDs = emptyAnalytic.getAttribute("data-wptable");
+
+    // Split the table IDs into an array
+    tableIDs = tableIDs.split(",");
+
+    // Check each table ID
+    tableIDs.forEach(function (tableID) {
+      var isEmpty = checkEmptyTable(tableID.trim());
+
+      if (isEmpty) {
+        // If the table is empty, show the empty analytic element
+        emptyAnalytic.style.display = "block";
+      } else {
+        // If the table is not empty, you might want to keep the notice hidden
+        // emptyAnalytic.style.display = "none"; // Uncomment if you need this
+      }
+    });
+  });
+}
+
+// Window onload event
+window.onload = function () {
+  // Process the tables
+  processTables();
+};
