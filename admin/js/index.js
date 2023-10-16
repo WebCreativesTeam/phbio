@@ -4221,6 +4221,8 @@ window.onload = function() {
     }
     // Execute the function
     logEmptyTables();
+    hideEmptyTableWrappers();
+    correctEmptyTableWrappers();
 };
 // Function to check if the table is empty
 function checkEmptyTable(tableID) {
@@ -4255,6 +4257,38 @@ function logEmptyTables() {
         // Check if the current table is empty
         if (checkEmptyTable(tableID)) // If the table is empty, log its ID to the console
         console.log("Table with ID " + tableID + " is empty.");
+    });
+}
+function hideEmptyTableWrappers() {
+    // Get all unique table IDs
+    var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
+    // Loop through each ID
+    uniqueTableIDs.forEach(function(tableID) {
+        // Check if the current table is empty
+        if (checkEmptyTable(tableID)) {
+            // If the table is empty, find the table's wrapper
+            var table = document.querySelector(".wpDataTableID-" + tableID);
+            var wrapper = table.closest(".table-wrapper");
+            // Set the wrapper's display to 'none' to hide it
+            if (wrapper) wrapper.style.display = "none";
+        }
+    });
+}
+function correctEmptyTableWrappers() {
+    // Get all unique table IDs
+    var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
+    // Loop through each ID
+    uniqueTableIDs.forEach(function(tableID) {
+        // Check if the current table is empty
+        if (checkEmptyTable(tableID)) {
+            // If the table is empty, find the table's wrapper with the 'table-is-empty' class
+            var selector = ".table-wrapper.table-is-empty[data-wptable='" + tableID + "']";
+            var emptyWrappers = document.querySelectorAll(selector);
+            // Loop through each wrapper and remove the 'table-is-empty' class
+            emptyWrappers.forEach(function(wrapper) {
+                wrapper.classList.remove("table-is-empty");
+            });
+        }
     });
 }
 
