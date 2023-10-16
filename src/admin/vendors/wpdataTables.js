@@ -59,7 +59,7 @@ function processTables() {
 
       if (isEmpty) {
         // If the table is empty, show the empty analytic element
-        emptyAnalytic.style.display = "block";
+        emptyAnalytic.style.display = "flex";
       } else {
         // If the table is not empty, you might want to keep the notice hidden
         // emptyAnalytic.style.display = "none"; // Uncomment if you need this

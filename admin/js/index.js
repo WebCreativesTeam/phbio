@@ -4241,7 +4241,7 @@ function processTables() {
         tableIDs.forEach(function(tableID) {
             var isEmpty = checkEmptyTable(tableID.trim());
             if (isEmpty) // If the table is empty, show the empty analytic element
-            emptyAnalytic.style.display = "block";
+            emptyAnalytic.style.display = "flex";
         });
     });
 }
