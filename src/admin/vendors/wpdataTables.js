@@ -130,31 +130,48 @@ function correctEmptyTableWrappers(emptyTableIDs) {
 }
 
 function hideEmptyChartContainers(emptyTableIDs) {
-  // Loop through each ID
+  console.log("Called hideEmptyChartContainers with IDs:", emptyTableIDs);
+
   emptyTableIDs.forEach(function (tableID) {
-    // Find all wrappers with the 'table-is-empty' class and 'data-wpchart' attribute
+    console.log("Processing tableID:", tableID);
+
     var selector =
       ".table-wrapper[data-wptable='" + tableID + "'][data-wpchart]";
+    console.log("Selector used:", selector);
 
     var emptyWrappers = document.querySelectorAll(selector);
+    console.log("Found wrappers:", emptyWrappers);
 
-    // Loop through each wrapper
-    emptyWrappers.forEach(function (wrapper) {
-      // Get the chart ID from the 'data-wpchart' attribute
-      var chartID = wrapper.getAttribute("data-wpchart");
+    emptyWrappers.forEach(function (chartWrapper) {
+      console.log("Processing chartWrapper:", chartWrapper);
 
-      // If there's a chart ID, find the corresponding chart container
+      var chartID = chartWrapper.getAttribute("data-wpchart");
+      console.log("Retrieved chartID:", chartID);
+
       if (chartID) {
         var chartContainer = document.querySelector(
           "#chartJSContainer_" + chartID
         );
+        console.log("Found chart container:", chartContainer);
 
-        var wrapper = chartContainer.closest(".chart-wrapper");
+        if (chartContainer) {
+          var parentWrapper = chartContainer.closest(".chart-wrapper");
+          console.log("Found parent chart wrapper:", parentWrapper);
 
-        // Set the wrapper's display to 'none' to hide it
-        if (wrapper) {
-          wrapper.style.display = "none";
+          if (parentWrapper) {
+            console.log("Hiding parentWrapper for chartID:", chartID);
+            parentWrapper.style.display = "none";
+          } else {
+            console.error(
+              "No parentWrapper found for chart container with chartID:",
+              chartID
+            );
+          }
+        } else {
+          console.error("No chart container found for chartID:", chartID);
         }
+      } else {
+        console.error("No chartID found in the chartWrapper:", chartWrapper);
       }
     });
   });
