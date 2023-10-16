@@ -504,7 +504,7 @@ class Plugin_Name_Dashboard {
                 } 
             } else {
                
-                echo "<div class='table-wrapper py-1'>";       
+                echo "<div class='table-wrapper ctr-table py-1'>";       
                 echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
                 echo "</div>";
 
