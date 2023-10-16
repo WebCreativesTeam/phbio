@@ -34,7 +34,18 @@ window.onload = function () {
   logEmptyTables();
   hideEmptyTableWrappers();
   correctEmptyTableWrappers();
+  hideEmptyChartContainers();
   correctEmptyChartWrappers();
+
+  // After all operations are complete, hide the spinner and show the content
+  var spinner = document.getElementById("analytics-spin");
+  var content = document.getElementById("analytics-content");
+  if (spinner) {
+    spinner.style.display = "none"; // Hide the spinner
+  }
+  if (content) {
+    content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
+  }
 };
 
 // Function to check if the table is empty
@@ -142,20 +153,41 @@ function correctEmptyChartWrappers() {
       emptyWrappers.forEach(function (wrapper) {
         // Remove the 'table-is-empty' class
         wrapper.classList.remove("table-is-empty");
+      });
+    }
+  });
+}
 
+function hideEmptyChartContainers() {
+  // Get all unique table IDs
+  var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
+
+  // Loop through each ID
+  uniqueTableIDs.forEach(function (tableID) {
+    // Check if the current table is empty
+    if (checkEmptyTable(tableID)) {
+      // If the table is empty, find all wrappers with the 'table-is-empty' class and 'data-wpchart' attribute
+      var selector =
+        ".table-wrapper.table-is-empty[data-wptable='" +
+        tableID +
+        "'][data-wpchart]";
+      var emptyWrappers = document.querySelectorAll(selector);
+
+      // Loop through each wrapper
+      emptyWrappers.forEach(function (wrapper) {
         // Get the chart ID from the 'data-wpchart' attribute
         var chartID = wrapper.getAttribute("data-wpchart");
 
-        // Find the chart element
-        var chartElement = document.querySelector(
-          "#chartJSContainer_" + chartID
-        );
+        // If there's a chart ID, find the corresponding chart container
+        if (chartID) {
+          var chartContainer = document.querySelector(
+            "#chartJSContainer_" + chartID
+          );
 
-        // If the chart element is found, find its closest wrapper with the class 'chart-wrapper' and hide it
-        if (chartElement) {
-          var chartWrapper = chartElement.closest(".chart-wrapper");
-          if (chartWrapper) {
-            chartWrapper.style.display = "none";
+          console.log(chartContainer, "chartContainer");
+          // If the chart container is found, hide it
+          if (chartContainer) {
+            chartContainer.style.display = "none";
           }
         }
       });

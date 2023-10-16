@@ -471,7 +471,10 @@ class Plugin_Name_Dashboard {
                 <!-- Links Tab Content - ENDS HERE -->
                 <!-- Analytics Tab Content - STARTS HERE -->
                 <div x-show="activeTab === 'analytics' && !showTemplates && !showSettings" class="tab-content max-w-[700px] mt-10 mx-auto">
+                    <div id="analytics-spin"></div>
+                    <div id="analytics-content" class="hidden">
                     <?php self::edit__tab_analytics($user_id);?>
+                    </div>
                 </div>
                 <!-- Analytics Tab Content - ENDS HERE -->
             <!-- Tabs Content - ENDS HERE -->
