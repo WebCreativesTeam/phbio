@@ -1312,6 +1312,14 @@ body {
     --tw-text-opacity: 1 !important;
     color: rgb(42 42 42 / var(--tw-text-opacity)) !important;
 }
+.table-wrapper
+    .wpdt-c.wdt-skin-light
+    .wpDataTablesWrapper
+    table.wpDataTable
+    > tbody {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+}
 /* CTA Table */
 .column-total_views svg.ctr-table-icon {
     --tw-text-opacity: 1 !important;

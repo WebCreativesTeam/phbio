@@ -516,6 +516,13 @@ html.wp-toolbar {
     > th {
     @apply font-normal text-base text-[#2a2a2a] !important;
   }
+  .table-wrapper
+    .wpdt-c.wdt-skin-light
+    .wpDataTablesWrapper
+    table.wpDataTable
+    > tbody {
+    @apply text-2xl !important;
+  }
 
   /* CTA Table */
   .column-total_views svg.ctr-table-icon {
