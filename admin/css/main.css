@@ -1270,7 +1270,8 @@ body {
     padding-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    color: gray !important;
+    --tw-text-opacity: 1;
+    color: rgb(42 42 42 / var(--tw-text-opacity));
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.28);
 }
 .chart-wraper {
@@ -1280,7 +1281,8 @@ body {
     padding-bottom: 25px;
     padding-left: 10px;
     padding-right: 10px;
-    color: gray !important;
+    --tw-text-opacity: 1;
+    color: rgb(42 42 42 / var(--tw-text-opacity));
 
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.28);
 }
