@@ -516,7 +516,11 @@ html.wp-toolbar {
   }
 
   .range-filters .range-filter {
-    @apply cursor-pointer filter-item rounded-md hover:text-white hover:bg-[#F1441E] px-3 py-1 text-sm sm:text-base;
+    @apply cursor-pointer filter-item rounded-md hover:text-white hover:bg-[#F1441E] p-1 sm:px-3 sm:py-1 text-xs sm:text-base;
+  }
+
+  .input-label .heading-icon {
+    @apply text-[#F1441E] text-sm;
   }
 
   /* WP FORMS */

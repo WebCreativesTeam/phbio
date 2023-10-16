@@ -1330,12 +1330,9 @@ body {
 .range-filters .range-filter {
     cursor: pointer;
     border-radius: 0.375rem;
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
+    padding: 0.25rem;
+    font-size: 0.75rem;
+    line-height: 1rem;
 }
 .range-filters .range-filter:hover {
     --tw-bg-opacity: 1;
@@ -1345,9 +1342,19 @@ body {
 }
 @media (min-width: 640px) {
     .range-filters .range-filter {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
         font-size: 1rem;
         line-height: 1.5rem;
     }
+}
+.input-label .heading-icon {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    --tw-text-opacity: 1;
+    color: rgb(241 68 30 / var(--tw-text-opacity));
 }
 /* WP FORMS */
 .table-wrapper
