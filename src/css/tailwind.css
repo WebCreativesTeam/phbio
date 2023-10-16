@@ -520,7 +520,7 @@ html.wp-toolbar {
   }
 
   .input-label .heading-icon {
-    @apply text-[#F1441E] text-sm;
+    @apply text-[#F1441E] text-sm mr-1;
   }
 
   /* WP FORMS */
