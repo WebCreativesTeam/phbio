@@ -4220,11 +4220,11 @@ window.onload = function() {
         th_ctr.innerHTML = svgString + th_ctr.innerHTML;
     }
     // Execute the function
-    logEmptyTables();
-    hideEmptyTableWrappers();
-    correctEmptyTableWrappers();
-    hideEmptyChartContainers();
-    correctEmptyChartWrappers();
+    const emptyTableIDs = getEmptyTableIDs();
+    hideEmptyTableWrappers(emptyTableIDs);
+    correctEmptyTableWrappers(emptyTableIDs);
+    hideEmptyChartContainers(emptyTableIDs);
+    correctEmptyChartWrappers(emptyTableIDs);
     // After all operations are complete, hide the spinner and show the content
     var spinner = document.getElementById("analytics-spin");
     var msg = document.getElementById("analytic-loading-msg");
@@ -4260,90 +4260,72 @@ function getUniqueTableIDsByCheckingEmpty() {
     // Convert the set back to an array
     return Array.from(uniqueIds);
 }
-function logEmptyTables() {
+function getEmptyTableIDs() {
     // Get all unique table IDs
     var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
+    // Array to store the IDs of empty tables
+    var emptyTableIDs = [];
     // Loop through each ID
     uniqueTableIDs.forEach(function(tableID) {
         // Check if the current table is empty
-        if (checkEmptyTable(tableID)) // If the table is empty, log its ID to the console
-        console.log("Table with ID " + tableID + " is empty.");
+        if (checkEmptyTable(tableID)) // If the table is empty, add its ID to the array
+        emptyTableIDs.push(tableID);
+    });
+    // Return the array of empty table IDs
+    return emptyTableIDs;
+}
+function hideEmptyTableWrappers(emptyTableIDs) {
+    // Loop through each ID
+    emptyTableIDs.forEach(function(tableID) {
+        // Find the table's wrapper
+        var table = document.querySelector(".wpDataTableID-" + tableID);
+        var wrapper = table.closest(".table-wrapper");
+        // Set the wrapper's display to 'none' to hide it
+        if (wrapper) wrapper.style.display = "none";
     });
 }
-function hideEmptyTableWrappers() {
-    // Get all unique table IDs
-    var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
+function correctEmptyTableWrappers(emptyTableIDs) {
     // Loop through each ID
-    uniqueTableIDs.forEach(function(tableID) {
-        // Check if the current table is empty
-        if (checkEmptyTable(tableID)) {
-            // If the table is empty, find the table's wrapper
-            var table = document.querySelector(".wpDataTableID-" + tableID);
-            var wrapper = table.closest(".table-wrapper");
-            // Set the wrapper's display to 'none' to hide it
-            if (wrapper) wrapper.style.display = "none";
-        }
+    emptyTableIDs.forEach(function(tableID) {
+        // Find the table's wrapper with the 'table-is-empty' class
+        var selector = ".table-wrapper.table-is-empty[data-wptable='" + tableID + "']";
+        var emptyWrappers = document.querySelectorAll(selector);
+        // Loop through each wrapper and remove the 'table-is-empty' class
+        emptyWrappers.forEach(function(wrapper) {
+            wrapper.classList.remove("table-is-empty");
+        });
     });
 }
-function correctEmptyTableWrappers() {
-    // Get all unique table IDs
-    var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
+function correctEmptyChartWrappers(emptyTableIDs) {
     // Loop through each ID
-    uniqueTableIDs.forEach(function(tableID) {
-        // Check if the current table is empty
-        if (checkEmptyTable(tableID)) {
-            // If the table is empty, find the table's wrapper with the 'table-is-empty' class
-            var selector = ".table-wrapper.table-is-empty[data-wptable='" + tableID + "']";
-            var emptyWrappers = document.querySelectorAll(selector);
-            // Loop through each wrapper and remove the 'table-is-empty' class
-            emptyWrappers.forEach(function(wrapper) {
-                wrapper.classList.remove("table-is-empty");
-            });
-        }
+    emptyTableIDs.forEach(function(tableID) {
+        // Find the table's wrapper with the 'table-is-empty' class and 'data-wpchart' attribute
+        var selector = ".table-wrapper.table-is-empty[data-wptable='" + tableID + "'][data-wpchart]";
+        var emptyWrappers = document.querySelectorAll(selector);
+        // Loop through each wrapper
+        emptyWrappers.forEach(function(wrapper) {
+            // Remove the 'table-is-empty' class
+            wrapper.classList.remove("table-is-empty");
+        });
     });
 }
-function correctEmptyChartWrappers() {
-    // Get all unique table IDs
-    var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
+function hideEmptyChartContainers(emptyTableIDs) {
     // Loop through each ID
-    uniqueTableIDs.forEach(function(tableID) {
-        // Check if the current table is empty
-        if (checkEmptyTable(tableID)) {
-            // If the table is empty, find the table's wrapper with the 'table-is-empty' class and 'data-wpchart' attribute
-            var selector = ".table-wrapper.table-is-empty[data-wptable='" + tableID + "'][data-wpchart]";
-            var emptyWrappers = document.querySelectorAll(selector);
-            // Loop through each wrapper
-            emptyWrappers.forEach(function(wrapper) {
-                // Remove the 'table-is-empty' class
-                wrapper.classList.remove("table-is-empty");
-            });
-        }
-    });
-}
-function hideEmptyChartContainers() {
-    // Get all unique table IDs
-    var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
-    // Loop through each ID
-    uniqueTableIDs.forEach(function(tableID) {
-        // Check if the current table is empty
-        if (checkEmptyTable(tableID)) {
-            // If the table is empty, find all wrappers with the 'table-is-empty' class and 'data-wpchart' attribute
-            var selector = ".table-wrapper.table-is-empty[data-wptable='" + tableID + "'][data-wpchart]";
-            console.log(selector, "selector");
-            var emptyWrappers = document.querySelectorAll(selector);
-            console.log(emptyWrappers);
-            // Loop through each wrapper
-            emptyWrappers.forEach(function(wrapper) {
-                // Get the chart ID from the 'data-wpchart' attribute
-                var chartID = wrapper.getAttribute("data-wpchart");
-                // If there's a chart ID, find the corresponding chart container
-                if (chartID) {
-                    var chartContainer = document.querySelector("#chartJSContainer_" + chartID);
-                    // If the chart container is found, hide it
-                    if (chartContainer) chartContainer.style.display = "none";
-                }
-            });
-        }
+    emptyTableIDs.forEach(function(tableID) {
+        // Find all wrappers with the 'table-is-empty' class and 'data-wpchart' attribute
+        var selector = ".table-wrapper.table-is-empty[data-wptable='" + tableID + "'][data-wpchart]";
+        var emptyWrappers = document.querySelectorAll(selector);
+        // Loop through each wrapper
+        emptyWrappers.forEach(function(wrapper) {
+            // Get the chart ID from the 'data-wpchart' attribute
+            var chartID = wrapper.getAttribute("data-wpchart");
+            // If there's a chart ID, find the corresponding chart container
+            if (chartID) {
+                var chartContainer = document.querySelector("#chartJSContainer_" + chartID);
+                // If the chart container is found, hide it
+                if (chartContainer) chartContainer.style.display = "none";
+            }
+        });
     });
 }
 
