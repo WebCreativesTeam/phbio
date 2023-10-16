@@ -153,7 +153,7 @@ class Plugin_Name_Dashboard {
             <div class="action-buttons">
     
                 <!-- Button: Select Template -->
-                <button @click="showTemplates = !showTemplates; showSettings = false;" class="template-btn">
+                <button @click="showTemplates = !showTemplates; showSettings = false;" class="template-btn md:px-8 uppercase text-sm md:mr-10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19,2H9A3,3,0,0,0,6,5V6H5A3,3,0,0,0,2,9V19a3,3,0,0,0,3,3H15a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V5A3,3,0,0,0,19,2ZM16,19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H16Zm0-9H4V9A1,1,0,0,1,5,8H15a1,1,0,0,1,1,1Zm4,5a1,1,0,0,1-1,1H18V9a3,3,0,0,0-.18-1H20Zm0-9H8V5A1,1,0,0,1,9,4H19a1,1,0,0,1,1,1Z"></path>
                     </svg>
@@ -602,7 +602,7 @@ class Plugin_Name_Dashboard {
                         echo do_shortcode('[wpdatachart id=3]');
                         echo "</div>";
                         echo Plugin_Name_Utilities::is_empty_chart('pie', 15, 3);
-                        
+
                     } else {
                         echo "<div class='analytics-label-wraper'>";
                         echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";

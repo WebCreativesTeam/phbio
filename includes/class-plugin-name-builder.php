@@ -588,7 +588,7 @@ class Plugin_Name_Builder {
                                         </div>
                                     <div class="flex flex-col items-baseline gap-4 ">
                                     <div>
-                                        <span x-text="link.title" class="text-sm sm:text-[17px] font-semibold"></span>
+                                        <span x-text="link.title" class="text-sm sm:text-lg font-semibold"></span>
                                         <span x-text="link.text" class="hidden text-gray-600 sm:block sm:pt-2"></span>
                                      </div>
                                         <div class="flex flex-row items-start gap-4">
