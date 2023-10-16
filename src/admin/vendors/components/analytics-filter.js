@@ -105,6 +105,12 @@ export const analyticsFilter = () => ({
   },
 
   init() {
+    if (performance.navigation.type === 1) {
+      console.log("This page is reloaded");
+      // Remove the selectedRange item from local storage
+      localStorage.removeItem("selectedRange");
+    }
+
     this.selecting =
       (this.endToShow === "to" && this.dateTo) ||
       (this.endToShow === "from" && this.dateFrom);

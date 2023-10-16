@@ -3825,6 +3825,11 @@ const analyticsFilter = ()=>({
             return year + "-" + ("0" + month).slice(-2) + "-" + ("0" + date).slice(-2);
         },
         init () {
+            if (performance.navigation.type === 1) {
+                console.log("This page is reloaded");
+                // Remove the selectedRange item from local storage
+                localStorage.removeItem("selectedRange");
+            }
             this.selecting = this.endToShow === "to" && this.dateTo || this.endToShow === "from" && this.dateFrom;
             if (!this.dateFrom) {
                 if (this.dateFromYmd) this.dateFrom = this.convertFromYmd(this.dateFromYmd);
