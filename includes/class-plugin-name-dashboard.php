@@ -470,7 +470,7 @@ class Plugin_Name_Dashboard {
                 </div>
                 <!-- Links Tab Content - ENDS HERE -->
                 <!-- Analytics Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'analytics' && !showTemplates && !showSettings" class="tab-content">
+                <div x-show="activeTab === 'analytics' && !showTemplates && !showSettings" class="tab-content max-w-[700px] mt-5">
                     <?php self::edit__tab_analytics($user_id);?>
                 </div>
                 <!-- Analytics Tab Content - ENDS HERE -->

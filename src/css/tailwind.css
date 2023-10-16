@@ -512,11 +512,11 @@ html.wp-toolbar {
   }
 
   .range-filters .range-active-filter {
-    @apply text-white bg-[#F1441E] font-bold;
+    @apply text-white bg-[#F1441E] font-bold !important;
   }
 
   .range-filters .range-filter {
-    @apply cursor-pointer filter-item rounded-md hover:text-white hover:bg-[#F1441E] px-3 py-1 text-base;
+    @apply cursor-pointer filter-item rounded-md hover:text-white hover:bg-[#F1441E] px-3 py-1 text-sm sm:text-base;
   }
 
   /* WP FORMS */
@@ -527,14 +527,14 @@ html.wp-toolbar {
     > thead
     > tr
     > th {
-    @apply font-normal text-base text-[#2a2a2a] !important;
+    @apply font-normal text-sm sm:text-base text-[#2a2a2a] !important;
   }
   .table-wrapper
     .wpdt-c.wdt-skin-light
     .wpDataTablesWrapper
     table.wpDataTable
     > tbody {
-    @apply text-2xl !important;
+    @apply text-base sm:text-2xl !important;
   }
 
   /* CTA Table */

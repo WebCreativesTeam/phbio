@@ -1308,11 +1308,11 @@ body {
     font-family: "Poppins", sans-serif !important;
 }
 .range-filters .range-active-filter {
-    --tw-bg-opacity: 1;
-    background-color: rgb(241 68 30 / var(--tw-bg-opacity));
-    font-weight: 700;
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(241 68 30 / var(--tw-bg-opacity)) !important;
+    font-weight: 700 !important;
+    --tw-text-opacity: 1 !important;
+    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
 .range-filters .range-filter {
     font-size: 0.875rem;
@@ -1334,14 +1334,20 @@ body {
     padding-right: 0.75rem;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
 }
 .range-filters .range-filter:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(241 68 30 / var(--tw-bg-opacity));
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+@media (min-width: 640px) {
+    .range-filters .range-filter {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
 }
 /* WP FORMS */
 .table-wrapper
@@ -1351,19 +1357,41 @@ body {
     > thead
     > tr
     > th {
-    font-size: 1rem !important;
-    line-height: 1.5rem !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
     font-weight: 400 !important;
     --tw-text-opacity: 1 !important;
     color: rgb(42 42 42 / var(--tw-text-opacity)) !important;
+}
+@media (min-width: 640px) {
+    .table-wrapper
+    .wpdt-c.wdt-skin-light
+    .wpDataTablesWrapper
+    table.wpDataTable
+    > thead
+    > tr
+    > th {
+        font-size: 1rem !important;
+        line-height: 1.5rem !important;
+    }
 }
 .table-wrapper
     .wpdt-c.wdt-skin-light
     .wpDataTablesWrapper
     table.wpDataTable
     > tbody {
-    font-size: 1.5rem !important;
-    line-height: 2rem !important;
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+}
+@media (min-width: 640px) {
+    .table-wrapper
+    .wpdt-c.wdt-skin-light
+    .wpDataTablesWrapper
+    table.wpDataTable
+    > tbody {
+        font-size: 1.5rem !important;
+        line-height: 2rem !important;
+    }
 }
 /* CTA Table */
 .column-total_views svg.ctr-table-icon {
@@ -1605,6 +1633,9 @@ body {
 }
 .w-full {
     width: 100%;
+}
+.max-w-\[700px\] {
+    max-width: 700px;
 }
 .flex-auto {
     flex: 1 1 auto;
