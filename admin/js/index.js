@@ -3779,8 +3779,6 @@ const analyticsFilter = ()=>({
             this.selectedRange = range;
             // Save the selected range in local storage
             localStorage.setItem("selectedRange", this.selectedRange);
-            localStorage.setItem("dateFrom", this.dateFrom);
-            localStorage.setItem("dateTo", this.dateTo);
             const today = new Date();
             switch(range){
                 case "Today":
@@ -3827,6 +3825,8 @@ const analyticsFilter = ()=>({
             return year + "-" + ("0" + month).slice(-2) + "-" + ("0" + date).slice(-2);
         },
         init () {
+            // Remove the selectedRange item from local storage
+            localStorage.removeItem("selectedRange");
             this.selecting = this.endToShow === "to" && this.dateTo || this.endToShow === "from" && this.dateFrom;
             if (!this.dateFrom) {
                 if (this.dateFromYmd) this.dateFrom = this.convertFromYmd(this.dateFromYmd);
@@ -3848,10 +3848,6 @@ const analyticsFilter = ()=>({
             }
             // Retrieve the selected range from local storage
             const savedRange = localStorage.getItem("selectedRange");
-            const savedDateFrom = localStorage.getItem("dateFrom");
-            const savedDateTo = localStorage.getItem("dateTo");
-            if (savedDateFrom) this.dateFrom = new Date(savedDateFrom);
-            if (savedDateTo) this.dateTo = new Date(savedDateTo);
             // If there's a saved range, set it
             if (savedRange) this.setDateRange(savedRange);
             else if (!this.selectedRange || this.selectedRange === "") // If there's no saved range in local storage, default to 'lifetime'
