@@ -1380,6 +1380,58 @@ body {
 .table-is-empty {
     display: none;
 }
+.empty-analytic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+@media (min-width: 640px) {
+    .empty-analytic {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+}
+.empty-analytic .analytic-empty-title {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    line-height: 1;
+}
+@media (min-width: 640px) {
+    .empty-analytic .analytic-empty-title {
+        font-size: 1.6rem;
+    }
+}
+.empty-analytic .analytic-empty-text {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    line-height: 1;
+}
+@media (min-width: 640px) {
+    .empty-analytic .analytic-empty-text {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+}
+.empty-analytic svg {
+    margin-bottom: 1.5rem;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    line-height: 1;
+    --tw-text-opacity: 1;
+    color: rgb(241 68 30 / var(--tw-text-opacity));
+}
+@media (min-width: 640px) {
+    .empty-analytic svg {
+        font-size: 3rem;
+        line-height: 1;
+    }
+}
 /* WP FORMS */
 .table-wrapper
     .wpdt-c.wdt-skin-light
@@ -2050,34 +2102,42 @@ body {
 html.wp-toolbar {
   padding: 0px !important;
 }
+
 .hover\:bg-blue-600:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
+
 .hover\:bg-gray-200:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
+
 .hover\:text-\[\#F1441E\]:hover {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+
 .hover\:text-gray-700:hover {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
+
 .hover\:text-white:hover {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+
 .focus\:text-\[\#F1441E\]:focus {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
 }
+
 @media (min-width: 640px) {
     .sm\:m-5 {
         margin: 1.25rem;
@@ -2146,6 +2206,7 @@ html.wp-toolbar {
         line-height: 1.25rem;
     }
 }
+
 @media (min-width: 768px) {
     .md\:w-\[95\%\] {
         width: 95%;
@@ -2158,6 +2219,7 @@ html.wp-toolbar {
         line-height: 1.5rem;
     }
 }
+
 @media (min-width: 1024px) {
     .lg\:grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
