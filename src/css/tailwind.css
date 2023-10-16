@@ -528,19 +528,19 @@ html.wp-toolbar {
   }
 
   .empty-analytic {
-    @apply flex flex-col justify-center gap-3 px-3 py-20 items-center;
+    @apply flex flex-col justify-center gap-3 px-3 py-16 items-center;
   }
 
   .empty-analytic .analytic-empty-title {
-    @apply font-semibold  text-xl sm:text-[1.6rem];
+    @apply font-semibold  text-xl sm:text-[1.6rem] leading-none;
   }
 
   .empty-analytic .analytic-empty-text {
-    @apply text-sm sm:text-base;
+    @apply text-sm sm:text-base leading-none;
   }
 
   .empty-analytic svg {
-    @apply text-[#F1441E] sm:text-5xl text-lg;
+    @apply text-[#F1441E] sm:text-5xl text-3xl leading-none mb-4;
   }
 
   /* WP FORMS */
