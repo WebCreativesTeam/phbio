@@ -3759,7 +3759,7 @@ const analyticsFilter = ()=>({
             "Sat"
         ],
         showDatepicker: false,
-        selectedRange: "lifetime",
+        selectedRange: "Today",
         dateFromYmd: "",
         dateToYmd: "",
         outputDateFromValue: "",
@@ -3825,8 +3825,6 @@ const analyticsFilter = ()=>({
             return year + "-" + ("0" + month).slice(-2) + "-" + ("0" + date).slice(-2);
         },
         init () {
-            // Remove the selectedRange item from local storage
-            localStorage.removeItem("selectedRange");
             this.selecting = this.endToShow === "to" && this.dateTo || this.endToShow === "from" && this.dateFrom;
             if (!this.dateFrom) {
                 if (this.dateFromYmd) this.dateFrom = this.convertFromYmd(this.dateFromYmd);
@@ -3850,8 +3848,8 @@ const analyticsFilter = ()=>({
             const savedRange = localStorage.getItem("selectedRange");
             // If there's a saved range, set it
             if (savedRange) this.setDateRange(savedRange);
-            else if (!this.selectedRange || this.selectedRange === "") // If there's no saved range in local storage, default to 'lifetime'
-            this.setDateRange("lifetime");
+            else if (!this.selectedRange || this.selectedRange === "") // If there's no saved range in local storage, default to 'Today'
+            this.setDateRange("Today");
             this.setDateValues();
         },
         isToday (date) {

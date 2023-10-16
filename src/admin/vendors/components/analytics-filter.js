@@ -15,7 +15,7 @@ export const analyticsFilter = () => ({
   ],
   DAYS: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   showDatepicker: false,
-  selectedRange: "lifetime",
+  selectedRange: "Today",
   dateFromYmd: "",
   dateToYmd: "",
   outputDateFromValue: "",
@@ -105,9 +105,6 @@ export const analyticsFilter = () => ({
   },
 
   init() {
-    // Remove the selectedRange item from local storage
-    localStorage.removeItem("selectedRange");
-
     this.selecting =
       (this.endToShow === "to" && this.dateTo) ||
       (this.endToShow === "from" && this.dateFrom);
@@ -148,8 +145,8 @@ export const analyticsFilter = () => ({
     if (savedRange) {
       this.setDateRange(savedRange);
     } else if (!this.selectedRange || this.selectedRange === "") {
-      // If there's no saved range in local storage, default to 'lifetime'
-      this.setDateRange("lifetime");
+      // If there's no saved range in local storage, default to 'Today'
+      this.setDateRange("Today");
     }
 
     this.setDateValues();

@@ -505,7 +505,7 @@ class Plugin_Name_Dashboard {
             } else {
                
                 echo "<div class='table-wrapper ctr-table py-1'>";       
-                echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
+                echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
                 echo "</div>";
 
                
@@ -516,9 +516,9 @@ class Plugin_Name_Dashboard {
             <!-- Predefined Date Range Filters -->
             <div class="range-filters">
                 <span @click="setDateRange('lifetime', true)" :class="{'range-active-filter': selectedRange == 'lifetime'}" class="range-filter">Lifetime</span>
-                <span @click="setDateRange('90days', true)" :class="{'range-active-filter': selectedRange == '90days'}" class="range-filter">90 days</span>
-                <span @click="setDateRange('30days', true)" :class="{'range-active-filter': selectedRange == '30days'}" class="range-filter">30 days</span>
-                <span @click="setDateRange('7days', true)" :class="{'range-active-filter': selectedRange == '7days'}" class="range-filter">7 days</span>
+                <span @click="setDateRange('90days', true)" :class="{'range-active-filter': selectedRange == '90days'}" class="range-filter">90 D</span>
+                <span @click="setDateRange('30days', true)" :class="{'range-active-filter': selectedRange == '30days'}" class="range-filter">30 D</span>
+                <span @click="setDateRange('7days', true)" :class="{'range-active-filter': selectedRange == '7days'}" class="range-filter">7 D</span>
                 <span @click="setDateRange('Today', true)" :class="{'range-active-filter': selectedRange == 'Today'}" class="range-filter">Today</span>
                 <span @click="setDateRange('custom')" :class="{'range-active-filter': selectedRange == 'custom'}" class="range-filter">Custom</span>
             </div>
@@ -629,9 +629,9 @@ class Plugin_Name_Dashboard {
                 echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
                 echo "<div class='table-wrapper'>";        
                 if(Plugin_Name_Utilities::is_full_version($user_id)) {
-                    echo do_shortcode('[wpdatatable id=2 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                    echo do_shortcode('[wpdatatable id=2 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
                 } else {
-                    echo do_shortcode('[wpdatatable id=4 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                    echo do_shortcode('[wpdatatable id=4 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
                 }
                 echo "</div>";
                 echo Plugin_Name_Utilities::is_empty_table(2);
@@ -642,17 +642,17 @@ class Plugin_Name_Dashboard {
                 echo "<div class='hidden'>";
 
                 echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
+                echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
                 echo "</div>";
                 echo Plugin_Name_Utilities::is_empty_table(7);
 
                 echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=19 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
+                echo do_shortcode('[wpdatatable id=19 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
                 echo "</div>";
                 echo Plugin_Name_Utilities::is_empty_table(19);
 
                 echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=15 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                echo do_shortcode('[wpdatatable id=15 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
                 echo "</div>";
                 echo Plugin_Name_Utilities::is_empty_table(15);
 
