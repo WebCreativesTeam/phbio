@@ -1458,7 +1458,8 @@ body {
     > th {
     font-size: 0.875rem !important;
     line-height: 1.25rem !important;
-    font-weight: 400 !important;
+    font-weight: 600 !important;
+    font-style: italic !important;
     --tw-text-opacity: 1 !important;
     color: rgb(42 42 42 / var(--tw-text-opacity)) !important;
 }
