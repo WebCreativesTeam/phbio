@@ -173,8 +173,10 @@ function hideEmptyChartContainers() {
         ".table-wrapper.table-is-empty[data-wptable='" +
         tableID +
         "'][data-wpchart]";
+      console.log(selector, "selector");
       var emptyWrappers = document.querySelectorAll(selector);
 
+      console.log(emptyWrappers);
       // Loop through each wrapper
       emptyWrappers.forEach(function (wrapper) {
         // Get the chart ID from the 'data-wpchart' attribute
@@ -186,7 +188,6 @@ function hideEmptyChartContainers() {
             "#chartJSContainer_" + chartID
           );
 
-          console.log(chartContainer, "chartContainer");
           // If the chart container is found, hide it
           if (chartContainer) {
             chartContainer.style.display = "none";

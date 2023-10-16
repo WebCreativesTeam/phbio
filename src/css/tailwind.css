@@ -443,7 +443,7 @@ html.wp-toolbar {
     -webkit-animation: spin 1s ease-in-out infinite;
   }
   #analytics-spin {
-    @apply justify-center w-14 h-14 border-solid border-4 border-white border-opacity-30 rounded-[50%] flex mt-28 mb-2;
+    @apply justify-center mx-auto w-14 h-14 border-solid border-4 border-white border-opacity-30 rounded-[50%] flex mt-28 mb-2;
     border-top-color: #f1441e !important;
     animation: spin 1s ease-in-out infinite;
     -webkit-animation: spin 1s ease-in-out infinite;
