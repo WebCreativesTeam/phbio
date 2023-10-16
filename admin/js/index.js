@@ -4296,29 +4296,18 @@ function correctEmptyTableWrappers(emptyTableIDs) {
     });
 }
 function hideEmptyChartContainers(emptyTableIDs) {
-    console.log("Called hideEmptyChartContainers with IDs:", emptyTableIDs);
     emptyTableIDs.forEach(function(tableID) {
-        console.log("Processing tableID:", tableID);
         var selector = ".table-wrapper[data-wptable='" + tableID + "'][data-wpchart]";
-        console.log("Selector used:", selector);
         var emptyWrappers = document.querySelectorAll(selector);
-        console.log("Found wrappers:", emptyWrappers);
         emptyWrappers.forEach(function(chartWrapper) {
-            console.log("Processing chartWrapper:", chartWrapper);
             var chartID = chartWrapper.getAttribute("data-wpchart");
-            console.log("Retrieved chartID:", chartID);
             if (chartID) {
                 var chartContainer = document.querySelector("#chartJSContainer_" + chartID);
-                console.log("Found chart container:", chartContainer);
                 if (chartContainer) {
-                    var parentWrapper = chartContainer.closest(".chart-wrapper");
-                    console.log("Found parent chart wrapper:", parentWrapper);
-                    if (parentWrapper) {
-                        console.log("Hiding parentWrapper for chartID:", chartID);
-                        parentWrapper.style.display = "none";
-                    } else console.error("No parentWrapper found for chart container with chartID:", chartID);
-                } else console.error("No chart container found for chartID:", chartID);
-            } else console.error("No chartID found in the chartWrapper:", chartWrapper);
+                    var parentWrapper = chartContainer.closest(".chart-wraper");
+                    if (parentWrapper) parentWrapper.style.display = "none";
+                }
+            }
         });
     });
 }
