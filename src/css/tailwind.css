@@ -528,11 +528,11 @@ html.wp-toolbar {
   }
 
   .empty-analytic {
-    @apply flex flex-col justify-center gap-3 px-3 py-20;
+    @apply flex flex-col justify-center gap-3 px-3 py-20 items-center;
   }
 
   .empty-analytic .analytic-empty-title {
-    @apply font-semibold  text-xl sm:text-2xl;
+    @apply font-semibold  text-xl sm:text-[1.6rem];
   }
 
   .empty-analytic .analytic-empty-text {
