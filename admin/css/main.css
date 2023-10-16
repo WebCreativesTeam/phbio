@@ -1308,7 +1308,21 @@ body {
     > th {
     font-weight: normal !important;
     font-size: 15px !important;
+    color: #2a2a2a;
   }
+/* CTA Table */
+.column-total_views svg.ctr-table-icon {
+    --tw-text-opacity: 1 !important;
+    color: rgb(255 0 249 / var(--tw-text-opacity)) !important;
+}
+.column-total_clicks svg.ctr-table-icon {
+    --tw-text-opacity: 1 !important;
+    color: rgb(241 68 30 / var(--tw-text-opacity)) !important;
+}
+.column-total_views svg.ctr-table-icon {
+    --tw-text-opacity: 1 !important;
+    color: rgb(113 30 241 / var(--tw-text-opacity)) !important;
+}
 .sr-only {
     position: absolute;
     width: 1px;

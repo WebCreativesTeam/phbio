@@ -516,5 +516,17 @@ html.wp-toolbar {
     > th {
     font-weight: normal !important;
     font-size: 15px !important;
+    color: #2a2a2a;
+  }
+
+  /* CTA Table */
+  .column-total_views svg.ctr-table-icon {
+    @apply text-[#ff00f9] !important;
+  }
+  .column-total_clicks svg.ctr-table-icon {
+    @apply text-[#f1441e] !important;
+  }
+  .column-total_views svg.ctr-table-icon {
+    @apply text-[#711ef1] !important;
   }
 }
