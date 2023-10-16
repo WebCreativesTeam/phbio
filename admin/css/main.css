@@ -1369,34 +1369,46 @@ body {
 }
 .empty-analytic {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     gap: 0.75rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
 }
-.empty-analytic h3 {
+.empty-analytic .analytic-empty-title {
     font-size: 1.25rem;
     line-height: 1.75rem;
     font-weight: 600;
 }
 @media (min-width: 640px) {
-    .empty-analytic h3 {
+    .empty-analytic .analytic-empty-title {
         font-size: 1.5rem;
         line-height: 2rem;
     }
 }
-.empty-analytic p {
+.empty-analytic .analytic-empty-text {
     font-size: 0.875rem;
     line-height: 1.25rem;
 }
 @media (min-width: 640px) {
-    .empty-analytic p {
+    .empty-analytic .analytic-empty-text {
         font-size: 1rem;
         line-height: 1.5rem;
     }
 }
 .empty-analytic svg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
+}
+@media (min-width: 640px) {
+    .empty-analytic svg {
+        font-size: 3rem;
+        line-height: 1;
+    }
 }
 /* WP FORMS */
 .table-wrapper
