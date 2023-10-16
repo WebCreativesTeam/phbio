@@ -557,8 +557,7 @@ html.wp-toolbar {
   }
 
   /* WP FORMS */
-  .table-wrapper
-    .ctr-table
+  .table-wrapper.ctr-table
     .wpdt-c.wdt-skin-light
     .wpDataTablesWrapper
     table.wpDataTable

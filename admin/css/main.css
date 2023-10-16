@@ -1449,8 +1449,7 @@ body {
     }
 }
 /* WP FORMS */
-.table-wrapper
-    .ctr-table
+.table-wrapper.ctr-table
     .wpdt-c.wdt-skin-light
     .wpDataTablesWrapper
     table.wpDataTable
@@ -1464,8 +1463,7 @@ body {
     color: rgb(42 42 42 / var(--tw-text-opacity)) !important;
 }
 @media (min-width: 640px) {
-    .table-wrapper
-    .ctr-table
+    .table-wrapper.ctr-table
     .wpdt-c.wdt-skin-light
     .wpDataTablesWrapper
     table.wpDataTable
