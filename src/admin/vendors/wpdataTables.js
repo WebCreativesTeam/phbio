@@ -149,14 +149,11 @@ function hideEmptyChartContainers(emptyTableIDs) {
           "#chartJSContainer_" + chartID
         );
 
-        // If the chart container is found, hide it
-        if (chartContainer) {
-          var wrapper = chartContainer.closest(".chart-wrapper");
+        var wrapper = chartContainer.closest(".chart-wrapper");
 
-          // Set the wrapper's display to 'none' to hide it
-          if (wrapper) {
-            wrapper.style.display = "none";
-          }
+        // Set the wrapper's display to 'none' to hide it
+        if (wrapper) {
+          wrapper.style.display = "none";
         }
       }
     });

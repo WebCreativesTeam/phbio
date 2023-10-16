@@ -4308,12 +4308,9 @@ function hideEmptyChartContainers(emptyTableIDs) {
             // If there's a chart ID, find the corresponding chart container
             if (chartID) {
                 var chartContainer = document.querySelector("#chartJSContainer_" + chartID);
-                // If the chart container is found, hide it
-                if (chartContainer) {
-                    var wrapper = chartContainer.closest(".chart-wrapper");
-                    // Set the wrapper's display to 'none' to hide it
-                    if (wrapper) wrapper.style.display = "none";
-                }
+                var wrapper = chartContainer.closest(".chart-wrapper");
+                // Set the wrapper's display to 'none' to hide it
+                if (wrapper) wrapper.style.display = "none";
             }
         });
     });
