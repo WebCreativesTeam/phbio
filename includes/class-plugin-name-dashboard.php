@@ -537,14 +537,15 @@ class Plugin_Name_Dashboard {
                     echo "<div class='table-wrapper'>";     
                     if(Plugin_Name_Utilities::is_full_version($user_id)) {
                         echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
-                        echo Plugin_Name_Utilities::is_empty_table(2);
                     
                     } else {
                         echo do_shortcode('[wpdatatable id=4 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
-                        echo Plugin_Name_Utilities::is_empty_table(4);
                     
                     }
                     echo "</div>";
+                    echo Plugin_Name_Utilities::is_empty_table(2);
+                    echo Plugin_Name_Utilities::is_empty_table(4);
+
 
                     
                     
@@ -581,13 +582,12 @@ class Plugin_Name_Dashboard {
                 echo "<div class='table-wrapper'>";        
                 if(Plugin_Name_Utilities::is_full_version($user_id)) {
                     echo do_shortcode('[wpdatatable id=2 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
-                    echo Plugin_Name_Utilities::is_empty_table(2);
                 } else {
                     echo do_shortcode('[wpdatatable id=4 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
-                    echo Plugin_Name_Utilities::is_empty_table(4);
                 }
                 echo "</div>";
-
+                echo Plugin_Name_Utilities::is_empty_table(2);
+                echo Plugin_Name_Utilities::is_empty_table(4);
                 
                  
                 // Hidden Tables
