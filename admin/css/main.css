@@ -1367,6 +1367,37 @@ body {
     line-height: 1.75rem;
     text-transform: none;
 }
+.empty-analytic {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.75rem;
+}
+.empty-analytic h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+}
+@media (min-width: 640px) {
+    .empty-analytic h3 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+}
+.empty-analytic p {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+@media (min-width: 640px) {
+    .empty-analytic p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+}
+.empty-analytic svg {
+    --tw-text-opacity: 1;
+    color: rgb(241 68 30 / var(--tw-text-opacity));
+}
 /* WP FORMS */
 .table-wrapper
     .wpdt-c.wdt-skin-light
@@ -1582,6 +1613,9 @@ body {
 }
 .inline-flex {
     display: inline-flex;
+}
+.table {
+    display: table;
 }
 .grid {
     display: grid;

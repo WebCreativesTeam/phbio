@@ -30,3 +30,27 @@ window.onload = function () {
     th_ctr.innerHTML = svgString + th_ctr.innerHTML;
   }
 };
+
+// JavaScript function to check for an element with a specific class within a table
+function checkEmptyTable(tableID) {
+  // Construct the selector for the specific table
+  var selector = ".wpDataTableID-" + tableID + " .dataTables_empty";
+
+  // Check if the element exists
+  var isEmpty = document.querySelector(selector) !== null;
+
+  // If the table is empty
+  if (isEmpty) {
+    // You can hide the table wrapper or perform other actions here
+    var tableWrapper = document.querySelector(".table-wrapper");
+    if (tableWrapper) {
+      tableWrapper.style.display = "none"; // hide the table wrapper
+    }
+
+    // For the purpose of this example, we're returning true if the table is empty
+    return true;
+  }
+
+  // Return false if the table isn't empty
+  return false;
+}
