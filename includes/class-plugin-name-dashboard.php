@@ -490,7 +490,7 @@ class Plugin_Name_Dashboard {
                     $date_from = $_POST['date_from'];
                     $date_to = $_POST['date_to'];
           
-                    echo "<div class='table-wrapper'>";     
+                    echo "<div class='table-wrapper py-1'>";     
                     echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
                     echo "</div>";
 
@@ -498,7 +498,7 @@ class Plugin_Name_Dashboard {
                 } 
             } else {
                
-                echo "<div class='table-wrapper'>";       
+                echo "<div class='table-wrapper py-1'>";       
                 echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
                 echo "</div>";
 
@@ -510,9 +510,10 @@ class Plugin_Name_Dashboard {
             <!-- Predefined Date Range Filters -->
             <div class="range-filters">
                 <span @click="setDateRange('lifetime', true)" :class="{'range-active-filter': selectedRange == 'lifetime'}" class="range-filter">Lifetime</span>
-                <span @click="setDateRange('90days', true)" :class="{'range-active-filter': selectedRange == '90days'}" class="range-filter">Last 90 days</span>
-                <span @click="setDateRange('30days', true)" :class="{'range-active-filter': selectedRange == '30days'}" class="range-filter">Last 30 days</span>
-                <span @click="setDateRange('7days', true)" :class="{'range-active-filter': selectedRange == '7days'}" class="range-filter">Last 7 days</span>
+                <span @click="setDateRange('90days', true)" :class="{'range-active-filter': selectedRange == '90days'}" class="range-filter">90 days</span>
+                <span @click="setDateRange('30days', true)" :class="{'range-active-filter': selectedRange == '30days'}" class="range-filter">30 days</span>
+                <span @click="setDateRange('7days', true)" :class="{'range-active-filter': selectedRange == '7days'}" class="range-filter">7 days</span>
+                <span @click="setDateRange('Today', true)" :class="{'range-active-filter': selectedRange == 'Today'}" class="range-filter">Today</span>
                 <span @click="setDateRange('custom')" :class="{'range-active-filter': selectedRange == 'custom'}" class="range-filter">Custom</span>
             </div>
 

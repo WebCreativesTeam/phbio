@@ -3781,6 +3781,10 @@ const analyticsFilter = ()=>({
             localStorage.setItem("selectedRange", this.selectedRange);
             const today = new Date();
             switch(range){
+                case "Today":
+                    this.dateFrom = today;
+                    this.dateTo = today;
+                    break;
                 case "7days":
                     this.dateFrom = new Date(today.getFullYear(), today.getMonth(), today.getDate() - 6);
                     this.dateTo = today;
