@@ -588,16 +588,39 @@ class Plugin_Name_Dashboard {
                     echo do_shortcode('[wpdatatable id=15 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
                     echo "</div>";
                     echo Plugin_Name_Utilities::is_empty_table(15);
+
+
+                   
                    
                     echo "</div>";
                     
 
+                    if(Plugin_Name_Utilities::is_full_version($user_id)) {
+                        echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
+                        
+                        echo "<div class='chart-wraper'>";        
+                        echo do_shortcode('[wpdatachart id=3]');
+                        echo "</div>";
+                        echo Plugin_Name_Utilities::is_empty_chart('pie', 15, 3);
+                        
+                    } else {
+                        echo "<div class='analytics-label-wraper'>";
+                        echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
+                        echo "<a class='unlock-more py-2' href='/pricing' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a>";
+                        echo "</div>";
 
-                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
-                    echo "<div class='chart-wraper'>";        
-                    echo do_shortcode('[wpdatachart id=3]');
-                    echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_chart('pie', 15, 3);
+                        echo "<div class='chart-wraper flex justify-center'>";     
+                        ?>   
+                        <?php $social_img = plugin_dir_url( __FILE__ ) . 'img/social.jpg'; ?>
+                        <div class="bg-cover bg-center w-[400px] h-[400px]" style="background-image: url('<?php echo $social_img; ?>');">
+                                <div class="text-4xl flex justify-center items-center w-[400px] h-[400px] bg-white bg-opacity-80"> Sample Data</div>
+                        </div>
+    
+                        <?php echo "</div>";
+
+                    }
+                   
+                    
                     
                 } 
             } else {
@@ -656,17 +679,38 @@ class Plugin_Name_Dashboard {
                 echo "</div>";
                 echo Plugin_Name_Utilities::is_empty_table(15);
 
+              
+
                 echo "</div>";
 
                
                 
                 
-                echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
-                echo "<div class='chart-wraper'>";        
-                echo do_shortcode('[wpdatachart id=3]');
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_chart('pie', 15, 3);
+                if(Plugin_Name_Utilities::is_full_version($user_id)) {
+                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
+                    echo "<div class='chart-wraper'>";        
+                    echo do_shortcode('[wpdatachart id=3]');
+                    echo "</div>";
+                    echo Plugin_Name_Utilities::is_empty_chart('pie', 15, 3);
+                    
+                } else {
+                    echo "<div class='analytics-label-wraper'>";
+                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
+                    echo "<a class='unlock-more py-2' href='/pricing' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a>";
+                    echo "</div>";
 
+                    echo "<div class='chart-wraper flex justify-center'>";     
+                    ?>   
+                    <?php $social_img = plugin_dir_url( __FILE__ ) . 'img/social.jpg'; ?>
+                    <div class="bg-cover bg-center w-[400px] h-[400px]" style="background-image: url('<?php echo $social_img; ?>');">
+                            <div class="text-4xl flex justify-center items-center w-[400px] h-[400px] bg-white bg-opacity-80"> Sample Data</div>
+                    </div>
+
+                    <?php echo "</div>";
+                    
+                }
+                
+                
 
  
                
