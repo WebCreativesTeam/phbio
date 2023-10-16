@@ -527,8 +527,11 @@ html.wp-toolbar {
     @apply pt-7 pb-4 text-lg normal-case pl-4;
   }
 
+  .table-is-empty {
+    @apply hidden;
+  }
   .empty-analytic {
-    @apply flex-col justify-center px-0 sm:px-3 py-16 items-center hidden;
+    @apply flex-col justify-center px-0 sm:px-3 py-16 items-center flex;
   }
 
   .empty-analytic .analytic-empty-title {

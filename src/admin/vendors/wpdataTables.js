@@ -29,6 +29,9 @@ window.onload = function () {
     // Append the SVG string to the TH innerHTML
     th_ctr.innerHTML = svgString + th_ctr.innerHTML;
   }
+
+  // Execute the function
+  logEmptyTables();
 };
 
 // Function to check if the table is empty
@@ -40,36 +43,38 @@ function checkEmptyTable(tableID) {
   return table && table.querySelector(".dataTables_empty");
 }
 
-// Function to process an array of table IDs
-function processTables() {
-  // Select all elements with the "empty-analytic" class
-  var emptyAnalytics = document.querySelectorAll(".empty-analytic");
+function getUniqueTableIDsByCheckingEmpty() {
+  // Get all elements with the class 'table-is-empty'
+  var elements = document.querySelectorAll(".table-is-empty");
 
-  // Iterate over the emptyAnalytics elements
-  emptyAnalytics.forEach(function (emptyAnalytic) {
-    // Get the data-wptable attribute, which contains the table IDs
-    var tableIDs = emptyAnalytic.getAttribute("data-wptable");
+  // Set to store unique IDs
+  var uniqueIds = new Set();
 
-    // Split the table IDs into an array
-    tableIDs = tableIDs.split(",");
+  // Loop through each element
+  elements.forEach(function (element) {
+    // Get the 'data-wptable' attribute value
+    var ids = element.getAttribute("data-wptable");
 
-    // Check each table ID
-    tableIDs.forEach(function (tableID) {
-      var isEmpty = checkEmptyTable(tableID.trim());
-
-      if (isEmpty) {
-        // If the table is empty, show the empty analytic element
-        emptyAnalytic.style.display = "flex";
-      } else {
-        // If the table is not empty, you might want to keep the notice hidden
-        // emptyAnalytic.style.display = "none"; // Uncomment if you need this
-      }
+    // Split the IDs by comma and loop through each ID
+    ids.split(",").forEach(function (id) {
+      // Trim the ID to remove any whitespace and add it to the set
+      uniqueIds.add(id.trim());
     });
   });
-}
 
-// Window onload event
-window.onload = function () {
-  // Process the tables
-  processTables();
-};
+  // Convert the set back to an array
+  return Array.from(uniqueIds);
+}
+function logEmptyTables() {
+  // Get all unique table IDs
+  var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
+
+  // Loop through each ID
+  uniqueTableIDs.forEach(function (tableID) {
+    // Check if the current table is empty
+    if (checkEmptyTable(tableID)) {
+      // If the table is empty, log its ID to the console
+      console.log("Table with ID " + tableID + " is empty.");
+    }
+  });
+}

@@ -329,6 +329,17 @@ class Plugin_Name_Utilities {
          return get_user_meta($user_id, $name, true);
     }
     
+    public static function is_empty_table($id) {
+        ?>
+        <div class='table-wrapper table-is-empty' data-wptable='<?php echo $id; ?>'>        
+        <div class='empty-analytic'>
+        <svg xmlns='http://www.w3.org/2000/svg' fill='currentColor' height='1em' viewBox='0 0 512 512'><path d='M24 32c13.3 0 24 10.7 24 24V408c0 13.3 10.7 24 24 24H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H72c-39.8 0-72-32.2-72-72V56C0 42.7 10.7 32 24 32zM128 136c0-13.3 10.7-24 24-24l208 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-208 0c-13.3 0-24-10.7-24-24zm24 72H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24zm0 96H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24z'/></svg>
+        <div class='analytic-empty-title'>No data available</div>
+        <div class='analytic-empty-text'>There's no activity in the selected time range.</div>
+        </div>
+        </div>
+        <?php
+    }
 
     public static function get_unique_dynamic_tag_names_from_template($template_id) {
         // Retrieve the template data based on the template_id

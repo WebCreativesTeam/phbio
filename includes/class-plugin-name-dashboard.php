@@ -537,8 +537,12 @@ class Plugin_Name_Dashboard {
                     echo "<div class='table-wrapper'>";     
                     if(Plugin_Name_Utilities::is_full_version($user_id)) {
                         echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
+                        echo Plugin_Name_Utilities::is_empty_table(2);
+                    
                     } else {
                         echo do_shortcode('[wpdatatable id=4 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
+                        echo Plugin_Name_Utilities::is_empty_table(4);
+                    
                     }
                     echo "</div>";
 
@@ -548,7 +552,11 @@ class Plugin_Name_Dashboard {
                     // Hidden Tables
                     echo "<div class='hidden'>";
                     echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo Plugin_Name_Utilities::is_empty_table(7);
+                   
                     echo do_shortcode('[wpdatatable id=15 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
+                    echo Plugin_Name_Utilities::is_empty_table(15);
+                   
                     echo "</div>";
                     
 
@@ -573,23 +581,23 @@ class Plugin_Name_Dashboard {
                 echo "<div class='table-wrapper'>";        
                 if(Plugin_Name_Utilities::is_full_version($user_id)) {
                     echo do_shortcode('[wpdatatable id=2 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                    echo Plugin_Name_Utilities::is_empty_table(2);
                 } else {
                     echo do_shortcode('[wpdatatable id=4 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                    echo Plugin_Name_Utilities::is_empty_table(4);
                 }
                 echo "</div>";
+
                 
-                echo "<div class='table-wrapper'>";        
-                echo "<div class='empty-analytic' data-wptable='2'>";
-                echo "<svg xmlns='http://www.w3.org/2000/svg' fill='currentColor' height='1em' viewBox='0 0 512 512'><path d='M24 32c13.3 0 24 10.7 24 24V408c0 13.3 10.7 24 24 24H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H72c-39.8 0-72-32.2-72-72V56C0 42.7 10.7 32 24 32zM128 136c0-13.3 10.7-24 24-24l208 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-208 0c-13.3 0-24-10.7-24-24zm24 72H296c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24zm0 96H424c13.3 0 24 10.7 24 24s-10.7 24-24 24H152c-13.3 0-24-10.7-24-24s10.7-24 24-24z'/></svg>";
-                echo "<div class='analytic-empty-title'>No data available</div>";
-                echo "<div class='analytic-empty-text'>There's no activity in the selected time range.</div>";
-                echo "</div>";
-                echo "</div>";
                  
                 // Hidden Tables
                 echo "<div class='hidden'>";
                 echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=1970-01-01 var3=' . date("Y-m-d") . ']');
+                echo Plugin_Name_Utilities::is_empty_table(7);
+
                 echo do_shortcode('[wpdatatable id=15 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                echo Plugin_Name_Utilities::is_empty_table(15);
+
                 echo "</div>";
 
                
