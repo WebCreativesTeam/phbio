@@ -485,11 +485,11 @@ html.wp-toolbar {
   }
 
   .table-wrapper {
-    @apply rounded-xl py-[10px] px-[10px] mt-4 text-[#2a2a2a];
+    @apply rounded-xl py-[10px] px-[10px] mt-4 mb-12 text-[#2a2a2a];
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.28);
   }
   .chart-wraper {
-    @apply rounded-xl py-[25px] px-[10px] mt-4 text-[#2a2a2a];
+    @apply rounded-xl py-[25px] px-[10px] mt-4 mb-12 text-[#2a2a2a];
 
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.28);
   }
@@ -507,7 +507,7 @@ html.wp-toolbar {
   }
 
   .range-filters {
-    @apply flex items-center justify-center gap-1 my-10;
+    @apply flex items-center justify-center gap-1 mt-10 mb-14;
     font-family: "Poppins", sans-serif !important;
   }
 
@@ -521,6 +521,10 @@ html.wp-toolbar {
 
   .input-label .heading-icon {
     @apply text-[#F1441E] text-sm mr-1;
+  }
+
+  .input-label.analytics-label {
+    @apply pt-7 pb-4 text-lg normal-case pl-4;
   }
 
   /* WP FORMS */

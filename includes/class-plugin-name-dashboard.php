@@ -526,13 +526,13 @@ class Plugin_Name_Dashboard {
                     $date_to = $_POST['date_to'];
             
                     // Performance
-                    echo "<div class='pt-7 pb-4 input-label text-lg normal-case'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg>  Performance</div>";
+                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg>  Performance</div>";
                     echo "<div class='chart-wraper'>";        
                     echo do_shortcode('[wpdatachart id=2]');
                     echo "</div>";
 
 
-                    echo "<div class='pt-7 pb-4 input-label text-lg normal-case'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
+                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
                     echo "<div class='table-wrapper'>";     
                     if(Plugin_Name_Utilities::is_full_version($user_id)) {
                         echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
@@ -548,7 +548,7 @@ class Plugin_Name_Dashboard {
                     
 
 
-                    echo "<div class='pt-7 pb-4 input-label text-lg normal-case'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
+                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
                     echo "<div class='chart-wraper'>";        
                     echo do_shortcode('[wpdatachart id=3]');
                     echo "</div>";
@@ -558,13 +558,13 @@ class Plugin_Name_Dashboard {
             } else {
 
                 // Performance
-                echo "<div class='pt-7 pb-4 input-label text-lg normal-case'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Performance</div>";
+                echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Performance</div>";
                 echo "<div class='chart-wraper'>";        
                 echo do_shortcode('[wpdatachart id=2]');
                 echo "</div>";
 
 
-                echo "<div class='pt-7 pb-4 input-label text-lg normal-case'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
+                echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
                 echo "<div class='table-wrapper'>";        
                 if(Plugin_Name_Utilities::is_full_version($user_id)) {
                     echo do_shortcode('[wpdatatable id=2 var1=1970-01-01 var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
@@ -580,7 +580,7 @@ class Plugin_Name_Dashboard {
                
                 
                 
-                echo "<div class='pt-7 pb-4 input-label text-lg normal-case'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
+                echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
                 echo "<div class='chart-wraper'>";        
                 echo do_shortcode('[wpdatachart id=3]');
                 echo "</div>";
