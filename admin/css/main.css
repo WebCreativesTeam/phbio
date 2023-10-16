@@ -1298,6 +1298,51 @@ body {
     margin-right: 0.5rem;
     vertical-align: text-top;
 }
+.range-filters {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    font-family: "Poppins", sans-serif !important;
+}
+.range-filters .range-active-filter {
+    --tw-bg-opacity: 1;
+    background-color: rgb(241 68 30 / var(--tw-bg-opacity));
+    font-weight: 700;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+.range-filters .range-filter {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    --tw-text-opacity: 1;
+    color: rgb(55 65 81 / var(--tw-text-opacity));
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+}
+.range-filters .range-filter:hover {
+    --tw-text-opacity: 1;
+    color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+.range-filters .range-filter {
+    cursor: pointer;
+    border-radius: 0.375rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+.range-filters .range-filter:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(241 68 30 / var(--tw-bg-opacity));
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 /* WP FORMS */
 .table-wrapper
     .wpdt-c.wdt-skin-light
@@ -1329,7 +1374,7 @@ body {
     --tw-text-opacity: 1 !important;
     color: rgb(241 68 30 / var(--tw-text-opacity)) !important;
 }
-.column-total_views svg.ctr-table-icon {
+.column-ctr svg.ctr-table-icon {
     --tw-text-opacity: 1 !important;
     color: rgb(113 30 241 / var(--tw-text-opacity)) !important;
 }
@@ -1404,10 +1449,6 @@ body {
 .my-1 {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
-}
-.my-10 {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
 }
 .my-2 {
     margin-top: 0.5rem;
@@ -1609,9 +1650,6 @@ body {
 }
 .justify-around {
     justify-content: space-around;
-}
-.gap-1 {
-    gap: 0.25rem;
 }
 .gap-2 {
     gap: 0.5rem;
@@ -1946,11 +1984,6 @@ body {
 
 html.wp-toolbar {
   padding: 0px !important;
-}
-
-.hover\:bg-\[\#F1441E\]:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgb(241 68 30 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-blue-600:hover {

@@ -506,6 +506,19 @@ html.wp-toolbar {
     @apply mr-2 align-text-top;
   }
 
+  .range-filters {
+    @apply flex items-center justify-center gap-1 my-10;
+    font-family: "Poppins", sans-serif !important;
+  }
+
+  .range-filters .range-active-filter {
+    @apply text-white bg-[#F1441E] font-bold;
+  }
+
+  .range-filters .range-filter {
+    @apply cursor-pointer filter-item rounded-md hover:text-white hover:bg-[#F1441E] px-3 py-1 text-base;
+  }
+
   /* WP FORMS */
   .table-wrapper
     .wpdt-c.wdt-skin-light
@@ -531,7 +544,7 @@ html.wp-toolbar {
   .column-total_clicks svg.ctr-table-icon {
     @apply text-[#f1441e] !important;
   }
-  .column-total_views svg.ctr-table-icon {
+  .column-ctr svg.ctr-table-icon {
     @apply text-[#711ef1] !important;
   }
 }
