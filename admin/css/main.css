@@ -1306,10 +1306,12 @@ body {
     > thead
     > tr
     > th {
-    font-weight: normal !important;
-    font-size: 15px !important;
-    color: #2a2a2a;
-  }
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+    font-weight: 400 !important;
+    --tw-text-opacity: 1 !important;
+    color: rgb(42 42 42 / var(--tw-text-opacity)) !important;
+}
 /* CTA Table */
 .column-total_views svg.ctr-table-icon {
     --tw-text-opacity: 1 !important;
