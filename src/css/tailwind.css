@@ -319,6 +319,14 @@ html.wp-toolbar {
     @apply w-4 h-4;
   }
 
+  .unlock-more {
+    @apply no-underline hover:text-white flex border-0 items-center gap-1 px-2 py-1 text-sm font-medium text-white transition-transform duration-150 transform bg-[#F1441E] rounded-full cursor-pointer hover:scale-105 sm:gap-2 sm:px-4 md:text-[15px] md:gap-2;
+  }
+
+  .unlock-more svg {
+    @apply w-4 h-4;
+  }
+
   .active-tab {
     @apply text-white bg-[#F1441E] border-0;
   }
@@ -537,6 +545,14 @@ html.wp-toolbar {
     @apply pt-7 pb-4 text-lg normal-case pl-4;
   }
 
+  .analytics-label-wraper .input-label.analytics-label {
+    @apply p-0 !important;
+  }
+
+  .analytics-label-wraper {
+    @apply flex justify-between pt-7 pb-4 pl-4;
+  }
+
   .table-is-empty {
     @apply hidden;
   }
@@ -564,7 +580,7 @@ html.wp-toolbar {
     > thead
     > tr
     > th {
-    @apply font-normal text-sm sm:text-base text-[#2a2a2a] not-italic !important;
+    @apply font-normal text-sm sm:text-base text-[#2a2a2a] not-italic;
   }
   .table-wrapper
     .wpdt-c.wdt-skin-light
@@ -573,7 +589,7 @@ html.wp-toolbar {
     > thead
     > tr
     > th {
-    @apply font-semibold text-sm sm:text-base text-[#2a2a2a] italic !important;
+    @apply font-semibold text-sm sm:text-base text-[#2a2a2a] italic pl-0;
   }
   .table-wrapper
     .wpdt-c.wdt-skin-light
@@ -581,14 +597,16 @@ html.wp-toolbar {
     table.wpDataTable
     > tbody
     > tr {
-    @apply text-base leading-8 border-solid border-b-2 border-b-[#2a2a2a] !important;
+    @apply text-base leading-8  border-b-[1px] border-b-[#2a2a2a] pl-0;
+    border-bottom-style: solid;
   }
   .table-wrapper.ctr-table
     .wpdt-c.wdt-skin-light
     .wpDataTablesWrapper
     table.wpDataTable
-    > tbody {
-    @apply text-base sm:text-2xl !important;
+    > tbody
+    > tr {
+    @apply text-base sm:text-2xl border-none;
   }
 
   /* CTA Table */

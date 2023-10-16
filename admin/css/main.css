@@ -941,6 +941,54 @@ select {
     height: 1rem;
     width: 1rem;
 }
+.unlock-more {
+    display: flex;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    cursor: pointer;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 9999px;
+    border-width: 0px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(241 68 30 / var(--tw-bg-opacity));
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    text-decoration-line: none;
+    transition-property: transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+.unlock-more:hover {
+    --tw-scale-x: 1.05;
+    --tw-scale-y: 1.05;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+@media (min-width: 640px) {
+    .unlock-more {
+        gap: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+@media (min-width: 768px) {
+    .unlock-more {
+        gap: 0.5rem;
+        font-size: 15px;
+    }
+}
+.unlock-more svg {
+    height: 1rem;
+    width: 1rem;
+}
 .active-tab {
     border-width: 0px;
     --tw-bg-opacity: 1;
@@ -1393,6 +1441,16 @@ body {
     line-height: 1.75rem;
     text-transform: none;
 }
+.analytics-label-wraper .input-label.analytics-label {
+    padding: 0px !important;
+}
+.analytics-label-wraper {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1.75rem;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+}
 .table-is-empty {
     display: none;
 }
@@ -1456,12 +1514,12 @@ body {
     > thead
     > tr
     > th {
-    font-size: 0.875rem !important;
-    line-height: 1.25rem !important;
-    font-weight: 400 !important;
-    font-style: normal !important;
-    --tw-text-opacity: 1 !important;
-    color: rgb(42 42 42 / var(--tw-text-opacity)) !important;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 400;
+    font-style: normal;
+    --tw-text-opacity: 1;
+    color: rgb(42 42 42 / var(--tw-text-opacity));
 }
 @media (min-width: 640px) {
     .table-wrapper.ctr-table
@@ -1471,8 +1529,8 @@ body {
     > thead
     > tr
     > th {
-        font-size: 1rem !important;
-        line-height: 1.5rem !important;
+        font-size: 1rem;
+        line-height: 1.5rem;
     }
 }
 .table-wrapper
@@ -1482,12 +1540,13 @@ body {
     > thead
     > tr
     > th {
-    font-size: 0.875rem !important;
-    line-height: 1.25rem !important;
-    font-weight: 600 !important;
-    font-style: italic !important;
-    --tw-text-opacity: 1 !important;
-    color: rgb(42 42 42 / var(--tw-text-opacity)) !important;
+    padding-left: 0px;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    font-style: italic;
+    --tw-text-opacity: 1;
+    color: rgb(42 42 42 / var(--tw-text-opacity));
 }
 @media (min-width: 640px) {
     .table-wrapper
@@ -1497,8 +1556,8 @@ body {
     > thead
     > tr
     > th {
-        font-size: 1rem !important;
-        line-height: 1.5rem !important;
+        font-size: 1rem;
+        line-height: 1.5rem;
     }
 }
 .table-wrapper
@@ -1507,29 +1566,33 @@ body {
     table.wpDataTable
     > tbody
     > tr {
-    border-bottom-width: 2px !important;
-    border-style: solid !important;
-    --tw-border-opacity: 1 !important;
-    border-bottom-color: rgb(42 42 42 / var(--tw-border-opacity)) !important;
-    font-size: 1rem !important;
-    line-height: 2rem !important;
+    border-bottom-width: 1px;
+    --tw-border-opacity: 1;
+    border-bottom-color: rgb(42 42 42 / var(--tw-border-opacity));
+    padding-left: 0px;
+    font-size: 1rem;
+    line-height: 2rem;
+    border-bottom-style: solid;
 }
 .table-wrapper.ctr-table
     .wpdt-c.wdt-skin-light
     .wpDataTablesWrapper
     table.wpDataTable
-    > tbody {
-    font-size: 1rem !important;
-    line-height: 1.5rem !important;
+    > tbody
+    > tr {
+    border-style: none;
+    font-size: 1rem;
+    line-height: 1.5rem;
 }
 @media (min-width: 640px) {
     .table-wrapper.ctr-table
     .wpdt-c.wdt-skin-light
     .wpDataTablesWrapper
     table.wpDataTable
-    > tbody {
-        font-size: 1.5rem !important;
-        line-height: 2rem !important;
+    > tbody
+    > tr {
+        font-size: 1.5rem;
+        line-height: 2rem;
     }
 }
 /* CTA Table */
@@ -2159,42 +2222,34 @@ body {
 html.wp-toolbar {
   padding: 0px !important;
 }
-
 .hover\:bg-blue-600:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
-
 .hover\:bg-gray-200:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
-
 .hover\:text-\[\#F1441E\]:hover {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
-
 .hover\:text-gray-700:hover {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
-
 .hover\:text-white:hover {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-
 .focus\:text-\[\#F1441E\]:focus {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
-
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
 }
-
 @media (min-width: 640px) {
     .sm\:m-5 {
         margin: 1.25rem;
@@ -2263,7 +2318,6 @@ html.wp-toolbar {
         line-height: 1.25rem;
     }
 }
-
 @media (min-width: 768px) {
     .md\:w-\[95\%\] {
         width: 95%;
@@ -2276,7 +2330,6 @@ html.wp-toolbar {
         line-height: 1.5rem;
     }
 }
-
 @media (min-width: 1024px) {
     .lg\:grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));
