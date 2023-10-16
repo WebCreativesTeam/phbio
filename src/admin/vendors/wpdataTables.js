@@ -146,14 +146,17 @@ function correctEmptyChartWrappers() {
         // Get the chart ID from the 'data-wpchart' attribute
         var chartID = wrapper.getAttribute("data-wpchart");
 
-        // Find the chart's wrapper that contains a child div with ID 'chartJSContainer_' followed by the chart ID
-        var chartWrapper = document.querySelector(
-          ".chart-wrapper #chartJSContainer_" + chartID
+        // Find the chart element
+        var chartElement = document.querySelector(
+          "#chartJSContainer_" + chartID
         );
 
-        // If the chart's wrapper is found, set its display to 'none' to hide it
-        if (chartWrapper) {
-          chartWrapper.style.display = "none";
+        // If the chart element is found, find its closest wrapper with the class 'chart-wrapper' and hide it
+        if (chartElement) {
+          var chartWrapper = chartElement.closest(".chart-wrapper");
+          if (chartWrapper) {
+            chartWrapper.style.display = "none";
+          }
         }
       });
     }
