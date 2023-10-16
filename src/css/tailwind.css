@@ -579,8 +579,9 @@ html.wp-toolbar {
     .wpdt-c.wdt-skin-light
     .wpDataTablesWrapper
     table.wpDataTable
-    > tbody {
-    @apply text-base leading-8 border-b-2 border-b-solid border-b-[#2a2a2a] !important;
+    > tbody
+    > tr {
+    @apply text-base leading-8 border-solid border-b-2 border-b-[#2a2a2a] !important;
   }
   .table-wrapper.ctr-table
     .wpdt-c.wdt-skin-light
