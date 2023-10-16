@@ -1178,17 +1178,18 @@ iframe {
     -webkit-animation: spin 1s ease-in-out infinite;
   }
 #analytics-spin {
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 7rem;
     margin-bottom: 0.5rem;
-    display: inline-block;
+    display: flex;
     height: 3.5rem;
     width: 3.5rem;
+    justify-content: center;
     border-radius: 50%;
     border-width: 4px;
     border-style: solid;
-    border-color: F1441E;
+    border-color: rgb(255 255 255 / var(--tw-border-opacity));
+    --tw-border-opacity: 0.3;
+    border-top-color: #f1441e !important;
     animation: spin 1s ease-in-out infinite;
     -webkit-animation: spin 1s ease-in-out infinite;
 }
