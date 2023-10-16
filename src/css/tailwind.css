@@ -505,4 +505,16 @@ html.wp-toolbar {
   .ctr-table-icon {
     @apply mr-2 align-text-top;
   }
+
+  /* WP FORMS */
+  .table-wrapper
+    .wpdt-c.wdt-skin-light
+    .wpDataTablesWrapper
+    table.wpDataTable
+    > thead
+    > tr
+    > th {
+    font-weight: normal !important;
+    font-size: 15px !important;
+  }
 }

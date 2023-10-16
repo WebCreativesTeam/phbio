@@ -1298,6 +1298,17 @@ body {
     margin-right: 0.5rem;
     vertical-align: text-top;
 }
+/* WP FORMS */
+.table-wrapper
+    .wpdt-c.wdt-skin-light
+    .wpDataTablesWrapper
+    table.wpDataTable
+    > thead
+    > tr
+    > th {
+    font-weight: normal !important;
+    font-size: 15px !important;
+  }
 .sr-only {
     position: absolute;
     width: 1px;
