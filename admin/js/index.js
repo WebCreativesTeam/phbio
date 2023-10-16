@@ -3846,10 +3846,10 @@ const analyticsFilter = ()=>({
             }
             // Retrieve the selected range from local storage
             const savedRange = localStorage.getItem("selectedRange");
-            console.log(savedRange);
-            // Check if there's a saved range and if it matches the existing selected range
+            // If there's a saved range, set it
             if (savedRange) this.setDateRange(savedRange);
-            if (!this.selectedRange || this.selectedRange === "") this.setDateRange("lifetime");
+            else if (!this.selectedRange || this.selectedRange === "") // If there's no saved range in local storage, default to 'lifetime'
+            this.setDateRange("lifetime");
             this.setDateValues();
         },
         isToday (date) {
