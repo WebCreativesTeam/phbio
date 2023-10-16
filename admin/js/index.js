@@ -4223,6 +4223,7 @@ window.onload = function() {
     logEmptyTables();
     hideEmptyTableWrappers();
     correctEmptyTableWrappers();
+    correctEmptyChartWrappers();
 };
 // Function to check if the table is empty
 function checkEmptyTable(tableID) {
@@ -4287,6 +4288,30 @@ function correctEmptyTableWrappers() {
             // Loop through each wrapper and remove the 'table-is-empty' class
             emptyWrappers.forEach(function(wrapper) {
                 wrapper.classList.remove("table-is-empty");
+            });
+        }
+    });
+}
+function correctEmptyChartWrappers() {
+    // Get all unique table IDs
+    var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
+    // Loop through each ID
+    uniqueTableIDs.forEach(function(tableID) {
+        // Check if the current table is empty
+        if (checkEmptyTable(tableID)) {
+            // If the table is empty, find the table's wrapper with the 'table-is-empty' class and 'data-wpchart' attribute
+            var selector = ".table-wrapper.table-is-empty[data-wptable='" + tableID + "'][data-wpchart]";
+            var emptyWrappers = document.querySelectorAll(selector);
+            // Loop through each wrapper
+            emptyWrappers.forEach(function(wrapper) {
+                // Remove the 'table-is-empty' class
+                wrapper.classList.remove("table-is-empty");
+                // Get the chart ID from the 'data-wpchart' attribute
+                var chartID = wrapper.getAttribute("data-wpchart");
+                // Find the chart's wrapper that contains a child div with ID 'chartJSContainer_' followed by the chart ID
+                var chartWrapper = document.querySelector(".chart-wrapper #chartJSContainer_" + chartID);
+                // If the chart's wrapper is found, set its display to 'none' to hide it
+                if (chartWrapper) chartWrapper.style.display = "none";
             });
         }
     });

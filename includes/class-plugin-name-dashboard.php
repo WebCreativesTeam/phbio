@@ -531,6 +531,7 @@ class Plugin_Name_Dashboard {
                     echo "<div class='chart-wraper'>";        
                     echo do_shortcode('[wpdatachart id=2]');
                     echo "</div>";
+                    echo Plugin_Name_Utilities::is_empty_chart('area', 7, 2);
 
 
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
@@ -566,7 +567,7 @@ class Plugin_Name_Dashboard {
                     echo "<div class='chart-wraper'>";        
                     echo do_shortcode('[wpdatachart id=3]');
                     echo "</div>";
-                    
+                    echo Plugin_Name_Utilities::is_empty_chart('pie', 15, 3);
                     
                 } 
             } else {
@@ -576,6 +577,8 @@ class Plugin_Name_Dashboard {
                 echo "<div class='chart-wraper'>";        
                 echo do_shortcode('[wpdatachart id=2]');
                 echo "</div>";
+                echo Plugin_Name_Utilities::is_empty_chart('area', 7, 2);
+
 
 
                 echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
@@ -607,6 +610,8 @@ class Plugin_Name_Dashboard {
                 echo "<div class='chart-wraper'>";        
                 echo do_shortcode('[wpdatachart id=3]');
                 echo "</div>";
+                echo Plugin_Name_Utilities::is_empty_chart('pie', 15, 3);
+
 
  
                
