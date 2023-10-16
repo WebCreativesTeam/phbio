@@ -39,9 +39,11 @@ window.onload = function () {
 
   // After all operations are complete, hide the spinner and show the content
   var spinner = document.getElementById("analytics-spin");
+  var msg = document.getElementById("analytic-loading-msg");
   var content = document.getElementById("analytics-content");
   if (spinner) {
     spinner.style.display = "none"; // Hide the spinner
+    msg.style.display = "none";
   }
   if (content) {
     content.classList.remove("hidden"); // Remove the 'hidden' class to show the content

@@ -443,14 +443,13 @@ html.wp-toolbar {
     -webkit-animation: spin 1s ease-in-out infinite;
   }
   #analytics-spin {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: #f1441e;
+    @apply inline-block w-14 h-14 border-solid border-4 border-[F1441E] rounded-[50%] mx-auto mt-28 mb-2;
     animation: spin 1s ease-in-out infinite;
     -webkit-animation: spin 1s ease-in-out infinite;
+  }
+
+  #analytic-loading-msg {
+    @apply flex justify-center text-base text-[#171717];
   }
 
   @keyframes spin {

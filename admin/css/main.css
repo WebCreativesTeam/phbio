@@ -1178,15 +1178,28 @@ iframe {
     -webkit-animation: spin 1s ease-in-out infinite;
   }
 #analytics-spin {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 7rem;
+    margin-bottom: 0.5rem;
     display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    height: 3.5rem;
+    width: 3.5rem;
     border-radius: 50%;
-    border-top-color: #f1441e;
+    border-width: 4px;
+    border-style: solid;
+    border-color: F1441E;
     animation: spin 1s ease-in-out infinite;
     -webkit-animation: spin 1s ease-in-out infinite;
-  }
+}
+#analytic-loading-msg {
+    display: flex;
+    justify-content: center;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    --tw-text-opacity: 1;
+    color: rgb(23 23 23 / var(--tw-text-opacity));
+}
 @keyframes spin {
     to {
       -webkit-transform: rotate(360deg);
