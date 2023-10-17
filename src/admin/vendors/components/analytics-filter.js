@@ -255,14 +255,12 @@ export const analyticsFilter = () => ({
     if (!temp) {
       if (this.selecting) {
         this.outputDateValues();
-
+        this.closeDatepicker();
         // If the range is custom, save the dates in local storage
         if (this.selectedRange === "custom") {
           localStorage.setItem("customDateFrom", this.dateFrom.toISOString());
           localStorage.setItem("customDateTo", this.dateTo.toISOString());
         }
-
-        this.closeDatepicker();
       }
       this.selecting = !this.selecting;
     }
