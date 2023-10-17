@@ -195,6 +195,7 @@ class Plugin_Name_Activator {
 		$sql = "CREATE TABLE $table_name (
 			id mediumint(9) NOT NULL AUTO_INCREMENT,
 			viewed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+			viewed_country VARCHAR(100),
 			post_id mediumint(9) NOT NULL,
 			PRIMARY KEY (id)
 		) $charset_collate;";

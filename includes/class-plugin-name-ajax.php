@@ -181,16 +181,19 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 			}
 			
 			$post_id = intval($_POST['post_id']);  // Sanitize as integer
+			$country = $_POST['country'];  
 			
 			// Record the view in your database
 			$insert_result = $wpdb->insert(
 				"{$wpdb->prefix}page_views",
 				[
 					'post_id' => $post_id,
-					'viewed_at' => current_time('mysql')
+					'viewed_at' => current_time('mysql'),
+					'viewed_country' => $country  
 				],
-				['%d', '%s']  // post_id is a number, viewed_at is a string
+				['%d', '%s', '%s']  
 			);
+			
 			
 			// Check whether the insert was successful
 			if($insert_result) {

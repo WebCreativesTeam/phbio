@@ -1,4 +1,6 @@
 jQuery(document).ready(function ($) {
+  var country = geoplugin_countryName();
+  console.log(country);
   var postId = document.querySelector("article").id.split("-")[1];
   var cookieName = "page_viewed_" + postId;
   // Check if cookie is not set
@@ -9,6 +11,7 @@ jQuery(document).ready(function ($) {
       data: {
         action: "handle_record_page_view",
         post_id: postId,
+        country: country,
       },
     });
     // Set cookie for 1 day
