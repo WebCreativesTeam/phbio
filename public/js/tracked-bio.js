@@ -1,5 +1,6 @@
 jQuery(document).ready(function ($) {
-  var country = geoplugin_countryName();
+  // var country = geoplugin_countryName();
+  var country = getRandomCountry();
   console.log(country);
   var postId = document.querySelector("article").id.split("-")[1];
   var cookieName = "page_viewed_" + postId;
@@ -16,6 +17,38 @@ jQuery(document).ready(function ($) {
     });
     // Set cookie for 1 day
     setCookie(cookieName, "true", 1);
+  }
+
+  function getRandomCountry() {
+    // Define an array of 20 countries
+    var countries = [
+      "United States",
+      "Canada",
+      "Australia",
+      "United Kingdom",
+      "Germany",
+      "France",
+      "Spain",
+      "Italy",
+      "Brazil",
+      "Mexico",
+      "Russia",
+      "India",
+      "China",
+      "Japan",
+      "South Korea",
+      "South Africa",
+      "Nigeria",
+      "Egypt",
+      "Argentina",
+      "Chile",
+    ];
+
+    // Get a random index from array (0 to array length minus one)
+    var randomIndex = Math.floor(Math.random() * countries.length);
+
+    // Return the country that corresponds to the random index
+    return countries[randomIndex];
   }
 
   function setCookie(name, value, days) {
