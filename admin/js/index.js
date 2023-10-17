@@ -4253,7 +4253,7 @@ function executeStart() {
             msg.style.display = "none";
         }
         if (content) content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
-    }, 500);
+    }, 3500);
 }
 // Function to check if the table is empty
 function checkEmptyTable(tableID) {
