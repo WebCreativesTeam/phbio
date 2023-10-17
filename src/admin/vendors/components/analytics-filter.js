@@ -33,6 +33,8 @@ export const analyticsFilter = () => ({
   blankdays: [],
 
   setDateRange(range, submitForm = false) {
+    console.log("Range");
+
     this.selectedRange = range;
     // Save the selected range in local storage
     localStorage.setItem("selectedRange", this.selectedRange);
@@ -100,7 +102,6 @@ export const analyticsFilter = () => ({
     const year = dateObject.getFullYear();
     const month = dateObject.getMonth() + 1;
     const date = dateObject.getDate();
-
     return year + "-" + ("0" + month).slice(-2) + "-" + ("0" + date).slice(-2);
   },
 

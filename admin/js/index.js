@@ -597,12 +597,12 @@ window.Alpine = (0, _alpinejsDefault.default);
 (0, _alpinejsDefault.default).data("dropdown", (initIcons = [], selected = "")=>(0, _dropdownDefault.default)(initIcons, selected));
 (0, _alpinejsDefault.default).data("lang", (allowMultiple = false, selected = "")=>(0, _langDefault.default)(allowMultiple, selected));
 (0, _alpinejsDefault.default).data("socialLinks", (initLinks = [])=>(0, _socialLinksNewDefault.default)(initLinks));
-(0, _alpinejsDefault.default).data("analyticsFilter", (fromInitDate = null, toInitDate = null)=>(0, _analyticsFilter.analyticsFilter)(fromInitDate, toInitDate));
+(0, _alpinejsDefault.default).data("analyticsFilter", ()=>(0, _analyticsFilter.analyticsFilter)());
 (0, _alpinejsDefault.default).data("dashboard", ()=>(0, _dashboard.dashboard)());
 (0, _alpinejsDefault.default).data("linkManager", ()=>(0, _linkManager.linkManager)());
 (0, _alpinejsDefault.default).start();
 
-},{"alpinejs":"69hXP","./components/links":"gsPSq","./components/analytics-filter":"fI1UE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./components/social-links-new":"gu8G2","./components/dashboard":"lcv74","./components/dropdown":"h4fl0","./components/link-manager":"hlcQ7","./components/lang":"bpmMv"}],"69hXP":[function(require,module,exports) {
+},{"alpinejs":"69hXP","./components/links":"gsPSq","./components/analytics-filter":"fI1UE","./components/social-links-new":"gu8G2","./components/dashboard":"lcv74","./components/dropdown":"h4fl0","./components/lang":"bpmMv","./components/link-manager":"hlcQ7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"69hXP":[function(require,module,exports) {
 // packages/alpinejs/src/scheduler.js
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -3734,7 +3734,7 @@ exports.default = ({ initLinks = [], initMax })=>({
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "analyticsFilter", ()=>analyticsFilter);
-const analyticsFilter = ({ fromInitDate = null, toInitDate = null })=>({
+const analyticsFilter = ()=>({
         MONTH_NAMES: [
             "January",
             "February",
@@ -3767,8 +3767,8 @@ const analyticsFilter = ({ fromInitDate = null, toInitDate = null })=>({
         dateFromValue: "",
         dateToValue: "",
         currentDate: null,
-        dateFrom: fromInitDate,
-        dateTo: toInitDate,
+        dateFrom: null,
+        dateTo: null,
         endToShow: "",
         selecting: false,
         month: "",
@@ -3776,6 +3776,7 @@ const analyticsFilter = ({ fromInitDate = null, toInitDate = null })=>({
         no_of_days: [],
         blankdays: [],
         setDateRange (range, submitForm = false) {
+            console.log("Range");
             this.selectedRange = range;
             // Save the selected range in local storage
             localStorage.setItem("selectedRange", this.selectedRange);
@@ -4139,29 +4140,6 @@ exports.default = ({ initIcons = [], selected = "" })=>({
         }
     });
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hlcQ7":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "linkManager", ()=>linkManager);
-const linkManager = ()=>({
-        isOpen: false,
-        removeImage: function(index) {
-            if (!confirm("Are you sure you want to remove this image?")) return;
-            let data = new FormData();
-            data.append("action", "handle_remove_gallery_image");
-            data.append("index", index);
-            fetch(plugin.ajax_url, {
-                method: "POST",
-                body: data
-            }).then((response)=>response.json()).then((data)=>{
-                if (data.success) location.reload();
-                else alert("Failed to remove image");
-            }).catch((err)=>{
-                console.log(err);
-            });
-        }
-    });
-
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bpmMv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -4197,6 +4175,29 @@ exports.default = ({ selected = "", allowMultiple = false })=>({
         },
         selectedAsString () {
             return this.selected.join(",");
+        }
+    });
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hlcQ7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "linkManager", ()=>linkManager);
+const linkManager = ()=>({
+        isOpen: false,
+        removeImage: function(index) {
+            if (!confirm("Are you sure you want to remove this image?")) return;
+            let data = new FormData();
+            data.append("action", "handle_remove_gallery_image");
+            data.append("index", index);
+            fetch(plugin.ajax_url, {
+                method: "POST",
+                body: data
+            }).then((response)=>response.json()).then((data)=>{
+                if (data.success) location.reload();
+                else alert("Failed to remove image");
+            }).catch((err)=>{
+                console.log(err);
+            });
         }
     });
 
