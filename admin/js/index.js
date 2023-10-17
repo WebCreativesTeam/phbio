@@ -3829,6 +3829,7 @@ const analyticsFilter = ()=>({
                 console.log("This page is reloaded");
                 // Remove the selectedRange item from local storage
                 localStorage.removeItem("selectedRange");
+                this.setDateRange("Today");
             }
             this.selecting = this.endToShow === "to" && this.dateTo || this.endToShow === "from" && this.dateFrom;
             if (!this.dateFrom) {

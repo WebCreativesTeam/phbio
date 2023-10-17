@@ -109,6 +109,7 @@ export const analyticsFilter = () => ({
       console.log("This page is reloaded");
       // Remove the selectedRange item from local storage
       localStorage.removeItem("selectedRange");
+      this.setDateRange("Today");
     }
 
     this.selecting =
