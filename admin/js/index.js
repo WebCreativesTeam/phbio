@@ -4234,15 +4234,6 @@ window.onload = function() {
     }
     // Execute the function
     executeStart();
-    // After all operations are complete, hide the spinner and show the content
-    var spinner = document.getElementById("analytics-spin");
-    var msg = document.getElementById("analytic-loading-msg");
-    var content = document.getElementById("analytics-content");
-    if (spinner) {
-        spinner.style.display = "none"; // Hide the spinner
-        msg.style.display = "none";
-    }
-    if (content) content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
 };
 function executeStart() {
     var emptyTableIDs = [];
@@ -4251,6 +4242,15 @@ function executeStart() {
         hideEmptyTableWrappers(emptyTableIDs);
         correctEmptyTableWrappers(emptyTableIDs);
         hideEmptyChartContainers(emptyTableIDs);
+        // After all operations are complete, hide the spinner and show the content
+        var spinner = document.getElementById("analytics-spin");
+        var msg = document.getElementById("analytic-loading-msg");
+        var content = document.getElementById("analytics-content");
+        if (spinner) {
+            spinner.style.display = "none"; // Hide the spinner
+            msg.style.display = "none";
+        }
+        if (content) content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
     }, 3000);
 }
 // Function to check if the table is empty
