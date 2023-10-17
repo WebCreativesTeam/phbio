@@ -3833,7 +3833,6 @@ const analyticsFilter = ()=>({
             return year + "-" + ("0" + month).slice(-2) + "-" + ("0" + date).slice(-2);
         },
         init () {
-            console.log(this.dateFromValue, this.dateToValue);
             if (performance.navigation.type === 1) {
                 localStorage.removeItem("selectedRange");
                 this.setDateRange("Today");
