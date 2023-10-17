@@ -4242,6 +4242,8 @@ function executeStart() {
         hideEmptyTableWrappers(emptyTableIDs);
         correctEmptyTableWrappers(emptyTableIDs);
         hideEmptyChartContainers(emptyTableIDs);
+    }, 3000);
+    setTimeout(function() {
         // After all operations are complete, hide the spinner and show the content
         var spinner = document.getElementById("analytics-spin");
         var msg = document.getElementById("analytic-loading-msg");
@@ -4251,7 +4253,7 @@ function executeStart() {
             msg.style.display = "none";
         }
         if (content) content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
-    }, 3000);
+    }, 500);
 }
 // Function to check if the table is empty
 function checkEmptyTable(tableID) {
