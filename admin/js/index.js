@@ -3776,6 +3776,8 @@ const analyticsFilter = ()=>({
         no_of_days: [],
         blankdays: [],
         setDateRange (range, submitForm = false) {
+            // Check if the current range is 'Custom' and the new range is not 'Custom'
+            if (this.selectedRange === "custom" && range !== "custom" && this.endToShow !== "") return; // Exit the function without changing the range or doing anything else
             this.selectedRange = range;
             // Save the selected range in local storage
             localStorage.setItem("selectedRange", this.selectedRange);
