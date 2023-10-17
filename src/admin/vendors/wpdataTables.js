@@ -39,10 +39,7 @@ window.onload = function () {
   }
 
   // Execute the function
-  const emptyTableIDs = getEmptyTableIDs();
-  hideEmptyTableWrappers(emptyTableIDs);
-  correctEmptyTableWrappers(emptyTableIDs);
-  hideEmptyChartContainers(emptyTableIDs);
+  executeStart();
 
   // After all operations are complete, hide the spinner and show the content
   var spinner = document.getElementById("analytics-spin");
@@ -56,6 +53,18 @@ window.onload = function () {
     content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
   }
 };
+
+document.addEventListener("DOMContentLoaded", function () {
+  executeStart();
+});
+
+function executeStart() {
+  let emptyTableIDs = [];
+  emptyTableIDs = getEmptyTableIDs();
+  hideEmptyTableWrappers(emptyTableIDs);
+  correctEmptyTableWrappers(emptyTableIDs);
+  hideEmptyChartContainers(emptyTableIDs);
+}
 
 // Function to check if the table is empty
 function checkEmptyTable(tableID) {

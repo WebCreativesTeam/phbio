@@ -4233,10 +4233,7 @@ window.onload = function() {
         th_empty_clicks.innerHTML = svgString + th_empty_clicks.innerHTML;
     }
     // Execute the function
-    const emptyTableIDs = getEmptyTableIDs();
-    hideEmptyTableWrappers(emptyTableIDs);
-    correctEmptyTableWrappers(emptyTableIDs);
-    hideEmptyChartContainers(emptyTableIDs);
+    executeStart();
     // After all operations are complete, hide the spinner and show the content
     var spinner = document.getElementById("analytics-spin");
     var msg = document.getElementById("analytic-loading-msg");
@@ -4247,6 +4244,16 @@ window.onload = function() {
     }
     if (content) content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
 };
+document.addEventListener("DOMContentLoaded", function() {
+    executeStart();
+});
+function executeStart() {
+    let emptyTableIDs = [];
+    emptyTableIDs = getEmptyTableIDs();
+    hideEmptyTableWrappers(emptyTableIDs);
+    correctEmptyTableWrappers(emptyTableIDs);
+    hideEmptyChartContainers(emptyTableIDs);
+}
 // Function to check if the table is empty
 function checkEmptyTable(tableID) {
     // Select the specific table by its unique class. Replace wpDataTableID with your actual unique identifier
