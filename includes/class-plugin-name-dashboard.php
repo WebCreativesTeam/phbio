@@ -486,7 +486,7 @@ class Plugin_Name_Dashboard {
 
     public function edit__tab_analytics($user_id) { ?>
         <div x-data="analyticsFilter()" x-init="init" x-cloak>
-
+       
         <?php
             $title = get_user_meta($user_id, 'username', true);
             $post = get_page_by_path( $title, OBJECT, 'hb-user-profile' );
