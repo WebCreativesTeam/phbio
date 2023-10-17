@@ -486,9 +486,14 @@ class Plugin_Name_Dashboard {
     <?php }
 
     public function edit__tab_analytics($user_id) { ?>
+<<<<<<< HEAD
 
    
         <div x-data="analyticsFilter()" x-init="init" x-cloak>
+=======
+        <div x-data="analyticsFilter()" x-init="init" x-cloak>
+       
+>>>>>>> 1d67139bb06093ece78cd83f228f83ced501310e
         <?php
             
             $title = get_user_meta($user_id, 'username', true);
