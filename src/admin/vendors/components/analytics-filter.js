@@ -33,8 +33,6 @@ export const analyticsFilter = () => ({
   blankdays: [],
 
   setDateRange(range, submitForm = false) {
-    console.log("Range");
-
     this.selectedRange = range;
     // Save the selected range in local storage
     localStorage.setItem("selectedRange", this.selectedRange);
@@ -74,15 +72,26 @@ export const analyticsFilter = () => ({
         this.dateTo = today;
         break;
       case "custom":
-        this.dateFrom = null;
-        this.dateTo = null;
+        // Check if we have the dates in local storage
+        const storedDateFrom = localStorage.getItem("customDateFrom");
+        const storedDateTo = localStorage.getItem("customDateTo");
+
+        if (storedDateFrom && storedDateTo) {
+          // We have dates in local storage, use them
+          this.dateFrom = new Date(storedDateFrom);
+          this.dateTo = new Date(storedDateTo);
+        } else {
+          this.dateFrom = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            today.getDate() - 6
+          );
+          this.dateTo = today;
+        }
         break;
     }
 
-    // Only call outputDateValues if the selected range is not 'custom'.
-    if (this.selectedRange !== "custom") {
-      this.outputDateValues();
-    }
+    this.outputDateValues();
 
     if (submitForm) {
       setTimeout(function () {
@@ -106,9 +115,8 @@ export const analyticsFilter = () => ({
   },
 
   init() {
+    console.log(this.dateFromValue, this.dateToValue);
     if (performance.navigation.type === 1) {
-      console.log("This page is reloaded");
-      // Remove the selectedRange item from local storage
       localStorage.removeItem("selectedRange");
       this.setDateRange("Today");
     }
@@ -219,7 +227,7 @@ export const analyticsFilter = () => ({
       return;
     }
     let selectedDate = new Date(this.year, this.month, date);
-    if (this.selectedRange === "custom" && !this.selecting) {
+    if (!this.selecting) {
       return;
     }
 
@@ -247,11 +255,14 @@ export const analyticsFilter = () => ({
     if (!temp) {
       if (this.selecting) {
         this.outputDateValues();
+
+        // If the range is custom, save the dates in local storage
         if (this.selectedRange === "custom") {
-          // Do something if needed when the custom range is selected
-        } else {
-          this.closeDatepicker();
+          localStorage.setItem("customDateFrom", this.dateFrom.toISOString());
+          localStorage.setItem("customDateTo", this.dateTo.toISOString());
         }
+
+        this.closeDatepicker();
       }
       this.selecting = !this.selecting;
     }
