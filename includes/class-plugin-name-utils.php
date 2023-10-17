@@ -6,7 +6,7 @@ class Plugin_Name_Utilities {
 
     // Data to delete after, days
     // IMPORTANT KEEP THIS SAME WITH THE SCHEDULED CLASS'S VALUE 
-    const KEEP_FOR = 1;
+    const KEEP_FOR = 2;
 
     public static function is_not_included_field($label) {
         return '<div class="mt-10 warning-message">
@@ -22,7 +22,7 @@ class Plugin_Name_Utilities {
             return '<div class="warning-message">
             <svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg>
             <span>Your
-            subscription has expired, but don\'t worry! We\'ll keep all your links live for <b>' . self::get_remaining_days_for_user_backup($user_id) . '</b>. <a href="/my-account/subscription" class="font-semibold no-underline" target="__blank">Renew now</a> to keep
+            subscription has expired, but don\'t worry! We\'ll keep all your links live for <b>' . self::get_remaining_days_for_user_backup($user_id) . '</b>. <a href="/my-account/subscription" class="font-semibold no-underline text-[#F1441E]" target="__blank">Renew now</a> to keep
             them active. </span></div>';
         } else {
             return '';
@@ -55,7 +55,7 @@ class Plugin_Name_Utilities {
         // If no days left, calculate hours
         if (floor($remaining_days) == 0) {
             $hours_elapsed = $elapsed_time / HOUR_IN_SECONDS;
-            $remaining_hours = 24 - $hours_elapsed;
+            $remaining_hours = 48 - $hours_elapsed;
             return max(0, floor($remaining_hours)) . " hours";
         }
     
@@ -344,7 +344,7 @@ class Plugin_Name_Utilities {
         // Define SVG paths for different types
         $svg_paths = [
             'pie' => '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="1em" viewBox="0 0 576 512"><path d="M304 240V16.6c0-9 7-16.6 16-16.6C443.7 0 544 100.3 544 224c0 9-7.6 16-16.6 16H304zM32 272C32 150.7 122.1 50.3 239 34.3c9.2-1.3 17 6.1 17 15.4V288L412.5 444.5c6.7 6.7 6.2 17.7-1.5 23.1C371.8 495.6 323.8 512 272 512C139.5 512 32 404.6 32 272zm526.4 16c9.3 0 16.6 7.8 15.4 17c-7.7 55.9-34.6 105.6-73.9 142.3c-6 5.6-15.4 5.2-21.2-.7L320 288H558.4z"/></svg>',
-            'area' => '<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm96 288H448c17.7 0 32-14.3 32-32V251.8c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1v84c0 17.7 14.3 32 32 32z"/></svg>'
+            'area' => '<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" height="1em" viewBox="0 0 512 512"><path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64V400c0 44.2 35.8 80 80 80H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H80c-8.8 0-16-7.2-16-16V64zm96 288H448c17.7 0 32-14.3 32-32V251.8c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1v84c0 17.7 14.3 32 32 32z"/></svg>'
         ];
     
         // Choose the SVG path based on the type

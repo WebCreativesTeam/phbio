@@ -162,7 +162,7 @@ html.wp-toolbar {
     justify-content: center;
     height: 35px;
     min-width: 35px;
-    background-color: #2770ff;
+    background-color: #f1441e;
     color: #fff;
     font-size: 20px;
     border-radius: 50%;
@@ -200,7 +200,7 @@ html.wp-toolbar {
     right: 0;
     height: 100%;
     width: 100%;
-    background-color: #2770ff;
+    background-color: #f1441e;
   }
 
   .progress.active:before {
@@ -306,7 +306,7 @@ html.wp-toolbar {
 
   /* Tabs */
   .tab-headers {
-    @apply flex justify-center gap-2 px-2 mt-8 mb-6 md:justify-start md:gap-6;
+    @apply flex justify-center gap-2 px-2 mt-14 mb-4 md:mt-8 md:mb-6 md:justify-start md:gap-6;
   }
 
   /* .tab-btn {
@@ -322,7 +322,7 @@ html.wp-toolbar {
   }
 
   .unlock-more {
-    @apply no-underline hover:text-white flex border-0 items-center gap-1 px-2 py-1 text-sm font-medium text-white transition-transform duration-150 transform bg-[#F1441E] rounded-full cursor-pointer hover:scale-105 sm:gap-2 sm:px-4 md:text-[15px] md:gap-2;
+    @apply no-underline hover:text-white flex border-0 items-center gap-1 px-2 py-1 text-sm font-semibold text-white transition-transform duration-150 transform bg-[#F1441E] rounded-full cursor-pointer hover:scale-105 sm:gap-2 sm:px-4 md:text-[12px] md:gap-2;
   }
 
   .unlock-more svg {
@@ -335,6 +335,14 @@ html.wp-toolbar {
 
   .tab-content {
     @apply px-6 pt-4 pb-80 md:px-2;
+  }
+
+  #analyticsFilterForm {
+    @apply flex justify-center -mt-5;
+  }
+
+  #analyticsFilterForm input[type="submit"] {
+    @apply mt-5 text-base bg-[#171717] text-white rounded-xl py-1 px-4 cursor-pointer;
   }
 
   /* Card */
@@ -478,7 +486,7 @@ html.wp-toolbar {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   ul.lists_container li {
-    @apply p-2 my-4 bg-gray-50 border-[1px] border-solid rounded-[10px] sm:p-5 sm:m-5 border-[#D2D2D2];
+    @apply px-2 py-4 my-4 bg-gray-50 border-[1px] border-solid rounded-[10px] sm:p-5 sm:m-5 border-[#D2D2D2];
     box-shadow: 0px 0px 10px -1px rgba(0, 0, 0, 0.28);
   }
 
@@ -489,6 +497,13 @@ html.wp-toolbar {
     @apply mb-14;
   }
 
+  input[type="datetime-local"] {
+    @apply w-full;
+  }
+
+  input[type="checkbox"] {
+    @apply w-4 h-4;
+  }
   input[type="checkbox"],
   input[type="checkbox"]:checked,
   input[type="checkbox"]:focus,
@@ -552,7 +567,7 @@ html.wp-toolbar {
   }
 
   .analytics-label-wraper {
-    @apply flex justify-between pt-7 pb-4 pl-4;
+    @apply flex justify-between pt-7 pb-2 pl-4;
   }
 
   .table-is-empty {

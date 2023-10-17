@@ -2,8 +2,8 @@
 
 class Plugin_Name_Dashboard {
 
-    const ERROR_HIDE_LOGO= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock the 'Hide Website Logo' feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO </span></a>";
-    const ERROR_TEMPLATE_MSG= "<a href='/pricing' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock premium templates instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
+    const ERROR_HIDE_LOGO= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock the 'Hide Website Logo' feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
+    const ERROR_TEMPLATE_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock premium templates instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
 
 
     private $dynamic_tags = Array();
@@ -147,7 +147,7 @@ class Plugin_Name_Dashboard {
 	}
     public function top_actions() { ?>
 
-            <h1 x-text="!editMode ? 'Edit Mode' : 'Preview Mode' " class="page-title"></h1>
+            <h1 x-text="!editMode ? 'Edit' : 'Preview' " class="page-title"></h1>
     
             <!-- New Flex Container for Buttons and Toggle -->
             <div class="action-buttons">
@@ -162,7 +162,7 @@ class Plugin_Name_Dashboard {
     
                 <!-- Button: Settings (SVG only) -->
                 <button @click="showSettings = !showSettings; showTemplates = false;" class="text-gray-700 settings-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 448 512" fill="currentColor"><path d="M448 161v-21.3l-28.5-8.8-2.2-10.4 20.1-20.7L427 80.4l-29 7.5-7.2-7.5 7.5-28.2-19.1-11.6-21.3 21-10.7-3.2-7-26.4h-22.6l-6.2 26.4-12.1 3.2-19.7-21-19.4 11 8.1 27.7-8.1 8.4-28.5-7.5-11 19.1 20.7 21-2.9 10.4-28.5 7.8-.3 21.7 28.8 7.5 2.4 12.1-20.1 19.9 10.4 18.5 29.6-7.5 7.2 8.6-8.1 26.9 19.9 11.6 19.4-20.4 11.6 2.9 6.7 28.5 22.6.3 6.7-28.8 11.6-3.5 20.7 21.6 20.4-12.1-8.8-28 7.8-8.1 28.8 8.8 10.3-20.1-20.9-18.8 2.2-12.1 29.1-7zm-119.2 45.2c-31.3 0-56.8-25.4-56.8-56.8s25.4-56.8 56.8-56.8 56.8 25.4 56.8 56.8c0 31.5-25.4 56.8-56.8 56.8zm72.3 16.4l46.9 14.5V277l-55.1 13.4-4.1 22.7 38.9 35.3-19.2 37.9-54-16.7-14.6 15.2 16.7 52.5-38.3 22.7-38.9-40.5-21.7 6.6-12.6 54-42.4-.5-12.6-53.6-21.7-5.6-36.4 38.4-37.4-21.7 15.2-50.5-13.7-16.1-55.5 14.1-19.7-34.8 37.9-37.4-4.8-22.8-54-14.1.5-40.9L54 219.9l5.7-19.7-38.9-39.4L41.5 125l53.6 14.1 15.2-15.7-15.2-52 36.4-20.7 36.8 39.4L191 84l11.6-52H245l11.6 45.9L234 72l-6.3-1.7-3.3 5.7-11 19.1-3.3 5.6 4.6 4.6 17.2 17.4-.3 1-23.8 6.5-6.2 1.7-.1 6.4-.2 12.9C153.8 161.6 118 204 118 254.7c0 58.3 47.3 105.7 105.7 105.7 50.5 0 92.7-35.4 103.2-82.8l13.2.2 6.9.1 1.6-6.7 5.6-24 1.9-.6 17.1 17.8 4.7 4.9 5.8-3.4 20.4-12.1 5.8-3.5-2-6.5-6.8-21.2z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 448 512" fill="currentColor"><path d="M448 161v-21.3l-28.5-8.8-2.2-10.4 20.1-20.7L427 80.4l-29 7.5-7.2-7.5 7.5-28.2-19.1-11.6-21.3 21-10.7-3.2-7-26.4h-22.6l-6.2 26.4-12.1 3.2-19.7-21-19.4 11 8.1 27.7-8.1 8.4-28.5-7.5-11 19.1 20.7 21-2.9 10.4-28.5 7.8-.3 21.7 28.8 7.5 2.4 12.1-20.1 19.9 10.4 18.5 29.6-7.5 7.2 8.6-8.1 26.9 19.9 11.6 19.4-20.4 11.6 2.9 6.7 28.5 22.6.3 6.7-28.8 11.6-3.5 20.7 21.6 20.4-12.1-8.8-28 7.8-8.1 28.8 8.8 10.3-20.1-20.9-18.8 2.2-12.1 29.1-7zm-119.2 45.2c-31.3 0-56.8-25.4-56.8-56.8s25.4-56.8 56.8-56.8 56.8 25.4 56.8 56.8c0 31.5-25.4 56.8-56.8 56.8zm72.3 16.4l46.9 14.5V277l-55.1 13.4-4.1 22.7 38.9 35.3-19.2 37.9-54-16.7-14.6 15.2 16.7 52.5-38.3 22.7-38.9-40.5-21.7 6.6-12.6 54-42.4-.5-12.6-53.6-21.7-5.6-36.4 38.4-37.4-21.7 15.2-50.5-13.7-16.1-55.5 14.1-19.7-34.8 37.9-37.4-4.8-22.8-54-14.1.5-40.9L54 219.9l5.7-19.7-38.9-39.4L41.5 125l53.6 14.1 15.2-15.7-15.2-52 36.4-20.7 36.8 39.4L191 84l11.6-52H245l11.6 45.9L234 72l-6.3-1.7-3.3 5.7-11 19.1-3.3 5.6 4.6 4.6 17.2 17.4-.3 1-23.8 6.5-6.2 1.7-.1 6.4-.2 12.9C153.8 161.6 118 204 118 254.7c0 58.3 47.3 105.7 105.7 105.7 50.5 0 92.7-35.4 103.2-82.8l13.2.2 6.9.1 1.6-6.7 5.6-24 1.9-.6 17.1 17.8 4.7 4.9 5.8-3.4 20.4-12.1 5.8-3.5-2-6.5-6.8-21.2z"/></svg>
                 </button>
     
                 <!-- Toggle -->
@@ -213,7 +213,7 @@ class Plugin_Name_Dashboard {
                     $back = site_url('/my-account');
 
                     // Create a logout button
-                    echo '<div class="flex"><a href="' . esc_url( $back ) . '" class="no-underline template-btn bg-[#171717] border-[#171717] hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"></path></svg>Go back to My Account</a></div>';
+                    echo '<div class="flex"><a href="' . esc_url( $back ) . '" class="no-underline text-sm template-btn bg-[#171717] border-[#171717] hover:text-white"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"></path></svg>Go back to My Account</a></div>';
                 }
 
 
@@ -237,7 +237,7 @@ class Plugin_Name_Dashboard {
             <input type="hidden" name="date_to" x-model="dateToYmd">
             <label for="datepicker" class="block mt-3 mb-1 font-bold text-gray-700">Select Date Range</label>
             <div class="relative" @keydown.escape="closeDatepicker()" @click.outside="closeDatepicker()">
-                <div class="inline-flex items-center mt-3 bg-gray-200 border rounded-md">
+                <div class="inline-flex items-center mt-3 rounded-md">
                     <input type="text" @click="endToShow = 'from'; init(); showDatepicker = true" x-model="outputDateFromValue" :class="{'font-semibold': endToShow == 'from' }" class="w-40 p-2 border-0 border-r border-gray-300 focus:outline-none rounded-l-md"/>
                     <div class="inline-block h-full px-2">to</div>
                     <input type="text" @click="endToShow = 'to'; init(); showDatepicker = true" x-model="outputDateToValue" :class="{'font-semibold': endToShow == 'to' }" class="w-40 p-2 border-0 border-l border-gray-300 focus:outline-none rounded-r-md"/>
@@ -460,17 +460,17 @@ class Plugin_Name_Dashboard {
             <!-- Tab Buttons - ENDS HERE -->
             <!-- Tabs Content - STARTS HERE -->
                 <!-- Profile Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'profile' && !showTemplates && !showSettings" class="tab-content">
+                <div x-show="activeTab === 'profile' && !showTemplates && !showSettings" class="tab-content pb-20 md:pt-5 md:px-8">
                     <?php self::edit__profile_tab($user_id); ?>
                 </div>
                 <!-- Profile Tab Content - ENDS HERE -->
                 <!-- Links Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'links' && !showTemplates && !showSettings" class="tab-content">
+                <div x-show="activeTab === 'links' && !showTemplates && !showSettings" class="tab-content pb-20">
                     <?php self::edit__links_tab($user_id); ?>
                 </div>
                 <!-- Links Tab Content - ENDS HERE -->
                 <!-- Analytics Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'analytics' && !showTemplates && !showSettings" class="tab-content max-w-[700px] mt-10 mx-auto">
+                <div x-show="activeTab === 'analytics' && !showTemplates && !showSettings" class="tab-content max-w-[700px] mt-10 pb-20 mx-auto">
                     <div id="analytics-spin"></div>
                     <div id="analytic-loading-msg">
                         Please Wait
@@ -539,7 +539,7 @@ class Plugin_Name_Dashboard {
                     } else {
                         echo "<div class='analytics-label-wraper'>";
                         echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg>  Performance</div>";
-                        echo "<a class='unlock-more py-2' href='/pricing' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a>";
+                        echo "<div><a class='unlock-more py-2' href='/upgrade' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                         echo "</div>";
                     }
                     if(Plugin_Name_Utilities::is_full_version($user_id)) {   
@@ -606,14 +606,14 @@ class Plugin_Name_Dashboard {
                     } else {
                         echo "<div class='analytics-label-wraper'>";
                         echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
-                        echo "<a class='unlock-more py-2' href='/pricing' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a>";
+                        echo "<div><a class='unlock-more py-2' href='/upgrade' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                         echo "</div>";
 
                         echo "<div class='chart-wraper flex justify-center'>";     
                         ?>   
                         <?php $social_img = plugin_dir_url( __FILE__ ) . 'img/social.jpg'; ?>
-                        <div class="bg-cover bg-center w-[400px] h-[400px]" style="background-image: url('<?php echo $social_img; ?>');">
-                                <div class="text-4xl flex justify-center items-center w-[400px] h-[400px] bg-white bg-opacity-80"> Sample Data</div>
+                        <div class="bg-cover bg-center w-[250px] h-[250px] md:w-[400px] md:h-[400px] max-w-full" style="background-image: url('<?php echo $social_img; ?>');">
+                                <div class="text-2xl md:text-4xl flex justify-center items-center w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-white bg-opacity-80"> Sample Data</div>
                         </div>
     
                         <?php echo "</div>";
@@ -632,7 +632,7 @@ class Plugin_Name_Dashboard {
                 } else {
                     echo "<div class='analytics-label-wraper'>";
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg>  Performance</div>";
-                    echo "<a class='unlock-more py-2' href='/pricing' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a>";
+                    echo "<div><a class='unlock-more py-2' href='/upgrade' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                     echo "</div>";
                 }
                 if(Plugin_Name_Utilities::is_full_version($user_id)) {   
@@ -696,14 +696,14 @@ class Plugin_Name_Dashboard {
                 } else {
                     echo "<div class='analytics-label-wraper'>";
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
-                    echo "<a class='unlock-more py-2' href='/pricing' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a>";
+                    echo "<div><a class='unlock-more py-2' href='/upgrade' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                     echo "</div>";
 
                     echo "<div class='chart-wraper flex justify-center'>";     
                     ?>   
                     <?php $social_img = plugin_dir_url( __FILE__ ) . 'img/social.jpg'; ?>
-                    <div class="bg-cover bg-center w-[400px] h-[400px]" style="background-image: url('<?php echo $social_img; ?>');">
-                            <div class="text-4xl flex justify-center items-center w-[400px] h-[400px] bg-white bg-opacity-80"> Sample Data</div>
+                    <div class="bg-cover bg-center w-[250px] h-[250px] md:w-[400px] md:h-[400px] max-w-full" style="background-image: url('<?php echo $social_img; ?>');">
+                            <div class="text-2xl md:text-4xl flex justify-center items-center w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-white bg-opacity-80"> Sample Data</div>
                     </div>
 
                     <?php echo "</div>";

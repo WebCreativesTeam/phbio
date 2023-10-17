@@ -5,7 +5,7 @@ class Plugin_Name_Scheduled {
 
     // Data to delete after, days
     // IMPORTANT KEEP THIS SAME WITH THE UTILITY CLASS'S VALUE 
-    private $KEEP_FOR = 1;
+    private $KEEP_FOR = 2;
 
 
     public function __construct() {
