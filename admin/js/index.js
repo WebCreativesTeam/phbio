@@ -4244,15 +4244,14 @@ window.onload = function() {
     }
     if (content) content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
 };
-document.addEventListener("DOMContentLoaded", function() {
-    executeStart();
-});
 function executeStart() {
-    let emptyTableIDs = [];
-    emptyTableIDs = getEmptyTableIDs();
-    hideEmptyTableWrappers(emptyTableIDs);
-    correctEmptyTableWrappers(emptyTableIDs);
-    hideEmptyChartContainers(emptyTableIDs);
+    var emptyTableIDs = [];
+    setTimeout(function() {
+        emptyTableIDs = getEmptyTableIDs();
+        hideEmptyTableWrappers(emptyTableIDs);
+        correctEmptyTableWrappers(emptyTableIDs);
+        hideEmptyChartContainers(emptyTableIDs);
+    }, 3000);
 }
 // Function to check if the table is empty
 function checkEmptyTable(tableID) {
