@@ -4308,6 +4308,7 @@ function correctEmptyTableWrappers(emptyTableIDs) {
     });
 }
 function hideEmptyChartContainers(emptyTableIDs) {
+    console.log(emptyTableIDs);
     emptyTableIDs.forEach(function(tableID) {
         var selector = ".table-wrapper[data-wptable='" + tableID + "'][data-wpchart]";
         var emptyWrappers = document.querySelectorAll(selector);

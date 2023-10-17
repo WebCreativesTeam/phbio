@@ -582,7 +582,7 @@ html.wp-toolbar {
   }
 
   .empty-analytic .analytic-empty-text {
-    @apply text-sm sm:text-base leading-none;
+    @apply text-sm sm:text-base leading-none text-center pt-1;
   }
 
   .empty-analytic svg {
