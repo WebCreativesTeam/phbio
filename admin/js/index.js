@@ -597,7 +597,7 @@ window.Alpine = (0, _alpinejsDefault.default);
 (0, _alpinejsDefault.default).data("dropdown", (initIcons = [], selected = "")=>(0, _dropdownDefault.default)(initIcons, selected));
 (0, _alpinejsDefault.default).data("lang", (allowMultiple = false, selected = "")=>(0, _langDefault.default)(allowMultiple, selected));
 (0, _alpinejsDefault.default).data("socialLinks", (initLinks = [])=>(0, _socialLinksNewDefault.default)(initLinks));
-(0, _alpinejsDefault.default).data("analyticsFilter", ()=>(0, _analyticsFilter.analyticsFilter)());
+(0, _alpinejsDefault.default).data("analyticsFilter", (fromInitDate = null, toInitDate = null)=>(0, _analyticsFilter.analyticsFilter)(fromInitDate, toInitDate));
 (0, _alpinejsDefault.default).data("dashboard", ()=>(0, _dashboard.dashboard)());
 (0, _alpinejsDefault.default).data("linkManager", ()=>(0, _linkManager.linkManager)());
 (0, _alpinejsDefault.default).start();
@@ -3734,7 +3734,7 @@ exports.default = ({ initLinks = [], initMax })=>({
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "analyticsFilter", ()=>analyticsFilter);
-const analyticsFilter = ()=>({
+const analyticsFilter = ({ fromInitDate = null, toInitDate = null })=>({
         MONTH_NAMES: [
             "January",
             "February",
@@ -3767,8 +3767,8 @@ const analyticsFilter = ()=>({
         dateFromValue: "",
         dateToValue: "",
         currentDate: null,
-        dateFrom: null,
-        dateTo: null,
+        dateFrom: fromInitDate,
+        dateTo: toInitDate,
         endToShow: "",
         selecting: false,
         month: "",
@@ -4253,7 +4253,7 @@ function executeStart() {
             msg.style.display = "none";
         }
         if (content) content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
-    }, 500);
+    }, 3500);
 }
 // Function to check if the table is empty
 function checkEmptyTable(tableID) {

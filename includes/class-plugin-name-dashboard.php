@@ -229,18 +229,19 @@ class Plugin_Name_Dashboard {
     
 
     public function component__range_picker() { ?>
+           
         <!-- Custom Date Range Picker -->
         <form id="analyticsFilterForm" method="POST">
         <div x-show=" selectedRange == 'custom' ">
             <!-- <span class="block my-1 font-bold text-gray-700">Results</span> -->
             <input type="hidden" name="date_from" x-model="dateFromYmd">
-            <input type="hidden" name="date_to" x-model="dateToYmd">
+            <input type="hidden" name="date_to" x-model="dateToYmd'">
             <label for="datepicker" class="block mt-3 mb-1 font-bold text-gray-700">Select Date Range</label>
             <div class="relative" @keydown.escape="closeDatepicker()" @click.outside="closeDatepicker()">
                 <div class="inline-flex items-center mt-3 rounded-md">
-                    <input type="text" @click="endToShow = 'from'; init(); showDatepicker = true" x-model="outputDateFromValue" :class="{'font-semibold': endToShow == 'from' }" class="w-40 p-2 border-0 border-r border-gray-300 focus:outline-none rounded-l-md"/>
+                    <input type="text" @click="endToShow = 'from'; init(); showDatepicker = true" x-model="outputDateFromValue" :class="{'font-semibold': endToShow == 'from' }" class="w-40 p-2 border-0 border-r border-gray-300 focus:outline-none rounded-l-md" />
                     <div class="inline-block h-full px-2">to</div>
-                    <input type="text" @click="endToShow = 'to'; init(); showDatepicker = true" x-model="outputDateToValue" :class="{'font-semibold': endToShow == 'to' }" class="w-40 p-2 border-0 border-l border-gray-300 focus:outline-none rounded-r-md"/>
+                    <input type="text" @click="endToShow = 'to'; init(); showDatepicker = true" x-model="outputDateToValue" :class="{'font-semibold': endToShow == 'to' }" class="w-40 p-2 border-0 border-l border-gray-300 focus:outline-none rounded-r-md" />
                 </div>
                 <div 
                     class="absolute p-4 mt-2 bg-white rounded-lg shadow" 
@@ -485,9 +486,11 @@ class Plugin_Name_Dashboard {
     <?php }
 
     public function edit__tab_analytics($user_id) { ?>
-        <div x-data="analyticsFilter()" x-init="init" x-cloak>
 
+   
+        <div x-data="analyticsFilter()" x-init="init" x-cloak>
         <?php
+            
             $title = get_user_meta($user_id, 'username', true);
             $post = get_page_by_path( $title, OBJECT, 'hb-user-profile' );
            
@@ -503,7 +506,7 @@ class Plugin_Name_Dashboard {
                    
                 } 
             } else {
-               
+                
                 echo "<div class='table-wrapper ctr-table py-1'>";       
                 echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
                 echo "</div>";
@@ -523,7 +526,9 @@ class Plugin_Name_Dashboard {
                 <span @click="setDateRange('custom')" :class="{'range-active-filter': selectedRange == 'custom'}" class="range-filter">Custom</span>
             </div>
 
+          
             <?php self::component__range_picker(); ?>
+
           
             <?php
           
