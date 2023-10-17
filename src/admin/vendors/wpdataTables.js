@@ -39,127 +39,127 @@ window.onload = function () {
   }
 
   // Execute the function
-  const emptyTableIDs = getEmptyTableIDs();
-  hideEmptyTableWrappers(emptyTableIDs);
-  correctEmptyTableWrappers(emptyTableIDs);
-  hideEmptyChartContainers(emptyTableIDs);
+  // const emptyTableIDs = getEmptyTableIDs();
+  // hideEmptyTableWrappers(emptyTableIDs);
+  // correctEmptyTableWrappers(emptyTableIDs);
+  // hideEmptyChartContainers(emptyTableIDs);
 
   // After all operations are complete, hide the spinner and show the content
-  var spinner = document.getElementById("analytics-spin");
-  var msg = document.getElementById("analytic-loading-msg");
-  var content = document.getElementById("analytics-content");
-  if (spinner) {
-    spinner.style.display = "none"; // Hide the spinner
-    msg.style.display = "none";
-  }
-  if (content) {
-    content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
-  }
+  // var spinner = document.getElementById("analytics-spin");
+  // var msg = document.getElementById("analytic-loading-msg");
+  // var content = document.getElementById("analytics-content");
+  // if (spinner) {
+  //   spinner.style.display = "none"; // Hide the spinner
+  //   msg.style.display = "none";
+  // }
+  // if (content) {
+  //   content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
+  // }
 };
 
-// Function to check if the table is empty
-function checkEmptyTable(tableID) {
-  // Select the specific table by its unique class. Replace wpDataTableID with your actual unique identifier
-  var table = document.querySelector(".wpDataTableID-" + tableID);
+// // Function to check if the table is empty
+// function checkEmptyTable(tableID) {
+//   // Select the specific table by its unique class. Replace wpDataTableID with your actual unique identifier
+//   var table = document.querySelector(".wpDataTableID-" + tableID);
 
-  // Check if the "dataTables_empty" element exists within this table
-  return table && table.querySelector(".dataTables_empty");
-}
+//   // Check if the "dataTables_empty" element exists within this table
+//   return table && table.querySelector(".dataTables_empty");
+// }
 
-function getUniqueTableIDsByCheckingEmpty() {
-  // Get all elements with the class 'table-is-empty'
-  var elements = document.querySelectorAll(".table-is-empty");
+// function getUniqueTableIDsByCheckingEmpty() {
+//   // Get all elements with the class 'table-is-empty'
+//   var elements = document.querySelectorAll(".table-is-empty");
 
-  // Set to store unique IDs
-  var uniqueIds = new Set();
+//   // Set to store unique IDs
+//   var uniqueIds = new Set();
 
-  // Loop through each element
-  elements.forEach(function (element) {
-    // Get the 'data-wptable' attribute value
-    var ids = element.getAttribute("data-wptable");
+//   // Loop through each element
+//   elements.forEach(function (element) {
+//     // Get the 'data-wptable' attribute value
+//     var ids = element.getAttribute("data-wptable");
 
-    // Split the IDs by comma and loop through each ID
-    ids.split(",").forEach(function (id) {
-      // Trim the ID to remove any whitespace and add it to the set
-      uniqueIds.add(id.trim());
-    });
-  });
+//     // Split the IDs by comma and loop through each ID
+//     ids.split(",").forEach(function (id) {
+//       // Trim the ID to remove any whitespace and add it to the set
+//       uniqueIds.add(id.trim());
+//     });
+//   });
 
-  // Convert the set back to an array
-  return Array.from(uniqueIds);
-}
-function getEmptyTableIDs() {
-  // Get all unique table IDs
-  var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
+//   // Convert the set back to an array
+//   return Array.from(uniqueIds);
+// }
+// function getEmptyTableIDs() {
+//   // Get all unique table IDs
+//   var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
 
-  // Array to store the IDs of empty tables
-  var emptyTableIDs = [];
+//   // Array to store the IDs of empty tables
+//   var emptyTableIDs = [];
 
-  // Loop through each ID
-  uniqueTableIDs.forEach(function (tableID) {
-    // Check if the current table is empty
-    if (checkEmptyTable(tableID)) {
-      // If the table is empty, add its ID to the array
-      emptyTableIDs.push(tableID);
-    }
-  });
+//   // Loop through each ID
+//   uniqueTableIDs.forEach(function (tableID) {
+//     // Check if the current table is empty
+//     if (checkEmptyTable(tableID)) {
+//       // If the table is empty, add its ID to the array
+//       emptyTableIDs.push(tableID);
+//     }
+//   });
 
-  // Return the array of empty table IDs
-  return emptyTableIDs;
-}
+//   // Return the array of empty table IDs
+//   return emptyTableIDs;
+// }
 
-function hideEmptyTableWrappers(emptyTableIDs) {
-  // Loop through each ID
-  emptyTableIDs.forEach(function (tableID) {
-    // Find the table's wrapper
-    var table = document.querySelector(".wpDataTableID-" + tableID);
-    var wrapper = table.closest(".table-wrapper");
+// function hideEmptyTableWrappers(emptyTableIDs) {
+//   // Loop through each ID
+//   emptyTableIDs.forEach(function (tableID) {
+//     // Find the table's wrapper
+//     var table = document.querySelector(".wpDataTableID-" + tableID);
+//     var wrapper = table.closest(".table-wrapper");
 
-    // Set the wrapper's display to 'none' to hide it
-    if (wrapper) {
-      wrapper.style.display = "none";
-    }
-  });
-}
+//     // Set the wrapper's display to 'none' to hide it
+//     if (wrapper) {
+//       wrapper.style.display = "none";
+//     }
+//   });
+// }
 
-function correctEmptyTableWrappers(emptyTableIDs) {
-  // Loop through each ID
-  emptyTableIDs.forEach(function (tableID) {
-    // Find the table's wrapper with the 'table-is-empty' class
-    var selector =
-      ".table-wrapper.table-is-empty[data-wptable='" + tableID + "']";
-    var emptyWrappers = document.querySelectorAll(selector);
+// function correctEmptyTableWrappers(emptyTableIDs) {
+//   // Loop through each ID
+//   emptyTableIDs.forEach(function (tableID) {
+//     // Find the table's wrapper with the 'table-is-empty' class
+//     var selector =
+//       ".table-wrapper.table-is-empty[data-wptable='" + tableID + "']";
+//     var emptyWrappers = document.querySelectorAll(selector);
 
-    // Loop through each wrapper and remove the 'table-is-empty' class
-    emptyWrappers.forEach(function (wrapper) {
-      wrapper.classList.remove("table-is-empty");
-    });
-  });
-}
+//     // Loop through each wrapper and remove the 'table-is-empty' class
+//     emptyWrappers.forEach(function (wrapper) {
+//       wrapper.classList.remove("table-is-empty");
+//     });
+//   });
+// }
 
-function hideEmptyChartContainers(emptyTableIDs) {
-  emptyTableIDs.forEach(function (tableID) {
-    var selector =
-      ".table-wrapper[data-wptable='" + tableID + "'][data-wpchart]";
+// function hideEmptyChartContainers(emptyTableIDs) {
+//   emptyTableIDs.forEach(function (tableID) {
+//     var selector =
+//       ".table-wrapper[data-wptable='" + tableID + "'][data-wpchart]";
 
-    var emptyWrappers = document.querySelectorAll(selector);
+//     var emptyWrappers = document.querySelectorAll(selector);
 
-    emptyWrappers.forEach(function (chartWrapper) {
-      var chartID = chartWrapper.getAttribute("data-wpchart");
+//     emptyWrappers.forEach(function (chartWrapper) {
+//       var chartID = chartWrapper.getAttribute("data-wpchart");
 
-      if (chartID) {
-        var chartContainer = document.querySelector(
-          "#chartJSContainer_" + chartID
-        );
+//       if (chartID) {
+//         var chartContainer = document.querySelector(
+//           "#chartJSContainer_" + chartID
+//         );
 
-        if (chartContainer) {
-          var parentWrapper = chartContainer.closest(".chart-wraper");
+//         if (chartContainer) {
+//           var parentWrapper = chartContainer.closest(".chart-wraper");
 
-          if (parentWrapper) {
-            parentWrapper.style.display = "none";
-          }
-        }
-      }
-    });
-  });
-}
+//           if (parentWrapper) {
+//             parentWrapper.style.display = "none";
+//           }
+//         }
+//       }
+//     });
+//   });
+// }
