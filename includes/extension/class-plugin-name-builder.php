@@ -3,8 +3,8 @@
 
 class Press_Kit_Builder {
 
-    const ERROR_LANG_PRO= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock an additional language instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
-    const LANG_CHANGE_NOTICE= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Update twice for language changes to take place</a>";
+    const ERROR_LANG_PRO= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock an additional language instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
+    const LANG_CHANGE_NOTICE= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Update twice for language changes to take place</a>";
 
     public static function url_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true) {
         

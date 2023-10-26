@@ -2,9 +2,9 @@
 
 class Plugin_Name_Builder {
     
-    const ERROR_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock this feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
-    const ERROR_MAX_LINK_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='___blank'>You have hit the link limit. <span class='text-[#F1441E] font-bold'>Upgrade Now</span>.</a>";
-    const ERROR_LINK_SCHEDULING= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Go PRO now</span>!</a>";
+    const ERROR_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock this feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
+    const ERROR_MAX_LINK_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>You have hit the link limit. <span class='text-[#F1441E] font-bold'>Upgrade Now</span>.</a>";
+    const ERROR_LINK_SCHEDULING= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Go PRO now</span>!</a>";
     
     
 
@@ -513,14 +513,14 @@ class Plugin_Name_Builder {
                                 </label>
                             </div>
                             
-                            <div class="flex flex-col gap-5 my-5 md:flex-row w-full" x-show="newLink.isScheduled">
-                                <div class="flex items-center gap-1 md:gap-3 flex-col sm:flex-row">
-                                    <label class="input-label w-full"> Start Time</label>
+                            <div class="flex flex-col w-full gap-5 my-5 md:gap-7 md:flex-row" x-show="newLink.isScheduled">
+                                <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row">
+                                    <label class="w-full input-label md:text-sm"> Start Time</label>
                                     <input class="schedule_time" class="w-full" type="datetime-local" x-model="newLink.start_time" value="<?php echo date("Y-m-d\TH:i:s"); ?>">             
                                 </div>
         
-                                <div class="flex items-center gap-1 md:gap-3 flex-col sm:flex-row">
-                                    <label class="input-label w-full"> End Time</label>
+                                <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row">
+                                    <label class="w-full input-label md:text-sm"> End Time</label>
                                     <input class="schedule_time" class="w-full"  type="datetime-local" x-model="newLink.end_time" value="<?php echo date("Y-m-d\TH:i:s"); ?>">
                                 </div>
                             </div>
@@ -588,7 +588,7 @@ class Plugin_Name_Builder {
                                         </div>
                                     <div class="flex flex-col items-baseline gap-4 ">
                                     <div>
-                                        <span x-text="link.title" class="text-sm sm:text-lg font-semibold"></span>
+                                        <span x-text="link.title" class="text-sm font-semibold sm:text-lg"></span>
                                         <span x-text="link.text" class="hidden text-gray-600 sm:block sm:pt-2"></span>
                                      </div>
                                         <div class="flex flex-row items-start gap-4">
@@ -596,7 +596,7 @@ class Plugin_Name_Builder {
                                         <svg xmlns="http://www.w3.org/2000/svg" class=" w-4 cursor-pointer sm:w-[1.45rem] icon-state" :class="{ 'icon-active': link.imageFile}" @click="showEditLinkForm(link.id)" viewBox="0 0 576 512" fill="currentColor">
 <path d="M160 32c-35.3 0-64 28.7-64 64V320c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H160zM396 138.7l96 144c4.9 7.4 5.4 16.8 1.2 24.6S480.9 320 472 320H328 280 200c-9.2 0-17.6-5.3-21.6-13.6s-2.9-18.2 2.9-25.4l64-80c4.6-5.7 11.4-9 18.7-9s14.2 3.3 18.7 9l17.3 21.6 56-84C360.5 132 368 128 376 128s15.5 4 20 10.7zM192 128a32 32 0 1 1 64 0 32 32 0 1 1 -64 0zM48 120c0-13.3-10.7-24-24-24S0 106.7 0 120V344c0 75.1 60.9 136 136 136H456c13.3 0 24-10.7 24-24s-10.7-24-24-24H136c-48.6 0-88-39.4-88-88V120z"/>
 </svg>
-<svg xmlns="http://www.w3.org/2000/svg" @click="showEditLinkForm(link.id)" class=" w-3 cursor-pointer sm:w-4 icon-state" :class="{ 'icon-active': link.isScheduled }"  viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" @click="showEditLinkForm(link.id)" class="w-3 cursor-pointer sm:w-4 icon-state" :class="{ 'icon-active': link.isScheduled }"  viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"/></svg>
 
 <svg xmlns="http://www.w3.org/2000/svg" @click="showEditLinkForm(link.id)" class="w-3.5 sm:w-[1.15rem] sm:h-[1.7rem  text-gray-700 cursor-pointer" viewBox="0 0 512 512" fill="currentColor"><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
 
@@ -657,14 +657,14 @@ class Plugin_Name_Builder {
                                          <div class="mt-5 mb-7 text-[15px]">
                                             <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
                                         </div>
-                                        <div class="flex flex-col gap-5 my-5 md:flex-row w-full" x-show="link.isScheduled">
-                                            <div class="flex items-center gap-1 md:gap-3 flex-col sm:flex-row">
-                                                <label class="input-label w-full"> Start Time</label>
+                                        <div class="flex flex-col w-full gap-5 my-5 md:gap-7 md:flex-row" x-show="link.isScheduled">
+                                            <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row">
+                                                <label class="w-full input-label md:text-sm"> Start Time</label>
                                                 <input type="datetime-local" class="w-full" x-model="link.start_time" value="<?php echo date("Y-m-d\TH:i"); ?>" min="<?php echo date("Y-m-d\TH:i"); ?>">             
                                             </div>
 
-                                            <div class="flex items-center gap-1 md:gap-3  flex-col sm:flex-row">
-                                                <label class="input-label w-full"> End Time</label>
+                                            <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row">
+                                                <label class="w-full input-label md:text-sm"> End Time</label>
                                                 <input type="datetime-local" class="w-full" -model="link.end_time" value="<?php echo date("Y-m-d\TH:i"); ?>" min="<?php echo date("Y-m-d\TH:i"); ?>">
                                             </div>
                                         </div>
@@ -677,7 +677,7 @@ class Plugin_Name_Builder {
 
                                         <!-- Image Upload -->
                                         <div class="mt-6 upload-container">
-                                            <img x-show="link.imageFile" :src="link.imageFile" alt="Uploaded File" class="file-preview w-32 h-36 object-cover">
+                                            <img x-show="link.imageFile" :src="link.imageFile" alt="Uploaded File" class="object-cover w-32 file-preview h-36">
                                             <div x-show="!link.imageFile" class="flex items-center justify-center p-2 align-middle file-preview">No Image Uploaded</div>
                                             <div class="upload-content">
                                                 <form method="post" enctype="multipart/form-data">

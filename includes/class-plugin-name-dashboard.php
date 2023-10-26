@@ -2,8 +2,8 @@
 
 class Plugin_Name_Dashboard {
 
-    const ERROR_HIDE_LOGO= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock the 'Hide Website Logo' feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
-    const ERROR_TEMPLATE_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock premium templates instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
+    const ERROR_HIDE_LOGO= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock the 'Hide Website Logo' feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
+    const ERROR_TEMPLATE_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock premium templates instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
 
 
     private $dynamic_tags = Array();
@@ -236,7 +236,7 @@ class Plugin_Name_Dashboard {
             <!-- <span class="block my-1 font-bold text-gray-700">Results</span> -->
             <input type="hidden" name="date_from" x-model="dateFromYmd">
             <input type="hidden" name="date_to" x-model="dateToYmd">
-            <label for="datepicker" class="block mt-3 mb-1 font-bold text-gray-700">Select Date Range</label>
+            <label for="datepicker" class="block mt-3 mb-1 font-bold text-center text-gray-700">Select Date Range</label>
             <div class="relative" @keydown.escape="closeDatepicker()" @click.outside="closeDatepicker()">
                 <div class="inline-flex items-center mt-3 rounded-md">
                     <input type="text" @click="endToShow = 'from'; init(); showDatepicker = true" x-model="outputDateFromValue" :class="{'font-semibold': endToShow == 'from' }" class="w-40 p-2 border-0 border-r border-gray-300 focus:outline-none rounded-l-md" />
@@ -300,7 +300,7 @@ class Plugin_Name_Dashboard {
                     </div>
                 </div>
             </div>
-            <input type="submit" value="Filter" />
+            <input type="submit" class="text-center" value="Filter" />
         </div>
           </form>
             
@@ -544,7 +544,7 @@ class Plugin_Name_Dashboard {
                     } else {
                         echo "<div class='analytics-label-wraper'>";
                         echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg>  Performance</div>";
-                        echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
+                        echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='_blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                         echo "</div>";
                     }
                     if(Plugin_Name_Utilities::is_full_version($user_id)) {   
@@ -616,7 +616,7 @@ class Plugin_Name_Dashboard {
                     } else {
                         echo "<div class='analytics-label-wraper'>";
                         echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
-                        echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
+                        echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='_blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                         echo "</div>";
 
                         echo "<div class='flex justify-center chart-wraper'>";     
@@ -642,7 +642,7 @@ class Plugin_Name_Dashboard {
                     } else {
                         echo "<div class='analytics-label-wraper'>";
                         echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Locations</div>";
-                        echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
+                        echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='_blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                         echo "</div>";
 
                         echo "<div class='flex justify-center chart-wraper'>";     
@@ -668,7 +668,7 @@ class Plugin_Name_Dashboard {
                 } else {
                     echo "<div class='analytics-label-wraper'>";
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg>  Performance</div>";
-                    echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
+                    echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='_blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                     echo "</div>";
                 }
                 if(Plugin_Name_Utilities::is_full_version($user_id)) {   
@@ -737,7 +737,7 @@ class Plugin_Name_Dashboard {
                 } else {
                     echo "<div class='analytics-label-wraper'>";
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
-                    echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
+                    echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='_blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                     echo "</div>";
 
                     echo "<div class='flex justify-center chart-wraper'>";     
@@ -763,7 +763,7 @@ class Plugin_Name_Dashboard {
                 } else {
                     echo "<div class='analytics-label-wraper'>";
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Locations</div>";
-                    echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='__blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
+                    echo "<div><a class='py-2 unlock-more' href='/upgrade' taget='_blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                     echo "</div>";
 
                     echo "<div class='flex justify-center chart-wraper'>";     

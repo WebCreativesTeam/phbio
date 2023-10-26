@@ -2,8 +2,8 @@
 
 
 class Press_Kit_Dashboard {
-    const ERROR_HIDE_LOGO= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock the 'Hide Website Logo' feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
-    const ERROR_TEMPLATE_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='___blank'>Unlock premium templates instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
+    const ERROR_HIDE_LOGO= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock the 'Hide Website Logo' feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
+    const ERROR_TEMPLATE_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock premium templates instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
 
 
     private $dynamic_tags = Array();

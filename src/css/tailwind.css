@@ -29,7 +29,7 @@ html.wp-toolbar {
   }
 
   .template-btn {
-    @apply flex items-center gap-1 px-3 py-1 text-xs text-white transition-transform duration-150 transform bg-[#F1441E] rounded-full cursor-pointer hover:scale-105 sm:gap-2 sm:px-4 sm:py-1 sm:text-sm md:gap-2 md:px-5 md:py-2 md:text-base border-0;
+    @apply flex items-center gap-1 px-3 py-1 text-xs text-white transition-transform duration-150 transform bg-[#F1441E] rounded-full cursor-pointer hover:md:scale-105 sm:gap-2 sm:px-4 sm:py-1 sm:text-sm md:gap-2 md:px-5 md:py-2 md:text-base border-0;
   }
 
   .settings-btn {
@@ -117,7 +117,7 @@ html.wp-toolbar {
   }
 
   .upload-btn {
-    @apply px-5 py-2 mt-5 text-white border-0 transition-transform duration-150 transform bg-[#F1441E] rounded-full cursor-pointer hover:scale-105;
+    @apply px-5 py-2 mt-5 text-white border-0 transition-transform duration-150 transform bg-[#F1441E] rounded-full cursor-pointer hover:md:scale-105;
   }
 
   .add-link-btn {
@@ -306,15 +306,15 @@ html.wp-toolbar {
 
   /* Tabs */
   .tab-headers {
-    @apply flex justify-center gap-2 px-2 mt-14 mb-4 md:mt-8 md:mb-6 md:justify-start md:gap-6;
+    @apply flex justify-center gap-2 px-2 mb-4 mt-14 md:mt-8 md:mb-6 md:justify-start md:gap-6;
   }
 
   /* .tab-btn {
-    @apply flex items-center gap-2 px-4 py-2 font-medium text-gray-700 transition-transform duration-150 transform bg-gray-200 rounded shadow cursor-pointer hover:scale-105;
+    @apply flex items-center gap-2 px-4 py-2 font-medium text-gray-700 transition-transform duration-150 transform bg-gray-200 rounded shadow cursor-pointer hover:md:scale-105;
   } */
 
   .tab-btn {
-    @apply flex border-0 items-center gap-1 px-3 py-2 text-sm font-medium text-white transition-transform duration-150 transform bg-[#171717] rounded-3xl cursor-pointer hover:scale-105 sm:gap-2 sm:px-3 sm:py-2 md:text-[15px] md:gap-2 md:px-10 md:py-3;
+    @apply flex border-0 items-center gap-1 px-3 py-2 text-sm font-medium text-white transition-transform duration-150 transform bg-[#171717] rounded-3xl cursor-pointer hover:md:scale-105 sm:gap-2 sm:px-3 sm:py-2 md:text-[15px] md:gap-2 md:px-10 md:py-3;
   }
 
   .tab-btn svg {
@@ -322,7 +322,7 @@ html.wp-toolbar {
   }
 
   .unlock-more {
-    @apply no-underline hover:text-white flex border-0 items-center gap-1 px-2 py-1 text-sm font-semibold text-white transition-transform duration-150 transform bg-[#F1441E] rounded-full cursor-pointer hover:scale-105 sm:gap-2 sm:px-4 md:text-[12px] md:gap-2;
+    @apply no-underline hover:text-white flex border-0 items-center gap-1 px-2 py-1 text-sm font-semibold text-white transition-transform duration-150 transform bg-[#F1441E] rounded-full cursor-pointer hover:md:scale-105 sm:gap-2 sm:px-4 md:text-[12px] md:gap-2;
   }
 
   .unlock-more svg {
@@ -501,14 +501,11 @@ html.wp-toolbar {
     @apply w-full;
   }
 
-  input[type="checkbox"] {
-    @apply w-4 h-4;
-  }
   input[type="checkbox"],
   input[type="checkbox"]:checked,
   input[type="checkbox"]:focus,
   input[type="checkbox"]:checked:focus {
-    @apply bg-white;
+    @apply scale-75 bg-white md:scale-100;
   }
 
   #wpbody-content {
@@ -559,7 +556,7 @@ html.wp-toolbar {
   }
 
   .input-label.analytics-label {
-    @apply pt-7 pb-4 text-lg normal-case pl-4;
+    @apply pb-4 pl-4 text-lg normal-case pt-7;
   }
 
   .analytics-label-wraper .input-label.analytics-label {
@@ -567,14 +564,14 @@ html.wp-toolbar {
   }
 
   .analytics-label-wraper {
-    @apply flex justify-between pt-7 pb-2 pl-4;
+    @apply flex justify-between pb-2 pl-4 pt-7;
   }
 
   .table-is-empty {
     @apply hidden;
   }
   .empty-analytic {
-    @apply flex-col justify-center px-0 sm:px-3 py-16 items-center flex;
+    @apply flex flex-col items-center justify-center px-0 py-16 sm:px-3;
   }
 
   .empty-analytic .analytic-empty-title {
@@ -582,7 +579,7 @@ html.wp-toolbar {
   }
 
   .empty-analytic .analytic-empty-text {
-    @apply text-sm sm:text-base leading-none text-center pt-1;
+    @apply pt-1 text-sm leading-none text-center sm:text-base;
   }
 
   .empty-analytic svg {
@@ -632,7 +629,7 @@ html.wp-toolbar {
     table.wpDataTable
     > tbody
     > tr {
-    @apply text-base sm:text-2xl border-none;
+    @apply text-base border-none sm:text-2xl;
   }
 
   /* CTA Table */
