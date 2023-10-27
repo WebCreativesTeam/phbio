@@ -17,9 +17,6 @@
 .borah_dynamic_grid
   .jet-listing-grid__items
   > .jet-listing-grid__item
-  > section
-  > div.elementor-container
-  > div.elementor-column
-  > div.elementor-widget-wrap {
-  padding: 0px;
+  div.elementor-widget-wrap {
+  padding: 0px !important;
 }
