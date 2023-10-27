@@ -521,10 +521,7 @@ function user_profile_private_redirection() {
                 wp_redirect($redirection_url);
                 exit;
             } else {
-                global $wp_query;
-                $wp_query->set_404();
-                status_header(404);
-                get_template_part(404);
+                wp_redirect(get_site_url('/'));
                 exit;
             }
         }
@@ -557,10 +554,7 @@ function user_profile_private_redirection() {
 						wp_redirect($redirection_url);
 						exit;
 					} else {
-						global $wp_query;
-						$wp_query->set_404();
-						status_header(404);
-						get_template_part(404);
+						wp_redirect(get_site_url('/'));
 						exit;
 					}
 				}

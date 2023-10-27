@@ -38,7 +38,10 @@ class Press_Kit_Settings {
 						<form method="post">
 							<?php self::settings($user_id); ?>
                             <div class="save-progress">
-                                <input type="submit" name="submit_form" value="Submit" class="h-10 mt-0 upload-btn">
+                                <div class="save-progress-contain">
+                                    <div>Use the "Update" button to save your changes!</div>
+                                    <input type="submit" name="submit_form" value="Submit" class="h-10 mt-0 upload-btn">
+                                </div>
                             </div>
 						</form>
 					</div>
