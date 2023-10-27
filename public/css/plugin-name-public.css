@@ -6,3 +6,7 @@
 .ph_logo_hidden {
   display: none !important;
 }
+
+.borah_dynamic_grid .jet-listing-grid__items > .jet-listing-grid__item {
+  flex: none !important;
+}

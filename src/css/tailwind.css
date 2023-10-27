@@ -643,8 +643,4 @@ html.wp-toolbar {
   .column-ctr svg.ctr-table-icon {
     @apply text-[#711ef1] !important;
   }
-
-  .borah_dynamic_grid .jet-listing-grid__items > .jet-listing-grid__item {
-    width: 1000px;
-  }
 }
