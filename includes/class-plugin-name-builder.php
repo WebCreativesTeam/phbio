@@ -514,12 +514,12 @@ class Plugin_Name_Builder {
                             </div>
                             
                             <div class="flex flex-col w-full gap-5 my-5 md:gap-7 md:flex-row" x-show="newLink.isScheduled">
-                                <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row">
+                                <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row w-[inherit]">
                                     <label class="w-full input-label md:text-sm"> Start Time</label>
                                     <input class="schedule_time" class="w-full" type="datetime-local" x-model="newLink.start_time" value="<?php echo date("Y-m-d\TH:i:s"); ?>">             
                                 </div>
         
-                                <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row">
+                                <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row w-[inherit]">
                                     <label class="w-full input-label md:text-sm"> End Time</label>
                                     <input class="schedule_time" class="w-full"  type="datetime-local" x-model="newLink.end_time" value="<?php echo date("Y-m-d\TH:i:s"); ?>">
                                 </div>
@@ -662,12 +662,12 @@ class Plugin_Name_Builder {
                                             <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
                                         </div>
                                         <div class="flex flex-col w-full gap-5 my-5 md:gap-7 md:flex-row" x-show="link.isScheduled">
-                                            <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row">
+                                            <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row w-[inherit]">
                                                 <label class="w-full input-label md:text-sm"> Start Time</label>
                                                 <input type="datetime-local" class="w-full" x-model="link.start_time" value="<?php echo date("Y-m-d\TH:i"); ?>" min="<?php echo date("Y-m-d\TH:i"); ?>">             
                                             </div>
 
-                                            <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row">
+                                            <div class="flex flex-col items-baseline gap-1 md:gap-3 sm:flex-row w-[inherit]">
                                                 <label class="w-full input-label md:text-sm"> End Time</label>
                                                 <input type="datetime-local" class="w-full" -model="link.end_time" value="<?php echo date("Y-m-d\TH:i"); ?>" min="<?php echo date("Y-m-d\TH:i"); ?>">
                                             </div>
