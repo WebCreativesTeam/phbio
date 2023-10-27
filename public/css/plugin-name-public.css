@@ -7,6 +7,19 @@
   display: none !important;
 }
 
+.borah_dynamic_grid {
+  justify-content: center !important;
+}
 .borah_dynamic_grid .jet-listing-grid__items > .jet-listing-grid__item {
   flex: none !important;
+}
+
+.borah_dynamic_grid
+  .jet-listing-grid__items
+  > .jet-listing-grid__item
+  > section
+  > div.elementor-container
+  > div.elementor-column
+  > div.elementor-widget-wrap {
+  padding: 0px;
 }
