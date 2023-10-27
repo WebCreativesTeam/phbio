@@ -7,7 +7,7 @@
   display: none !important;
 }
 
-.borah_dynamic_grid {
+.borah_dynamic_grid .jet-listing-grid__items {
   justify-content: center !important;
 }
 .borah_dynamic_grid .jet-listing-grid__items > .jet-listing-grid__item {
