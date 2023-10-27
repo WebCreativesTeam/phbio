@@ -18,6 +18,7 @@ module.exports = {
     "ph_logo_hidden",
     "warning-message",
     "warning-icon",
+    "borah_dynamic_grid",
   ],
 
   theme: {

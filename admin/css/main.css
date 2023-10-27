@@ -1288,6 +1288,7 @@ iframe {
     bottom: 0px;
     left: 0px;
     right: 0px;
+    z-index: 99999;
     display: flex;
     height: 3rem;
     align-items: center;
@@ -1666,6 +1667,9 @@ body {
     --tw-text-opacity: 1 !important;
     color: rgb(113 30 241 / var(--tw-text-opacity)) !important;
 }
+.borah_dynamic_grid .jet-listing-grid__items > .jet-listing-grid__item {
+    width: 1000px;
+  }
 .sr-only {
     position: absolute;
     width: 1px;
@@ -1858,8 +1862,8 @@ body {
 .h-6 {
     height: 1.5rem;
 }
-.h-8 {
-    height: 2rem;
+.h-7 {
+    height: 1.75rem;
 }
 .h-\[250px\] {
     height: 250px;
@@ -1900,8 +1904,11 @@ body {
 .w-6 {
     width: 1.5rem;
 }
-.w-8 {
-    width: 2rem;
+.w-7 {
+    width: 1.75rem;
+}
+.w-\[1\.1rem\] {
+    width: 1.1rem;
 }
 .w-\[250px\] {
     width: 250px;
@@ -1980,9 +1987,6 @@ body {
 }
 .gap-5 {
     gap: 1.25rem;
-}
-.gap-7 {
-    gap: 1.75rem;
 }
 .self-baseline {
     align-self: baseline;
@@ -2182,6 +2186,9 @@ body {
 .pl-2 {
     padding-left: 0.5rem;
 }
+.pt-1 {
+    padding-top: 0.25rem;
+}
 .pt-\[1px\] {
     padding-top: 1px;
 }
@@ -2317,34 +2324,42 @@ body {
 html.wp-toolbar {
   padding: 0px !important;
 }
+
 .hover\:bg-blue-600:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
+
 .hover\:bg-gray-200:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
+
 .hover\:text-\[\#F1441E\]:hover {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+
 .hover\:text-gray-700:hover {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
+
 .hover\:text-white:hover {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+
 .focus\:text-\[\#F1441E\]:focus {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
 }
+
 @media (min-width: 640px) {
     .sm\:m-5 {
         margin: 1.25rem;
@@ -2370,6 +2385,9 @@ html.wp-toolbar {
     }
     .sm\:w-\[1\.1rem\] {
         width: 1.1rem;
+    }
+    .sm\:w-\[1\.3rem\] {
+        width: 1.3rem;
     }
     .sm\:w-\[1\.45rem\] {
         width: 1.45rem;
@@ -2417,9 +2435,16 @@ html.wp-toolbar {
         line-height: 1.25rem;
     }
 }
+
 @media (min-width: 768px) {
     .md\:mr-10 {
         margin-right: 2.5rem;
+    }
+    .md\:inline-block {
+        display: inline-block;
+    }
+    .md\:hidden {
+        display: none;
     }
     .md\:h-\[400px\] {
         height: 400px;
@@ -2459,6 +2484,7 @@ html.wp-toolbar {
         line-height: 1.25rem;
     }
 }
+
 @media (min-width: 1024px) {
     .lg\:grid-cols-3 {
         grid-template-columns: repeat(3, minmax(0, 1fr));

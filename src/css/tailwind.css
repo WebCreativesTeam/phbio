@@ -482,7 +482,7 @@ html.wp-toolbar {
     }
   }
   .save-progress {
-    @apply flex justify-end items-center h-12 fixed bottom-0 left-0 right-0 py-4 pr-4 text-right bg-[#171717] sm:pr-12 md:pr-14 lg:pr-16 xl:pr-72;
+    @apply flex justify-end items-center h-12 fixed bottom-0 left-0 right-0 py-4 pr-4 text-right bg-[#171717] sm:pr-12 md:pr-14 lg:pr-16 xl:pr-72 z-[99999];
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   ul.lists_container li {
@@ -642,5 +642,9 @@ html.wp-toolbar {
   }
   .column-ctr svg.ctr-table-icon {
     @apply text-[#711ef1] !important;
+  }
+
+  .borah_dynamic_grid .jet-listing-grid__items > .jet-listing-grid__item {
+    width: 1000px;
   }
 }
