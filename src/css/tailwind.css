@@ -23,6 +23,11 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   top: 0;
   width: auto;
 }
+
+a{
+  @apply no-underline text-inherit;
+}
+
 @layer components {
   #wpcontent {
     @apply bg-white p-0 !important;

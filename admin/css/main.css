@@ -2427,34 +2427,47 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   top: 0;
   width: auto;
 }
+
+a {
+    color: inherit;
+    text-decoration-line: none;
+}
+
 .hover\:bg-blue-600:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(37 99 235 / var(--tw-bg-opacity));
 }
+
 .hover\:bg-gray-200:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
+
 .hover\:text-\[\#F1441E\]:hover {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+
 .hover\:text-gray-700:hover {
     --tw-text-opacity: 1;
     color: rgb(55 65 81 / var(--tw-text-opacity));
 }
+
 .hover\:text-white:hover {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity));
 }
+
 .focus\:text-\[\#F1441E\]:focus {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
 }
+
 @media (min-width: 640px) {
     .sm\:m-5 {
         margin: 1.25rem;
@@ -2530,6 +2543,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
         line-height: 1.25rem;
     }
 }
+
 @media (min-width: 768px) {
     .md\:order-1 {
         order: 1;
@@ -2659,6 +2673,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
         color: rgb(255 255 255 / var(--tw-text-opacity));
     }
 }
+
 @media (min-width: 1024px) {
     .lg\:block {
         display: block;
