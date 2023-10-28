@@ -1,5 +1,5 @@
 <?php
-
+  $logo_img = plugin_dir_url( __FILE__ ) . 'img/Produchertz.com-Official-Logo.png';
 ?>
 
 <footer class="mt-10 overflow-hidden bg-black w-full">
@@ -7,7 +7,7 @@
       <div
         class="flex flex-col items-center justify-center gap-8 text-center md:flex-row md:text-left md:justify-between">
         <div class="space-y-1">
-          <img  class="md:order-1 w-full max-w-[200px] mx-auto mb-5 md:mx-0" src = "./Produchertz.com-Official-Logo.png"/>
+          <img  class="md:order-1 w-full max-w-[200px] mx-auto mb-5 md:mx-0" src = "<?php echo $logo_img; ?>"/>
           <p class="font-normal text-[#4f504a]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem,
             at!</p>
           <p class="text-[#4f504a] font-normal  md:block">@2023 PRODUCHERTZ.COM</p>
