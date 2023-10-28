@@ -632,7 +632,8 @@ class Press_Kit_Dashboard {
                     <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 text-base upload-btn sm:text-sm">
                 </div>
             </div>
-        </form>      
+        </form> 
+
     <?php }
 
     public function edit__profile_tab($user_id) { ?>
@@ -669,6 +670,7 @@ class Press_Kit_Dashboard {
                 </div>
             </div>
         </form>
+
     <?php }
 
     public function actions__bar($handle, $formHandler) { ?>

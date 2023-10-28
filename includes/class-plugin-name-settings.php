@@ -73,7 +73,9 @@ class Plugin_Name_Settings {
 
                                 </div>
                             </div>
+                            
 						</form>
+
 					</div>
 				</div>
 			</div>

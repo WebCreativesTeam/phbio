@@ -9,6 +9,8 @@ module.exports = {
     "./includes/class-plugin-name-settings.php",
     "./includes/class-plugin-name-utils.php",
     "./includes/extension/class-plugin-name-settings.php",
+    "./includes/class-plugin-name-footer.php",
+    "./includes/class-plugin-name-header.php",
     "./src/admin/vendors/wpdataTables.js",
   ],
   safelist: [

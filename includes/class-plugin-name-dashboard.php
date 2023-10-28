@@ -69,17 +69,8 @@ class Plugin_Name_Dashboard {
 		if (current_user_can('administrator') && isset($_GET['user_id']) && is_numeric($_GET['user_id'])) {
 			$user_id = intval($_GET['user_id']); // use user_id from URL if admin
 		}
+        include_once plugin_dir_path(__FILE__) . 'class-plugin-name-header.php';
 		?>
-        <div class="flex flex-row items-center justify-between bg-[#171717] w-full">
-            LOGO
-            <div class="flex flex-row justify-between">
-                <div class="flex flex-row justify-around">
-                    Link 1
-                    Link 2
-                </div>
-                Button
-            </div>
-        </div>
 <div class="dashboard-layout">
 
 <div x-data="dashboard" 
@@ -803,6 +794,7 @@ class Plugin_Name_Dashboard {
                     <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 text-base upload-btn sm:text-sm">
                 </div>
             </div>
+            
         </form>      
     <?php }
 
@@ -836,7 +828,9 @@ class Plugin_Name_Dashboard {
                     <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 text-base upload-btn sm:text-sm">
                 </div>
             </div>
+
         </form>
+
     <?php }
 
     public function actions__bar($handle, $formHandler) { ?>

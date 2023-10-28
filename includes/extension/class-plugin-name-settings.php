@@ -44,6 +44,7 @@ class Press_Kit_Settings {
                                 </div>
                             </div>
 						</form>
+
 					</div>
 				</div>
 			</div>
