@@ -2,8 +2,8 @@
 
 ?>
 
-<footer class="mt-10 overflow-hidden bg-black">
-    <div class="w-full max-w-screen-xl px-6 py-10 mx-auto text-white">
+<footer class="mt-10 overflow-hidden bg-black w-full">
+    <div class="w-full max-w-screen-xl px-6 py-10 mx-auto text-white box-border">
       <div
         class="flex flex-col items-center justify-center gap-8 text-center md:flex-row md:text-left md:justify-between">
         <div class="space-y-1">

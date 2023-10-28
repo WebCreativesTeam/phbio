@@ -29,7 +29,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   }
   .dashboard-layout {
     font-family: "Poppins", sans-serif !important;
-    @apply flex items-start justify-center h-screen text-gray-800 bg-white;
+    @apply flex items-start justify-center min-h-screen text-gray-800 bg-white;
   }
 
   .main-area {
