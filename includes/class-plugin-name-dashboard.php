@@ -125,9 +125,9 @@ class Plugin_Name_Dashboard {
             
        
     </div>
-    <?php include_once plugin_dir_path(__FILE__) . 'class-plugin-name-footer.php'; ?>
-
+    
 </div>
+<?php include_once plugin_dir_path(__FILE__) . 'class-plugin-name-footer.php'; ?>
 
 </div>
 
