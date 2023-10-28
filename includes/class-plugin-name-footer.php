@@ -2,7 +2,7 @@
   $logo_img = plugin_dir_url( __FILE__ ) . 'img/Produchertz.com-Official-Logo.png';
 ?>
 
-<footer class="mt-10 overflow-hidden bg-black w-full font-base">
+<footer class="mt-10 overflow-hidden bg-black w-full text-base">
     <div class="w-full max-w-screen-xl px-6 py-10 mx-auto text-white box-border">
       <div
         class="flex flex-col items-center justify-center gap-8 text-center md:flex-row md:text-left md:justify-between">
