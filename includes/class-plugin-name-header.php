@@ -2,7 +2,7 @@
   $logo_img = plugin_dir_url( __FILE__ ) . 'img/Produchertz.com-Official-Logo.png';
 ?>
 
-<header class="overflow-hidden bg-black w-full">
+<header class="overflow-hidden bg-black w-full font-base">
     <div class="w-full max-w-screen-xl px-6 py-4 mx-auto text-white box-border">
       <div class="flex flex-wrap justify-between gap-5 item-center md:flex-nowrap md:justify-normal md:gap-12 lg:gap-24">
         <img  class="md:order-1 w-[150px]" src ="<?php echo $logo_img; ?>"/>
