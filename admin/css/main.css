@@ -273,6 +273,7 @@ select {
     --tw-bg-opacity: 1 !important;
     background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important;
     padding: 0px !important;
+    padding-bottom: 0px !important;
 }
 .dashboard-layout {
     font-family: "Poppins", sans-serif !important;

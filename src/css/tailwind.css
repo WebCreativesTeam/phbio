@@ -30,7 +30,7 @@ a{
 
 @layer components {
   #wpcontent {
-    @apply bg-white !p-0 !important;
+    @apply bg-white !p-0 !pb-0 !important;
   }
   .dashboard-layout {
     font-family: "Poppins", sans-serif !important;
