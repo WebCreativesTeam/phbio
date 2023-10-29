@@ -1300,17 +1300,10 @@ iframe {
     padding-top: 1rem;
     padding-bottom: 1rem;
     text-align: center;
-}
-@media (min-width: 768px) {
-    .save-progress {
-        margin-left: calc(-50vw + 49.1%);
-    }
-}
-.save-progress {
     text-align: -webkit-center;
     width: 100vw; /* set width to 100% of the viewport */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
+}
 .save-progress-contain {
     display: flex;
     max-width: 1200px;
