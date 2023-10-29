@@ -382,7 +382,7 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     /* border-color: var(--btn-border-color); */
   }
   .template-title {
-    @apply mb-2 text-xs font-semibold leading-tight no-underline sm:text-sm md:text-lg hover:text-gray-800;
+    @apply mb-2 text-xs font-semibold leading-tight no-underline place-self-center sm:text-sm md:text-lg hover:text-gray-800;
   }
 
   .template-version {
