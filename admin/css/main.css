@@ -1293,17 +1293,24 @@ iframe {
     left: 0px;
     right: 0px;
     z-index: 99999;
+    margin-left: calc(-50vw + 50%);
     height: 3rem;
     --tw-bg-opacity: 1;
     background-color: rgb(23 23 23 / var(--tw-bg-opacity));
     padding-top: 1rem;
     padding-bottom: 1rem;
     text-align: center;
+}
+@media (min-width: 768px) {
+    .save-progress {
+        margin-left: calc(-50vw + 49.1%);
+    }
+}
+.save-progress {
     text-align: -webkit-center;
     width: 100vw; /* set width to 100% of the viewport */
-    margin-left: calc(-50vw + 49.2%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+  }
 .save-progress-contain {
     display: flex;
     max-width: 1200px;
