@@ -292,7 +292,6 @@ select {
     width: 100%;
     max-width: 1200px;
     padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
 }
 .actions-area {
     margin-bottom: 2rem;
@@ -1289,7 +1288,7 @@ iframe {
     }
   }
 .save-progress {
-    position: fixed;
+    position: sticky;
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -1301,6 +1300,8 @@ iframe {
     padding-bottom: 1rem;
     text-align: center;
     text-align: -webkit-center;
+    width: 100vw; /* set width to 100% of the viewport */
+    margin-left: calc(-50vw + 49.2%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .save-progress-contain {
@@ -2257,6 +2258,9 @@ body {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
+.pb-0 {
+    padding-bottom: 0px;
+}
 .pb-20 {
     padding-bottom: 5rem;
 }
@@ -2438,6 +2442,10 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
 a {
     color: inherit;
     text-decoration-line: none;
+}
+
+form {
+    margin: 0px;
 }
 
 .hover\:bg-blue-600:hover {

@@ -454,12 +454,12 @@ class Plugin_Name_Dashboard {
             <!-- Tab Buttons - ENDS HERE -->
             <!-- Tabs Content - STARTS HERE -->
                 <!-- Profile Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'profile' && !showTemplates && !showSettings" class="pb-20 tab-content md:pt-5 md:px-8">
+                <div x-show="activeTab === 'profile' && !showTemplates && !showSettings" class="pb-0 tab-content md:pt-5 md:px-8">
                     <?php self::edit__profile_tab($user_id); ?>
                 </div>
                 <!-- Profile Tab Content - ENDS HERE -->
                 <!-- Links Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'links' && !showTemplates && !showSettings" class="pb-20 tab-content">
+                <div x-show="activeTab === 'links' && !showTemplates && !showSettings" class="pb-0 tab-content">
                     <?php self::edit__links_tab($user_id); ?>
                 </div>
                 <!-- Links Tab Content - ENDS HERE -->

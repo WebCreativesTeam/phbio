@@ -24,16 +24,19 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   width: auto;
 }
 
-a{
+a {
   @apply no-underline text-inherit;
 }
 
+form {
+  @apply m-0;
+}
 @layer components {
   #wpcontent {
     @apply bg-white p-0 !important;
   }
-  #wpbody-content{
-    @apply !p-0
+  #wpbody-content {
+    @apply !p-0;
   }
   .dashboard-layout {
     font-family: "Poppins", sans-serif !important;
@@ -41,7 +44,7 @@ a{
   }
 
   .main-area {
-    @apply w-full max-w-[1200px] py-6;
+    @apply w-full max-w-[1200px] pt-6;
   }
 
   .actions-area {
@@ -506,8 +509,10 @@ a{
     }
   }
   .save-progress {
-    @apply text-center h-12 fixed bottom-0 left-0 right-0 py-4 bg-[#171717] z-[99999];
+    @apply text-center h-12 sticky bottom-0 left-0 right-0 py-4 bg-[#171717] z-[99999];
     text-align: -webkit-center;
+    width: 100vw; /* set width to 100% of the viewport */
+    margin-left: calc(-50vw + 49.2%);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 
