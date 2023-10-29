@@ -23,13 +23,21 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   top: 0;
   width: auto;
 }
+
+a{
+  @apply no-underline text-inherit;
+}
+
 @layer components {
   #wpcontent {
     @apply bg-white p-0 !important;
   }
+  #wpbody-content{
+    @apply !p-0
+  }
   .dashboard-layout {
     font-family: "Poppins", sans-serif !important;
-    @apply flex items-start justify-center h-screen text-gray-800 bg-white;
+    @apply flex items-start justify-center min-h-screen text-gray-800 bg-white;
   }
 
   .main-area {
