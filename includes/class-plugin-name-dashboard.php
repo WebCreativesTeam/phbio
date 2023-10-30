@@ -305,7 +305,7 @@ class Plugin_Name_Dashboard {
         $elementor_page_url = get_user_meta($user_id, 'username', true);
     
         echo '<div class="iframe-container">
-                <div class="load">
+                <div class="loaad">
                     <div id="loading-spin"></div>
                     Please hold on for a moment while we prepare your Link in Bio preview.
                 </div>
