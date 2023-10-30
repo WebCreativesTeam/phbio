@@ -307,7 +307,7 @@ class Plugin_Name_Dashboard {
         echo '<div class="iframe-container">
                 <div class="loaad">
                     <div id="loading-spin"></div>
-                    <div class="text-base text-[#171717] mt-1"
+                    <div class="text-base text-[#171717] mt-1">
                      Please hold on for a moment while we prepare your Link in Bio preview.
                      </div>
                 </div>
