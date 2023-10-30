@@ -301,41 +301,72 @@ class Plugin_Name_Dashboard {
 
     
 
-    public function area__preview($user_id) { 
-        $user_id = get_current_user_id(); 
+    // public function area__preview($user_id) { 
+    //     $user_id = get_current_user_id(); 
 
-        $elementor_page_url = get_user_meta( $user_id, 'username', true ); // Replace with the URL of your Elementor page
+    //     $elementor_page_url = get_user_meta( $user_id, 'username', true ); // Replace with the URL of your Elementor page
         
-        echo '<div class="iframe-container">
-        <div class="loaad">
-        <div id="loading-spin"></div>
-        Please hold on for a moment while we prepare your Link in Bio preview.</div><iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%; display: none;"></iframe></div>';
-        ?> 
-      <script>
-            window.addEventListener("DOMContentLoaded", function() {
-                var iframe = document.querySelector('iframe');
-                var spinner = document.querySelector('.loaad');
-                iframe.onload = function() {
-                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
-                    setInterval(function(){
-                        spinner.style.display = 'none'; // Hide spinner when iframe is loaded
-                    }, 3500);
-                    setInterval(function(){
-                        iframe.style.display = 'block'; // Hide spinner when iframe is loaded
-                    }, 4000);
+    //     echo '<div class="iframe-container">
+    //     <div class="loaad">
+    //     <div id="loading-spin"></div>
+    //     Please hold on for a moment while we prepare your Link in Bio preview.</div><iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%;"></iframe></div>';
+    //     ?> 
+    //   <script>
+    //         window.addEventListener("DOMContentLoaded", function() {
+    //             var iframe = document.querySelector('iframe');
+    //             var spinner = document.querySelector('.loaad');
+    //             iframe.onload = function() {
+    //                 iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
+    //                 spinner.style.display = 'none'; // Hide spinner when iframe is loaded
                     
-                }
+                    
+    //             }
 
-                    setInterval(function(){
-                        iframe.src += '';
-                    }, 20000);
-                    });
+    //                 setInterval(function(){
+    //                     iframe.src += '';
+    //                 }, 20000);
+    //                 });
             
+    //     </script>
+    //     <?php
+        
+    // }
+    public function area__preview($user_id) {
+        $user_id = get_current_user_id();
+        $elementor_page_url = get_user_meta($user_id, 'username', true);
+    
+        echo '<div class="iframe-container">
+                <div class="load">
+                    <div id="loading-spin"></div>
+                    Please hold on for a moment while we prepare your Link in Bio preview.
+                </div>
+                <iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%; display:none;"></iframe>
+            </div>';
+        ?>
+        <script>
+            window.addEventListener("DOMContentLoaded", function() {
+                var iframe = document.querySelector('.iframe-container iframe');
+                var loader = document.querySelector('.iframe-container .load');
+                var reloadInterval;
+    
+                iframe.onload = function() {
+                    iframe.style.display = 'block';
+                    loader.style.display = 'none';
+                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
+                    
+                    // Clear the interval once the iframe is loaded
+                    clearInterval(reloadInterval);
+                };
+    
+                // Reload iframe every 20 seconds
+                reloadInterval = setInterval(function() {
+                    iframe.src = iframe.src;
+                }, 20000);
+            });
         </script>
         <?php
-        
     }
-
+    
     public function area__templates($user_id) { ?>
        <?php
 		$selected = Plugin_Name_Utilities::handle_user_meta('selected_template', 'read', $user_id); 
