@@ -78,13 +78,19 @@ class Plugin_Name_Dashboard {
         let storedState = localStorage.getItem('alpineState');
         if (storedState) {
             let state = JSON.parse(storedState);
+            if (state.activeTab !== 'analytics') {
+                activeTab = state.activeTab;
+            }
             editMode = state.editMode;
-            activeTab = state.activeTab;
             showSettings = state.showSettings;
             showTemplates = state.showTemplates;
             activeFilter = state.activeFilter;
         }
-        $watch('activeTab', () => saveState());
+        $watch('activeTab', (newVal) => {
+            if (newVal !== 'analytics') {
+                saveState();
+            }
+        });
         $watch('showSettings', () => saveState());
         $watch('showTemplates', () => saveState());
         $watch('activeFilter', () => saveState());

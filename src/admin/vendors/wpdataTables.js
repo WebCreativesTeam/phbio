@@ -49,7 +49,7 @@ function executeStart() {
     hideEmptyTableWrappers(emptyTableIDs);
     correctEmptyTableWrappers(emptyTableIDs);
     hideEmptyChartContainers(emptyTableIDs);
-  }, 3000);
+  }, 2000);
   setTimeout(function () {
     // After all operations are complete, hide the spinner and show the content
     var spinner = document.getElementById("analytics-spin");
@@ -62,7 +62,7 @@ function executeStart() {
     if (content) {
       content.classList.remove("hidden"); // Remove the 'hidden' class to show the content
     }
-  }, 3500);
+  }, 2500);
 }
 
 // Function to check if the table is empty
