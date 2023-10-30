@@ -301,36 +301,7 @@ class Plugin_Name_Dashboard {
 
     
 
-    // public function area__preview($user_id) { 
-    //     $user_id = get_current_user_id(); 
-
-    //     $elementor_page_url = get_user_meta( $user_id, 'username', true ); // Replace with the URL of your Elementor page
-        
-    //     echo '<div class="iframe-container">
-    //     <div class="loaad">
-    //     <div id="loading-spin"></div>
-    //     Please hold on for a moment while we prepare your Link in Bio preview.</div><iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%;"></iframe></div>';
-    //     ?> 
-    //   <script>
-    //         window.addEventListener("DOMContentLoaded", function() {
-    //             var iframe = document.querySelector('iframe');
-    //             var spinner = document.querySelector('.loaad');
-    //             iframe.onload = function() {
-    //                 iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
-    //                 spinner.style.display = 'none'; // Hide spinner when iframe is loaded
-                    
-                    
-    //             }
-
-    //                 setInterval(function(){
-    //                     iframe.src += '';
-    //                 }, 20000);
-    //                 });
-            
-    //     </script>
-    //     <?php
-        
-    // }
+   
     public function area__preview($user_id) {
         $user_id = get_current_user_id();
         $elementor_page_url = get_user_meta($user_id, 'username', true);
