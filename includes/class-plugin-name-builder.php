@@ -338,7 +338,7 @@ class Plugin_Name_Builder {
                                 <span>You're adding a new icon</span>
                             </div>
                             <label class="input-label">Select Icon</label>
-                            <div class="px-4 py-4 my-2 bg-white rounded shadow-og" x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })" >
+                            <div class="px-4 py-4 mt-4 mb-8 bg-white rounded shadow-og" x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })" >
                                 <div @click="isOpen = !isOpen" class="relative cursor-pointer">
                                     <div class="flex items-center">
                                         <span x-show="!selected" class="mr-2 text-gray-500">Select an icon</span>
@@ -412,7 +412,7 @@ class Plugin_Name_Builder {
                                         <label class="input-label">Icon</label>
                                         
                                        
-                                        <div class="px-4 py-4 my-2 bg-white rounded shadow-og" @input="inputEditTitleValue = $event.detail; " x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })">
+                                        <div class="px-4 py-4 mt-4 mb-8 bg-white rounded shadow-og" @input="inputEditTitleValue = $event.detail; " x-data="dropdown({selected: '', initIcons: <?php echo $iconsJson; ?>})" x-init="$watch('selected', value => { console.log('Dispatching', value); $dispatch('input', value) })">
                                             <div @click="isOpen = !isOpen" class="relative cursor-pointer">
                                                 <div class="flex items-center">
                                                     <span x-show="!selected" class="mr-2 text-gray-500">Change Icon</span>

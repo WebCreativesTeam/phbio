@@ -7,15 +7,14 @@
       <div
         class="flex flex-col items-center justify-center gap-8 text-center md:flex-row md:text-left md:justify-between">
         <div class="space-y-1">
-          <img  class="md:order-1 w-full max-w-[200px] mx-auto mb-5 md:mx-0" src = "<?php echo $logo_img; ?>"/>
-          <p class="font-normal text-[#4f504a]">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem,
-            at!</p>
-          <p class="text-[#4f504a] font-normal  md:block">@2023 PRODUCHERTZ.COM</p>
+          <a href="https://produchertz.com/" taget="_blank"><img class="md:order-1 w-full max-w-[200px] mx-auto mb-5 md:mx-0" src = "<?php echo $logo_img; ?>"/></a>
+          <p class="font-normal text-[#4f504a]">Level Up Agency SRLS - VAT IT16140641008 - Via Serrenti 147, 00054 Fiumicino (RM)</p>
+          <p class="text-[#4f504a] font-normal  md:block">© 2023 PRODUCHERTZ.COM</p>
         </div>
         <div class="flex flex-col gap-4 md:text-center lg:flex-row lg:gap-6">
-          <a href="#" class="font-light">Privacy Policy</a>
-          <a href="#" class="font-light">Cookie Policy</a>
-          <a href="#"
+          <a href="https://www.iubenda.com/privacy-policy/57001579" taget="_blank" class="font-light">Privacy Policy</a>
+          <a href="https://produchertz.com/cookie-policy" taget="_blank" class="font-light">Cookie Policy</a>
+          <a href="https://produchertz.com/my-account"
             class="text-white flex items-center gap-2 bg-[#F1441E] p-1 px-6 rounded-lg w-fit lg:bg-transparent lg:font-light lg:p-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-[#F1441E] hidden lg:block"
               viewBox="0 0 512 512">

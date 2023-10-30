@@ -22,7 +22,7 @@ class Plugin_Name_Utilities {
             return '<div class="warning-message">
             <svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path></svg>
             <span>Your
-            subscription has expired, but don\'t worry! We\'ll keep all your links live for <b>' . self::get_remaining_days_for_user_backup($user_id) . '</b>. <a href="/my-account/subscription" class="font-semibold no-underline text-[#F1441E]" target="_blank">Renew now</a> to keep
+            subscription has expired, but don\'t worry! We\'ll keep all your links live for <b>' . self::get_remaining_hours_for_user_backup($user_id) . '</b>. <a href="/my-account/subscription" class="font-semibold no-underline text-[#F1441E]" target="_blank">Renew now</a> to keep
             them active. </span></div>';
         } else {
             return '';
@@ -39,6 +39,20 @@ class Plugin_Name_Utilities {
         
         // Return true if it exists, otherwise return false
         return !empty($backup_meta);
+    }
+    
+    public static function get_remaining_hours_for_user_backup($user_id) {
+        $backup_date = get_user_meta($user_id, '_backup_date', true);
+    
+        if (!$backup_date) {
+            return false; // or return null, or any other indication that there's no backup date
+        }
+    
+        $elapsed_time = current_time('timestamp') - strtotime($backup_date);
+        $hours_elapsed = $elapsed_time / HOUR_IN_SECONDS;
+        $remaining_hours = (self::KEEP_FOR * 24) - $hours_elapsed;
+    
+        return max(0, ceil($remaining_hours)) . " hours"; // ensure we don't get negative numbers
     }
     
     public static function get_remaining_days_for_user_backup($user_id) {

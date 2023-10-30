@@ -28,6 +28,13 @@ a {
   @apply no-underline text-inherit;
 }
 
+header a:hover {
+  @apply text-[#F1441E];
+}
+
+footer a:hover {
+  @apply text-[#F1441E];
+}
 form {
   @apply m-0;
 }
@@ -516,7 +523,7 @@ form {
   }
 
   .save-progress-contain {
-    @apply max-w-[1200px] flex justify-between items-center px-4 md:px-6 lg:px-8;
+    @apply max-w-[1200px] flex justify-between items-center px-4 md:px-6 lg:px-8 mt-[5px];
   }
 
   .text-danger {
@@ -524,7 +531,7 @@ form {
   }
 
   .save-progress-contain div {
-    @apply text-sm text-[#F1441E];
+    @apply text-xs sm:text-sm text-[#F1441E];
   }
   ul.lists_container li {
     @apply px-2 py-4 my-4 bg-white border-[1px] border-solid rounded-[10px] sm:p-5 sm:m-5 border-[#D2D2D2];
