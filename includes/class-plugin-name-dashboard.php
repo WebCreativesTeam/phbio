@@ -299,9 +299,7 @@ class Plugin_Name_Dashboard {
             
     <?php }
 
-    
-
-   
+ 
     public function area__preview($user_id) {
         $user_id = get_current_user_id();
         $elementor_page_url = get_user_meta($user_id, 'username', true);
