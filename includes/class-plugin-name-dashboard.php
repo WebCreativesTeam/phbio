@@ -307,7 +307,9 @@ class Plugin_Name_Dashboard {
         echo '<div class="iframe-container">
                 <div class="loaad">
                     <div id="loading-spin"></div>
-                    Please hold on for a moment while we prepare your Link in Bio preview.
+                    <div class="text-base text-[#171717] mt-1"
+                     Please hold on for a moment while we prepare your Link in Bio preview.
+                     </div>
                 </div>
                 <iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%; display:none;"></iframe>
             </div>';

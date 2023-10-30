@@ -485,9 +485,8 @@ form {
   }
 
   #loading-spin {
+    @apply w-14 h-14;
     display: inline-block;
-    width: 50px;
-    height: 50px;
     border: 3px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     border-top-color: #f1441e;
@@ -502,7 +501,7 @@ form {
   }
 
   #analytic-loading-msg {
-    @apply flex justify-center text-base text-[#171717];
+    @apply flex justify-center text-base text-[#171717] mt-1;
   }
 
   @keyframes spin {
