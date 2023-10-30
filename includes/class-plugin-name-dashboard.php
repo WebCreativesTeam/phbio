@@ -315,7 +315,7 @@ class Plugin_Name_Dashboard {
         <script>
             window.addEventListener("DOMContentLoaded", function() {
                 var iframe = document.querySelector('.iframe-container iframe');
-                var loader = document.querySelector('.iframe-container .load');
+                var loader = document.querySelector('.iframe-container .loaad');
                 var reloadInterval;
     
                 iframe.onload = function() {
