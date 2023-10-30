@@ -309,7 +309,7 @@ class Plugin_Name_Dashboard {
         echo '<div class="iframe-container">
         <div class="loaad">
         <div id="loading-spin"></div>
-        Please hold on for a moment while we prepare your Link in Bio preview.</div><iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%;"></iframe></div>';
+        Please hold on for a moment while we prepare your Link in Bio preview.</div><iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%; display: none;"></iframe></div>';
         ?> 
       <script>
             window.addEventListener("DOMContentLoaded", function() {
@@ -317,13 +317,18 @@ class Plugin_Name_Dashboard {
                 var spinner = document.querySelector('.loaad');
                 iframe.onload = function() {
                     iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
-                    spinner.style.display = 'none'; // Hide spinner when iframe is loaded
+                    setInterval(function(){
+                        spinner.style.display = 'none'; // Hide spinner when iframe is loaded
+                    }, 3500);
+                    setInterval(function(){
+                        iframe.style.display = 'block'; // Hide spinner when iframe is loaded
+                    }, 4000);
+                    
                 }
 
-                  // Reload iframe every 30 seconds
                     setInterval(function(){
                         iframe.src += '';
-                    }, 10000);
+                    }, 20000);
                     });
             
         </script>
