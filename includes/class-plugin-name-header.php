@@ -2,11 +2,11 @@
   $logo_img = plugin_dir_url( __FILE__ ) . 'img/Produchertz.com-Official-Logo.png';
 ?>
 
-<header class="w-full py-8 mt-0 mb-10 overflow-hidden text-base bg-black">
+<header class="w-full py-6 mt-0 mb-10 overflow-hidden text-base bg-black">
     <div class="box-border w-full max-w-screen-xl px-6 py-4 mx-auto text-white">
       <div class="flex flex-wrap justify-between gap-5 item-center md:flex-nowrap md:justify-normal md:gap-12 lg:gap-24">
         <img  class="md:order-1 w-[180px] sm:w-[225px]" src ="<?php echo $logo_img; ?>"/>
-        <a href="#" class="text-white flex items-center md:bg-[#F1441E] p-1 px-4 rounded-md gap-2 md:order-3">
+        <a href="https://produchertz.com/" target="_blank" class="text-white flex items-center md:bg-[#F1441E] p-1 px-4 rounded-md gap-2 md:order-3 hover:text-white">
           <span class="md:order-2">My Account</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-[#F1441E]  md:fill-white md:order-1 md:w-4 md:h-4"
             viewBox="0 0 512 512">

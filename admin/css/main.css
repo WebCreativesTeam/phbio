@@ -2286,6 +2286,10 @@ body {
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
+.py-6 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
 .pb-0 {
     padding-bottom: 0px;
 }
