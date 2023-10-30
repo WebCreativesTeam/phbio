@@ -315,11 +315,17 @@ class Plugin_Name_Dashboard {
             </div>';
         ?>
         <script>
-            window.addEventListener("DOMContentLoaded", function() {
-                var iframe = document.querySelector('.iframe-container iframe');
-                var loader = document.querySelector('.iframe-container .loaad');
+            function initializeIframeLoading(selector) {
+                var iframe = document.querySelector(selector + ' iframe');
+                var loader = document.querySelector(selector + ' .loaad');
+                
+                if (!iframe || !loader) {
+                    console.error('Iframe or loader not found!');
+                    return;
+                }
+
                 var reloadInterval;
-    
+
                 iframe.onload = function() {
                     iframe.style.display = 'block';
                     loader.style.display = 'none';
@@ -328,12 +334,17 @@ class Plugin_Name_Dashboard {
                     // Clear the interval once the iframe is loaded
                     clearInterval(reloadInterval);
                 };
-    
+
                 // Reload iframe every 20 seconds
                 reloadInterval = setInterval(function() {
                     iframe.src = iframe.src;
                 }, 20000);
-            });
+            }
+
+            window.onload = function() {
+                initializeIframeLoading('.iframe-container');
+            };
+
         </script>
         <?php
     }
