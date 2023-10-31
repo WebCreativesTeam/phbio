@@ -23,6 +23,10 @@ module.exports = {
     "borah_dynamic_grid",
     "wpbody",
     "current-page",
+    "column-total_views",
+    "column-ctr",
+    "column-total_clicks",
+    "column-empty_clicks",
   ],
 
   theme: {

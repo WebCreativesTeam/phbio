@@ -1674,6 +1674,19 @@ body {
     }
 }
 /* CTA Table */
+.column-total_views svg.ctr-table-icon {
+    --tw-text-opacity: 1 !important;
+    color: rgb(255 0 249 / var(--tw-text-opacity)) !important;
+}
+.column-total_clicks svg.ctr-table-icon,
+  .column-empty_clicks svg.ctr-table-icon {
+    --tw-text-opacity: 1 !important;
+    color: rgb(241 68 30 / var(--tw-text-opacity)) !important;
+}
+.column-ctr svg.ctr-table-icon {
+    --tw-text-opacity: 1 !important;
+    color: rgb(113 30 241 / var(--tw-text-opacity)) !important;
+}
 .current-page {
     --tw-bg-opacity: 1 !important;
     background-color: rgb(241 68 30 / var(--tw-bg-opacity)) !important;
