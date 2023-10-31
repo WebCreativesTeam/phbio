@@ -685,14 +685,14 @@ form {
 
   /* CTA Table */
   .column-total_views svg.ctr-table-icon {
-    @apply text-[#ff00f9] !important;
+    @apply text-[#ff00f9] mr-1 !important;
   }
   .column-total_clicks svg.ctr-table-icon,
   .column-empty_clicks svg.ctr-table-icon {
-    @apply text-[#f1441e] !important;
+    @apply text-[#f1441e] mr-1 !important;
   }
   .column-ctr svg.ctr-table-icon {
-    @apply text-[#711ef1] !important;
+    @apply text-[#711ef1] mr-1 !important;
   }
 
   .current-page {
