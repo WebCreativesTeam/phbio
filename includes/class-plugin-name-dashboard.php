@@ -91,27 +91,7 @@ class Plugin_Name_Dashboard {
                 saveState();
             }
         });
-        $watch('editMode', (newValue) => {
-            if (newValue === true) {
-                var iframe = document.querySelector('.iframe-container' + ' iframe');
-                var loader = document.querySelector('.iframe-container' + ' .loaad');      
-
-                if (!iframe || !loader) {
-                    console.error('Iframe or loader not found!');
-                    return;
-                }      
-                console.log(iframe);
-                
-                setTimeout(function () {
-                    
-                        iframe.style.display = 'block';
-                        loader.style.display = 'none';
-                        iframe.style.height =
-                        iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
-                     
-                }, 1000);
-            }
-        });
+        
         $watch('showSettings', () => saveState());
         $watch('showTemplates', () => saveState());
         $watch('activeFilter', () => saveState());

@@ -40,7 +40,7 @@ window.onload = function () {
 
   // Execute the function
   executeStart();
-  // initializeIframeLoading(".iframe-container");
+  initializeIframeLoading(".iframe-container");
 };
 
 function executeStart() {
@@ -174,7 +174,7 @@ function hideEmptyChartContainers(emptyTableIDs) {
   });
 }
 
-// For Preview Mode, Moved to Component Itself
+// For Preview Mode
 function initializeIframeLoading(selector) {
   var iframe = document.querySelector(selector + " iframe");
   var loader = document.querySelector(selector + " .loaad");
