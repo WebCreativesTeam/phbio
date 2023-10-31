@@ -4359,7 +4359,7 @@ function initializeIframeLoading(selector) {
         var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
         var html = iframeDocument.documentElement;
         html.style.overflow = "hidden";
-        var header = innerDoc.getElementById("site-header");
+        var header = iframeDocument.getElementById("site-header");
         if (header) header.style.display = "none";
         iframe.style.display = "block";
         loader.style.display = "none";
