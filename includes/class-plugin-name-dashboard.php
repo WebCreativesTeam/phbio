@@ -505,12 +505,12 @@ class Plugin_Name_Dashboard {
             ?>
             <!-- Predefined Date Range Filters -->
             <div class="range-filters">
-                <span @click="setDateRange('lifetime', true)" :class="{'range-active-filter': selectedRange == 'lifetime'}" class="range-filter">Lifetime</span>
-                <span @click="setDateRange('90days', true)" :class="{'range-active-filter': selectedRange == '90days'}" class="range-filter">90 D</span>
-                <span @click="setDateRange('30days', true)" :class="{'range-active-filter': selectedRange == '30days'}" class="range-filter">30 D</span>
-                <span @click="setDateRange('7days', true)" :class="{'range-active-filter': selectedRange == '7days'}" class="range-filter">7 D</span>
-                <span @click="setDateRange('Today', true)" :class="{'range-active-filter': selectedRange == 'Today'}" class="range-filter">Today</span>
-                <span @click.stop="setDateRange('custom')" :class="{'range-active-filter': selectedRange == 'custom'}" class="range-filter">Custom</span>
+                <span @click="setDateRange('lifetime', true) && activeTab === 'analytics'" :class="{'range-active-filter': selectedRange == 'lifetime'}" class="range-filter">Lifetime</span>
+                <span @click="setDateRange('90days', true) && activeTab === 'analytics'" :class="{'range-active-filter': selectedRange == '90days'}" class="range-filter">90 D</span>
+                <span @click="setDateRange('30days', true) && activeTab === 'analytics'" :class="{'range-active-filter': selectedRange == '30days'}" class="range-filter">30 D</span>
+                <span @click="setDateRange('7days', true) && activeTab === 'analytics'" :class="{'range-active-filter': selectedRange == '7days'}" class="range-filter">7 D</span>
+                <span @click="setDateRange('Today', true) && activeTab === 'analytics'" :class="{'range-active-filter': selectedRange == 'Today'}" class="range-filter">Today</span>
+                <span @click.stop="setDateRange('custom') && activeTab === 'analytics'" :class="{'range-active-filter': selectedRange == 'custom'}" class="range-filter">Custom</span>
             </div>
 
           
