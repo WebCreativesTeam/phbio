@@ -1674,6 +1674,15 @@ body {
     }
 }
 /* CTA Table */
+.current-page:active {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+@media (min-width: 768px) {
+    .current-page:active {
+        background-color: transparent;
+    }
+}
 .sr-only {
     position: absolute;
     width: 1px;
@@ -2354,10 +2363,6 @@ body {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
-.text-\[\#e2d6d0\] {
-    --tw-text-opacity: 1;
-    color: rgb(226 214 208 / var(--tw-text-opacity));
-}
 .text-\[\#f1441e\] {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
@@ -2501,14 +2506,6 @@ form {
 .active\:bg-\[\#F1441E\]:active {
     --tw-bg-opacity: 1;
     background-color: rgb(241 68 30 / var(--tw-bg-opacity));
-}
-.active\:text-\[\#F1441E\]:active {
-    --tw-text-opacity: 1;
-    color: rgb(241 68 30 / var(--tw-text-opacity));
-}
-.active\:text-\[\#e2d6d0\]:active {
-    --tw-text-opacity: 1;
-    color: rgb(226 214 208 / var(--tw-text-opacity));
 }
 .active\:text-white:active {
     --tw-text-opacity: 1;
@@ -2742,16 +2739,9 @@ form {
     .md\:font-normal {
         font-weight: 400;
     }
-    .md\:text-white {
-        --tw-text-opacity: 1;
-        color: rgb(255 255 255 / var(--tw-text-opacity));
-    }
     .md\:hover\:text-\[\#F1441E\]:hover {
         --tw-text-opacity: 1;
         color: rgb(241 68 30 / var(--tw-text-opacity));
-    }
-    .md\:active\:bg-transparent:active {
-        background-color: transparent;
     }
     .md\:active\:text-\[\#F1441E\]:active {
         --tw-text-opacity: 1;

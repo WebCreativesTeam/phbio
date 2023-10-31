@@ -694,4 +694,8 @@ form {
   .column-ctr svg.ctr-table-icon {
     @apply text-[#711ef1] !important;
   }
+
+  .current-page {
+    @apply md:active:bg-transparent active:text-white;
+  }
 }
