@@ -103,12 +103,12 @@ class Plugin_Name_Dashboard {
                 console.log(iframe);
                 
                 setTimeout(function () {
-                    iframe.onload = function () {
+                    
                         iframe.style.display = 'block';
                         loader.style.display = 'none';
                         iframe.style.height =
                         iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
-                    };   
+                     
                 }, 1000);
             }
         });
