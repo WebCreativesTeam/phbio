@@ -31,9 +31,6 @@ a {
 header a:hover {
   @apply text-[#F1441E];
 }
-header a:active {
-  @apply text-white;
-}
 
 footer a:hover {
   @apply text-[#F1441E];

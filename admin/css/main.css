@@ -1441,10 +1441,6 @@ body {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
-.ctr-table-icon {
-    margin-right: 0.5rem;
-    vertical-align: text-top;
-}
 .range-filters {
     margin-top: 2.5rem;
     margin-bottom: 3.5rem;
@@ -1678,19 +1674,6 @@ body {
     }
 }
 /* CTA Table */
-.column-total_views svg.ctr-table-icon {
-    --tw-text-opacity: 1 !important;
-    color: rgb(255 0 249 / var(--tw-text-opacity)) !important;
-}
-.column-total_clicks svg.ctr-table-icon,
-  .column-empty_clicks svg.ctr-table-icon {
-    --tw-text-opacity: 1 !important;
-    color: rgb(241 68 30 / var(--tw-text-opacity)) !important;
-}
-.column-ctr svg.ctr-table-icon {
-    --tw-text-opacity: 1 !important;
-    color: rgb(113 30 241 / var(--tw-text-opacity)) !important;
-}
 .sr-only {
     position: absolute;
     width: 1px;
@@ -1863,9 +1846,6 @@ body {
 }
 .inline-flex {
     display: inline-flex;
-}
-.table {
-    display: table;
 }
 .grid {
     display: grid;
@@ -2482,10 +2462,6 @@ header a:hover {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
-header a:active {
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
-}
 
 footer a:hover {
     --tw-text-opacity: 1;
@@ -2521,6 +2497,14 @@ form {
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
+}
+.active\:bg-\[\#F1441E\]:active {
+    --tw-bg-opacity: 1;
+    background-color: rgb(241 68 30 / var(--tw-bg-opacity));
+}
+.active\:text-\[\#F1441E\]:active {
+    --tw-text-opacity: 1;
+    color: rgb(241 68 30 / var(--tw-text-opacity));
 }
 @media (min-width: 640px) {
     .sm\:m-5 {
@@ -2750,13 +2734,17 @@ form {
     .md\:font-normal {
         font-weight: 400;
     }
-    .md\:text-\[\#F1441E\] {
-        --tw-text-opacity: 1;
-        color: rgb(241 68 30 / var(--tw-text-opacity));
-    }
     .md\:text-white {
         --tw-text-opacity: 1;
         color: rgb(255 255 255 / var(--tw-text-opacity));
+    }
+    .md\:hover\:text-\[\#F1441E\]:hover {
+        --tw-text-opacity: 1;
+        color: rgb(241 68 30 / var(--tw-text-opacity));
+    }
+    .md\:active\:text-\[\#F1441E\]:active {
+        --tw-text-opacity: 1;
+        color: rgb(241 68 30 / var(--tw-text-opacity));
     }
 }
 @media (min-width: 1024px) {
