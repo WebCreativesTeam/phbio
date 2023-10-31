@@ -696,6 +696,6 @@ form {
   }
 
   .current-page {
-    @apply md:active:bg-transparent active:text-white;
+    @apply md:bg-transparent md:text-[#F1441E] md:hover:text-[#F1441E] bg-[#F1441E];
   }
 }
