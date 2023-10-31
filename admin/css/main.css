@@ -2506,6 +2506,10 @@ form {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+.active\:text-\[\#e2d6d0\]:active {
+    --tw-text-opacity: 1;
+    color: rgb(226 214 208 / var(--tw-text-opacity));
+}
 @media (min-width: 640px) {
     .sm\:m-5 {
         margin: 1.25rem;
@@ -2741,6 +2745,9 @@ form {
     .md\:hover\:text-\[\#F1441E\]:hover {
         --tw-text-opacity: 1;
         color: rgb(241 68 30 / var(--tw-text-opacity));
+    }
+    .md\:active\:bg-transparent:active {
+        background-color: transparent;
     }
     .md\:active\:text-\[\#F1441E\]:active {
         --tw-text-opacity: 1;
