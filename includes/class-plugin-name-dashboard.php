@@ -93,9 +93,25 @@ class Plugin_Name_Dashboard {
         });
         $watch('editMode', (newValue) => {
             if (newValue === true) {
-                // Trigger an event when editMode changes to true
-                console.log('Edit mode is now active!');
-                // You can also trigger a custom event or any other actions here
+                var iframe = document.querySelector(selector + ' iframe');
+                var loader = document.querySelector(selector + ' .loaad');
+
+                if (!iframe || !loader) {
+                    console.error('Iframe or loader not found!');
+                    return;
+                }
+
+                var reloadInterval;
+
+                iframe.onload = function () {
+                    iframe.style.display = 'block';
+                    loader.style.display = 'none';
+                    iframe.style.height =
+                    iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
+
+                    // Clear the interval once the iframe is loaded
+                    clearInterval(reloadInterval);
+                };
             }
         });
         $watch('showSettings', () => saveState());
