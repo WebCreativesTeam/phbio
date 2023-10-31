@@ -46,6 +46,7 @@ function executeStart() {
   var emptyTableIDs = [];
   setTimeout(function () {
     emptyTableIDs = getEmptyTableIDs();
+    console.log(emptyTableIDs, "emptyTableIDs");
     hideEmptyTableWrappers(emptyTableIDs);
     correctEmptyTableWrappers(emptyTableIDs);
     hideEmptyChartContainers(emptyTableIDs);
