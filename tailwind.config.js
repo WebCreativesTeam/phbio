@@ -22,6 +22,7 @@ module.exports = {
     "warning-icon",
     "borah_dynamic_grid",
     "wpbody",
+    "current-page",
   ],
 
   theme: {

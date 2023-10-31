@@ -1675,18 +1675,22 @@ body {
 }
 /* CTA Table */
 .current-page {
-    --tw-bg-opacity: 1;
-    background-color: rgb(241 68 30 / var(--tw-bg-opacity));
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(241 68 30 / var(--tw-bg-opacity)) !important;
+}
+.current-page:hover {
+    --tw-text-opacity: 1 !important;
+    color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
 @media (min-width: 768px) {
     .current-page {
-        background-color: transparent;
-        --tw-text-opacity: 1;
-        color: rgb(241 68 30 / var(--tw-text-opacity));
+        background-color: transparent !important;
+        --tw-text-opacity: 1 !important;
+        color: rgb(241 68 30 / var(--tw-text-opacity)) !important;
     }
     .current-page:hover {
-        --tw-text-opacity: 1;
-        color: rgb(241 68 30 / var(--tw-text-opacity));
+        --tw-text-opacity: 1 !important;
+        color: rgb(241 68 30 / var(--tw-text-opacity)) !important;
     }
 }
 .sr-only {
