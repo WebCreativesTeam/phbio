@@ -320,7 +320,7 @@ class Plugin_Name_Dashboard {
                 <iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%; display:none;"></iframe>
             </div>';
         ?>
-        <script>
+        <!-- <script>
             function initializeIframeLoading(selector) {
                 var iframe = document.querySelector(selector + ' iframe');
                 var loader = document.querySelector(selector + ' .loaad');
@@ -351,7 +351,7 @@ class Plugin_Name_Dashboard {
                 initializeIframeLoading('.iframe-container');
             };
 
-        </script>
+        </script> -->
         <?php
     }
     
