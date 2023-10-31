@@ -78,12 +78,13 @@ class Plugin_Name_Dashboard {
         let storedState = localStorage.getItem('alpineState');
         if (storedState) {
             let state = JSON.parse(storedState);
+            activeTab = state.activeTab;
             editMode = state.editMode;
             showSettings = state.showSettings;
             showTemplates = state.showTemplates;
             activeFilter = state.activeFilter;
         }
-       
+        $watch('activeTab', () => saveState());
         $watch('showSettings', () => saveState());
         $watch('showTemplates', () => saveState());
         $watch('activeFilter', () => saveState());
