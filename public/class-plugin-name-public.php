@@ -105,9 +105,9 @@ class Plugin_Name_Public {
 				'nonce'    => wp_create_nonce( 'plugin' )
 			) );
 
-		if(is_singular('hb-user-profile')) {
+		if(is_singular('hb-user-profile') && !is_admin()) {
 			wp_enqueue_script( 'borah_dynamic_grid', plugin_dir_url( __FILE__ ) . 'js/borah_dynamic_grid.js', NULL, $this->version, false );
-			wp_enqueue_script('geoplugin', 'http://www.geoplugin.net/javascript.gp', NULL, $this->version , true);
+			wp_enqueue_script('geoplugin', 'https://ssl.geoplugin.net/javascript.gp?k=b6f1cdacfb0b5a65', NULL, $this->version , true);
 
 			wp_enqueue_script('bio-tracker', plugin_dir_url(__FILE__) . 'js/tracked-bio.js', array( 'jquery', 'geoplugin' ), $this->version, true);
 		    // Localize the script to pass data
