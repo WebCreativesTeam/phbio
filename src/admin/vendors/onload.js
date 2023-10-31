@@ -187,11 +187,16 @@ function initializeIframeLoading(selector) {
   var reloadInterval;
 
   iframe.onload = function () {
+    var iframeDocument =
+      iframe.contentDocument || iframe.contentWindow.document;
+    var html = iframeDocument.documentElement;
+
+    html.style.overflow = "hidden";
+
     iframe.style.display = "block";
     loader.style.display = "none";
     iframe.style.height =
       iframe.contentWindow.document.body.scrollHeight + 40 + "px";
-
     // Clear the interval once the iframe is loaded
     clearInterval(reloadInterval);
   };
