@@ -2,11 +2,11 @@
   $logo_img = plugin_dir_url( __FILE__ ) . 'img/Produchertz.com-Official-Logo.png';
 ?>
 
-<header class="w-full py-6 mt-0 mb-10 overflow-hidden text-base bg-black">
-    <div class="box-border w-full max-w-screen-xl px-6 py-4 mx-auto text-white">
-      <div class="flex flex-wrap justify-between gap-5 item-center md:flex-nowrap md:justify-normal md:gap-12 lg:gap-24">
+<header class="w-full py-6 mt-0 mb-10 overflow-hidden bg-black text-sm md:text-[15px]">
+    <div class="box-border w-full max-w-screen-xl px-4 py-4 mx-auto text-white sm:px-6 sm:py-4">
+      <div class="flex flex-wrap items-center justify-between gap-0 sm:gap-5 md:flex-nowrap md:justify-normal md:gap-12 lg:gap-24">
         <img  class="md:order-1 w-[180px] sm:w-[225px]" src ="<?php echo $logo_img; ?>"/>
-        <a href="https://produchertz.com/" target="_blank" class="text-white flex items-center md:bg-[#F1441E] p-1 px-4 rounded-md gap-2 md:order-3 hover:text-white">
+        <a href="https://produchertz.com/" target="_blank" class="text-white flex items-center h-fit md:bg-[#F1441E] p-1 px-2 md:p-2 rounded-md gap-2 md:order-3 hover:text-white">
           <span class="md:order-2">My Account</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-[#F1441E]  md:fill-white md:order-1 md:w-4 md:h-4"
             viewBox="0 0 512 512">
@@ -15,8 +15,8 @@
           </svg>
         </a>
         <div
-          class="flex overflow-hidden font-medium text-center capitalize rounded-2xl basis-full md:min-w-0 md:basis-auto md:order-2 md:ml-auto md:gap-2 md:font-normal">
-          <a href="#" class="flex-grow bg-[#F1441E] flex items-center justify-center gap-2  p-2  md:bg-transparent md:text-[#F1441E]">
+          class="flex mt-4 overflow-hidden font-medium text-center capitalize sm:mt-0 rounded-2xl basis-full md:min-w-0 md:basis-auto md:order-2 md:ml-auto md:gap-2 md:font-normal">
+          <a href="#" class="flex-grow bg-[#2f2f2f] flex items-center justify-center gap-2  p-2  md:bg-transparent md:text-[#F1441E]">
             
               <svg xmlns="http://www.w3.org/2000/svg" 
                 class="w-5 h-5 fill-current stroke-2"

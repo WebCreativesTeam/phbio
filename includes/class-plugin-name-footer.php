@@ -9,7 +9,7 @@
         <div class="space-y-1">
           <a href="https://produchertz.com/" taget="_blank"><img class="md:order-1 w-full max-w-[200px] mx-auto mb-5 md:mx-0" src = "<?php echo $logo_img; ?>"/></a>
           <p class="font-normal text-[#4f504a]">Level Up Agency SRLS - VAT IT16140641008 - Via Serrenti 147, 00054 Fiumicino (RM)</p>
-          <p class="text-[#4f504a] font-normal hidden md:block">© 2023 PRODUCHERTZ.COM</p>
+          <p class="text-[#4f504a] font-normal hidden md:block">© <?php echo date("Y"); ?> PRODUCHERTZ.COM</p>
         </div>
         <div class="flex flex-col gap-4 md:text-center lg:flex-row lg:gap-6">
           <a href="https://www.iubenda.com/privacy-policy/57001579" taget="_blank" class="font-light">Privacy Policy</a>
@@ -24,7 +24,7 @@
             <span>My Account</span>
           </a>
         </div>
-        <p class="text-[#4f504a] text-light mt-5 md:hidden">@2023 PRODUCHERTZ.COM</p>
+        <p class="text-[#4f504a] text-light mt-5 md:hidden">© <?php echo date("Y"); ?> PRODUCHERTZ.COM</p>
       </div>
     </div>
   </footer>

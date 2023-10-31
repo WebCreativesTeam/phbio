@@ -1900,6 +1900,10 @@ body {
 .h-\[250px\] {
     height: 250px;
 }
+.h-fit {
+    height: -moz-fit-content;
+    height: fit-content;
+}
 .h-full {
     height: 100%;
 }
@@ -2027,6 +2031,9 @@ body {
 }
 .justify-around {
     justify-content: space-around;
+}
+.gap-0 {
+    gap: 0px;
 }
 .gap-1 {
     gap: 0.25rem;
@@ -2472,6 +2479,10 @@ header a:hover {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+header a:active {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 
 footer a:hover {
     --tw-text-opacity: 1;
@@ -2522,6 +2533,9 @@ form {
     .sm\:ml-5 {
         margin-left: 1.25rem;
     }
+    .sm\:mt-0 {
+        margin-top: 0px;
+    }
     .sm\:block {
         display: block;
     }
@@ -2564,12 +2578,23 @@ form {
     .sm\:gap-4 {
         gap: 1rem;
     }
+    .sm\:gap-5 {
+        gap: 1.25rem;
+    }
     .sm\:p-0 {
         padding: 0px;
     }
     .sm\:px-5 {
         padding-left: 1.25rem;
         padding-right: 1.25rem;
+    }
+    .sm\:px-6 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .sm\:py-4 {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
     .sm\:pt-2 {
         padding-top: 0.5rem;
@@ -2681,6 +2706,9 @@ form {
     .md\:fill-white {
         fill: #fff;
     }
+    .md\:p-2 {
+        padding: 0.5rem;
+    }
     .md\:px-8 {
         padding-left: 2rem;
         padding-right: 2rem;
@@ -2700,6 +2728,9 @@ form {
     .md\:text-4xl {
         font-size: 2.25rem;
         line-height: 2.5rem;
+    }
+    .md\:text-\[15px\] {
+        font-size: 15px;
     }
     .md\:text-base {
         font-size: 1rem;
