@@ -41,6 +41,7 @@ window.onload = function () {
 
   // Execute the function
   executeStart();
+  initializeIframeLoading(".iframe-container");
 };
 
 function executeStart() {
@@ -174,4 +175,32 @@ function hideEmptyChartContainers(emptyTableIDs) {
       }
     });
   });
+}
+
+// For Preview Mode
+function initializeIframeLoading(selector) {
+  var iframe = document.querySelector(selector + " iframe");
+  var loader = document.querySelector(selector + " .loaad");
+
+  if (!iframe || !loader) {
+    console.error("Iframe or loader not found!");
+    return;
+  }
+
+  var reloadInterval;
+
+  iframe.onload = function () {
+    iframe.style.display = "block";
+    loader.style.display = "none";
+    iframe.style.height =
+      iframe.contentWindow.document.body.scrollHeight + 40 + "px";
+
+    // Clear the interval once the iframe is loaded
+    clearInterval(reloadInterval);
+  };
+
+  // Reload iframe every 20 seconds
+  reloadInterval = setInterval(function () {
+    iframe.src = iframe.src;
+  }, 20000);
 }

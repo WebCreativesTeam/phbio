@@ -1,2 +1,2 @@
 import "./vendors/alpine";
-import "./vendors/wpdataTables";
+import "./vendors/onload";

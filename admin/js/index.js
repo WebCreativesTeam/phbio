@@ -575,9 +575,9 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"iym3p":[function(require,module,exports) {
 var _alpine = require("./vendors/alpine");
-var _wpdataTables = require("./vendors/wpdataTables");
+var _onload = require("./vendors/onload");
 
-},{"./vendors/alpine":"eCjjK","./vendors/wpdataTables":"aGF4C"}],"eCjjK":[function(require,module,exports) {
+},{"./vendors/alpine":"eCjjK","./vendors/onload":"4D7d5"}],"eCjjK":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _alpinejs = require("alpinejs");
 var _alpinejsDefault = parcelHelpers.interopDefault(_alpinejs);
@@ -4212,7 +4212,7 @@ const linkManager = ()=>({
         }
     });
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aGF4C":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4D7d5":[function(require,module,exports) {
 window.onload = function() {
     console.log("Started");
     // Select the TH element
@@ -4247,6 +4247,7 @@ window.onload = function() {
     }
     // Execute the function
     executeStart();
+    initializeIframeLoading(".iframe-container");
 };
 function executeStart() {
     console.log("Execution Started");
@@ -4347,6 +4348,27 @@ function hideEmptyChartContainers(emptyTableIDs) {
             }
         });
     });
+}
+// For Preview Mode
+function initializeIframeLoading(selector) {
+    var iframe = document.querySelector(selector + " iframe");
+    var loader = document.querySelector(selector + " .loaad");
+    if (!iframe || !loader) {
+        console.error("Iframe or loader not found!");
+        return;
+    }
+    var reloadInterval;
+    iframe.onload = function() {
+        iframe.style.display = "block";
+        loader.style.display = "none";
+        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + "px";
+        // Clear the interval once the iframe is loaded
+        clearInterval(reloadInterval);
+    };
+    // Reload iframe every 20 seconds
+    reloadInterval = setInterval(function() {
+        iframe.src = iframe.src;
+    }, 20000);
 }
 
 },{}]},["bEyVM","iym3p"], "iym3p", "parcelRequiref22c")

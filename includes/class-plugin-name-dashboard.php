@@ -320,38 +320,7 @@ class Plugin_Name_Dashboard {
                 <iframe src="' . esc_url(site_url('/bio') . '/' . $elementor_page_url) . '" style="width:100%; display:none;"></iframe>
             </div>';
         ?>
-        <!-- <script>
-            function initializeIframeLoading(selector) {
-                var iframe = document.querySelector(selector + ' iframe');
-                var loader = document.querySelector(selector + ' .loaad');
-                
-                if (!iframe || !loader) {
-                    console.error('Iframe or loader not found!');
-                    return;
-                }
-
-                var reloadInterval;
-
-                iframe.onload = function() {
-                    iframe.style.display = 'block';
-                    loader.style.display = 'none';
-                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
-                    
-                    // Clear the interval once the iframe is loaded
-                    clearInterval(reloadInterval);
-                };
-
-                // Reload iframe every 20 seconds
-                reloadInterval = setInterval(function() {
-                    iframe.src = iframe.src;
-                }, 20000);
-            }
-
-            window.onload = function() {
-                initializeIframeLoading('.iframe-container');
-            };
-
-        </script> -->
+        
         <?php
     }
     
