@@ -96,8 +96,7 @@ class Plugin_Name_Dashboard {
                 var iframe = document.querySelector('.iframe-container' + ' iframe');
                 var loader = document.querySelector('.iframe-container' + ' .loaad');
 
-                iframe.style.display = 'none';
-                loader.style.display = 'block';
+              
 
                 if (!iframe || !loader) {
                     console.error('Iframe or loader not found!');
