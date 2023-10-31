@@ -4247,7 +4247,7 @@ window.onload = function() {
     }
     // Execute the function
     executeStart();
-    initializeIframeLoading(".iframe-container");
+// initializeIframeLoading(".iframe-container");
 };
 function executeStart() {
     console.log("Execution Started");
