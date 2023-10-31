@@ -15,7 +15,7 @@
           <a href="https://www.iubenda.com/privacy-policy/57001579" target='_blank' class="font-light">Privacy Policy</a>
           <a href="https://produchertz.com/cookie-policy" target='_blank' class="font-light">Cookie Policy</a>
           <a href="https://produchertz.com/my-account"
-            class="text-white flex items-center gap-2 bg-[#F1441E] p-1 px-6 rounded-lg w-fit lg:bg-transparent lg:font-light lg:p-0">
+            class="text-white hover:text-white active:text-white  flex items-center gap-2 bg-[#F1441E] p-1 px-6 rounded-lg w-fit lg:bg-transparent lg:font-light lg:p-0">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-[#F1441E] hidden lg:block"
               viewBox="0 0 512 512">
               <path

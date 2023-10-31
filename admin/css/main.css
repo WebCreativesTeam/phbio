@@ -2510,6 +2510,10 @@ form {
     --tw-text-opacity: 1;
     color: rgb(226 214 208 / var(--tw-text-opacity));
 }
+.active\:text-white:active {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+}
 @media (min-width: 640px) {
     .sm\:m-5 {
         margin: 1.25rem;
