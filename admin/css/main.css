@@ -277,6 +277,9 @@ select {
 #wpbody-content {
     padding: 0px !important;
 }
+#wpbody {
+    padding-top: 0px;
+}
 .dashboard-layout {
     font-family: "Poppins", sans-serif !important;
     display: flex;

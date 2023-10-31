@@ -48,6 +48,10 @@ form {
   #wpbody-content {
     @apply !p-0;
   }
+
+  #wpbody {
+    @apply pt-0;
+  }
   .dashboard-layout {
     font-family: "Poppins", sans-serif !important;
     @apply flex items-start justify-center min-h-screen text-gray-800 bg-white;
