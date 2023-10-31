@@ -1,5 +1,4 @@
 window.onload = function () {
-  console.log("Started");
   // Select the TH element
   var th_views = document.querySelector("th.column-total_views");
   var th_clicks = document.querySelector("th.column-total_clicks");
@@ -45,7 +44,6 @@ window.onload = function () {
 };
 
 function executeStart() {
-  console.log("Execution Started");
   var emptyTableIDs = [];
   setTimeout(function () {
     emptyTableIDs = getEmptyTableIDs();
@@ -150,7 +148,6 @@ function correctEmptyTableWrappers(emptyTableIDs) {
 }
 
 function hideEmptyChartContainers(emptyTableIDs) {
-  console.log(emptyTableIDs, "❌");
   emptyTableIDs.forEach(function (tableID) {
     var selector =
       ".table-wrapper[data-wptable='" + tableID + "'][data-wpchart]";
