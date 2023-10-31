@@ -98,7 +98,7 @@ class Plugin_Name_Dashboard {
      class="relative main-area"> <!-- Added relative positioning here -->
 
     <!--Top Actions - STARTS HERE -->
-    <div class="actions-area">
+    <div class="actions-area" x-show="!showTemplates">
         <?php self::top_actions(); ?>
     </div>
     <!--Top Actions - ENDS HERE -->
