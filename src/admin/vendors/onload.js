@@ -193,6 +193,11 @@ function initializeIframeLoading(selector) {
 
     html.style.overflow = "hidden";
 
+    var header = innerDoc.getElementById("site-header");
+
+    if (header) {
+      header.style.display = "none";
+    }
     iframe.style.display = "block";
     loader.style.display = "none";
     iframe.style.height =
