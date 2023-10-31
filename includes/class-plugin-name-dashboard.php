@@ -102,7 +102,7 @@ class Plugin_Name_Dashboard {
                 }
 
                 var reloadInterval;
-
+                console.log(iframe);
                 iframe.onload = function () {
                     iframe.style.display = 'block';
                     loader.style.display = 'none';
