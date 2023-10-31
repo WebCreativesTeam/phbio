@@ -91,6 +91,13 @@ class Plugin_Name_Dashboard {
                 saveState();
             }
         });
+        this.$watch('editMode', (newValue) => {
+            if (newValue === true) {
+                // Trigger an event when editMode changes to true
+                console.log('Edit mode is now active!');
+                // You can also trigger a custom event or any other actions here
+            }
+        });
         $watch('showSettings', () => saveState());
         $watch('showTemplates', () => saveState());
         $watch('activeFilter', () => saveState());
