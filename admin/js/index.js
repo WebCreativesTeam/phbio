@@ -4214,6 +4214,7 @@ const linkManager = ()=>({
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aGF4C":[function(require,module,exports) {
 window.onload = function() {
+    console.log("Started");
     // Select the TH element
     var th_views = document.querySelector("th.column-total_views");
     var th_clicks = document.querySelector("th.column-total_clicks");
@@ -4248,6 +4249,7 @@ window.onload = function() {
     executeStart();
 };
 function executeStart() {
+    console.log("Execution Started");
     var emptyTableIDs = [];
     setTimeout(function() {
         emptyTableIDs = getEmptyTableIDs();
