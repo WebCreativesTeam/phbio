@@ -93,8 +93,8 @@ class Plugin_Name_Dashboard {
         });
         $watch('editMode', (newValue) => {
             if (newValue === true) {
-                var iframe = document.querySelector(.iframe-container + ' iframe');
-                var loader = document.querySelector(.iframe-container + ' .loaad');
+                var iframe = document.querySelector('.iframe-container' + ' iframe');
+                var loader = document.querySelector('.iframe-container' + ' .loaad');
 
                 if (!iframe || !loader) {
                     console.error('Iframe or loader not found!');
