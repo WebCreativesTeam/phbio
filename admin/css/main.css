@@ -1244,8 +1244,7 @@ iframe {
     display: flex;
     align-items: center;
     flex-direction: column;
-    position: absolute;
-    top: 40%;
+    padding-top: 130px;
     left: 0;
     right: 0;
   }
