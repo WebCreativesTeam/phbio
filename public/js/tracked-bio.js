@@ -1,6 +1,6 @@
 jQuery(document).ready(function ($) {
-  var country = geoplugin_countryName();
-  // var country = getRandomCountry();
+  // var country = geoplugin_countryName();
+  var country = getRandomCountry();
   console.log(country);
   var postId = document.querySelector("article").id.split("-")[1];
   var cookieName = "page_viewed_" + postId;
