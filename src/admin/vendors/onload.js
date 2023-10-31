@@ -174,7 +174,7 @@ function hideEmptyChartContainers(emptyTableIDs) {
   });
 }
 
-// For Preview Mode
+// For Preview Mode, Moved to Component Itself
 function initializeIframeLoading(selector) {
   var iframe = document.querySelector(selector + " iframe");
   var loader = document.querySelector(selector + " .loaad");
