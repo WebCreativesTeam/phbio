@@ -117,7 +117,7 @@ class Plugin_Name_Dashboard {
     <!-- Templates Content Area - ENDS HERE -->
 
     <!-- Preview Mode - STARTS HERE -->
-    <div x-show="editMode" class="content-preview">
+    <div x-show="editMode & activeTab !== 'profile' && activeTab !== 'analytics' && activeTab !== 'links'" class="content-preview">
         <?php self::area__preview($user_id); ?>
     </div>
     <!-- Preview Mode - ENDS HERE -->
