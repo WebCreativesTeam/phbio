@@ -132,13 +132,13 @@ class Press_Kit_Builder {
     
     public static function language_select($name, $value, $label, $capability, $target_user_id) {
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
-        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        //     if (isset($_POST['pkit_lang'])) {
-        //            echo '<script> setTimeout(function() {
-        //             window.location.reload();
-        //         }, 1000); </script>';
-        //     }
-        // }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['pkit_lang'])) {
+                   echo '<script> setTimeout(function() {
+                    window.location.reload();
+                }, 1000); </script>';
+            }
+        }
        
         if (!$data) $data = $value;
 
