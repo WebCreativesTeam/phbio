@@ -628,8 +628,7 @@ class Press_Kit_Dashboard {
         <?php echo Plugin_Name_Utilities::current_user_has_backup_links(); ?>
 
 
-        <form method="post">
-            
+        <form method="post">            
             <?php Plugin_Name_Builder::link_list_field( 'Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
             <?php Plugin_Name_Builder::social_links_list_field( 'Manage Social Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
             <div class="save-progress">
