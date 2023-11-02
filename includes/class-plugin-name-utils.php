@@ -146,7 +146,7 @@ class Plugin_Name_Utilities {
     
 
     public static function handle_user_meta($name, $capability, $target_user_id = null) {
-        echo $name;
+       
         // If a target user ID isn't provided, use the current user's ID
         $user_id = $target_user_id ? $target_user_id : get_current_user_id();
     
@@ -266,7 +266,7 @@ class Plugin_Name_Utilities {
 
             if ($name === "pkit_lang") { 
 
-                echo "Hey there";
+               
                 // Search for a hb-user-profile post associated with this user
                 $args = array(
                     'post_type' => 'hb-user-pkit',
@@ -290,8 +290,9 @@ class Plugin_Name_Utilities {
                 }
 
                 $langs = explode(',', $posted_value);
-                print_r($langs);
 
+                echo "Langs";
+                print_r($langs);
                 foreach ($langs as $lang) {
                     $args = array(
                         'post_type' => 'hb-user-pkit',
