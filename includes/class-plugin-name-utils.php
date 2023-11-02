@@ -291,8 +291,7 @@ class Plugin_Name_Utilities {
 
                 $langs = explode(',', $posted_value);
 
-                echo "Langs";
-                print_r($langs);
+                
                 foreach ($langs as $lang) {
                     $args = array(
                         'post_type' => 'hb-user-pkit',
