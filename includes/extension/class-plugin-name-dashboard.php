@@ -31,6 +31,15 @@ class Press_Kit_Dashboard {
             'dashicons-excerpt-view',    
             101                          
         );
+
+        // Get current user
+        $current_user = wp_get_current_user();
+
+        // Check if current user has the Administrator role
+        if (in_array('administrator', $current_user->roles)) {
+            remove_menu_page('my-presskit'); // Hide Plugins
+        }
+
     }
 
    
@@ -71,17 +80,11 @@ class Press_Kit_Dashboard {
 		if (current_user_can('administrator') && isset($_GET['user_id']) && is_numeric($_GET['user_id'])) {
 			$user_id = intval($_GET['user_id']); // use user_id from URL if admin
 		}
+
+        include_once plugin_dir_path(__FILE__) . '../class-plugin-name-header.php';
+
 		?>
-        <div class="flex flex-row items-center justify-between bg-[#171717] w-full">
-            LOGO
-            <div class="flex flex-row justify-between">
-                <div class="flex flex-row justify-around">
-                    Link 1
-                    Link 2
-                </div>
-                Button
-            </div>
-        </div>
+        
 <div class="dashboard-layout">
 
 <div x-data="dashboard" 
@@ -103,7 +106,7 @@ class Press_Kit_Dashboard {
      class="relative main-area"> <!-- Added relative positioning here -->
 
     <!--Top Actions - STARTS HERE -->
-    <div class="actions-area">
+    <div class="actions-area" x-show="!showTemplates">
         <?php self::top_actions(); ?>
     </div>
     <!--Top Actions - ENDS HERE -->
@@ -116,7 +119,7 @@ class Press_Kit_Dashboard {
 
 
     <!-- Templates Content Area - STARTS HERE -->
-    <div x-show="showTemplates" class="content-templates">
+    <div x-show="showTemplates" class="static mb-32 content-templates">
         <?php self::area__templates($user_id); ?>
     </div>
     <!-- Templates Content Area - ENDS HERE -->
@@ -138,6 +141,9 @@ class Press_Kit_Dashboard {
     </div>
 </div>
 
+<?php include_once plugin_dir_path(__FILE__) . '../class-plugin-name-footer.php'; ?>
+
+
 </div>
 
 
@@ -155,7 +161,7 @@ class Press_Kit_Dashboard {
             <div class="action-buttons">
     
                 <!-- Button: Select Template -->
-                <button @click="showTemplates = !showTemplates; showSettings = false;" class="template-btn">
+                <button @click="showTemplates = !showTemplates; showSettings = false;" class="text-sm uppercase template-btn md:px-8 md:mr-10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M19,2H9A3,3,0,0,0,6,5V6H5A3,3,0,0,0,2,9V19a3,3,0,0,0,3,3H15a3,3,0,0,0,3-3V18h1a3,3,0,0,0,3-3V5A3,3,0,0,0,19,2ZM16,19a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H16Zm0-9H4V9A1,1,0,0,1,5,8H15a1,1,0,0,1,1,1Zm4,5a1,1,0,0,1-1,1H18V9a3,3,0,0,0-.18-1H20Zm0-9H8V5A1,1,0,0,1,9,4H19a1,1,0,0,1,1,1Z"></path>
                     </svg>
@@ -163,8 +169,8 @@ class Press_Kit_Dashboard {
                 </button>
     
                 <!-- Button: Settings (SVG only) -->
-                <button @click="showSettings = !showSettings; showTemplates = false;" class="text-gray-700 settings-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 448 512" fill="currentColor"><path d="M448 161v-21.3l-28.5-8.8-2.2-10.4 20.1-20.7L427 80.4l-29 7.5-7.2-7.5 7.5-28.2-19.1-11.6-21.3 21-10.7-3.2-7-26.4h-22.6l-6.2 26.4-12.1 3.2-19.7-21-19.4 11 8.1 27.7-8.1 8.4-28.5-7.5-11 19.1 20.7 21-2.9 10.4-28.5 7.8-.3 21.7 28.8 7.5 2.4 12.1-20.1 19.9 10.4 18.5 29.6-7.5 7.2 8.6-8.1 26.9 19.9 11.6 19.4-20.4 11.6 2.9 6.7 28.5 22.6.3 6.7-28.8 11.6-3.5 20.7 21.6 20.4-12.1-8.8-28 7.8-8.1 28.8 8.8 10.3-20.1-20.9-18.8 2.2-12.1 29.1-7zm-119.2 45.2c-31.3 0-56.8-25.4-56.8-56.8s25.4-56.8 56.8-56.8 56.8 25.4 56.8 56.8c0 31.5-25.4 56.8-56.8 56.8zm72.3 16.4l46.9 14.5V277l-55.1 13.4-4.1 22.7 38.9 35.3-19.2 37.9-54-16.7-14.6 15.2 16.7 52.5-38.3 22.7-38.9-40.5-21.7 6.6-12.6 54-42.4-.5-12.6-53.6-21.7-5.6-36.4 38.4-37.4-21.7 15.2-50.5-13.7-16.1-55.5 14.1-19.7-34.8 37.9-37.4-4.8-22.8-54-14.1.5-40.9L54 219.9l5.7-19.7-38.9-39.4L41.5 125l53.6 14.1 15.2-15.7-15.2-52 36.4-20.7 36.8 39.4L191 84l11.6-52H245l11.6 45.9L234 72l-6.3-1.7-3.3 5.7-11 19.1-3.3 5.6 4.6 4.6 17.2 17.4-.3 1-23.8 6.5-6.2 1.7-.1 6.4-.2 12.9C153.8 161.6 118 204 118 254.7c0 58.3 47.3 105.7 105.7 105.7 50.5 0 92.7-35.4 103.2-82.8l13.2.2 6.9.1 1.6-6.7 5.6-24 1.9-.6 17.1 17.8 4.7 4.9 5.8-3.4 20.4-12.1 5.8-3.5-2-6.5-6.8-21.2z"/></svg>
+                <button @click="showSettings = !showSettings; showTemplates = false;" class="pt-1 text-gray-700 settings-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" viewBox="0 0 448 512" fill="currentColor"><path d="M448 161v-21.3l-28.5-8.8-2.2-10.4 20.1-20.7L427 80.4l-29 7.5-7.2-7.5 7.5-28.2-19.1-11.6-21.3 21-10.7-3.2-7-26.4h-22.6l-6.2 26.4-12.1 3.2-19.7-21-19.4 11 8.1 27.7-8.1 8.4-28.5-7.5-11 19.1 20.7 21-2.9 10.4-28.5 7.8-.3 21.7 28.8 7.5 2.4 12.1-20.1 19.9 10.4 18.5 29.6-7.5 7.2 8.6-8.1 26.9 19.9 11.6 19.4-20.4 11.6 2.9 6.7 28.5 22.6.3 6.7-28.8 11.6-3.5 20.7 21.6 20.4-12.1-8.8-28 7.8-8.1 28.8 8.8 10.3-20.1-20.9-18.8 2.2-12.1 29.1-7zm-119.2 45.2c-31.3 0-56.8-25.4-56.8-56.8s25.4-56.8 56.8-56.8 56.8 25.4 56.8 56.8c0 31.5-25.4 56.8-56.8 56.8zm72.3 16.4l46.9 14.5V277l-55.1 13.4-4.1 22.7 38.9 35.3-19.2 37.9-54-16.7-14.6 15.2 16.7 52.5-38.3 22.7-38.9-40.5-21.7 6.6-12.6 54-42.4-.5-12.6-53.6-21.7-5.6-36.4 38.4-37.4-21.7 15.2-50.5-13.7-16.1-55.5 14.1-19.7-34.8 37.9-37.4-4.8-22.8-54-14.1.5-40.9L54 219.9l5.7-19.7-38.9-39.4L41.5 125l53.6 14.1 15.2-15.7-15.2-52 36.4-20.7 36.8 39.4L191 84l11.6-52H245l11.6 45.9L234 72l-6.3-1.7-3.3 5.7-11 19.1-3.3 5.6 4.6 4.6 17.2 17.4-.3 1-23.8 6.5-6.2 1.7-.1 6.4-.2 12.9C153.8 161.6 118 204 118 254.7c0 58.3 47.3 105.7 105.7 105.7 50.5 0 92.7-35.4 103.2-82.8l13.2.2 6.9.1 1.6-6.7 5.6-24 1.9-.6 17.1 17.8 4.7 4.9 5.8-3.4 20.4-12.1 5.8-3.5-2-6.5-6.8-21.2z"/></svg>
                 </button>
     
                 <!-- Toggle -->
@@ -451,7 +457,7 @@ class Press_Kit_Dashboard {
             <div class="no-underline opacity-50 template-card" x-show="activeFilter === 'all' || activeFilter === '<?php echo $version; ?>'" >
                 <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="object-cover w-full mb-2 h-44">
                 <div class="p-1">
-                    <div class="flex flex-row items-baseline mb-4 sm:flex-row">
+                    <div class="flex flex-col items-baseline mb-4">
                         <span class="template-version"><?php if($version_display === 'Pro Template') { echo '<svg xmlns="http://www.w3.org/2000/svg" height="0.7em" viewBox="0 0 576 512" fill="#f1441e" class="pt-[1px] mr-1 "><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>'; } ?><span><?php echo $version_display; ?></span></span>
                         <h2 class="template-title"><?php the_title(); ?></h2>
                     </div>
@@ -465,7 +471,7 @@ class Press_Kit_Dashboard {
                :class="{ 'border-[#F1441E] rounded shadow-xl border-2 transition-all': selectedTemplate === '<?php the_ID(); ?>' }">
                 <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>" class="object-cover w-full mb-2 h-44">
                 <div class="p-1">
-                    <div class="flex flex-col items-baseline mb-4 sm:flex-row">
+                    <div class="flex flex-col items-baseline mb-4">
                         <span class="template-version"><?php if($version_display === 'Pro Template') { echo '<svg xmlns="http://www.w3.org/2000/svg" height="0.7em" viewBox="0 0 576 512" fill="#f1441e" class="pt-[1px] mr-1 "><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>'; } ?><span><?php echo $version_display; ?></span></span>
                         <h2 class="template-title"><?php the_title(); ?></h2>
                     </div>
@@ -487,7 +493,7 @@ class Press_Kit_Dashboard {
     
     public function area__edit($user_id) { ?>
             <!-- Tab Buttons - STARTS HERE -->
-            <div class="tab-headers">
+            <div class="tab-headers" x-show="!showTemplates">
                 <button :class="{ 'active-tab': activeTab === 'profile' }" @click="activeTab = 'profile'" class="tab-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 448 512" fill="currentColor"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
                     Profile
@@ -504,17 +510,17 @@ class Press_Kit_Dashboard {
             <!-- Tab Buttons - ENDS HERE -->
             <!-- Tabs Content - STARTS HERE -->
                 <!-- Profile Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'profile' && !showTemplates && !showSettings" class="tab-content">
+                <div x-show="activeTab === 'profile' && !showTemplates && !showSettings" class="pb-0 tab-content md:pt-5 md:px-8">
                     <?php self::edit__profile_tab($user_id); ?>
                 </div>
                 <!-- Profile Tab Content - ENDS HERE -->
                 <!-- Artist Details Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'forms' && !showTemplates && !showSettings" class="tab-content">
+                <div x-show="activeTab === 'forms' && !showTemplates && !showSettings" class="pb-0 tab-content">
                     <?php self::edit__forms_tab($user_id); ?>
                 </div>
                 <!-- Artist Details Tab Content - ENDS HERE -->
                 <!-- Analytics Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'analytics' && !showTemplates && !showSettings" class="tab-content">
+                <div x-show="activeTab === 'analytics' && !showTemplates && !showSettings" class="tab-content max-w-[700px] mt-10 pb-20 mx-auto">
                     <?php self::edit__tab_analytics($user_id);?>
                 </div>
                 <!-- Analytics Tab Content - ENDS HERE -->

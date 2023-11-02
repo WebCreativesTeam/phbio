@@ -66,7 +66,7 @@ class Plugin_Name_Settings {
 					<div class="content-edit setting-page-wrap">
 						<form method="post">
 							<?php self::settings($user_id); ?>
-                            <div class="save-progress">
+                            <div class="ml-0 save-progress w-[inherit]">
                                 <div class="save-progress-contain">
                                     <div>Use the "Update" button to save your changes!</div>
                                     <input type="submit" name="submit_form" value="Submit" class="h-10 mt-0 upload-btn">

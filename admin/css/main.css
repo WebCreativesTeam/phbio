@@ -1719,6 +1719,9 @@ body {
     white-space: nowrap;
     border-width: 0;
 }
+.pointer-events-none {
+    pointer-events: none;
+}
 .visible {
     visibility: visible;
 }
@@ -1751,6 +1754,9 @@ body {
 }
 .z-10 {
     z-index: 10;
+}
+.z-\[9999999\] {
+    z-index: 9999999;
 }
 .m-0 {
     margin: 0px;
@@ -1975,6 +1981,9 @@ body {
 .w-\[90\%\] {
     width: 90%;
 }
+.w-\[inherit\] {
+    width: inherit;
+}
 .w-fit {
     width: -moz-fit-content;
     width: fit-content;
@@ -2045,9 +2054,6 @@ body {
 }
 .justify-between {
     justify-content: space-between;
-}
-.justify-around {
-    justify-content: space-around;
 }
 .gap-0 {
     gap: 0px;
@@ -2524,9 +2530,17 @@ form {
     --tw-text-opacity: 1;
     color: rgb(241 68 30 / var(--tw-text-opacity));
 }
+.focus\:shadow-none:focus {
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
 .focus\:outline-none:focus {
     outline: 2px solid transparent;
     outline-offset: 2px;
+}
+.focus\:outline-\[0px\]:focus {
+    outline-width: 0px;
 }
 .active\:text-white:active {
     --tw-text-opacity: 1;

@@ -17,7 +17,7 @@
         </a>
         <div
           class="flex mt-4 overflow-hidden font-medium text-center capitalize sm:mt-0 rounded-2xl basis-full md:min-w-0 md:basis-auto md:order-2 md:ml-auto md:gap-2 md:font-normal">
-          <a href="<?php echo admin_url('admin.php?page=profile-editor'); ?>" class="flex-grow bg-[#2f2f2f] flex items-center justify-center gap-2  p-2  md:bg-transparent  text-white <?php if ($current_page === 'profile-editor') echo 'current-page'; ?>">
+          <a href="<?php echo admin_url('admin.php?page=profile-editor'); ?>" class="flex-grow bg-[#2f2f2f] flex items-center justify-center gap-2  p-2  md:bg-transparent  text-white focus:text-[#F1441E] focus:shadow-none <?php if ($current_page === 'profile-editor') echo 'current-page'; ?>">
             
               <svg xmlns="http://www.w3.org/2000/svg" 
                 class="w-5 h-5 fill-current stroke-2"
@@ -29,7 +29,7 @@
               Link in Bio
             </span>
           </a>
-          <a href="<?php echo admin_url('admin.php?page=my-presskit'); ?>" class="flex-grow text-white bg-[#2f2f2f] p-2 flex justify-center items-center gap-2 md:bg-transparent <?php if ($current_page === 'my-presskit') echo 'current-page'; ?>">
+          <a href="<?php echo admin_url('admin.php?page=my-presskit'); ?>" class="flex-grow text-white bg-[#2f2f2f] p-2 flex justify-center items-center gap-2 md:bg-transparent focus:text-[#F1441E] focus:shadow-none <?php if ($current_page === 'my-presskit') echo 'current-page'; ?>">
             <span class="md:order-2">
               Press kit
             </span>

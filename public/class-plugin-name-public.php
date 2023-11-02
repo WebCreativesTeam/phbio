@@ -105,7 +105,8 @@ class Plugin_Name_Public {
 				'nonce'    => wp_create_nonce( 'plugin' )
 			) );
 
-		if(is_singular('hb-user-profile') && !is_admin()) {
+
+		if(is_singular('hb-user-profile')) {
 			wp_enqueue_script( 'borah_dynamic_grid', plugin_dir_url( __FILE__ ) . 'js/borah_dynamic_grid.js', NULL, $this->version, false );
 			wp_enqueue_script('geoplugin', 'https://ssl.geoplugin.net/javascript.gp?k=b6f1cdacfb0b5a65', NULL, $this->version , true);
 

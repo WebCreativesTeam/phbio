@@ -27,6 +27,14 @@ class Plugin_Name_Dashboard {
         'dashicons-editor-unlink',    
         100                           
     );
+
+    // Get current user
+    $current_user = wp_get_current_user();
+
+    // Check if current user has the Administrator role
+    if (in_array('administrator', $current_user->roles)) {
+        remove_menu_page('profile-editor'); // Hide Plugins
+    }
     }
 
     private function init_dynamic() {

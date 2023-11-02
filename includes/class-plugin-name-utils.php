@@ -149,7 +149,6 @@ class Plugin_Name_Utilities {
         // If a target user ID isn't provided, use the current user's ID
         $user_id = $target_user_id ? $target_user_id : get_current_user_id();
     
-       
         
         // Handle file upload fields
         if (substr($name, -4) === '_url' && isset($_FILES[$name]) && self::check_user_capability($capability)) {
@@ -221,9 +220,8 @@ class Plugin_Name_Utilities {
                 // Reset the WP_Query
                 wp_reset_postdata();
             }
-            // Sync with hb-user-profile cpt
+            // Sync with hb-user-pkit cpt
             if ($name === "pkit_username") {
-                // Search for a hb-user-profile post associated with this user
                 $args = array(
                     'post_type' => 'hb-user-pkit',
                     'meta_query' => array(
@@ -235,7 +233,7 @@ class Plugin_Name_Utilities {
                     )
                 );
                 $query = new WP_Query($args);
-
+                 
                 // If there's an existing post, update it
                 if ($query->have_posts()) {
                     $query->the_post();
@@ -243,7 +241,8 @@ class Plugin_Name_Utilities {
                     wp_update_post(array(
                         'ID' => $post_id,
                         'post_name' => $posted_value, // Update the slug (URL) of the post
-                        'post_title' => $posted_value // Update the title of the post
+                        'post_title' => $posted_value, // Update the title of the post
+                        'post_status' => 'publish'
                     ));
                 } else {
                     // If not, create a new one
@@ -257,6 +256,9 @@ class Plugin_Name_Utilities {
                         )
                     ));
                 }
+
+                
+
                 // Reset the WP_Query
                 wp_reset_postdata();  
             }
@@ -278,16 +280,16 @@ class Plugin_Name_Utilities {
 
                 // Use get_posts and directly retrieve the first post ID
                 $post_ids = get_posts($args);
-
+                
                 if (!empty($post_ids)) {
-                    $post_id = $post_ids[0];  // Get the first post ID
+                    $post_id = $post_ids[0]->ID;  // Get the first post ID
                 } else {
                     return;
                 }
 
-                echo $posted_value;
                 $langs = explode(',', $posted_value);
             
+
                 foreach ($langs as $lang) {
                     $args = array(
                         'post_type' => 'hb-user-pkit',
