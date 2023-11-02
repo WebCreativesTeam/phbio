@@ -265,6 +265,7 @@ class Plugin_Name_Utilities {
 
             if ($name === "pkit_lang") { 
 
+                echo "Hey there";
                 // Search for a hb-user-profile post associated with this user
                 $args = array(
                     'post_type' => 'hb-user-pkit',
