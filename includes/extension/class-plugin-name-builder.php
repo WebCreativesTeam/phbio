@@ -131,6 +131,7 @@ class Press_Kit_Builder {
     }
     
     public static function language_select($name, $value, $label, $capability, $target_user_id) {
+        var_dump(Plugin_Name_Utilities::check_user_capability($capability));
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['pkit_lang'])) {
