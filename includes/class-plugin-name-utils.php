@@ -146,6 +146,7 @@ class Plugin_Name_Utilities {
     
 
     public static function handle_user_meta($name, $capability, $target_user_id = null) {
+        echo $name;
         // If a target user ID isn't provided, use the current user's ID
         $user_id = $target_user_id ? $target_user_id : get_current_user_id();
     
