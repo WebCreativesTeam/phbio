@@ -139,7 +139,8 @@ class Press_Kit_Builder {
                 }, 1000); </script>';
             }
         }
-        
+        echo $data;
+        echo $value;
         if (!$data) $data = $value;
 
         if(!Plugin_Name_Utilities::is_full_version($target_user_id)) {

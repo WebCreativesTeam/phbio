@@ -288,7 +288,7 @@ class Plugin_Name_Utilities {
                 }
 
                 $langs = explode(',', $posted_value);
-            
+                print_r($langs);
 
                 foreach ($langs as $lang) {
                     $args = array(
