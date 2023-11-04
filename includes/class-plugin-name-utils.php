@@ -164,7 +164,7 @@ class Plugin_Name_Utilities {
     public static function get_user_forms($pkit_lang_array) {
         $user_id = get_current_user_id();
         // Check if the user is Pro or Free
-        $is_pro_version = is_full_version($user_id);
+        $is_pro_version = Plugin_Name_Utilities::is_full_version($user_id);
         
         // Get the repeater field 'pkit_fmanager' (assuming it's an option field)
         $forms = get_field('pkit_fmanager', 'option');
