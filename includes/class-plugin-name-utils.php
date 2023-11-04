@@ -187,6 +187,8 @@ class Plugin_Name_Utilities {
             }
         }
         
+
+        print_r($user_forms);
        
     
         return $user_forms;
