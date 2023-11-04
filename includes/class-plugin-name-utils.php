@@ -166,13 +166,15 @@ class Plugin_Name_Utilities {
         // Check if the user is Pro or Free
         $is_pro_version = Plugin_Name_Utilities::is_full_version($user_id);
         
+        var_dump($pkit_lang_array);
+        var_dump($is_pro_version());
         // Get the repeater field 'pkit_fmanager' (assuming it's an option field)
         $forms = get_field('pkit_fmanager', 'option');
         $user_forms = array();
     
         if ($forms) {
             foreach ($forms as $form) {
-                print_r($form);
+                
                 // Check if the current row matches the user's version
                 $is_pro_form = $form['pkit_fmanager_role'];
                 if ($is_pro_version && !$is_pro_form) {
