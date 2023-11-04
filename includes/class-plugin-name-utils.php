@@ -167,7 +167,7 @@ class Plugin_Name_Utilities {
         $is_pro_version = Plugin_Name_Utilities::is_full_version($user_id);
         
         var_dump($pkit_lang_array);
-        var_dump($is_pro_version());
+        var_dump($is_pro_version);
         // Get the repeater field 'pkit_fmanager' (assuming it's an option field)
         $forms = get_field('pkit_fmanager', 'option');
         $user_forms = array();
