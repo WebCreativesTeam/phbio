@@ -172,6 +172,7 @@ class Plugin_Name_Utilities {
     
         if ($forms) {
             foreach ($forms as $form) {
+                print_r($form);
                 // Check if the current row matches the user's version
                 $is_pro_form = $form['pkit_fmanager_role'];
                 if ($is_pro_version && !$is_pro_form) {
