@@ -166,33 +166,35 @@ class Plugin_Name_Utilities {
         // Check if the user is Pro or Free
         $is_pro_version = Plugin_Name_Utilities::is_full_version($user_id);
         
-        var_dump($pkit_lang_array);
-        var_dump($is_pro_version);
         // Get the repeater field 'pkit_fmanager' (assuming it's an option field)
         $forms = get_field('pkit_fmanager', 'option');
         $user_forms = array();
     
         if ($forms) {
             foreach ($forms as $form) {
-                
                 // Check if the current row matches the user's version
                 $is_pro_form = $form['pkit_fmanager_role'];
-                if ($is_pro_version && !$is_pro_form) {
-                    // If the user is Pro and the form is not, skip this form
-                    continue;
-                }
     
-                // Check if the form language is in the user's language array
-                if (in_array($form['pkit_fmanager_language'], $pkit_lang_array)) {
-                    // Add the form object to the user forms array
-                    $user_forms[] = $form['pkit_fmanager_form'];
+                // If the user is Pro, include both Pro and Free forms
+                // If the user is Free, only include Free forms
+                if (($is_pro_version && $is_pro_form) || (!$is_pro_version && !$is_pro_form)) {
+                    // Check if the form language is in the user's language array
+                    if (in_array($form['pkit_fmanager_language'], $pkit_lang_array)) {
+                        // Add the form object to the user forms array
+                        $user_forms[] = $form['pkit_fmanager_form'];
+                    }
                 }
             }
         }
         
+        // Output for debugging
+        var_dump($pkit_lang_array);
+        var_dump($is_pro_version);
         print_r($user_forms);
+    
         return $user_forms;
     }
+    
     
     public static function check_user_capability($capability) {
         if (!current_user_can($capability)) {
