@@ -161,7 +161,7 @@ class Plugin_Name_Utilities {
         return $pkit_lang_array;
     }
     
-    function get_user_forms($pkit_lang_array) {
+    public static function get_user_forms($pkit_lang_array) {
         $user_id = get_current_user_id();
         // Check if the user is Pro or Free
         $is_pro_version = is_full_version($user_id);
