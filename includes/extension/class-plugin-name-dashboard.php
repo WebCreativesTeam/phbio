@@ -664,7 +664,7 @@ class Press_Kit_Dashboard {
                                         Plugin_Name_Capabilities::EDIT_PROJECT_NAME, false, $user_id, in_array("pkit_project", $this->dynamic_tags) ); 
             ?>
 
-            <?php Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); ?>
+            <?php Plugin_Name_Utilities::get_user_langs_full_names(); ?>
             <?php
             Press_Kit_Builder::language_select('pkit_lang', 'en', 'Language', Plugin_Name_Capabilities::PRESSKIT_LANG, $user_id);
             ?>
