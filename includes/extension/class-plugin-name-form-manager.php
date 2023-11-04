@@ -58,14 +58,6 @@ class FormManager {
                                 'id' => '',
                             ),
                             'hide_admin' => 0,
-                            'post_type' => array(
-                                0 => 'af_form',
-                            ),
-                            'post_status' => array(
-                                0 => 'publish',
-                            ),
-                            'taxonomy' => '',
-                            'return_format' => 'object',
                             'multiple' => 0,
                             'allow_null' => 0,
                             'bidirectional' => 0,
