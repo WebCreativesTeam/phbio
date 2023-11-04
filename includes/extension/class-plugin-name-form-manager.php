@@ -48,7 +48,7 @@ class FormManager {
                             'label' => 'Form',
                             'name' => 'pkit_fmanager_form',
                             'aria-label' => '',
-                            'type' => 'post_object',
+                            'type' => 'text',
                             'instructions' => '',
                             'required' => 0,
                             'conditional_logic' => 0,

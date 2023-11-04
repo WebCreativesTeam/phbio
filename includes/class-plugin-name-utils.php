@@ -93,70 +93,70 @@ class Plugin_Name_Utilities {
         }
 
 
-        // Query for 'hb-user-pkit' posts associated with the current user via 'associated_pkit_user' meta key
-        $args = array(
-            'post_type' => 'hb-user-pkit',
-            'meta_query' => array(
-                array(
-                    'key' => 'associated_pkit_user',
-                    'value' => $current_user_id,
-                    'compare' => '='
-                )
-            ),
-            'posts_per_page' => -1 // Get all matching posts
-        );
+    //     // Query for 'hb-user-pkit' posts associated with the current user via 'associated_pkit_user' meta key
+    //     $args = array(
+    //         'post_type' => 'hb-user-pkit',
+    //         'meta_query' => array(
+    //             array(
+    //                 'key' => 'associated_pkit_user',
+    //                 'value' => $current_user_id,
+    //                 'compare' => '='
+    //             )
+    //         ),
+    //         'posts_per_page' => -1 // Get all matching posts
+    //     );
 
-        $parent_posts_query = new WP_Query($args);
-        $parent_posts = $parent_posts_query->posts;
+    //     $parent_posts_query = new WP_Query($args);
+    //     $parent_posts = $parent_posts_query->posts;
 
-        // Step 2: For each parent post, find child posts with slugs in $pkit_lang_array
-        $child_posts_array = array();
+    //     // Step 2: For each parent post, find child posts with slugs in $pkit_lang_array
+    //     $child_posts_array = array();
 
-        foreach ($parent_posts as $parent_post) {
-            foreach ($pkit_lang_array as $lang_slug) {
-                $child_args = array(
-                    'post_type' => 'hb-user-pkit',
-                    'post_parent' => $parent_post->ID,
-                    'name' => $lang_slug,
-                    'post_status' => 'any', // Include all statuses
-                    'posts_per_page' => -1
-                );
+    //     foreach ($parent_posts as $parent_post) {
+    //         foreach ($pkit_lang_array as $lang_slug) {
+    //             $child_args = array(
+    //                 'post_type' => 'hb-user-pkit',
+    //                 'post_parent' => $parent_post->ID,
+    //                 'name' => $lang_slug,
+    //                 'post_status' => 'any', // Include all statuses
+    //                 'posts_per_page' => -1
+    //             );
                 
-                $child_posts_query = new WP_Query($child_args);
-                $child_posts = $child_posts_query->posts;
+    //             $child_posts_query = new WP_Query($child_args);
+    //             $child_posts = $child_posts_query->posts;
                 
-                // Merge the found child posts into the $child_posts_array
-                $child_posts_array = array_merge($child_posts_array, $child_posts);
-            }
-        }
+    //             // Merge the found child posts into the $child_posts_array
+    //             $child_posts_array = array_merge($child_posts_array, $child_posts);
+    //         }
+    //     }
 
 
-       // Initialize an array to store the form objects
-        $forms_by_language = array();
+    //    // Initialize an array to store the form objects
+    //     $forms_by_language = array();
 
-        // Iterate over each language in the $pkit_lang_array
-        foreach ($pkit_lang_array as $lang) {
-            // Retrieve the forms from the ACF repeater field on the options page
-            $forms = get_field('pkit_fmanager', 'option');
+    //     // Iterate over each language in the $pkit_lang_array
+    //     foreach ($pkit_lang_array as $lang) {
+    //         // Retrieve the forms from the ACF repeater field on the options page
+    //         $forms = get_field('pkit_fmanager', 'option');
 
-            // Check if forms are retrieved successfully
-            if ($forms) {
-                // Iterate over each form
-                foreach ($forms as $form) {
-                    // Check if the current form's language matches the current language in the loop
-                    if ($form['pkit_fmanager_language'] === $lang) {
-                        // Check if the form is Pro or Free based on the 'Version' field
-                        $is_pro_version = $form['pkit_fmanager_role'];
+    //         // Check if forms are retrieved successfully
+    //         if ($forms) {
+    //             // Iterate over each form
+    //             foreach ($forms as $form) {
+    //                 // Check if the current form's language matches the current language in the loop
+    //                 if ($form['pkit_fmanager_language'] === $lang) {
+    //                     // Check if the form is Pro or Free based on the 'Version' field
+    //                     $is_pro_version = $form['pkit_fmanager_role'];
 
-                        // Add the form to the $forms_by_language array with additional info if needed
-                        $forms_by_language[$lang][] = array(
-                            'form' => $form['pkit_fmanager_form'], // This contains the form object
-                            'is_pro' => $is_pro_version // This is a boolean indicating Pro (true) or Free (false)
-                        );
-                    }
-                }
-            }
-        }
+    //                     // Add the form to the $forms_by_language array with additional info if needed
+    //                     $forms_by_language[$lang][] = array(
+    //                         'form' => $form['pkit_fmanager_form'], // This contains the form object
+    //                         'is_pro' => $is_pro_version // This is a boolean indicating Pro (true) or Free (false)
+    //                     );
+    //                 }
+    //             }
+    //         }
+    //     }
 
         return $pkit_lang_array;
     }
@@ -187,10 +187,7 @@ class Plugin_Name_Utilities {
             }
         }
         
-        // Output for debugging
-        var_dump($pkit_lang_array);
-        var_dump($is_pro_version);
-        print_r($user_forms);
+       
     
         return $user_forms;
     }
