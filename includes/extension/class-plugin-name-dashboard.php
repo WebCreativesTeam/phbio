@@ -624,22 +624,15 @@ class Press_Kit_Dashboard {
 
     <?php }
     
-    public function edit__forms_tab($user_id) { ?>
-        <?php echo Plugin_Name_Utilities::current_user_has_backup_links(); ?>
+    public function edit__forms_tab($user_id) { 
+           
+        $forms = Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); 
+        foreach($forms as $form) {
+            echo do_shortcode('[advanced_form form="' . $form . '"]');
+        }
+    }
 
-
-        <form method="post">            
-            <?php Plugin_Name_Builder::link_list_field( 'Manage Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
-            <?php Plugin_Name_Builder::social_links_list_field( 'Manage Social Links', Plugin_Name_Capabilities::EDIT_LINKS, $user_id); ?>
-            <div class="save-progress">
-                <div class="save-progress-contain">
-                    <div>Use the "Update" button to save your changes!</div>
-                    <input type="submit" name="submit_form" value="Update" class="h-10 mt-0 text-base upload-btn sm:text-sm">
-                </div>
-            </div>
-        </form> 
-
-    <?php }
+    
 
     public function edit__profile_tab($user_id) { ?>
         <?php Plugin_Name_Builder::upload_field('pkit_profile_photo', 'Profile Photo', Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, array('image/jpeg', 'image/png', 'image/tiff'), 2 * 1024 * 1024, $user_id, in_array("pkit_profile_photo_url", $this->dynamic_tags)); ?>
@@ -664,7 +657,7 @@ class Press_Kit_Dashboard {
                                         Plugin_Name_Capabilities::EDIT_PROJECT_NAME, false, $user_id, in_array("pkit_project", $this->dynamic_tags) ); 
             ?>
 
-            <?php Plugin_Name_Utilities::get_user_langs_full_names(); ?>
+            <?php Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); ?>
             <?php
             Press_Kit_Builder::language_select('pkit_lang', 'en', 'Language', Plugin_Name_Capabilities::PRESSKIT_LANG, $user_id);
             ?>
