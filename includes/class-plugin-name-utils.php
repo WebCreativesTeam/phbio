@@ -187,13 +187,35 @@ class Plugin_Name_Utilities {
             }
         }
         
-
-        print_r($user_forms);
-       
-    
         return $user_forms;
     }
     
+
+    public static function get_language_full_name($language_code) {
+        // Define the array of language codes and their full names
+        $languages = array(
+            'en' => 'English',
+            'it' => 'Italian',
+            'es' => 'Spanish',
+            'de' => 'German',
+            'fr' => 'French',
+            'pt' => 'Portuguese',
+        );
+    
+        // Return the full language name or the original code if not found
+        return isset($languages[$language_code]) ? $languages[$language_code] : $language_code;
+    }
+    
+    public static function get_user_langs_full_names() {
+        // Get the language codes
+        $lang_codes = self::get_user_langs();
+
+        // Map each code to its full name
+        $full_names = array_map('self::get_language_full_name', $lang_codes);
+
+        print_r($full_names);
+        return $full_names;
+    }
     
     public static function check_user_capability($capability) {
         if (!current_user_can($capability)) {
