@@ -162,7 +162,6 @@ class Plugin_Name_Utilities {
     }
     
     public static function get_user_forms($pkit_lang_array) {
-        print_r($pkit_lang_array);
         $user_id = get_current_user_id();
         // Check if the user is Pro or Free
         $is_pro_version = Plugin_Name_Utilities::is_full_version($user_id);
@@ -171,8 +170,25 @@ class Plugin_Name_Utilities {
         $forms = get_field('pkit_fmanager', 'option');
         $user_forms = array();
     
-        print_r($forms);
+        if ($forms) {
+            foreach ($forms as $form) {
+                print_r($form);
+                // Check if the current row matches the user's version
+                $is_pro_form = $form['pkit_fmanager_role'];
+                if ($is_pro_version && !$is_pro_form) {
+                    // If the user is Pro and the form is not, skip this form
+                    continue;
+                }
+    
+                // Check if the form language is in the user's language array
+                if (in_array($form['pkit_fmanager_language'], $pkit_lang_array)) {
+                    // Add the form object to the user forms array
+                    $user_forms[] = $form['pkit_fmanager_form'];
+                }
+            }
+        }
         
+        return $user_forms;
     }
     
     public static function check_user_capability($capability) {
