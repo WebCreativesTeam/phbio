@@ -39,6 +39,7 @@ window.onload = function () {
   }
 
   // Execute the function
+  initializeAcfDrags();
   executeStart();
   initializeIframeLoading(".iframe-container");
 };
@@ -210,4 +211,20 @@ function initializeIframeLoading(selector) {
   reloadInterval = setInterval(function () {
     iframe.src = iframe.src;
   }, 20000);
+}
+
+function initializeAcfDrags() {
+  // Select all .acf-input elements
+  var acfInputs = document.querySelectorAll(".acf-input");
+
+  // Loop through each .acf-input element
+  acfInputs.forEach(function (acfInput) {
+    // Create the handle div
+    var handleDiv = document.createElement("div");
+    handleDiv.className = "handle";
+    handleDiv.textContent = "☰";
+
+    // Insert the handle at the beginning of the .acf-input element
+    acfInput.insertBefore(handleDiv, acfInput.firstChild);
+  });
 }

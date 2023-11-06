@@ -625,7 +625,7 @@ class Press_Kit_Dashboard {
     <?php }
     
     public function edit__forms_tab($user_id) { 
-           
+                   
         $forms = Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); 
         foreach($forms as $form) {
             echo do_shortcode('[advanced_form form="' . $form . '" user="current"]');
