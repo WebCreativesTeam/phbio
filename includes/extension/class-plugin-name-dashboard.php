@@ -515,7 +515,7 @@ class Press_Kit_Dashboard {
                 </div>
                 <!-- Profile Tab Content - ENDS HERE -->
                 <!-- Artist Details Tab Content - STARTS HERE -->
-                <div x-show="activeTab === 'forms' && !showTemplates && !showSettings" class="pb-0 tab-content">
+                <div id="AcfFormsArea" x-show="activeTab === 'forms' && !showTemplates && !showSettings" class="pb-0 tab-content">
                     <?php self::edit__forms_tab($user_id); ?>
                 </div>
                 <!-- Artist Details Tab Content - ENDS HERE -->

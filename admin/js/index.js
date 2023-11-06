@@ -4374,16 +4374,36 @@ function initializeIframeLoading(selector) {
     }, 20000);
 }
 function initializeAcfDrags() {
-    // Select all .acf-input elements
-    var acfInputs = document.querySelectorAll(".acf-input");
+    // Select all .acf-input elements within #AcfFormsArea
+    var acfInputs = document.querySelectorAll("#AcfFormsArea .acf-input");
+    // Define a common style object for .acf-input
+    var inputStyle = {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: "1rem"
+    };
+    var wrapStyle = {
+        width: "100%"
+    };
     // Loop through each .acf-input element
     acfInputs.forEach(function(acfInput) {
-        // Create the handle div
-        var handleDiv = document.createElement("div");
-        handleDiv.className = "handle";
-        handleDiv.textContent = "☰";
-        // Insert the handle at the beginning of the .acf-input element
-        acfInput.insertBefore(handleDiv, acfInput.firstChild);
+        // Check if the handle already exists
+        if (!acfInput.querySelector(".drag-handle")) {
+            // Create the handle div
+            var handleDiv = document.createElement("div");
+            handleDiv.className = "drag-handle";
+            handleDiv.textContent = "☰";
+            // Insert the handle at the beginning of the .acf-input element
+            acfInput.insertBefore(handleDiv, acfInput.firstChild);
+        }
+        // Apply styles to acfInput
+        Object.assign(acfInput.style, inputStyle);
+        // Apply styles to .acf-input-wrap inside acfInput
+        var acfInputWraps = acfInput.querySelectorAll(".acf-input-wrap");
+        acfInputWraps.forEach(function(wrap) {
+            Object.assign(wrap.style, wrapStyle);
+        });
     });
 }
 
