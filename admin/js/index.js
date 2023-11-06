@@ -4375,7 +4375,7 @@ function initializeIframeLoading(selector) {
 }
 function initializeAcfDrags() {
     // Select all .acf-input elements within #AcfFormsArea
-    var acfInputs = document.querySelectorAll("#AcfFormsArea .acf-input");
+    var acfInputs = document.querySelectorAll("#AcfFormsArea .fields-block-item .acf-input");
     // Define a common style object for .acf-input
     var inputStyle = {
         display: "flex",
