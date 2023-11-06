@@ -4376,15 +4376,19 @@ function initializeIframeLoading(selector) {
 function initializeAcfDrags() {
     // Select all .acf-input elements within #AcfFormsArea
     var acfInputs = document.querySelectorAll("#AcfFormsArea .fields-block-item .acf-input");
+    var acfLabels = document.querySelectorAll("#AcfFormsArea .fields-block-item .acf-label");
     // Define a common style object for .acf-input
     var inputStyle = {
         display: "flex",
         flexDirection: "row",
-        alignItems: "center",
+        alignItems: "flex-start",
         gap: "1rem"
     };
     var wrapStyle = {
         width: "100%"
+    };
+    var labelStyle = {
+        paddingLeft: "3rem"
     };
     // Loop through each .acf-input element
     acfInputs.forEach(function(acfInput) {
@@ -4403,6 +4407,9 @@ function initializeAcfDrags() {
         var acfInputWraps = acfInput.querySelectorAll(".acf-input-wrap");
         acfInputWraps.forEach(function(wrap) {
             Object.assign(wrap.style, wrapStyle);
+        });
+        acfLabels.forEach(function(wrap) {
+            Object.assign(wrap.style, labelStyle);
         });
     });
 }
