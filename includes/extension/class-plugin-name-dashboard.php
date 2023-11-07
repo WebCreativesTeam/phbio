@@ -652,7 +652,7 @@ class Press_Kit_Dashboard {
         foreach($forms as $index => $form) {
             if (count($forms) > 1) {
                 ?>
-                <div x-show="activeTab === '<?php echo $index; ?>'">
+                <div x-show="activeLang === '<?php echo $index; ?>'">
                     <?php echo do_shortcode('[advanced_form form="' . $form . '" user="current"]'); ?>
 
                 </div>
