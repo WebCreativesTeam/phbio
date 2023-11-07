@@ -628,7 +628,24 @@ class Press_Kit_Dashboard {
     
     public function edit__forms_tab($user_id) { 
                    
-       
+        ?>
+
+            <div class="tab-headers">
+
+                <?php
+                    $langs = Plugin_Name_Utilities::get_user_langs(); 
+                    foreach($langs as $index => $lang) {
+                        ?>
+                            <button :class="{ 'active-tab': activeLang === '<?php echo $lang; ?>' }" @click="activeLang = '<?php echo $lang; ?>'" class="tab-btn">
+                                <?php echo Plugin_Name_Utilities::get_language_full_name($lang); ?>
+                            </button>
+                        <?php
+                    } 
+                ?>
+                
+            </div>
+
+        <?php
         $forms = Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); 
         foreach($forms as $form) {
             echo do_shortcode('[advanced_form form="' . $form . '" user="current"]');
