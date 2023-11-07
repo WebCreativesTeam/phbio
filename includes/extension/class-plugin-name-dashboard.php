@@ -634,21 +634,32 @@ class Press_Kit_Dashboard {
 
                 <?php
                     $langs = Plugin_Name_Utilities::get_user_langs(); 
-                    foreach($langs as $index => $lang) {
-                        ?>
-                            <button :class="{ 'active-tab': activeLang === '<?php echo $lang; ?>' }" @click="activeLang = '<?php echo $lang; ?>'" class="tab-btn">
-                                <?php echo Plugin_Name_Utilities::get_language_full_name($lang); ?>
-                            </button>
-                        <?php
-                    } 
+                    if (count($langs) > 1) {
+                        foreach($langs as $index => $lang) {
+                            ?>
+                                <button :class="{ 'active-tab': activeLang === '<?php echo $index; ?>' }" @click="activeLang = '<?php echo $index; ?>'" class="tab-btn">
+                                    <?php echo Plugin_Name_Utilities::get_language_full_name($lang); ?>
+                                </button>
+                            <?php
+                        } 
+                    }
                 ?>
                 
             </div>
 
         <?php
         $forms = Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); 
-        foreach($forms as $form) {
-            echo do_shortcode('[advanced_form form="' . $form . '" user="current"]');
+        foreach($forms as $index => $form) {
+            if (count($forms) > 1) {
+                ?>
+                <div x-show="activeTab === '<?php echo $index; ?>'">
+                    <?php echo do_shortcode('[advanced_form form="' . $form . '" user="current"]'); ?>
+
+                </div>
+                <?php
+            } else {
+                echo do_shortcode('[advanced_form form="' . $form . '" user="current"]');
+            }
         }
     }
 
