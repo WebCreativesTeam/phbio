@@ -92,12 +92,14 @@ class Press_Kit_Dashboard {
         let storedState = localStorage.getItem('alpineState');
         if (storedState) {
             let state = JSON.parse(storedState);
+            activeLang = state.activeLang;
             editMode = state.editMode;
             activeTab = state.activeTab;
             showSettings = state.showSettings;
             showTemplates = state.showTemplates;
             activeFilter = state.activeFilter;
         }
+        $watch('activeLang', () => saveState());
         $watch('activeTab', () => saveState());
         $watch('showSettings', () => saveState());
         $watch('showTemplates', () => saveState());
@@ -236,7 +238,7 @@ class Press_Kit_Dashboard {
                         foreach ($children_array as $i => $lang) {
                             // Call the function for each ID and slug
                             Plugin_Name_Builder::checkbox_field('public_' . $i, 
-                                'Enable Public Access for "' . ucfirst($lang) . '"', 
+                                'Enable Public Access for ' . Plugin_Name_Utilities::get_language_full_name($lang), 
                                 Plugin_Name_Capabilities::EDIT_PROJECT_NAME, $user_id); 
                         }
                     }
@@ -626,6 +628,7 @@ class Press_Kit_Dashboard {
     
     public function edit__forms_tab($user_id) { 
                    
+       
         $forms = Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); 
         foreach($forms as $form) {
             echo do_shortcode('[advanced_form form="' . $form . '" user="current"]');

@@ -4117,6 +4117,7 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "dashboard", ()=>dashboard);
 const dashboard = ()=>({
         editMode: false,
+        activeLang: false,
         activeTab: "profile",
         showSettings: false,
         showTemplates: false,
@@ -4124,6 +4125,7 @@ const dashboard = ()=>({
         saveState: function() {
             localStorage.setItem("alpineState", JSON.stringify({
                 editMode: this.editMode,
+                activeLang: this.activeLang,
                 activeTab: this.activeTab,
                 showSettings: this.showSettings,
                 showTemplates: this.showTemplates,

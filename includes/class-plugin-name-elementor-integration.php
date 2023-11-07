@@ -17,23 +17,37 @@ function add_group( $dynamic_tags_manager ) {
 			'title' => esc_html__( 'Link In Bio', '' )
 		]
 	);
+	$dynamic_tags_manager->register_group(
+		'press-kit',
+		[
+			'title' => esc_html__( 'Presskit', '' )
+		]
+	);
 }
 
 function register_tags( $dynamic_tags_manager) {
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_project.php';
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/extension_tag_project.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_bio.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_username.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_profile_photo.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_cover_photo.php';
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/extension_tag_username.php';
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/extension_tag_profile_photo.php';
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/extension_tag_cover_photo.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_is_logo.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_link_property.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_is_track_link.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_is_track_social_link.php';
     $dynamic_tags_manager->register( new \Elementor_Project_Name_Tag() );
+    $dynamic_tags_manager->register( new \Elementor_Ext_Project_Name_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Bio_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Username_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Profile_Photo_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Cover_Photo_Tag() );
+    $dynamic_tags_manager->register( new \Elementor_Ext_Username_Tag() );
+    $dynamic_tags_manager->register( new \Elementor_Ext_Profile_Photo_Tag() );
+    $dynamic_tags_manager->register( new \Elementor_Ext_Cover_Photo_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Is_Logo_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Link_Property() );
     $dynamic_tags_manager->register( new \Elementor_Is_Track_Link() );
