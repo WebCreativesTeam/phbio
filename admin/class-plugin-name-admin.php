@@ -503,7 +503,7 @@ function render_user_profile_elementor_content($content) {
 
 function render_user_presskit_elementor_content($content) {
     // Check if we're on a 'user-profile' post type
-    if(get_post_type() !== 'hb-user-profile') return $content;
+    if(get_post_type() !== 'hb-user-pkit'  || get_post()->post_parent == 0) return $content;
     
     // Get the current post's associated user (assuming you've saved the user ID in the post meta with key 'associated_user')
     $user_id = get_post_meta(get_the_ID(), 'associated_user', true);
