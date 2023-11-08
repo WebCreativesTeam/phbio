@@ -502,22 +502,31 @@ function render_user_profile_elementor_content($content) {
 }
 
 function render_user_presskit_elementor_content($content) {
-    // Check if we're on a 'user-profile' post type
-    if(get_post_type() !== 'hb-user-pkit'  || get_post()->post_parent == 0) return $content;
+    // Check if we're on a 'hb-user-pkit' post type
+    if (get_post_type() !== 'hb-user-pkit') return $content;
     
-    // Get the current post's associated user (assuming you've saved the user ID in the post meta with key 'associated_user')
-    $user_id = get_post_meta(get_the_ID(), 'associated_user', true);
+    global $post;
+    $parent_id = $post->post_parent;
+
+    // Check if the current post is a child post
+    if ($parent_id == 0) {
+        // It's a parent post, so we return the content unchanged
+        return $content;
+    }
+    
+    // Fetch the user ID from the parent post's meta
+    $user_id = get_post_meta($parent_id, 'associated_pkit_user', true);
     
     if (!$user_id) {
-        // Error: No associated user found.
-        return $content . '<p class="error">Error: No associated user found for this profile.</p>';
+        // Error: No associated user found on the parent post.
+        return $content . '<p class="error">Error: No associated user found for this parent profile.</p>';
     }
     
     // Get the template manager ID from the user meta
-    $template_manager_id = get_user_meta($user_id, 'selected_template', true);
+    $template_manager_id = get_user_meta($user_id, 'selected_pkit_template', true);
     
     // If no template manager ID is found, return an error message
-    if(!$template_manager_id) {
+    if (!$template_manager_id) {
         return $content . '<p class="error">Error: No template found for this user.</p>';
     }
     
@@ -529,8 +538,10 @@ function render_user_presskit_elementor_content($content) {
         return $content . '<p class="error">Error: Failed to load template content.</p>';
     }
     
+    // Append the Elementor content to the original content
     return $content . $elementor_content;
 }
+
 
 function user_profile_private_redirection() {
     global $post;
