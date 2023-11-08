@@ -458,6 +458,16 @@ class Plugin_Name_Admin {
 		}
 	}
 	
+	function redirect_parent_post_access() {
+		if (is_singular('hb-user-profile') || is_singular('hb-user-pkit')) {
+			global $post;
+			if ($post->post_parent == 0) { // Check if it's a parent post
+				wp_redirect(home_url()); // Redirect to homepage or any other page
+				exit;
+			}
+		}
+	}
+	
 	
 
 function render_user_profile_elementor_content($content) {
@@ -491,7 +501,36 @@ function render_user_profile_elementor_content($content) {
     return $content . $elementor_content;
 }
 
-
+function render_user_presskit_elementor_content($content) {
+    // Check if we're on a 'user-profile' post type
+    if(get_post_type() !== 'hb-user-profile') return $content;
+    
+    // Get the current post's associated user (assuming you've saved the user ID in the post meta with key 'associated_user')
+    $user_id = get_post_meta(get_the_ID(), 'associated_user', true);
+    
+    if (!$user_id) {
+        // Error: No associated user found.
+        return $content . '<p class="error">Error: No associated user found for this profile.</p>';
+    }
+    
+    // Get the template manager ID from the user meta
+    $template_manager_id = get_user_meta($user_id, 'selected_template', true);
+    
+    // If no template manager ID is found, return an error message
+    if(!$template_manager_id) {
+        return $content . '<p class="error">Error: No template found for this user.</p>';
+    }
+    
+    // Fetch the Elementor content and append or replace the original content
+    $elementor_content = \Elementor\Plugin::$instance->frontend->get_builder_content_for_display($template_manager_id);
+    
+    if (!$elementor_content) {
+        // Error: Failed to fetch Elementor content
+        return $content . '<p class="error">Error: Failed to load template content.</p>';
+    }
+    
+    return $content . $elementor_content;
+}
 
 function user_profile_private_redirection() {
     global $post;
