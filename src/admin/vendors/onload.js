@@ -214,54 +214,113 @@ function initializeIframeLoading(selector) {
 }
 
 function initializeAcfDrags() {
-  // Select all .acf-input elements within #AcfFormsArea
-  var acfInputs = document.querySelectorAll(
-    "#AcfFormsArea .fields-block-item .acf-input"
-  );
-  var acfLabels = document.querySelectorAll(
-    "#AcfFormsArea .fields-block-item .acf-label"
-  );
+  const FieldBlocks = Array.from(document.querySelectorAll(".fields-block"));
 
-  // Define a common style object for .acf-input
-  var inputStyle = {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "flex-start",
-    gap: "1rem",
+  const CreateFieldOrder = () => {
+    const FieldOrder = {};
+    FieldBlocks.forEach((fieldBlock) => {
+      const dataName = fieldBlock.attributes["data-name"].value;
+      const fieldBox = fieldBlock.lastElementChild.lastElementChild;
+      const fieldBlockInputs = Array.from(
+        fieldBox.getElementsByClassName("acf-field")
+      );
+
+      const FieldNames = [];
+      fieldBlockInputs.forEach((fieldBlockInput) => {
+        FieldNames.push(fieldBlockInput.attributes["data-name"].value);
+      });
+
+      FieldOrder[dataName] = FieldNames;
+    });
+    return FieldOrder;
   };
 
-  var wrapStyle = {
-    width: "100%",
+  const fieldOrder = localStorage.getItem("fieldOrder")
+    ? JSON.parse(localStorage.getItem("fieldOrder"))
+    : CreateFieldOrder();
+
+  console.log(fieldOrder);
+
+  let FieldBlockMap = {};
+
+  const RearrangeFields = (e, dataName) => {
+    e.preventDefault();
+    const draggingItem = FieldBlockMap[dataName].querySelector(".dragging");
+    let siblings = [
+      ...FieldBlockMap[dataName].querySelectorAll(".acf-field:not(.dragging)"),
+    ];
+    // console.log(e.clientX, e.clientY)
+    let nextSibling = siblings.find((sibling) => {
+      return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 3;
+    });
+    // console.log({draggingItem,nextSibling})
+    FieldBlockMap[dataName].insertBefore(draggingItem, nextSibling);
+    // console.log(fieldOrder[dataName])
+
+    if (!nextSibling) {
+      fieldOrder[dataName] = fieldOrder[dataName].filter(
+        (field) => field != draggingItem.attributes["data-name"].value
+      );
+      fieldOrder[dataName].push(draggingItem.attributes["data-name"].value);
+    } else {
+      fieldOrder[dataName] = fieldOrder[dataName].reduce((list, field) => {
+        if (field == nextSibling.attributes["data-name"].value) {
+          list.push(draggingItem.attributes["data-name"].value);
+          list.push(nextSibling.attributes["data-name"].value);
+        } else if (field != draggingItem.attributes["data-name"].value) {
+          list.push(field);
+        }
+        return list;
+      }, []);
+    }
+    localStorage.setItem("fieldOrder", JSON.stringify(fieldOrder));
   };
 
-  var labelStyle = {
-    paddingLeft: "3rem",
-  };
+  FieldBlocks.forEach((fieldBlock) => {
+    const dataName = fieldBlock.attributes["data-name"].value;
+    const fieldBox = fieldBlock.lastElementChild.lastElementChild;
+    FieldBlockMap[dataName] = fieldBox;
+    const fieldBlockInputs = fieldBox.getElementsByClassName("acf-field");
 
-  // Loop through each .acf-input element
-  acfInputs.forEach(function (acfInput) {
-    // Check if the handle already exists
-    if (!acfInput.querySelector(".drag-handle")) {
-      // Create the handle div
-      var handleDiv = document.createElement("div");
-      handleDiv.className = "drag-handle";
-      handleDiv.textContent = "☰";
-
-      // Insert the handle at the beginning of the .acf-input element
-      acfInput.insertBefore(handleDiv, acfInput.firstChild);
+    const TempFieldMap = {};
+    while (fieldBlockInputs.length) {
+      const fieldBlockInput = fieldBlockInputs[0];
+      fieldBlockInput.attributes["parent-data-name"] = dataName;
+      TempFieldMap[fieldBlockInput.attributes["data-name"].value] =
+        fieldBlockInput;
+      fieldBox.removeChild(fieldBlockInput);
     }
 
-    // Apply styles to acfInput
-    Object.assign(acfInput.style, inputStyle);
+    // console.log(TempFieldMap, fieldBox)
 
-    // Apply styles to .acf-input-wrap inside acfInput
-    var acfInputWraps = acfInput.querySelectorAll(".acf-input-wrap");
-    acfInputWraps.forEach(function (wrap) {
-      Object.assign(wrap.style, wrapStyle);
-    });
+    for (let i = 0; i < fieldOrder[dataName].length; i++) {
+      fieldBox.appendChild(TempFieldMap[fieldOrder[dataName][i]]);
+      const InputBox = fieldBox.lastElementChild;
+      InputBox.addEventListener("dragstart", (e) => {
+        const handle = e.target.lastElementChild.firstElementChild;
+        // console.log(e.x, e.y, e, handle.offsetLeft, handle.offsetHeight, handle.offsetTop, handle.offsetWidth)
+        if (
+          !(
+            handle.offsetLeft <= e.x &&
+            e.x <= handle.offsetLeft + handle.offsetWidth &&
+            handle.offsetTop <= e.y &&
+            e.y <= handle.offsetTop + handle.offsetHeight
+          )
+        ) {
+          e.preventDefault();
+        } else {
+          setTimeout(() => InputBox.classList.add("dragging"), 0);
+        }
+      });
+      InputBox.addEventListener("dragend", (e) => {
+        console.log("CLose", e);
+        InputBox.classList.remove("dragging");
+      });
+    }
 
-    acfLabels.forEach(function (wrap) {
-      Object.assign(wrap.style, labelStyle);
+    fieldBox.addEventListener("dragover", (e) => {
+      RearrangeFields(e, dataName);
     });
+    fieldBox.addEventListener("dragenter", (e) => e.preventDefault());
   });
 }
