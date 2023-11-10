@@ -4378,9 +4378,9 @@ function initializeIframeLoading(selector) {
 }
 function initializeAcfDrags() {
     // Select all .acf-input elements within #AcfFormsArea
-    var acfInputs = document.querySelectorAll("#AcfFormsArea .fields-block-item .acf-input");
+    var acfInputs = document.querySelectorAll(" .fields-block-item .acf-input");
     var draggables = document.querySelectorAll("#AcfFormsArea .fields-block-item");
-    var acfLabels = document.querySelectorAll("#AcfFormsArea .fields-block-item .acf-label");
+    var acfLabels = document.querySelectorAll(" .fields-block-item .acf-label");
     // Iterate over each item and set the draggable attribute to true
     draggables.forEach(function(item) {
         item.setAttribute("draggable", "true");
@@ -4398,11 +4398,13 @@ function initializeAcfDrags() {
     var labelStyle = {
         paddingLeft: "3rem"
     };
+    console.log(acfInputs);
     // Loop through each .acf-input element
     acfInputs.forEach(function(acfInput) {
         // Check if the handle already exists
         if (!acfInput.querySelector(".drag-handle")) {
             // Create the handle div
+            console.log("Creating handle");
             var handleDiv = document.createElement("div");
             handleDiv.className = "drag-handle";
             handleDiv.textContent = "☰";
@@ -4423,6 +4425,7 @@ function initializeAcfDrags() {
 }
 function applyAcfDrags() {
     const FieldBlocks = Array.from(document.querySelectorAll(".fields-block"));
+    console.log("FieldBlocks", FieldBlocks);
     const CreateFieldOrder = ()=>{
         const FieldOrder = {};
         FieldBlocks.forEach((fieldBlock)=>{
@@ -4437,8 +4440,9 @@ function applyAcfDrags() {
         });
         return FieldOrder;
     };
+    localStorage.clear();
     const fieldOrder = localStorage.getItem("fieldOrder") ? JSON.parse(localStorage.getItem("fieldOrder")) : CreateFieldOrder();
-    console.log(fieldOrder);
+    console.log("FieldOrder", fieldOrder);
     let FieldBlockMap = {};
     const RearrangeFields = (e, dataName)=>{
         e.preventDefault();
@@ -4446,6 +4450,10 @@ function applyAcfDrags() {
         let siblings = [
             ...FieldBlockMap[dataName].querySelectorAll(".acf-field:not(.dragging)")
         ];
+        console.log({
+            draggingItem,
+            siblings
+        });
         // console.log(e.clientX, e.clientY)
         let nextSibling = siblings.find((sibling)=>{
             return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 3;
@@ -4477,14 +4485,18 @@ function applyAcfDrags() {
             TempFieldMap[fieldBlockInput.attributes["data-name"].value] = fieldBlockInput;
             fieldBox.removeChild(fieldBlockInput);
         }
-        // console.log(TempFieldMap, fieldBox)
+        console.log({
+            TempFieldMap,
+            fieldBox
+        });
         for(let i = 0; i < fieldOrder[dataName].length; i++){
             fieldBox.appendChild(TempFieldMap[fieldOrder[dataName][i]]);
             const InputBox = fieldBox.lastElementChild;
             InputBox.addEventListener("dragstart", (e)=>{
                 const handle = e.target.lastElementChild.firstElementChild;
                 if (!handle) console.log("No Handle Found");
-                // console.log(e.x, e.y, e, handle.offsetLeft, handle.offsetHeight, handle.offsetTop, handle.offsetWidth)
+                else console.log("Handle Found");
+                console.log(e.x, e.y, e, handle.offsetLeft, handle.offsetHeight, handle.offsetTop, handle.offsetWidth);
                 if (!(handle.offsetLeft <= e.x && e.x <= handle.offsetLeft + handle.offsetWidth && handle.offsetTop <= e.y && e.y <= handle.offsetTop + handle.offsetHeight)) e.preventDefault();
                 else setTimeout(()=>InputBox.classList.add("dragging"), 0);
             });
@@ -4494,6 +4506,7 @@ function applyAcfDrags() {
             });
         }
         fieldBox.addEventListener("dragover", (e)=>{
+            console.log("Dragging");
             RearrangeFields(e, dataName);
         });
         fieldBox.addEventListener("dragenter", (e)=>e.preventDefault());
