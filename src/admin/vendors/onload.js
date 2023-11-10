@@ -300,9 +300,8 @@ function applyAcfDrags() {
     return FieldOrder;
   };
 
-  localStorage.clear();
-  const fieldOrder = localStorage.getItem("fieldOrder")
-    ? JSON.parse(localStorage.getItem("fieldOrder"))
+  const fieldOrder = orderField.value
+    ? JSON.parse(orderField.value)
     : CreateFieldOrder();
 
   console.log("FieldOrder", fieldOrder);
@@ -342,7 +341,6 @@ function applyAcfDrags() {
         return list;
       }, []);
     }
-    localStorage.setItem("fieldOrder", JSON.stringify(fieldOrder));
     orderField.value = JSON.stringify(fieldOrder);
   };
 

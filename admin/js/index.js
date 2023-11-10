@@ -4442,8 +4442,7 @@ function applyAcfDrags() {
         });
         return FieldOrder;
     };
-    localStorage.clear();
-    const fieldOrder = localStorage.getItem("fieldOrder") ? JSON.parse(localStorage.getItem("fieldOrder")) : CreateFieldOrder();
+    const fieldOrder = orderField.value ? JSON.parse(orderField.value) : CreateFieldOrder();
     console.log("FieldOrder", fieldOrder);
     let FieldBlockMap = {};
     const RearrangeFields = (e, dataName)=>{
@@ -4473,7 +4472,6 @@ function applyAcfDrags() {
             } else if (field != draggingItem.attributes["data-name"].value) list.push(field);
             return list;
         }, []);
-        localStorage.setItem("fieldOrder", JSON.stringify(fieldOrder));
         orderField.value = JSON.stringify(fieldOrder);
     };
     FieldBlocks.forEach((fieldBlock)=>{
