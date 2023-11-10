@@ -4483,6 +4483,7 @@ function applyAcfDrags() {
             const InputBox = fieldBox.lastElementChild;
             InputBox.addEventListener("dragstart", (e)=>{
                 const handle = e.target.lastElementChild.firstElementChild;
+                if (!handle) console.log("No Handle Found");
                 // console.log(e.x, e.y, e, handle.offsetLeft, handle.offsetHeight, handle.offsetTop, handle.offsetWidth)
                 if (!(handle.offsetLeft <= e.x && e.x <= handle.offsetLeft + handle.offsetWidth && handle.offsetTop <= e.y && e.y <= handle.offsetTop + handle.offsetHeight)) e.preventDefault();
                 else setTimeout(()=>InputBox.classList.add("dragging"), 0);

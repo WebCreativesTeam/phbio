@@ -361,6 +361,9 @@ function applyAcfDrags() {
       const InputBox = fieldBox.lastElementChild;
       InputBox.addEventListener("dragstart", (e) => {
         const handle = e.target.lastElementChild.firstElementChild;
+        if (!handle) {
+          console.log("No Handle Found");
+        }
         // console.log(e.x, e.y, e, handle.offsetLeft, handle.offsetHeight, handle.offsetTop, handle.offsetWidth)
         if (
           !(
