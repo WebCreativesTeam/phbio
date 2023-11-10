@@ -4494,6 +4494,96 @@ function applyAcfDrags() {
             const InputBox = fieldBox.lastElementChild;
             InputBox.addEventListener("dragstart", (e)=>{
                 const handle = e.target.lastElementChild.firstElementChild;
+                const { left, right, top, bottom } = handle.getBoundingClientRect();
+                if (!handle) console.log("No Handle Found");
+                else console.log("Handle Found");
+                console.log(e.x, e.y, e, left, right, top, bottom);
+                if (!(left <= e.x && e.x <= right && top <= e.y && e.y <= bottom)) e.preventDefault();
+                else setTimeout(()=>InputBox.classList.add("dragging"), 0);
+            });
+            InputBox.addEventListener("dragend", (e)=>{
+                console.log("CLose", e);
+                InputBox.classList.remove("dragging");
+            });
+        }
+        fieldBox.addEventListener("dragover", (e)=>{
+            console.log("Dragging");
+            RearrangeFields(e, dataName);
+        });
+        fieldBox.addEventListener("dragenter", (e)=>e.preventDefault());
+    });
+}
+function applyAcfDrags() {
+    const FieldBlocks = Array.from(document.querySelectorAll(".fields-block"));
+    console.log("FieldBlocks", FieldBlocks);
+    const CreateFieldOrder = ()=>{
+        const FieldOrder = {};
+        FieldBlocks.forEach((fieldBlock)=>{
+            const dataName = fieldBlock.attributes["data-name"].value;
+            const fieldBox = fieldBlock.lastElementChild.lastElementChild;
+            const fieldBlockInputs = Array.from(fieldBox.getElementsByClassName("acf-field"));
+            const FieldNames = [];
+            fieldBlockInputs.forEach((fieldBlockInput)=>{
+                FieldNames.push(fieldBlockInput.attributes["data-name"].value);
+            });
+            FieldOrder[dataName] = FieldNames;
+        });
+        return FieldOrder;
+    };
+    localStorage.clear();
+    const fieldOrder = localStorage.getItem("fieldOrder") ? JSON.parse(localStorage.getItem("fieldOrder")) : CreateFieldOrder();
+    console.log("FieldOrder", fieldOrder);
+    let FieldBlockMap = {};
+    const RearrangeFields = (e, dataName)=>{
+        e.preventDefault();
+        const draggingItem = FieldBlockMap[dataName].querySelector(".dragging");
+        let siblings = [
+            ...FieldBlockMap[dataName].querySelectorAll(".acf-field:not(.dragging)")
+        ];
+        console.log({
+            draggingItem,
+            siblings
+        });
+        // console.log(e.clientX, e.clientY)
+        let nextSibling = siblings.find((sibling)=>{
+            return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 3;
+        });
+        // console.log({draggingItem,nextSibling})
+        FieldBlockMap[dataName].insertBefore(draggingItem, nextSibling);
+        // console.log(fieldOrder[dataName])
+        if (!nextSibling) {
+            fieldOrder[dataName] = fieldOrder[dataName].filter((field)=>field != draggingItem.attributes["data-name"].value);
+            fieldOrder[dataName].push(draggingItem.attributes["data-name"].value);
+        } else fieldOrder[dataName] = fieldOrder[dataName].reduce((list, field)=>{
+            if (field == nextSibling.attributes["data-name"].value) {
+                list.push(draggingItem.attributes["data-name"].value);
+                list.push(nextSibling.attributes["data-name"].value);
+            } else if (field != draggingItem.attributes["data-name"].value) list.push(field);
+            return list;
+        }, []);
+        localStorage.setItem("fieldOrder", JSON.stringify(fieldOrder));
+    };
+    FieldBlocks.forEach((fieldBlock)=>{
+        const dataName = fieldBlock.attributes["data-name"].value;
+        const fieldBox = fieldBlock.lastElementChild.lastElementChild;
+        FieldBlockMap[dataName] = fieldBox;
+        const fieldBlockInputs = fieldBox.getElementsByClassName("acf-field");
+        const TempFieldMap = {};
+        while(fieldBlockInputs.length){
+            const fieldBlockInput = fieldBlockInputs[0];
+            fieldBlockInput.attributes["parent-data-name"] = dataName;
+            TempFieldMap[fieldBlockInput.attributes["data-name"].value] = fieldBlockInput;
+            fieldBox.removeChild(fieldBlockInput);
+        }
+        console.log({
+            TempFieldMap,
+            fieldBox
+        });
+        for(let i = 0; i < fieldOrder[dataName].length; i++){
+            fieldBox.appendChild(TempFieldMap[fieldOrder[dataName][i]]);
+            const InputBox = fieldBox.lastElementChild;
+            InputBox.addEventListener("dragstart", (e)=>{
+                const handle = e.target.lastElementChild.firstElementChild;
                 if (!handle) console.log("No Handle Found");
                 else console.log("Handle Found");
                 console.log(e.x, e.y, e, handle.offsetLeft, handle.offsetHeight, handle.offsetTop, handle.offsetWidth);
