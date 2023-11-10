@@ -39,6 +39,7 @@ window.onload = function () {
   }
 
   // Execute the function
+  reloadPageIfSuccess();
   initializeAcfDrags();
   applyAcfDrags();
   executeStart();
