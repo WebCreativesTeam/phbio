@@ -38,6 +38,15 @@ window.onload = function () {
     th_empty_clicks.innerHTML = svgString + th_empty_clicks.innerHTML;
   }
 
+  // Adding Drag Handles
+  var draggables = document.querySelectorAll(
+    "#AcfFormsArea .fields-block-item"
+  );
+  // Iterate over each item and set the draggable attribute to true
+  draggables.forEach(function (item) {
+    item.setAttribute("draggable", "true");
+  });
+
   // Execute the function
   initializeAcfDrags();
   applyAcfDrags();
@@ -218,15 +227,7 @@ function initializeAcfDrags() {
   // Select all .acf-input elements within #AcfFormsArea
   var acfInputs = document.querySelectorAll(" .fields-block-item .acf-input");
 
-  var draggables = document.querySelectorAll(
-    "#AcfFormsArea .fields-block-item"
-  );
   var acfLabels = document.querySelectorAll(" .fields-block-item .acf-label");
-
-  // Iterate over each item and set the draggable attribute to true
-  draggables.forEach(function (item) {
-    item.setAttribute("draggable", "true");
-  });
 
   // Define a common style object for .acf-input
   var inputStyle = {
