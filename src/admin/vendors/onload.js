@@ -275,6 +275,9 @@ function initializeAcfDrags() {
 }
 
 function applyAcfDrags() {
+  const orderField = document.querySelector(
+    "#AcfFormsArea .fields-blocks-order input"
+  );
   const FieldBlocks = Array.from(document.querySelectorAll(".fields-block"));
   console.log("FieldBlocks", FieldBlocks);
 
@@ -340,6 +343,7 @@ function applyAcfDrags() {
       }, []);
     }
     localStorage.setItem("fieldOrder", JSON.stringify(fieldOrder));
+    orderField.value = JSON.stringify(fieldOrder);
   };
 
   FieldBlocks.forEach((fieldBlock) => {
