@@ -4442,7 +4442,7 @@ function applyAcfDrags() {
         });
         return FieldOrder;
     };
-    const fieldOrder = orderField.value ? JSON.parse(orderField.value) : CreateFieldOrder();
+    const fieldOrder = orderField?.value ? JSON.parse(orderField?.value) : CreateFieldOrder();
     console.log("FieldOrder", fieldOrder);
     let FieldBlockMap = {};
     const RearrangeFields = (e, dataName)=>{

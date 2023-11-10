@@ -300,8 +300,8 @@ function applyAcfDrags() {
     return FieldOrder;
   };
 
-  const fieldOrder = orderField.value
-    ? JSON.parse(orderField.value)
+  const fieldOrder = orderField?.value
+    ? JSON.parse(orderField?.value)
     : CreateFieldOrder();
 
   console.log("FieldOrder", fieldOrder);
