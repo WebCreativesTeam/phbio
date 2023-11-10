@@ -274,6 +274,19 @@ function initializeAcfDrags() {
   });
 }
 
+function reloadPageIfSuccess() {
+  // Check for the presence of an element with the class 'af-success'
+  var successElement = document.querySelector("#AcfFormsArea .af-success");
+
+  // If the element is found, reload the page
+  if (successElement) {
+    console.log("Success element found. Reloading page...");
+    window.location.reload();
+  } else {
+    console.log("Success element not found. No reload.");
+  }
+}
+
 function applyAcfDrags() {
   const orderField = document.querySelector(
     "#AcfFormsArea .fields-blocks-order input"
