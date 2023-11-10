@@ -4379,7 +4379,12 @@ function initializeIframeLoading(selector) {
 function initializeAcfDrags() {
     // Select all .acf-input elements within #AcfFormsArea
     var acfInputs = document.querySelectorAll("#AcfFormsArea .fields-block-item .acf-input");
+    var draggables = document.querySelectorAll("#AcfFormsArea .fields-block-item");
     var acfLabels = document.querySelectorAll("#AcfFormsArea .fields-block-item .acf-label");
+    // Iterate over each item and set the draggable attribute to true
+    draggables.forEach(function(item) {
+        item.setAttribute("draggable", "true");
+    });
     // Define a common style object for .acf-input
     var inputStyle = {
         display: "flex",
