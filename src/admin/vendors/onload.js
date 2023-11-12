@@ -307,7 +307,9 @@ function applyAcfDrags() {
     JSON.parse(localStorage.getItem("fieldOrder"))[TabName]
       ? JSON.parse(localStorage.getItem("fieldOrder"))[TabName]
       : CreateFieldOrder();
-  const FieldOrderInput = document.getElementsByClassName("FieldOrderInput")[0];
+  const FieldOrderInput = document.getElementsByClassName(
+    "fields-blocks-order"
+  )[0];
   console.log("FieldOrder", fieldOrder);
   FieldOrderInput.value = JSON.stringify(fieldOrder, null, 4);
 
