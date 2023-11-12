@@ -227,7 +227,6 @@ function initializeAcfDrags() {
 
   // Select all .acf-input elements within #AcfFormsArea
   var acfInputs = document.querySelectorAll(" .fields-block-item .acf-input");
-
   var acfLabels = document.querySelectorAll(" .fields-block-item .acf-label");
 
   // Define a common style object for .acf-input
@@ -275,23 +274,11 @@ function initializeAcfDrags() {
   });
 }
 
-function reloadPageIfSuccess() {
-  // Check for the presence of an element with the class 'af-success'
-  var successElement = document.querySelector("#AcfFormsArea .af-success");
-
-  // If the element is found, reload the page
-  if (successElement) {
-    console.log("Success element found. Reloading page...");
-    window.location.reload();
-  } else {
-    console.log("Success element not found. No reload.");
-  }
-}
-
 function applyAcfDrags() {
-  const orderField = document.querySelector(
-    "#AcfFormsArea .fields-blocks-order input"
-  );
+  const TabName = document
+    .getElementsByClassName("tab-btn active-tab")[0]
+    .textContent.trim();
+  console.log(TabName);
   const FieldBlocks = Array.from(document.querySelectorAll(".fields-block"));
   console.log("FieldBlocks", FieldBlocks);
 
@@ -314,11 +301,15 @@ function applyAcfDrags() {
     return FieldOrder;
   };
 
-  const fieldOrder = orderField?.value
-    ? JSON.parse(orderField?.value)
-    : CreateFieldOrder();
-
+  localStorage.clear();
+  const fieldOrder =
+    localStorage.getItem("fieldOrder") &&
+    JSON.parse(localStorage.getItem("fieldOrder"))[TabName]
+      ? JSON.parse(localStorage.getItem("fieldOrder"))[TabName]
+      : CreateFieldOrder();
+  const FieldOrderInput = document.getElementsByClassName("FieldOrderInput")[0];
   console.log("FieldOrder", fieldOrder);
+  FieldOrderInput.value = JSON.stringify(fieldOrder, null, 4);
 
   let FieldBlockMap = {};
 
@@ -333,9 +324,10 @@ function applyAcfDrags() {
 
     // console.log(e.clientX, e.clientY)
     let nextSibling = siblings.find((sibling) => {
-      return e.clientY <= sibling.offsetTop + sibling.offsetHeight / 3;
+      const { top, height } = sibling.getBoundingClientRect();
+      return e.clientY <= top + height / 3;
     });
-    // console.log({draggingItem,nextSibling})
+    console.log({ draggingItem, nextSibling });
     FieldBlockMap[dataName].insertBefore(draggingItem, nextSibling);
     // console.log(fieldOrder[dataName])
 
@@ -355,7 +347,13 @@ function applyAcfDrags() {
         return list;
       }, []);
     }
-    orderField.value = JSON.stringify(fieldOrder);
+    let data = localStorage.getItem("fieldOrder")
+      ? JSON.parse(localStorage.getItem("fieldOrder"))
+      : {};
+    data[TabName] = fieldOrder;
+    data = JSON.stringify(data);
+    localStorage.setItem("fieldOrder", data);
+    FieldOrderInput.value = JSON.stringify(fieldOrder, null, 4);
   };
 
   FieldBlocks.forEach((fieldBlock) => {
@@ -403,4 +401,16 @@ function applyAcfDrags() {
     });
     fieldBox.addEventListener("dragenter", (e) => e.preventDefault());
   });
+}
+function reloadPageIfSuccess() {
+  // Check for the presence of an element with the class 'af-success'
+  var successElement = document.querySelector("#AcfFormsArea .af-success");
+
+  // If the element is found, reload the page
+  if (successElement) {
+    console.log("Success element found. Reloading page...");
+    window.location.reload();
+  } else {
+    console.log("Success element not found. No reload.");
+  }
 }
