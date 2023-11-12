@@ -276,7 +276,7 @@ function initializeAcfDrags() {
 
 function applyAcfDrags() {
   // Select all forms on the page. Replace this with the actual selector for your forms.
-  const forms = document.querySelectorAll(".form-selector");
+  const forms = document.querySelectorAll('form.acf-form');
 
   forms.forEach((form) => {
     const formId = form.getAttribute("id");
