@@ -4183,6 +4183,9 @@ exports.default = ({ selected = "", allowMultiple = false })=>({
         removeOption (option) {
             this.selected = this.selected.filter((sel)=>sel !== option);
         },
+        confirmDeletion (option) {
+            if (confirm("Are you sure you want to delete this Press Kit version? Your artist details are secure and can be reactivated at any time.")) this.removeOption(option);
+        },
         isSelected (option) {
             return this.selected.includes(option);
         },

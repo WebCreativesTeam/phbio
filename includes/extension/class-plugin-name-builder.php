@@ -156,7 +156,7 @@ class Press_Kit_Builder {
                         <span class="inline-flex items-center px-2 py-0.5 m-1 rounded text-sm font-medium bg-red-100 text-[#F1441E]">
                             <span x-text="options[option]"></span>
                             <button 
-                                @click="removeOption(option)" 
+                                @click="confirmDeletion(option)" 
                                 type="button" 
                                 class="flex items-center justify-center bg-transparent border-0 p-0 ml-0.5 h-4 w-4 rounded-full text-[#F1441E] hover:text-[#F1441E] focus:outline-none focus:text-[#F1441E]"
                             >
@@ -173,9 +173,9 @@ class Press_Kit_Builder {
                 </div>
                 <span x-show="selected.length === 0" class="text-white ">Select a Language</span>
             </div>
-            <ul x-show="isOpen" @click.away="isOpen = false" class="absolute mt-2 overflow-y-auto bg-white border rounded shadow max-h-64 z-[9999999]">
+            <ul x-show="isOpen" @click.away="isOpen = false" class="absolute mt-2 overflow-y-auto w-52 bg-white border rounded shadow max-h-64 z-[9999999]">
                 <template x-for="(entry, index) in Object.entries(options)" :key="index">
-                    <li @click="selectOption(entry[0])" class="p-2 cursor-pointer hover:bg-gray-200" :class="{'bg-[#F1441E] text-white': isSelected(entry[0]), 'bg-gray-100': !isSelected(entry[0]) && (index+1) % 2 === 0}">
+                    <li @click="selectOption(entry[0])" class="py-2 pl-5 cursor-pointer hover:bg-gray-200" :class="{'bg-[#F1441E] text-white': isSelected(entry[0]), 'bg-gray-100': !isSelected(entry[0]) && (index+1) % 2 === 0}">
                         <span x-text="entry[1]"></span>
                     </li>
                 </template>
@@ -188,7 +188,7 @@ class Press_Kit_Builder {
         <?php $languages = Plugin_Name_Utilities::get_user_langs(); 
         foreach($languages as $language) {
             ?>
-            <div class="flex flex-col items-start gap-3 mb-3 sm:items-center sm:flex-row">
+            <div class="flex flex-col items-start gap-3 mb-3 sm:items-center sm:flex-row last:mb-7">
                 <span class="block text-sm text-gray-500 hover:text-gray-700">
                     <?php echo esc_js(site_url('/presskit')) . '/' . get_user_meta($target_user_id, 'pkit_username', true) . '/' . $language; ?>
                 </span>

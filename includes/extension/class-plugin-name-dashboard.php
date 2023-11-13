@@ -239,7 +239,7 @@ class Press_Kit_Dashboard {
                             // Call the function for each ID and slug
                             Plugin_Name_Builder::checkbox_field('public_' . $i, 
                                 'Enable Public Access for ' . Plugin_Name_Utilities::get_language_full_name($lang), 
-                                Plugin_Name_Capabilities::EDIT_PROJECT_NAME, $user_id); 
+                                Plugin_Name_Capabilities::EDIT_PROJECT_NAME, $user_id) . ' Press Kit'; 
                         }
                     }
                 ?>
@@ -632,7 +632,9 @@ class Press_Kit_Dashboard {
     public function edit__forms_tab($user_id) { 
                    
         ?>
-
+            <div class="text-sm">
+                Select the Press Kit you'd like to edit
+            </div>
             <div class="tab-headers">
 
                 <?php
@@ -640,7 +642,7 @@ class Press_Kit_Dashboard {
                     if (count($langs) > 1) {
                         foreach($langs as $index => $lang) {
                             ?>
-                                <button :class="{ 'active-tab': activeLang === '<?php echo $index; ?>' }" @click="activeLang = '<?php echo $index; ?>'" class="tab-btn">
+                                <button :class="{ 'active-tab': activeLang === '<?php echo $index; ?>' }" @click="activeLang = '<?php echo $index; ?>'" class="px-8 py-3 tab-btn">
                                     <?php echo Plugin_Name_Utilities::get_language_full_name($lang); ?>
                                 </button>
                             <?php
