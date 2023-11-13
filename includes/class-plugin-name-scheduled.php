@@ -25,7 +25,7 @@ class Plugin_Name_Scheduled {
 
     public function scheduled_cleanup_backup_meta() {
         $users = get_users([
-            'role' => 'lite-version',
+            'role' => 'um_free-member',
             'meta_key' => '_backup_date',
         ]);
 

@@ -452,7 +452,7 @@ class Press_Kit_Dashboard {
         while( $query->have_posts() ) : $query->the_post(); 
             $version = get_post_meta(get_the_ID(), '_version_key', true);
             $version_display = ($version == 'lite') ? 'Free Template' : 'Pro Template';
-            $is_disabled = ($role === 'lite-version' && $version === 'full' && $role !== 'administrator');
+            $is_disabled = ($role === 'um_free-member' && $version === 'full' && $role !== 'administrator');
             
             if ($is_disabled):
         ?>

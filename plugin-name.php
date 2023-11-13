@@ -34,8 +34,8 @@ if ( ! defined( 'WPINC' ) ) {
 
 
 
-// remove_role( 'full-version' );
-// remove_role( 'lite-version' );
+// remove_role( 'um_pro-member' );
+// remove_role( 'um_free-member' );
 
 /**
  * Current plugin version.
@@ -108,7 +108,7 @@ pfx_run();
 
 
 function remove_menu_items_for_role() {
-    if ( current_user_can('lite-version') || current_user_can('full-version') ) {
+    if ( current_user_can('um_free-member') || current_user_can('um_pro-member') ) {
         global $menu;
         $menu = array(); // This will remove all menu items
     }
@@ -117,14 +117,14 @@ add_action('admin_menu', 'remove_menu_items_for_role', 100);
 
 
 // add_action( 'load-profile.php', function() {
-//     if( current_user_can('lite-version') || current_user_can('full-version') )
+//     if( current_user_can('um_free-member') || current_user_can('um_pro-member') )
 //         exit( wp_safe_redirect( admin_url('?page=profile-editor') ) );
 // } );
 
 
 // function block_subscriber_access_to_dashboard() {
 //     $current_screen = get_current_screen();
-//     if (($current_screen->base === 'dashboard' && current_user_can('lite-version')) ||( $current_screen->base === 'dashboard' && current_user_can('full-version'))) {
+//     if (($current_screen->base === 'dashboard' && current_user_can('um_free-member')) ||( $current_screen->base === 'dashboard' && current_user_can('um_pro-member'))) {
 //         wp_redirect(admin_url('?page=profile-editor'));
 //         exit;
 //     }
@@ -134,11 +134,11 @@ add_action('admin_menu', 'remove_menu_items_for_role', 100);
 
 // function redirect_subscribers_on_login($redirect_to, $request, $user) {
 //     // Check if the user is a subscriber
-//     if (isset($user->roles) && is_array($user->roles) && in_array('lite-version', $user->roles)) {
+//     if (isset($user->roles) && is_array($user->roles) && in_array('um_free-member', $user->roles)) {
 //         // Redirect to the user's profile page
 //         return admin_url('?page=profile-editor');
 //     }
-//     if (isset($user->roles) && is_array($user->roles) && in_array('full-version', $user->roles)) {
+//     if (isset($user->roles) && is_array($user->roles) && in_array('um_pro-member', $user->roles)) {
 //         // Redirect to the user's profile page
 //         return admin_url('?page=profile-editor');
 //     }
@@ -147,7 +147,7 @@ add_action('admin_menu', 'remove_menu_items_for_role', 100);
 // add_filter('login_redirect', 'redirect_subscribers_on_login', 10, 3);
 
 function remove_entire_admin_sidebar_for_role() {
-    if (  current_user_can('full-version') || current_user_can('lite-version') ) {
+    if (  current_user_can('um_pro-member') || current_user_can('um_free-member') ) {
         echo '<style>
             #adminmenumain, #adminmenu { display: none !important; }
             #wpcontent, #wpfooter { margin-left: 0 !important; }
@@ -160,7 +160,7 @@ add_action('admin_head', 'remove_entire_admin_sidebar_for_role');
 
 
 function remove_all_admin_footer_actions_for_role() {
-    if ( current_user_can('full-version') || current_user_can('lite-version') ) {
+    if ( current_user_can('um_pro-member') || current_user_can('um_free-member') ) {
         remove_all_actions('in_admin_footer');
     }
 }
@@ -168,7 +168,7 @@ add_action('admin_footer', 'remove_all_admin_footer_actions_for_role', 1);
 
 
 function remove_admin_footer_version_for_role($default_version) {
-    if ( current_user_can('full-version') || current_user_can('lite-version') ) {
+    if ( current_user_can('um_pro-member') || current_user_can('um_free-member') ) {
         return '';
     }
     return $default_version;
@@ -176,7 +176,7 @@ function remove_admin_footer_version_for_role($default_version) {
 add_filter('update_footer', 'remove_admin_footer_version_for_role', 11);
 
 function remove_admin_footer_text_for_role($default_text) {
-    if ( current_user_can('full-version') || current_user_can('lite-version') ) {
+    if ( current_user_can('um_pro-member') || current_user_can('um_free-member') ) {
         return '';
     }
     return $default_text;

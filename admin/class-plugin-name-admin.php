@@ -160,53 +160,47 @@ class Plugin_Name_Admin {
 
 	public function role_manager( $hook_suffix ) {
 
-		// Adding 'lite-version' user role with custom capabilities
-		add_role(
-			'lite-version',
-			'Free Member',
-			array(
-				'read' => true,
-				Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE => true,
-				Plugin_Name_Capabilities::EDIT_PROJECT_NAME => true,
-				Plugin_Name_Capabilities::EDIT_BIO => true,
-				Plugin_Name_Capabilities::EDIT_LINKS => true,
-				Plugin_Name_Capabilities::PRESSKIT_LANG => true,
-			)
-		);
-	
-		// Adding 'full-version' user role with custom capabilities
-		add_role(
-			'full-version',
-			'Pro Member',
-			array(
-				'read' => true,
-				Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE => true,
-				Plugin_Name_Capabilities::EDIT_PROJECT_NAME => true,
-				Plugin_Name_Capabilities::EDIT_BIO => true,
-				Plugin_Name_Capabilities::EDIT_LINKS => true,
-				Plugin_Name_Capabilities::EDIT_COVER => true,
-				Plugin_Name_Capabilities::HIGHLIGHT_LINK => true,
-				Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO => true,
-				Plugin_Name_Capabilities::CAN_SCHEDULE_LINK => true,
-				Plugin_Name_Capabilities::PRESSKIT_LANG => true,
 
-
-			)
-		);
-		
-		// Update 'Admin' role
-		$role = get_role('administrator');
+		// Update 'Lite' role
+		$role_lite_version = get_role('um_free-member');
 		
 		// Add a new capability
-		$role->add_cap(Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, true);
-		$role->add_cap(Plugin_Name_Capabilities::EDIT_PROJECT_NAME, true);
-		$role->add_cap(Plugin_Name_Capabilities::EDIT_BIO, true);
-		$role->add_cap(Plugin_Name_Capabilities::EDIT_COVER, true);
-		$role->add_cap(Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO, true);
-		$role->add_cap(Plugin_Name_Capabilities::EDIT_LINKS, true);
-		$role->add_cap(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK, true);
+		$role_lite_version->add_cap(Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, true);
+		$role_lite_version->add_cap(Plugin_Name_Capabilities::EDIT_PROJECT_NAME, true);
+		$role_lite_version->add_cap(Plugin_Name_Capabilities::EDIT_BIO, true);
+		$role_lite_version->add_cap(Plugin_Name_Capabilities::EDIT_LINKS, true);
+		$role_lite_version->add_cap(Plugin_Name_Capabilities::PRESSKIT_LANG, true);
+
+
+	
+		// Update 'Full Version' role
+		$role_full_version = get_role('um_pro-member');
+		
+		// Add a new capability
+		$role_full_version->add_cap(Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, true);
+		$role_full_version->add_cap(Plugin_Name_Capabilities::EDIT_PROJECT_NAME, true);
+		$role_full_version->add_cap(Plugin_Name_Capabilities::EDIT_BIO, true);
+		$role_full_version->add_cap(Plugin_Name_Capabilities::EDIT_COVER, true);
+		$role_full_version->add_cap(Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO, true);
+		$role_full_version->add_cap(Plugin_Name_Capabilities::EDIT_LINKS, true);
+		$role_full_version->add_cap(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK, true);
+		$role_full_version->add_cap(Plugin_Name_Capabilities::HIGHLIGHT_LINK, true);
+		$role_full_version->add_cap(Plugin_Name_Capabilities::PRESSKIT_LANG, true);
 
 		
+		
+		// Update 'Admin' role
+		$role_admin = get_role('administrator');
+		
+		// Add a new capability
+		$role_admin->add_cap(Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE, true);
+		$role_admin->add_cap(Plugin_Name_Capabilities::EDIT_PROJECT_NAME, true);
+		$role_admin->add_cap(Plugin_Name_Capabilities::EDIT_BIO, true);
+		$role_admin->add_cap(Plugin_Name_Capabilities::EDIT_COVER, true);
+		$role_admin->add_cap(Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO, true);
+		$role_admin->add_cap(Plugin_Name_Capabilities::EDIT_LINKS, true);
+		$role_admin->add_cap(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK, true);
+
 		
 
 	}
@@ -231,7 +225,7 @@ class Plugin_Name_Admin {
 		// Roles if user role is degraded
 		$meta_key = 'default_template';
 		
-		if (in_array('full-version', $old_roles) && $role == 'lite-version') {
+		if (in_array('um_pro-member', $old_roles) && $role == 'um_free-member') {
 
 			// Set default template back
 			$default = get_user_meta(1, $meta_key, true);
@@ -244,7 +238,7 @@ class Plugin_Name_Admin {
 		}
 
 		// Roles if user role is upgraded back
-		if (in_array('lite-version', $old_roles) && $role == 'full-version') {
+		if (in_array('um_free-member', $old_roles) && $role == 'um_pro-member') {
 
 			$backup_value = get_user_meta($user_id, '_backup_meta_field', true);
 			if ($backup_value) {
