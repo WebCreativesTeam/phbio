@@ -118,14 +118,14 @@ add_action('admin_menu', 'remove_menu_items_for_role', 100);
 
 // add_action( 'load-profile.php', function() {
 //     if( current_user_can('um_free-member') || current_user_can('um_pro-member') )
-//         exit( wp_safe_redirect( admin_url('?page=profile-editor') ) );
+//         exit( wp_safe_redirect( admin_url('?page=edit-bio') ) );
 // } );
 
 
 // function block_subscriber_access_to_dashboard() {
 //     $current_screen = get_current_screen();
 //     if (($current_screen->base === 'dashboard' && current_user_can('um_free-member')) ||( $current_screen->base === 'dashboard' && current_user_can('um_pro-member'))) {
-//         wp_redirect(admin_url('?page=profile-editor'));
+//         wp_redirect(admin_url('?page=edit-bio'));
 //         exit;
 //     }
 // }
@@ -136,11 +136,11 @@ add_action('admin_menu', 'remove_menu_items_for_role', 100);
 //     // Check if the user is a subscriber
 //     if (isset($user->roles) && is_array($user->roles) && in_array('um_free-member', $user->roles)) {
 //         // Redirect to the user's profile page
-//         return admin_url('?page=profile-editor');
+//         return admin_url('?page=edit-bio');
 //     }
 //     if (isset($user->roles) && is_array($user->roles) && in_array('um_pro-member', $user->roles)) {
 //         // Redirect to the user's profile page
-//         return admin_url('?page=profile-editor');
+//         return admin_url('?page=edit-bio');
 //     }
 //     return $redirect_to;
 // }

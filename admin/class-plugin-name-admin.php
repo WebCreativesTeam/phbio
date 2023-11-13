@@ -87,7 +87,7 @@ class Plugin_Name_Admin {
 		global $pagenow;
 	
 		// Check if we're on our custom page
-		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') || ( isset( $_GET['page'] ) && $_GET['page'] == 'my-presskit') || ( isset( $_GET['page'] ) && $_GET['page'] == 'presskit-settings') ) {
+		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'edit-bio') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') || ( isset( $_GET['page'] ) && $_GET['page'] == 'edit-presskit') || ( isset( $_GET['page'] ) && $_GET['page'] == 'presskit-settings') ) {
 			wp_enqueue_style(
 				'main',
 				plugin_dir_url( __FILE__ ) . 'css/main.css',
@@ -211,7 +211,7 @@ class Plugin_Name_Admin {
 		global $pagenow;
 	
 		// Check if we're on our custom page
-		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'profile-editor') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') || ( isset( $_GET['page'] ) && $_GET['page'] == 'my-presskit') || ( isset( $_GET['page'] ) && $_GET['page'] == 'presskit-settings') ) {
+		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'edit-bio') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') || ( isset( $_GET['page'] ) && $_GET['page'] == 'edit-presskit') || ( isset( $_GET['page'] ) && $_GET['page'] == 'presskit-settings') ) {
 			// Remove all other actions hooked into admin_notices and all_admin_notices
 			remove_all_actions( 'admin_notices' );
 			remove_all_actions( 'all_admin_notices' );
@@ -257,7 +257,7 @@ class Plugin_Name_Admin {
 	}
 	
 	public static function user_column_button_cb($val, $column_name, $user_id) {
-		$url = 'admin.php?page=profile-editor&user_id=';
+		$url = 'admin.php?page=edit-bio&user_id=';
 		if ($column_name == 'edit_btn') {
 			if (Plugin_Name_Utilities::is_lite_version($user_id)) {
 				return '<a href="' . admin_url($url . $user_id) . '" class="button action">Edit Lite Version</a>';

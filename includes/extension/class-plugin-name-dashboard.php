@@ -26,7 +26,7 @@ class Press_Kit_Dashboard {
             'My Press Kit',             
             'My Press Kit',                
             'read',             
-            'my-presskit',        
+            'edit-presskit',        
             array($this, 'render'),       
             'dashicons-excerpt-view',    
             101                          
@@ -37,7 +37,7 @@ class Press_Kit_Dashboard {
 
         // Check if current user has the Administrator role
         if (in_array('administrator', $current_user->roles)) {
-            remove_menu_page('my-presskit'); // Hide Plugins
+            remove_menu_page('edit-presskit'); // Hide Plugins
         }
 
     }

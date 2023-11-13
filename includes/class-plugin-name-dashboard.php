@@ -22,7 +22,7 @@ class Plugin_Name_Dashboard {
         'My Profile',             
         'My Profile',                
         'read',             
-        'profile-editor',        
+        'edit-bio',        
         array($this, 'render'),       
         'dashicons-editor-unlink',    
         100                           
@@ -33,7 +33,7 @@ class Plugin_Name_Dashboard {
 
     // Check if current user has the Administrator role
     if (in_array('administrator', $current_user->roles)) {
-        remove_menu_page('profile-editor'); // Hide Plugins
+        remove_menu_page('edit-bio'); // Hide Plugins
     }
     }
 
