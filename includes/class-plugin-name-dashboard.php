@@ -17,6 +17,7 @@ class Plugin_Name_Dashboard {
        add_submenu_page('linkin-bio-settings', 'New Template', 'New Template', 'manage_options', 'post-new.php?post_type=template-manager');
        add_submenu_page('linkin-bio-settings', 'Manage Templates', 'Manage Templates', 'manage_options', 'edit.php?post_type=template-manager');
        add_submenu_page('linkin-bio-settings', 'User Profiles', 'User Profiles', 'manage_options', 'edit.php?post_type=hb-user-profile');
+       add_submenu_page('linkin-bio-settings', 'Analytics', 'Analytics', 'manage_options', 'linkin-bio-analytics', array($this, 'analytics'));
 
        add_menu_page(
         'My Profile',             
@@ -227,7 +228,9 @@ class Plugin_Name_Dashboard {
 
     }
     
-    
+    public function analytics() {
+        echo "Hey there";
+    }
 
     public function component__range_picker() { ?>
            

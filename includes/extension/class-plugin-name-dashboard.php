@@ -19,8 +19,8 @@ class Press_Kit_Dashboard {
        add_submenu_page('presskit-settings', 'New Template', 'New Template', 'manage_options', 'post-new.php?post_type=pkit-template');
        add_submenu_page('presskit-settings', 'Manage Templates', 'Manage Templates', 'manage_options', 'edit.php?post_type=pkit-template');
        add_submenu_page('presskit-settings', 'User Press Kits', 'User Press Kits', 'manage_options', 'edit.php?post_type=hb-user-pkit');
+       add_submenu_page('presskit-settings', 'Analytics', 'Analytics', 'manage_options', 'presskit-analytics', array($this, 'analytics'));
 
-        
 
         add_menu_page(
             'My Press Kit',             
@@ -278,7 +278,10 @@ class Press_Kit_Dashboard {
 
     }
     
-    
+    public function analytics() {
+        echo "Hi";
+
+    }
 
     public function component__range_picker() { ?>
         <!-- Custom Date Range Picker -->
