@@ -34,8 +34,8 @@ if ( ! defined( 'WPINC' ) ) {
 
 
 
-// remove_role( 'um_pro-member' );
-// remove_role( 'um_free-member' );
+remove_role( 'full-version' );
+remove_role( 'lite-version' );
 
 /**
  * Current plugin version.
