@@ -34,8 +34,7 @@ if ( ! defined( 'WPINC' ) ) {
 
 
 
-remove_role( 'full-version' );
-remove_role( 'lite-version' );
+
 
 /**
  * Current plugin version.
