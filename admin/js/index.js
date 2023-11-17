@@ -4250,7 +4250,7 @@ window.onload = function() {
         th_empty_clicks.innerHTML = svgString + th_empty_clicks.innerHTML;
     }
     // Execute the function
-    const param = getQueryParam();
+    const param = getQueryParam("page");
     console.log(param);
     if (param === "edit-presskit") {
         reloadPageIfSuccess();

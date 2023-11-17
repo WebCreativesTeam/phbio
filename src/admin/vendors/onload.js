@@ -39,7 +39,7 @@ window.onload = function () {
   }
 
   // Execute the function
-  const param = getQueryParam();
+  const param = getQueryParam("page");
   console.log(param);
   if (param === "edit-presskit") {
     reloadPageIfSuccess();
