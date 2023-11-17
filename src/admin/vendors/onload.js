@@ -63,8 +63,8 @@ function executeStart() {
     emptyTableIDs = getEmptyTableIDs();
     console.log(emptyTableIDs, "emptyTableIDs");
     hideEmptyTableWrappers(emptyTableIDs);
-    hideEmptyChartContainers(emptyTableIDs);
     correctEmptyTableWrappers(emptyTableIDs);
+    hideEmptyChartContainers(emptyTableIDs);
   }, 3000);
   setTimeout(function () {
     // After all operations are complete, hide the spinner and show the content
