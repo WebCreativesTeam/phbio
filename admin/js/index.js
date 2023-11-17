@@ -4305,6 +4305,7 @@ function getUniqueTableIDsByCheckingEmpty() {
 function getEmptyTableIDs() {
     // Get all unique table IDs
     var uniqueTableIDs = getUniqueTableIDsByCheckingEmpty();
+    console.log(uniqueTableIDs, "uniqueTableIDs");
     // Array to store the IDs of empty tables
     var emptyTableIDs = [];
     // Loop through each ID
