@@ -39,9 +39,9 @@ window.onload = function () {
   }
 
   // Execute the function
-  reloadPageIfSuccess();
-  initializeAcfDrags();
-  applyAcfDrags();
+  // reloadPageIfSuccess();
+  // initializeAcfDrags();
+  // applyAcfDrags();
   executeStart();
   initializeIframeLoading(".iframe-container");
 };
@@ -276,7 +276,7 @@ function initializeAcfDrags() {
 
 function applyAcfDrags() {
   // Select all forms on the page. Replace this with the actual selector for your forms.
-  const forms = document.querySelectorAll('form.acf-form');
+  const forms = document.querySelectorAll("form.acf-form");
 
   forms.forEach((form) => {
     const formId = form.getAttribute("id");
