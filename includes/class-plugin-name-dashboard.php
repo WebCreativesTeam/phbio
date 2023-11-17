@@ -491,7 +491,7 @@ class Plugin_Name_Dashboard {
                     $date_to = $_POST['date_to'];
           
                     echo "<div class='py-1 table-wrapper ctr-table'>";     
-                    echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo do_shortcode('[wpdatatable id=8 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
                     echo "</div>";
 
                    
@@ -499,7 +499,7 @@ class Plugin_Name_Dashboard {
             } else {
                 
                 echo "<div class='py-1 table-wrapper ctr-table'>";       
-                echo do_shortcode('[wpdatatable id=14 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
+                echo do_shortcode('[wpdatatable id=8 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
                 echo "</div>";
 
                
