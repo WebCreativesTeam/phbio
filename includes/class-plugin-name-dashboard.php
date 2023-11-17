@@ -690,7 +690,7 @@ class Plugin_Name_Dashboard {
                 
                  
                 // Hidden Tables
-                echo "<div class=''>";
+                echo "<div class='hidden'>";
 
                 echo "<div class='table-wrapper'>";     
                 echo do_shortcode('[wpdatatable id=4 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
