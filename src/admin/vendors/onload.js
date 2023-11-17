@@ -39,9 +39,9 @@ window.onload = function () {
   }
 
   // Execute the function
-  reloadPageIfSuccess();
-  initializeAcfDrags();
-  applyAcfDrags();
+  // reloadPageIfSuccess();
+  // initializeAcfDrags();
+  // applyAcfDrags();
   executeStart();
   initializeIframeLoading(".iframe-container");
 };
