@@ -39,13 +39,24 @@ window.onload = function () {
   }
 
   // Execute the function
-  // reloadPageIfSuccess();
-  // initializeAcfDrags();
-  // applyAcfDrags();
+  const param = getQueryParam();
+  console.log(param);
+  if (param === "edit-presskit") {
+    reloadPageIfSuccess();
+    initializeAcfDrags();
+    applyAcfDrags();
+  }
   executeStart();
   initializeIframeLoading(".iframe-container");
 };
 
+function getQueryParam(param) {
+  // Create a URLSearchParams object from the current URL
+  const params = new URLSearchParams(window.location.search);
+
+  // Get the value of the specified query parameter
+  return params.get(param);
+}
 function executeStart() {
   var emptyTableIDs = [];
   setTimeout(function () {
