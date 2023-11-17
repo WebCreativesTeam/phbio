@@ -116,6 +116,15 @@ class Plugin_Name_Public {
 				'ajax_url' => admin_url('admin-ajax.php'),
 			));
 		}
+		if(is_singular('hb-user-pkit')) {
+			wp_enqueue_script('geoplugin', 'https://ssl.geoplugin.net/javascript.gp?k=b6f1cdacfb0b5a65', NULL, $this->version , true);
+
+			wp_enqueue_script('pkit-tracker', plugin_dir_url(__FILE__) . 'js/tracked-pkit.js', array( 'jquery', 'geoplugin' ), $this->version, true);
+		    // Localize the script to pass data
+			wp_localize_script('pkit-tracker', 'PkitTracker', array(
+				'ajax_url' => admin_url('admin-ajax.php'),
+			));
+		}
 
 	}
 

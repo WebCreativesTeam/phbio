@@ -208,26 +208,7 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 			wp_send_json($response);
 		}
 		
-		// public function handle_record_page_view() {
-		// 	global $wpdb;
-		
-		// 	$page_link = $_POST['pageLink'];
-		//     $response['page_link'] = $page_link;
-			
-		// 	// Record the view in your database
-		// 	$wpdb->insert(
-		// 		"{$wpdb->prefix}page_views",
-		// 		[
-		// 			'page_link' => $page_link,
-		// 			'viewed_at' => current_time('mysql')
-		// 		],
-		// 		['%s', '%s']
-		// 	);
-			
-		// 	$response['success'] = true;
-		
-		// 	wp_send_json($response);
-		// }
+	
 		
 		
 		
