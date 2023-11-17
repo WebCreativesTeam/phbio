@@ -485,6 +485,7 @@ class Plugin_Name_Dashboard {
             $title = get_user_meta($user_id, 'username', true);
             $post = get_page_by_path( $title, OBJECT, 'hb-user-profile' );
            
+            echo $post->ID;
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
                     $date_from = $_POST['date_from'];
