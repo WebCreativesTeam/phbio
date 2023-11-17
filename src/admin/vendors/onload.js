@@ -76,8 +76,17 @@ function checkEmptyTable(tableID) {
   var table = document.querySelector(".wpDataTableID-" + tableID);
 
   // Check if the "dataTables_empty" element exists within this table
-  return table && table.querySelector(".dataTables_empty");
+  var isEmpty = table && table.querySelector(".dataTables_empty");
+
+  // Additionally, check if the tbody tag exists and if it has no child nodes
+  var tbody = table && table.querySelector("tbody");
+  if (tbody && tbody.children.length === 0) {
+    isEmpty = true;
+  }
+
+  return isEmpty;
 }
+
 function getUniqueTableIDsByCheckingEmpty() {
   // Get all elements with the class 'table-is-empty'
   var elements = document.querySelectorAll(".table-is-empty");
