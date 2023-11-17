@@ -524,6 +524,7 @@ class Plugin_Name_Dashboard {
           
             <?php
           
+          var_dump(Plugin_Name_Utilities::is_full_version($user_id));
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
                     $date_from = $_POST['date_from'];
