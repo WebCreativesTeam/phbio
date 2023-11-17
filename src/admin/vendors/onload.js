@@ -39,9 +39,9 @@ window.onload = function () {
   }
 
   // Execute the function
-  // reloadPageIfSuccess();
-  // initializeAcfDrags();
-  // applyAcfDrags();
+  reloadPageIfSuccess();
+  initializeAcfDrags();
+  applyAcfDrags();
   executeStart();
   initializeIframeLoading(".iframe-container");
 };
@@ -78,7 +78,6 @@ function checkEmptyTable(tableID) {
   // Check if the "dataTables_empty" element exists within this table
   return table && table.querySelector(".dataTables_empty");
 }
-
 function getUniqueTableIDsByCheckingEmpty() {
   // Get all elements with the class 'table-is-empty'
   var elements = document.querySelectorAll(".table-is-empty");

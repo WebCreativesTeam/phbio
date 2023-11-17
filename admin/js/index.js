@@ -4250,9 +4250,9 @@ window.onload = function() {
         th_empty_clicks.innerHTML = svgString + th_empty_clicks.innerHTML;
     }
     // Execute the function
-    // reloadPageIfSuccess();
-    // initializeAcfDrags();
-    // applyAcfDrags();
+    reloadPageIfSuccess();
+    initializeAcfDrags();
+    applyAcfDrags();
     executeStart();
     initializeIframeLoading(".iframe-container");
 };
