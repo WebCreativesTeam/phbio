@@ -552,43 +552,43 @@ class Plugin_Name_Dashboard {
                     // }
 
 
-                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
-                    echo "<div class='table-wrapper'>";     
-                    if(Plugin_Name_Utilities::is_full_version($user_id)) {
-                        echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
+                    // echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
+                    // echo "<div class='table-wrapper'>";     
+                    // if(Plugin_Name_Utilities::is_full_version($user_id)) {
+                    //     echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
                     
-                    } else {
-                        echo do_shortcode('[wpdatatable id=3 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
+                    // } else {
+                    //     echo do_shortcode('[wpdatatable id=3 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
                     
-                    }
-                    echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_table(2);
-                    echo Plugin_Name_Utilities::is_empty_table(3);
+                    // }
+                    // echo "</div>";
+                    // echo Plugin_Name_Utilities::is_empty_table(2);
+                    // echo Plugin_Name_Utilities::is_empty_table(3);
 
 
                     
                     
                     // Hidden Tables
-                    echo "<div class='hidden'>";
-                    echo "<div class='table-wrapper'>";     
-                    echo do_shortcode('[wpdatatable id=4 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
-                    echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_table(4);
+                    // echo "<div class='hidden'>";
+                    // echo "<div class='table-wrapper'>";     
+                    // echo do_shortcode('[wpdatatable id=4 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    // echo "</div>";
+                    // echo Plugin_Name_Utilities::is_empty_table(4);
                     
-                    echo "<div class='table-wrapper'>";     
-                    echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
-                    echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_table(7);
+                    // echo "<div class='table-wrapper'>";     
+                    // echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    // echo "</div>";
+                    // echo Plugin_Name_Utilities::is_empty_table(7);
                     
-                    echo "<div class='table-wrapper'>";     
-                    echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
-                    echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_table(5);
+                    // echo "<div class='table-wrapper'>";     
+                    // echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    // echo "</div>";
+                    // echo Plugin_Name_Utilities::is_empty_table(5);
                    
-                    echo "<div class='table-wrapper'>";     
-                    echo do_shortcode('[wpdatatable id=6 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
-                    echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_table(6);
+                    // echo "<div class='table-wrapper'>";     
+                    // echo do_shortcode('[wpdatatable id=6 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
+                    // echo "</div>";
+                    // echo Plugin_Name_Utilities::is_empty_table(6);
 
 
                    
@@ -676,44 +676,44 @@ class Plugin_Name_Dashboard {
 
 
 
-                echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
-                echo "<div class='table-wrapper'>";        
-                if(Plugin_Name_Utilities::is_full_version($user_id)) {
-                    echo do_shortcode('[wpdatatable id=2 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
-                } else {
-                    echo do_shortcode('[wpdatatable id=3 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
-                }
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_table(2);
-                echo Plugin_Name_Utilities::is_empty_table(3);
+                // echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
+                // echo "<div class='table-wrapper'>";        
+                // if(Plugin_Name_Utilities::is_full_version($user_id)) {
+                //     echo do_shortcode('[wpdatatable id=2 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                // } else {
+                //     echo do_shortcode('[wpdatatable id=3 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                // }
+                // echo "</div>";
+                // echo Plugin_Name_Utilities::is_empty_table(2);
+                // echo Plugin_Name_Utilities::is_empty_table(3);
                 
                  
                 // Hidden Tables
-                echo "<div class='hidden'>";
+                // echo "<div class='hidden'>";
 
-                echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=4 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_table(4);
+                // echo "<div class='table-wrapper'>";     
+                // echo do_shortcode('[wpdatatable id=4 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
+                // echo "</div>";
+                // echo Plugin_Name_Utilities::is_empty_table(4);
 
-                echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_table(5);
+                // echo "<div class='table-wrapper'>";     
+                // echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
+                // echo "</div>";
+                // echo Plugin_Name_Utilities::is_empty_table(5);
 
-                echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_table(7);
+                // echo "<div class='table-wrapper'>";     
+                // echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
+                // echo "</div>";
+                // echo Plugin_Name_Utilities::is_empty_table(7);
 
-                echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=6 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_table(6);
+                // echo "<div class='table-wrapper'>";     
+                // echo do_shortcode('[wpdatatable id=6 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                // echo "</div>";
+                // echo Plugin_Name_Utilities::is_empty_table(6);
 
               
 
-                echo "</div>";
+                // echo "</div>";
 
                
                 
@@ -732,8 +732,8 @@ class Plugin_Name_Dashboard {
                     echo "</div>";
 
                     echo "<div class='flex justify-center chart-wraper'>";     
-                    ?>   
-                    <?php $social_img = plugin_dir_url( __FILE__ ) . 'img/social.jpg'; ?>
+                     
+                    $social_img = plugin_dir_url( __FILE__ ) . 'img/social.jpg'; ?>
                     <div class="bg-cover bg-center w-[250px] h-[250px] md:w-[400px] md:h-[400px] max-w-full" style="background-image: url('<?php echo $social_img; ?>');">
                             <div class="text-2xl md:text-4xl flex justify-center items-center w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-white bg-opacity-80"> Sample Data</div>
                     </div>
