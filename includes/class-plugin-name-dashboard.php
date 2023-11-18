@@ -552,18 +552,18 @@ class Plugin_Name_Dashboard {
                     }
 
 
-                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
-                    echo "<div class='table-wrapper'>";     
-                    if(Plugin_Name_Utilities::is_full_version($user_id)) {
-                        echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
+                    // echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
+                    // echo "<div class='table-wrapper'>";     
+                    // if(Plugin_Name_Utilities::is_full_version($user_id)) {
+                    //     echo do_shortcode('[wpdatatable id=2 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
                     
-                    } else {
-                        echo do_shortcode('[wpdatatable id=3 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
+                    // } else {
+                    //     echo do_shortcode('[wpdatatable id=3 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
                     
-                    }
-                    echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_table(2);
-                    echo Plugin_Name_Utilities::is_empty_table(3);
+                    // }
+                    // echo "</div>";
+                    // echo Plugin_Name_Utilities::is_empty_table(2);
+                    // echo Plugin_Name_Utilities::is_empty_table(3);
 
 
                     
@@ -676,16 +676,16 @@ class Plugin_Name_Dashboard {
 
 
 
-                echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
-                echo "<div class='table-wrapper'>";        
-                if(Plugin_Name_Utilities::is_full_version($user_id)) {
-                    echo do_shortcode('[wpdatatable id=2 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
-                } else {
-                    echo do_shortcode('[wpdatatable id=3 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
-                }
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_table(2);
-                echo Plugin_Name_Utilities::is_empty_table(3);
+                // echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
+                // echo "<div class='table-wrapper'>";        
+                // if(Plugin_Name_Utilities::is_full_version($user_id)) {
+                //     echo do_shortcode('[wpdatatable id=2 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                // } else {
+                //     echo do_shortcode('[wpdatatable id=3 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                // }
+                // echo "</div>";
+                // echo Plugin_Name_Utilities::is_empty_table(2);
+                // echo Plugin_Name_Utilities::is_empty_table(3);
                 
                  
                 // Hidden Tables
