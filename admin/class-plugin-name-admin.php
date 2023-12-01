@@ -453,7 +453,7 @@ class Plugin_Name_Admin {
 	}
 	
 	function redirect_parent_post_access() {
-		if (is_singular('hb-user-profile') || is_singular('hb-user-pkit')) {
+		if (is_singular('hb-user-pkit')) {
 			global $post;
 			if ($post->post_parent == 0) { // Check if it's a parent post
 				wp_redirect(home_url()); // Redirect to homepage or any other page
