@@ -303,7 +303,7 @@ class Plugin_Name_Dashboard {
                     echo "<div class='table-wrapper'>";     
                     echo do_shortcode('[wpdatatable id=16 var2=' . $date_from . ' var3=' . $date_to . ']');
                     echo "</div>";
-                    // echo Plugin_Name_Utilities::is_empty_table(4);
+                    echo Plugin_Name_Utilities::is_empty_table(16);
                     
                     // echo "<div class='table-wrapper'>";     
                     // echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
@@ -372,7 +372,7 @@ class Plugin_Name_Dashboard {
                 echo "<div class='table-wrapper'>";     
                 echo do_shortcode('[wpdatatable id=16 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
                 echo "</div>";
-                // echo Plugin_Name_Utilities::is_empty_table(4);
+                echo Plugin_Name_Utilities::is_empty_table(16);
 
                 // echo "<div class='table-wrapper'>";     
                 // echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
