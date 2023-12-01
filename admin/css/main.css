@@ -1860,6 +1860,9 @@ body {
 .mt-2 {
     margin-top: 0.5rem;
 }
+.mt-20 {
+    margin-top: 5rem;
+}
 .mt-3 {
     margin-top: 0.75rem;
 }
@@ -2283,6 +2286,10 @@ body {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
 }
+.px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
 .py-0 {
     padding-top: 0px;
     padding-bottom: 0px;
@@ -2303,6 +2310,10 @@ body {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
 }
+.py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
 .py-4 {
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -2310,14 +2321,6 @@ body {
 .py-6 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
-}
-.px-8 {
-    padding-left: 2rem;
-    padding-right: 2rem;
-}
-.py-3 {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
 }
 .pb-0 {
     padding-bottom: 0px;
@@ -2339,9 +2342,6 @@ body {
 }
 .pt-\[1px\] {
     padding-top: 1px;
-}
-.pt-\[10px\] {
-    padding-top: 10px;
 }
 .text-center {
     text-align: center;
