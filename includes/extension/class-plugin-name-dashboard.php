@@ -280,187 +280,221 @@ class Press_Kit_Dashboard {
     
     public function analytics() { ?>
 
-   
-        <div class="max-w-[700px] mt-40 pb-20 mx-auto" x-data="analyticsFilter()" x-init="init" x-cloak>
-        <?php
-            
-            
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
-                    $date_from = $_POST['date_from'];
-                    $date_to = $_POST['date_to'];
-          
-                    echo "<div class='py-1 table-wrapper ctr-table'>";     
-                        echo do_shortcode('[wpdatatable id=14 var2=' . $date_from . ' var3=' . $date_to . ']');
-                    echo "</div>";
-
-                   
-                } 
-            } else {
-                
-                echo "<div class='py-1 table-wrapper ctr-table'>";       
-                    echo do_shortcode('[wpdatatable id=14 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
-                echo "</div>";
-
-               
-            }
-            
-                
-            ?>
-            <!-- Predefined Date Range Filters -->
-            <div class="range-filters">
-                <span @click="setDateRange('lifetime', true)" :class="{'range-active-filter': selectedRange == 'lifetime'}" class="range-filter">Lifetime</span>
-                <span @click="setDateRange('90days', true)" :class="{'range-active-filter': selectedRange == '90days'}" class="range-filter">90 D</span>
-                <span @click="setDateRange('30days', true)" :class="{'range-active-filter': selectedRange == '30days'}" class="range-filter">30 D</span>
-                <span @click="setDateRange('7days', true)" :class="{'range-active-filter': selectedRange == '7days'}" class="range-filter">7 D</span>
-                <span @click="setDateRange('Today', true)" :class="{'range-active-filter': selectedRange == 'Today'}" class="range-filter">Today</span>
-                <span @click.stop="setDateRange('custom')" :class="{'range-active-filter': selectedRange == 'custom'}" class="range-filter">Custom</span>
+        <div class="max-w-[700px] mt-40 pb-20 mx-auto">
+            <div id="analytics-spin"></div>
+            <div id="analytic-loading-msg">
+                Please Wait
             </div>
-
-          
-            <?php self::component__range_picker(); ?>
-
-          
+            <div id="analytics-content" class="hidden">
+            <div x-data="analyticsFilter()" x-init="init" x-cloak>
             <?php
-          
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
-                    $date_from = $_POST['date_from'];
-                    $date_to = $_POST['date_to'];
-            
+                
+                
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
+                        $date_from = $_POST['date_from'];
+                        $date_to = $_POST['date_to'];
+              
+                        echo "<div class='py-1 table-wrapper ctr-table'>";     
+                            echo do_shortcode('[wpdatatable id=14 var2=' . $date_from . ' var3=' . $date_to . ']');
+                        echo "</div>";
+    
+                       
+                    } 
+                } else {
+                    
+                    echo "<div class='py-1 table-wrapper ctr-table'>";       
+                        echo do_shortcode('[wpdatatable id=14 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
+                    echo "</div>";
+    
+                   
+                }
+                
+                    
+                ?>
+                <!-- Predefined Date Range Filters -->
+                <div class="range-filters">
+                    <span @click="setDateRange('lifetime', true)" :class="{'range-active-filter': selectedRange == 'lifetime'}" class="range-filter">Lifetime</span>
+                    <span @click="setDateRange('90days', true)" :class="{'range-active-filter': selectedRange == '90days'}" class="range-filter">90 D</span>
+                    <span @click="setDateRange('30days', true)" :class="{'range-active-filter': selectedRange == '30days'}" class="range-filter">30 D</span>
+                    <span @click="setDateRange('7days', true)" :class="{'range-active-filter': selectedRange == '7days'}" class="range-filter">7 D</span>
+                    <span @click="setDateRange('Today', true)" :class="{'range-active-filter': selectedRange == 'Today'}" class="range-filter">Today</span>
+                    <span @click.stop="setDateRange('custom')" :class="{'range-active-filter': selectedRange == 'custom'}" class="range-filter">Custom</span>
+                </div>
+    
+              
+                <?php self::component__range_picker(); ?>
+    
+              
+                <?php
+              
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
+                        $date_from = $_POST['date_from'];
+                        $date_to = $_POST['date_to'];
+                
+                        // Performance
+                        echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg>  Performance</div>";
+                       
+                        echo "<div class='chart-wraper'>";     
+                            echo do_shortcode('[wpdatachart id=6]');
+                        echo "</div>";
+                        echo Plugin_Name_Utilities::is_empty_chart('area', 16, 6);
+                     
+    
+    
+                        echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
+                        echo "<div class='table-wrapper'>";     
+                            echo do_shortcode('[wpdatatable id=17 var1=' . $date_from . ' var2=' . $date_to . ']');
+                        echo "</div>";
+                        echo Plugin_Name_Utilities::is_empty_table(17);
+    
+    
+                        
+                        
+                        // Hidden Tables
+                        echo "<div class='hidden'>";
+                        echo "<div class='table-wrapper'>";     
+                        echo do_shortcode('[wpdatatable id=16 var2=' . $date_from . ' var3=' . $date_to . ']');
+                        echo "</div>";
+                        echo Plugin_Name_Utilities::is_empty_table(16);
+                        
+                        echo "<div class='table-wrapper'>";     
+                        echo do_shortcode('[wpdatatable id=18 var1=' . $date_from . ' var2=' . $date_to . ']');
+                        echo "</div>";
+                        echo Plugin_Name_Utilities::is_empty_table(18);
+                        
+                        echo "<div class='table-wrapper'>";     
+                        echo do_shortcode('[wpdatatable id=19 var2=' . $date_from . ' var3=' . $date_to . ']');
+                        echo "</div>";
+                        echo Plugin_Name_Utilities::is_empty_table(19);
+                       
+                      
+    
+    
+                       
+                       
+                        echo "</div>";
+                        
+    
+                        echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
+                            
+                        echo "<div class='chart-wraper'>";        
+                        echo do_shortcode('[wpdatachart id=7]');
+                        echo "</div>";
+                        echo Plugin_Name_Utilities::is_empty_chart('pie', 18, 7);
+    
+                        
+                        echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Locations</div>";
+                            
+                        echo "<div class='chart-wraper'>";        
+                        echo do_shortcode('[wpdatachart id=8]');
+                        echo "</div>";
+                        echo Plugin_Name_Utilities::is_empty_chart('pie', 19, 8);
+    
+                        
+                        echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Users (Clicks)</div>";
+                        echo "<div class='table-wrapper'>";     
+                            echo do_shortcode('[wpdatatable id=23 var1=' . $date_from . ' var2=' . $date_to . ']');
+                        echo "</div>";
+                        echo Plugin_Name_Utilities::is_empty_table(23);
+    
+    
+                        echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Users (CTR)</div>";
+                        echo "<div class='table-wrapper'>";     
+                            echo do_shortcode('[wpdatatable id=24 var2=' . $date_from . ' var3=' . $date_to . ']');
+                        echo "</div>";
+                        echo Plugin_Name_Utilities::is_empty_table(24);
+                        
+                      
+                        
+                        
+                    } 
+                } else {
+    
                     // Performance
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg>  Performance</div>";
-                   
+                    
                     echo "<div class='chart-wraper'>";     
                         echo do_shortcode('[wpdatachart id=6]');
                     echo "</div>";
                     echo Plugin_Name_Utilities::is_empty_chart('area', 16, 6);
-                 
-
-
+    
+                   
+    
+    
+    
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
-                    echo "<div class='table-wrapper'>";     
-                        echo do_shortcode('[wpdatatable id=17 var1=' . $date_from . ' var2=' . $date_to . ']');
+                    echo "<div class='table-wrapper'>";        
+                        echo do_shortcode('[wpdatatable id=17 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ']'); 
                     echo "</div>";
                     echo Plugin_Name_Utilities::is_empty_table(17);
-
-
                     
-                    
+                     
                     // Hidden Tables
                     echo "<div class='hidden'>";
+    
                     echo "<div class='table-wrapper'>";     
-                    echo do_shortcode('[wpdatatable id=16 var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo do_shortcode('[wpdatatable id=16 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
                     echo "</div>";
                     echo Plugin_Name_Utilities::is_empty_table(16);
-                    
+    
                     echo "<div class='table-wrapper'>";     
-                    echo do_shortcode('[wpdatatable id=18 var1=' . $date_from . ' var2=' . $date_to . ']');
+                    echo do_shortcode('[wpdatatable id=18 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ']');
                     echo "</div>";
                     echo Plugin_Name_Utilities::is_empty_table(18);
-                    
+    
                     echo "<div class='table-wrapper'>";     
-                    echo do_shortcode('[wpdatatable id=19 var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo do_shortcode('[wpdatatable id=19 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
                     echo "</div>";
                     echo Plugin_Name_Utilities::is_empty_table(19);
-                   
+    
                   
-
-
-                   
-                   
+    
+                  
+    
                     echo "</div>";
-                    
-
+    
+                   
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
-                        
                     echo "<div class='chart-wraper'>";        
                     echo do_shortcode('[wpdatachart id=7]');
                     echo "</div>";
                     echo Plugin_Name_Utilities::is_empty_chart('pie', 18, 7);
-
                     
+                    
+    
+    
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Locations</div>";
-                        
                     echo "<div class='chart-wraper'>";        
                     echo do_shortcode('[wpdatachart id=8]');
                     echo "</div>";
                     echo Plugin_Name_Utilities::is_empty_chart('pie', 19, 8);
                     
-                  
+       
+                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Users (Clicks)</div>";
+                    echo "<div class='table-wrapper'>";        
+                        echo do_shortcode('[wpdatatable id=23 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ']'); 
+                    echo "</div>";
+                    echo Plugin_Name_Utilities::is_empty_table(23);
+                   
+                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Users (CTR)</div>";
+                    echo "<div class='table-wrapper'>";        
+                        echo do_shortcode('[wpdatatable id=24 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']'); 
+                    echo "</div>";
+                    echo Plugin_Name_Utilities::is_empty_table(24);
+                   
+                }
+                
                     
-                    
-                } 
-            } else {
-
-                // Performance
-                echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg>  Performance</div>";
-                
-                echo "<div class='chart-wraper'>";     
-                    echo do_shortcode('[wpdatachart id=16]');
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_chart('area', 16, 6);
-
-               
-
-
-
-                echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Links</div>";
-                echo "<div class='table-wrapper'>";        
-                    echo do_shortcode('[wpdatatable id=17 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ']'); 
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_table(17);
-                
-                 
-                // Hidden Tables
-                echo "<div class='hidden'>";
-
-                echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=16 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_table(16);
-
-                echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=18 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ']');
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_table(18);
-
-                echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=19 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_table(19);
-
-              
-
-              
-
-                echo "</div>";
-
-               
-                echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
-                echo "<div class='chart-wraper'>";        
-                echo do_shortcode('[wpdatachart id=7]');
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_chart('pie', 18, 7);
-                
-                
-
-
-                echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Locations</div>";
-                echo "<div class='chart-wraper'>";        
-                echo do_shortcode('[wpdatachart id=8]');
-                echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_chart('pie', 19, 8);
-                
-   
-               
-            }
+                ?>
+            </div>  
+            </div>
             
-                
-            ?>
-        </div>  
-
-    <?php }
+        </div>
+         
+    
+        <?php }
 
     public function component__range_picker() { ?>
         <!-- Custom Date Range Picker -->
