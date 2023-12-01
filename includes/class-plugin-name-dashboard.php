@@ -285,7 +285,7 @@ class Plugin_Name_Dashboard {
                     echo "<div class='chart-wraper'>";     
                         echo do_shortcode('[wpdatachart id=5]');
                     echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_chart('area', 15, 5);
+                    // echo Plugin_Name_Utilities::is_empty_chart('area', 15, 5);
                  
 
 
@@ -353,7 +353,7 @@ class Plugin_Name_Dashboard {
                 echo "<div class='chart-wraper'>";     
                     echo do_shortcode('[wpdatachart id=5]');
                 echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_chart('area', 15, 5);
+                // echo Plugin_Name_Utilities::is_empty_chart('area', 15, 5);
 
                
 
