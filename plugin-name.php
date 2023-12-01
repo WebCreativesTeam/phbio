@@ -62,28 +62,6 @@ function pfx_activate() {
 	Plugin_Name_Activator::create_page_views_table();
 	Plugin_Name_Activator::create_social_link_clicks_table();
 	Plugin_Name_Activator::activate();
-
-    global $wpdb;
-
-    // Get all rows from your table
-    $rows = $wpdb->get_results("SELECT id, post_id FROM ymk_page_views");
-
-    foreach ($rows as $row) {
-        // Get the post type for the current post_id
-        $post_type = get_post_type($row->post_id);
-
-        if ($post_type !== false) {
-            // Update the row with the post type
-            $wpdb->update(
-                'ymk_page_views',
-                ['post_type' => $post_type],  // data to update
-                ['id' => $row->id],           // where condition
-                ['%s'],                       // data format
-                ['%d']                        // where format
-            );
-        }
-    }
-
 }
 
 /**
