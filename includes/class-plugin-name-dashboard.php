@@ -285,7 +285,7 @@ class Plugin_Name_Dashboard {
                     echo "<div class='chart-wraper'>";     
                         echo do_shortcode('[wpdatachart id=6]');
                     echo "</div>";
-                    // echo Plugin_Name_Utilities::is_empty_chart('area', 15, 5);
+                    echo Plugin_Name_Utilities::is_empty_chart('area', 16, 6);
                  
 
 
@@ -293,13 +293,13 @@ class Plugin_Name_Dashboard {
                     echo "<div class='table-wrapper'>";     
                         echo do_shortcode('[wpdatatable id=16 var2=' . $date_from . ' var3=' . $date_to . ']');
                     echo "</div>";
-                    // echo Plugin_Name_Utilities::is_empty_table(15);
+                    echo Plugin_Name_Utilities::is_empty_table(16);
 
 
                     
                     
                     // Hidden Tables
-                    // echo "<div class='hidden'>";
+                    echo "<div class='hidden'>";
                     echo "<div class='table-wrapper'>";     
                     echo do_shortcode('[wpdatatable id=16 var2=' . $date_from . ' var3=' . $date_to . ']');
                     echo "</div>";
@@ -323,7 +323,7 @@ class Plugin_Name_Dashboard {
 
                    
                    
-                    // echo "</div>";
+                    echo "</div>";
                     
 
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
@@ -351,9 +351,9 @@ class Plugin_Name_Dashboard {
                 echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg>  Performance</div>";
                 
                 echo "<div class='chart-wraper'>";     
-                    echo do_shortcode('[wpdatachart id=6]');
+                    echo do_shortcode('[wpdatachart id=16]');
                 echo "</div>";
-                // echo Plugin_Name_Utilities::is_empty_chart('area', 15, 5);
+                echo Plugin_Name_Utilities::is_empty_chart('area', 16, 6);
 
                
 
@@ -363,11 +363,11 @@ class Plugin_Name_Dashboard {
                 echo "<div class='table-wrapper'>";        
                     echo do_shortcode('[wpdatatable id=16 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']'); 
                 echo "</div>";
-                // echo Plugin_Name_Utilities::is_empty_table(15);
+                echo Plugin_Name_Utilities::is_empty_table(16);
                 
                  
                 // Hidden Tables
-                // echo "<div class='hidden'>";
+                echo "<div class='hidden'>";
 
                 echo "<div class='table-wrapper'>";     
                 echo do_shortcode('[wpdatatable id=16 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
@@ -391,7 +391,7 @@ class Plugin_Name_Dashboard {
 
               
 
-                // echo "</div>";
+                echo "</div>";
 
                
                 echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
