@@ -87,7 +87,7 @@ class Plugin_Name_Admin {
 		global $pagenow;
 	
 		// Check if we're on our custom page
-		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'edit-bio') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') || ( isset( $_GET['page'] ) && $_GET['page'] == 'edit-presskit') || ( isset( $_GET['page'] ) && $_GET['page'] == 'presskit-settings') ) {
+		if ( ( isset( $_GET['page'] ) && $_GET['page'] == 'edit-bio') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-settings') || ( isset( $_GET['page'] ) && $_GET['page'] == 'linkin-bio-analytics') || ( isset( $_GET['page'] ) && $_GET['page'] == 'presskit-analytics') || ( isset( $_GET['page'] ) && $_GET['page'] == 'edit-presskit') || ( isset( $_GET['page'] ) && $_GET['page'] == 'presskit-settings') ) {
 			wp_enqueue_style(
 				'main',
 				plugin_dir_url( __FILE__ ) . 'css/main.css',
