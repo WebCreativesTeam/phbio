@@ -232,7 +232,7 @@ class Plugin_Name_Dashboard {
     public function analytics() { ?>
 
    
-        <div class="max-w-[700px] mt-20 pb-20 mx-auto" x-data="analyticsFilter()" x-init="init" x-cloak>
+        <div class="max-w-[700px] mt-40 pb-20 mx-auto" x-data="analyticsFilter()" x-init="init" x-cloak>
         <?php
             
             
@@ -305,10 +305,10 @@ class Plugin_Name_Dashboard {
                     echo "</div>";
                     echo Plugin_Name_Utilities::is_empty_table(16);
                     
-                    // echo "<div class='table-wrapper'>";     
-                    // echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
-                    // echo "</div>";
-                    // echo Plugin_Name_Utilities::is_empty_table(7);
+                    echo "<div class='table-wrapper'>";     
+                    echo do_shortcode('[wpdatatable id=18 var1=' . $date_from . ' var2=' . $date_to . ']');
+                    echo "</div>";
+                    echo Plugin_Name_Utilities::is_empty_table(18);
                     
                     // echo "<div class='table-wrapper'>";     
                     // echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
@@ -329,9 +329,9 @@ class Plugin_Name_Dashboard {
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
                         
                     echo "<div class='chart-wraper'>";        
-                    // echo do_shortcode('[wpdatachart id=3]');
+                    echo do_shortcode('[wpdatachart id=7]');
                     echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_chart('pie', 6, 3);
+                    echo Plugin_Name_Utilities::is_empty_chart('pie', 18, 7);
 
                     
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Locations</div>";
@@ -374,10 +374,10 @@ class Plugin_Name_Dashboard {
                 echo "</div>";
                 echo Plugin_Name_Utilities::is_empty_table(16);
 
-                // echo "<div class='table-wrapper'>";     
-                // echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
-                // echo "</div>";
-                // echo Plugin_Name_Utilities::is_empty_table(5);
+                echo "<div class='table-wrapper'>";     
+                echo do_shortcode('[wpdatatable id=18 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ']');
+                echo "</div>";
+                echo Plugin_Name_Utilities::is_empty_table(18);
 
                 // echo "<div class='table-wrapper'>";     
                 // echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
@@ -396,9 +396,9 @@ class Plugin_Name_Dashboard {
                
                 echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Social Icons</div>";
                 echo "<div class='chart-wraper'>";        
-                // echo do_shortcode('[wpdatachart id=3]');
+                echo do_shortcode('[wpdatachart id=7]');
                 echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_chart('pie', 6, 3);
+                echo Plugin_Name_Utilities::is_empty_chart('pie', 18, 7);
                 
                 
 

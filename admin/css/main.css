@@ -1875,6 +1875,9 @@ body {
 .mt-6 {
     margin-top: 1.5rem;
 }
+.mt-40 {
+    margin-top: 10rem;
+}
 .box-border {
     box-sizing: border-box;
 }
