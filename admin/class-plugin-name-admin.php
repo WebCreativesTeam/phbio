@@ -456,7 +456,7 @@ class Plugin_Name_Admin {
 		if (is_singular('hb-user-profile') || is_singular('hb-user-pkit')) {
 			global $post;
 			if ($post->post_parent == 0) { // Check if it's a parent post
-				wp_redirect(home_url()); // Redirect to homepage or any other page
+				// wp_redirect(home_url()); // Redirect to homepage or any other page
 				exit;
 			}
 		}
@@ -562,10 +562,10 @@ function user_profile_private_redirection() {
 
             // If the redirection URL is set, redirect to it. Otherwise, redirect to the 404 page.
             if (!empty($redirection_url)) {
-                wp_redirect($redirection_url);
+                // wp_redirect($redirection_url);
                 exit;
             } else {
-                wp_redirect(get_site_url('/'));
+                // wp_redirect(get_site_url('/'));
                 exit;
             }
         }
@@ -595,10 +595,10 @@ function user_profile_private_redirection() {
 		
 					// If the redirection URL is set, redirect to it. Otherwise, redirect to the 404 page.
 					if (!empty($redirection_url)) {
-						wp_redirect($redirection_url);
+						// wp_redirect($redirection_url);
 						exit;
 					} else {
-						wp_redirect(get_site_url('/'));
+						// wp_redirect(get_site_url('/'));
 						exit;
 					}
 				}
