@@ -668,7 +668,6 @@ class Plugin_Name_Dashboard {
 
     public function edit__tab_analytics($user_id) { ?>
 
-   
         <div x-data="analyticsFilter()" x-init="init" x-cloak>
         <?php
             
@@ -759,31 +758,31 @@ class Plugin_Name_Dashboard {
                     
                     
                     // Hidden Tables
-                    // echo "<div class='hidden'>";
-                    // echo "<div class='table-wrapper'>";     
-                    // echo do_shortcode('[wpdatatable id=4 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
-                    // echo "</div>";
-                    // echo Plugin_Name_Utilities::is_empty_table(4);
+                    echo "<div class='hidden'>";
+                    echo "<div class='table-wrapper'>";     
+                    echo do_shortcode('[wpdatatable id=4 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo "</div>";
+                    echo Plugin_Name_Utilities::is_empty_table(4);
                     
-                    // echo "<div class='table-wrapper'>";     
-                    // echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
-                    // echo "</div>";
-                    // echo Plugin_Name_Utilities::is_empty_table(7);
+                    echo "<div class='table-wrapper'>";     
+                    echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo "</div>";
+                    echo Plugin_Name_Utilities::is_empty_table(7);
                     
-                    // echo "<div class='table-wrapper'>";     
-                    // echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
-                    // echo "</div>";
-                    // echo Plugin_Name_Utilities::is_empty_table(5);
+                    echo "<div class='table-wrapper'>";     
+                    echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo "</div>";
+                    echo Plugin_Name_Utilities::is_empty_table(5);
                    
-                    // echo "<div class='table-wrapper'>";     
-                    // echo do_shortcode('[wpdatatable id=6 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
-                    // echo "</div>";
-                    // echo Plugin_Name_Utilities::is_empty_table(6);
+                    echo "<div class='table-wrapper'>";     
+                    echo do_shortcode('[wpdatatable id=6 var1=' . $date_from . ' var2=' . $date_to . ' var3=' . $user_id . ']');
+                    echo "</div>";
+                    echo Plugin_Name_Utilities::is_empty_table(6);
 
 
                    
                    
-                    // echo "</div>";
+                    echo "</div>";
                     
 
                     if(Plugin_Name_Utilities::is_full_version($user_id)) {
@@ -879,31 +878,31 @@ class Plugin_Name_Dashboard {
                 
                  
                 // Hidden Tables
-                // echo "<div class='hidden'>";
+                echo "<div class='hidden'>";
 
-                // echo "<div class='table-wrapper'>";     
-                // echo do_shortcode('[wpdatatable id=4 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
-                // echo "</div>";
-                // echo Plugin_Name_Utilities::is_empty_table(4);
+                echo "<div class='table-wrapper'>";     
+                echo do_shortcode('[wpdatatable id=4 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
+                echo "</div>";
+                echo Plugin_Name_Utilities::is_empty_table(4);
 
-                // echo "<div class='table-wrapper'>";     
-                // echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
-                // echo "</div>";
-                // echo Plugin_Name_Utilities::is_empty_table(5);
+                echo "<div class='table-wrapper'>";     
+                echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
+                echo "</div>";
+                echo Plugin_Name_Utilities::is_empty_table(5);
 
-                // echo "<div class='table-wrapper'>";     
-                // echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
-                // echo "</div>";
-                // echo Plugin_Name_Utilities::is_empty_table(7);
+                echo "<div class='table-wrapper'>";     
+                echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
+                echo "</div>";
+                echo Plugin_Name_Utilities::is_empty_table(7);
 
-                // echo "<div class='table-wrapper'>";     
-                // echo do_shortcode('[wpdatatable id=6 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
-                // echo "</div>";
-                // echo Plugin_Name_Utilities::is_empty_table(6);
+                echo "<div class='table-wrapper'>";     
+                echo do_shortcode('[wpdatatable id=6 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' . $user_id . ']');
+                echo "</div>";
+                echo Plugin_Name_Utilities::is_empty_table(6);
 
               
 
-                // echo "</div>";
+                echo "</div>"; 
 
                
                 
