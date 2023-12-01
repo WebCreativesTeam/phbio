@@ -353,7 +353,7 @@ class Plugin_Name_Dashboard {
                 echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg>  Performance</div>";
                 
                 echo "<div class='chart-wraper'>";     
-                    echo do_shortcode('[wpdatachart id=16]');
+                    echo do_shortcode('[wpdatachart id=6]');
                 echo "</div>";
                 echo Plugin_Name_Utilities::is_empty_chart('area', 16, 6);
 
