@@ -231,8 +231,9 @@ class Plugin_Name_Dashboard {
     
     public function analytics() { ?>
 
-   
-        <div class="max-w-[700px] mt-40 pb-20 mx-auto" x-data="analyticsFilter()" x-init="init" x-cloak>
+    <div class="max-w-[700px] mt-40 pb-20 mx-auto">
+        <div class="analytics-content">
+        <div x-data="analyticsFilter()" x-init="init" x-cloak>
         <?php
             
             
@@ -410,6 +411,10 @@ class Plugin_Name_Dashboard {
                 
             ?>
         </div>  
+        </div>
+        
+    </div>
+     
 
     <?php }
 
