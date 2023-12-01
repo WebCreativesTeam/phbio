@@ -728,16 +728,17 @@ class Plugin_Name_Dashboard {
                         echo "<div><a class='py-2 unlock-more' href='/upgrade' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                         echo "</div>";
                     }
+
                     if(Plugin_Name_Utilities::is_full_version($user_id)) {   
                         echo "<div class='chart-wraper'>";     
-                            echo do_shortcode('[wpdatachart id=2]');
+                        echo do_shortcode('[wpdatachart id=2]');
                         echo "</div>";
                         echo Plugin_Name_Utilities::is_empty_chart('area', 5, 2);
                     } else {
                         echo "<div class='chart-wraper'>";     
-                            echo do_shortcode('[wpdatachart id=1]');
+                        echo do_shortcode('[wpdatachart id=9]');
                         echo "</div>";
-                        echo Plugin_Name_Utilities::is_empty_chart('area', 4, 1);
+                        echo Plugin_Name_Utilities::is_empty_chart('area', 21, 9);
                     }
 
 
@@ -760,9 +761,9 @@ class Plugin_Name_Dashboard {
                     // Hidden Tables
                     echo "<div class='hidden'>";
                     echo "<div class='table-wrapper'>";     
-                    echo do_shortcode('[wpdatatable id=4 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo do_shortcode('[wpdatatable id=21 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
                     echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_table(4);
+                    echo Plugin_Name_Utilities::is_empty_table(21);
                     
                     echo "<div class='table-wrapper'>";     
                     echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
@@ -858,9 +859,9 @@ class Plugin_Name_Dashboard {
                     echo Plugin_Name_Utilities::is_empty_chart('area', 5, 2);
                 } else {
                     echo "<div class='chart-wraper'>";     
-                        echo do_shortcode('[wpdatachart id=1]');
+                        echo do_shortcode('[wpdatachart id=9]');
                     echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_chart('area', 4, 1);
+                    echo Plugin_Name_Utilities::is_empty_chart('area', 21, 9);
                 }
 
 
@@ -881,9 +882,9 @@ class Plugin_Name_Dashboard {
                 echo "<div class='hidden'>";
 
                 echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=4 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
+                echo do_shortcode('[wpdatatable id=21 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
                 echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_table(4);
+                echo Plugin_Name_Utilities::is_empty_table(21);
 
                 echo "<div class='table-wrapper'>";     
                 echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
