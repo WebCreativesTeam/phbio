@@ -197,12 +197,14 @@ class Plugin_Name_Activator {
 			viewed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 			viewed_country VARCHAR(100),
 			post_id mediumint(9) NOT NULL,
+			post_type VARCHAR(100),  
 			PRIMARY KEY (id)
 		) $charset_collate;";
 	
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta( $sql );
 	}
+	
 	
 
 	
