@@ -301,7 +301,7 @@ class Plugin_Name_Dashboard {
                     // Hidden Tables
                     // echo "<div class='hidden'>";
                     echo "<div class='table-wrapper'>";     
-                    echo do_shortcode('[wpdatatable id=15 var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo do_shortcode('[wpdatatable id=16 var2=' . $date_from . ' var3=' . $date_to . ']');
                     echo "</div>";
                     // echo Plugin_Name_Utilities::is_empty_table(4);
                     
@@ -370,7 +370,7 @@ class Plugin_Name_Dashboard {
                 // echo "<div class='hidden'>";
 
                 echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=15 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
+                echo do_shortcode('[wpdatatable id=16 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
                 echo "</div>";
                 // echo Plugin_Name_Utilities::is_empty_table(4);
 
