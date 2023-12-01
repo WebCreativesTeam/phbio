@@ -815,7 +815,6 @@ public function component__range_picker() { ?>
             <?php
             $title = get_user_meta($user_id, 'username', true);
             $post = get_page_by_path( $title, OBJECT, 'hb-user-profile' );
-           
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
                     $date_from = $_POST['date_from'];
@@ -832,6 +831,8 @@ public function component__range_picker() { ?>
                         echo "<div><a class='py-2 unlock-more' href='/upgrade' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
                         echo "</div>";
                     }
+            echo $post->ID;
+
 
                     if(Plugin_Name_Utilities::is_full_version($user_id)) {   
                         echo "<div class='chart-wraper'>";     
