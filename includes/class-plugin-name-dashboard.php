@@ -310,15 +310,12 @@ class Plugin_Name_Dashboard {
                     echo "</div>";
                     echo Plugin_Name_Utilities::is_empty_table(18);
                     
-                    // echo "<div class='table-wrapper'>";     
-                    // echo do_shortcode('[wpdatatable id=5 var1=' . $post->ID . ' var2=' . $date_from . ' var3=' . $date_to . ']');
-                    // echo "</div>";
-                    // echo Plugin_Name_Utilities::is_empty_table(5);
+                    echo "<div class='table-wrapper'>";     
+                    echo do_shortcode('[wpdatatable id=19 var2=' . $date_from . ' var3=' . $date_to . ']');
+                    echo "</div>";
+                    echo Plugin_Name_Utilities::is_empty_table(19);
                    
-                    // echo "<div class='table-wrapper'>";     
-                    // echo do_shortcode('[wpdatatable id=6 var1=' . $date_from . ' var2=' . $date_to . ' var3=' .  . ']');
-                    // echo "</div>";
-                    // echo Plugin_Name_Utilities::is_empty_table(6);
+                  
 
 
                    
@@ -337,9 +334,9 @@ class Plugin_Name_Dashboard {
                     echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Locations</div>";
                         
                     echo "<div class='chart-wraper'>";        
-                    // echo do_shortcode('[wpdatachart id=4]');
+                    echo do_shortcode('[wpdatachart id=8]');
                     echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_chart('pie', 7, 4);
+                    echo Plugin_Name_Utilities::is_empty_chart('pie', 19, 8);
                     
                   
                     
@@ -379,15 +376,12 @@ class Plugin_Name_Dashboard {
                 echo "</div>";
                 echo Plugin_Name_Utilities::is_empty_table(18);
 
-                // echo "<div class='table-wrapper'>";     
-                // echo do_shortcode('[wpdatatable id=7 var1=' . $post->ID . ' var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
-                // echo "</div>";
-                // echo Plugin_Name_Utilities::is_empty_table(7);
+                echo "<div class='table-wrapper'>";     
+                echo do_shortcode('[wpdatatable id=19 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']');
+                echo "</div>";
+                echo Plugin_Name_Utilities::is_empty_table(19);
 
-                // echo "<div class='table-wrapper'>";     
-                // echo do_shortcode('[wpdatatable id=6 var1=' . date("Y-m-d") . ' var2=' . date("Y-m-d") . ' var3=' .  . ']');
-                // echo "</div>";
-                // echo Plugin_Name_Utilities::is_empty_table(6);
+              
 
               
 
@@ -405,9 +399,9 @@ class Plugin_Name_Dashboard {
 
                 echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Locations</div>";
                 echo "<div class='chart-wraper'>";        
-                // echo do_shortcode('[wpdatachart id=4]');
+                echo do_shortcode('[wpdatachart id=8]');
                 echo "</div>";
-                echo Plugin_Name_Utilities::is_empty_chart('pie', 7, 4);
+                echo Plugin_Name_Utilities::is_empty_chart('pie', 19, 8);
                 
    
                
