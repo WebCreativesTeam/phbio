@@ -496,7 +496,7 @@ class Press_Kit_Dashboard {
     
         <?php }
 
-    public function component__range_picker() { ?>
+    public function old_component__range_picker() { ?>
         <!-- Custom Date Range Picker -->
         <form id="analyticsFilterForm" method="POST">
         <div x-show=" selectedRange == 'custom' ">
@@ -573,6 +573,83 @@ class Press_Kit_Dashboard {
             
     <?php }
 
+public function component__range_picker() { ?>
+           
+    <!-- Custom Date Range Picker -->
+    <form id="analyticsFilterForm" method="POST">
+    <div x-show="selectedRange == 'custom'" class="text-center">
+        <!-- <span class="block my-1 font-bold text-gray-700">Results</span> -->
+        <input type="hidden" name="date_from" x-model="dateFromYmd">
+        <input type="hidden" name="date_to" x-model="dateToYmd">
+        <label for="datepicker" class="block mt-3 mb-1 font-bold text-center text-gray-700">Select Date Range</label>
+        <div class="relative" @keydown.escape="closeDatepicker()" @click.outside="closeDatepicker()">
+            <div class="inline-flex items-center mt-3 rounded-md">
+                <input type="text" @click="endToShow = 'from'; init(); showDatepicker = true" x-model="outputDateFromValue" :class="{'font-semibold': endToShow == 'from' }" class="w-40 p-2 border-0 border-r border-gray-300 focus:outline-none rounded-l-md" />
+                <div class="inline-block h-full px-2">to</div>
+                <input type="text" @click="endToShow = 'to'; init(); showDatepicker = true" x-model="outputDateToValue" :class="{'font-semibold': endToShow == 'to' }" class="w-40 p-2 border-0 border-l border-gray-300 focus:outline-none rounded-r-md" />
+            </div>
+            <div 
+                class="absolute p-4 mt-2 bg-white rounded-lg shadow" 
+                style="width: 17rem" 
+                x-show="showDatepicker"
+                x-transition
+            >
+                <div class="flex flex-col items-center">
+                    <div class="flex items-center justify-between w-full mb-2">
+                        <div>
+                            <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
+                            <span x-text="year" class="ml-1 text-lg font-normal text-gray-600"></span>
+                        </div>
+                        <div>
+                            <button 
+                                type="button"
+                                class="inline-flex p-1 transition duration-100 ease-in-out rounded-full cursor-pointer hover:bg-gray-200" 
+                                @click="if (month == 0) {year--; month=11;} else {month--;} getNoOfDays()">
+                                <svg class="inline-flex w-6 h-6 text-gray-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                                </svg>  
+                            </button>
+                            <button 
+                                type="button"
+                                class="inline-flex p-1 transition duration-100 ease-in-out rounded-full cursor-pointer hover:bg-gray-200" 
+                                @click="if (month == 11) {year++; month=0;} else {month++;}; getNoOfDays()">
+                                <svg class="inline-flex w-6 h-6 text-gray-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>									  
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex w-full mb-3 -mx-1">
+                        <template x-for="(day, index) in DAYS" :key="index">	
+                            <div style="width: 14.26%" class="px-1">
+                                <div x-text="day" class="text-xs font-medium text-center text-gray-800"></div>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="flex flex-wrap -mx-1">
+                        <template x-for="blankday in blankdays">
+                            <div style="width: 14.28%" class="p-1 text-sm text-center border border-transparent"></div>
+                        </template>	
+                        <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">	
+                            <div style="width: 14.28%">
+                                <div
+                                    @click="getDateValue(date, false)"
+                                    @mouseover="getDateValue(date, true)"
+                                    x-text="date"
+                                    class="p-1 text-sm leading-loose text-center transition duration-100 ease-in-out cursor-pointer"
+                                    :class="{'font-bold': isToday(date) == true, 'bg-blue-800 text-white rounded-l-full': isDateFrom(date) == true, 'bg-blue-800 text-white rounded-r-full': isDateTo(date) == true, 'bg-blue-200': isInRange(date) == true }"	
+                                ></div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="text-center" value="Filter" />
+    </div>
+      </form>
+        
+<?php }
     
 
     public function area__preview($user_id) { 
