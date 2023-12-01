@@ -232,7 +232,7 @@ class Plugin_Name_Dashboard {
     public function analytics() { ?>
 
    
-        <div class="analytics-content" x-data="analyticsFilter()" x-init="init" x-cloak>
+        <div class="max-w-[700px] mt-10 pb-20 mx-auto" x-data="analyticsFilter()" x-init="init" x-cloak>
         <?php
             
             
