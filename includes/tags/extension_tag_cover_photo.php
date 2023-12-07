@@ -38,12 +38,11 @@ class Elementor_Ext_Cover_Photo_Tag extends \Elementor\Core\DynamicTags\Data_Tag
 			return []; // No meta value found
 		}
 
-        // return [
-        //         'id' => 1,
-        //         'url' => $meta_value,
-        //     ]; 
+        return [
+                'id' => 1,
+                'url' => $meta_value,
+        ]; 
 
-		return $meta_value;
     }
 
 	public function current_user() {
