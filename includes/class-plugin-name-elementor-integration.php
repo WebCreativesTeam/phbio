@@ -91,7 +91,7 @@ function extend_icon_render( $content, $widget ) {
 
         // Check if the custom_icon_text is set
         if( ! empty( $settings['phbio_icon_value'] ) ) {
-            $content = str_replace('fa-facebook', esc_attr( $settings['phbio_icon_value'] ), $content);
+            $content = str_replace('fab fa-facebook', esc_attr( $settings['phbio_icon_value'] ), ' fa fab ' . $content);
         }
     }
     return $content;
