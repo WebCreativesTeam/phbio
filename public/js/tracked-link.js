@@ -16,7 +16,7 @@ if (window.top === window.self) {
         },
         function (response) {
           if (response.success) {
-            window.location.href = link;
+            //
           } else {
             alert("Error tracking click");
           }
