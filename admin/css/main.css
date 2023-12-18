@@ -1708,6 +1708,12 @@ body {
         color: rgb(241 68 30 / var(--tw-text-opacity)) !important;
     }
 }
+.if-user-not-verified.user-verified {
+    display: none;
+}
+.if-user-verified.user-not-verified {
+    display: none;
+}
 .sr-only {
     position: absolute;
     width: 1px;

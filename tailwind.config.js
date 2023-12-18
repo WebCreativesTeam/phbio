@@ -27,6 +27,10 @@ module.exports = {
     "column-ctr",
     "column-total_clicks",
     "column-empty_clicks",
+    "if-user-not-verified",
+    "if-user-verified",
+    "user-verified",
+    "user-not-verified",
   ],
 
   theme: {
