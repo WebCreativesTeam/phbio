@@ -39,6 +39,8 @@ function register_tags( $dynamic_tags_manager) {
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_link_property.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_is_track_link.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_is_track_social_link.php';
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_is_user_verified.php';
+	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_is_user_not_verified.php';
     $dynamic_tags_manager->register( new \Elementor_Project_Name_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Ext_Project_Name_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Bio_Tag() );
@@ -52,6 +54,8 @@ function register_tags( $dynamic_tags_manager) {
     $dynamic_tags_manager->register( new \Elementor_Link_Property() );
     $dynamic_tags_manager->register( new \Elementor_Is_Track_Link() );
     $dynamic_tags_manager->register( new \Elementor_Is_Track_Social_Link() );
+    $dynamic_tags_manager->register( new \Elementor_Is_User_Not_Verified() );
+    $dynamic_tags_manager->register( new \Elementor_Is_User_Verified() );
 //
 }
     
