@@ -20,3 +20,9 @@
   div.elementor-widget-wrap {
   padding: 0px !important;
 }
+.if-user-not-verified.user-verified {
+  display: none;
+}
+.if-user-verified.user-not-verified {
+  display: none;
+}
