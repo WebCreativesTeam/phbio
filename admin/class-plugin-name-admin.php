@@ -562,12 +562,13 @@ function user_profile_private_redirection() {
 
             // If the redirection URL is set, redirect to it. Otherwise, redirect to the 404 page.
             if (!empty($redirection_url)) {
-                wp_redirect($redirection_url);
+                wp_redirect($redirection_url, 503);
                 exit;
             } else {
-                wp_redirect(get_site_url('/'));
+                wp_redirect(get_site_url('/'), 503);
                 exit;
             }
+			
         }
     }
     if (is_singular('hb-user-pkit')) {
@@ -595,10 +596,10 @@ function user_profile_private_redirection() {
 		
 					// If the redirection URL is set, redirect to it. Otherwise, redirect to the 404 page.
 					if (!empty($redirection_url)) {
-						wp_redirect($redirection_url);
+						wp_redirect($redirection_url, 503);
 						exit;
 					} else {
-						wp_redirect(get_site_url('/'));
+						wp_redirect(get_site_url('/'), 503);
 						exit;
 					}
 				}
