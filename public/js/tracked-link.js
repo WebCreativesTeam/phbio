@@ -16,7 +16,7 @@ if (window.top === window.self) {
         },
         function (response) {
           if (response.success) {
-            //
+            window.open(link, "_blank");
           } else {
             alert("Error tracking click");
           }
@@ -41,7 +41,7 @@ if (window.top === window.self) {
         },
         function (response) {
           if (response.success) {
-            //
+            window.open(link, "_blank");
           } else {
             alert("Error tracking click");
           }
