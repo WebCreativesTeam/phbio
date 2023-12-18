@@ -21,6 +21,7 @@ class Elementor_Is_User_Not_Verified extends \Elementor\Core\DynamicTags\Tag {
 	}
 	public function render() {
 		$user = $this->current_user();
+		return "user-not-verified";
 		if( !in_array( 'um_free-verified', (array) $user->roles ) && !in_array( 'um_pro-verified', (array) $user->roles )) {
 			if ( in_array( 'um_free-member', (array) $user->roles ) || in_array( 'um_pro-member', (array) $user->roles )  ) {
 				return "hidden";
