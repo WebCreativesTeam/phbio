@@ -21,12 +21,9 @@ class Elementor_Is_User_Verified extends \Elementor\Core\DynamicTags\Tag {
 	}
 	public function render() {
 
-		$userID = $this->current_user();
-		$user = get_userdata($userID);
-		if ( !in_array( 'um_free-member', (array) $user->roles ) && !in_array( 'um_pro-member', (array) $user->roles )  ) {
-			if(in_array( 'um_free-verified', (array) $user->roles ) || in_array( 'um_pro-verified', (array) $user->roles )) {
-				echo "hidden";
-			}
+		$user_id = $this->current_user();
+		if ( Plugin_Name_Utilities::is_full_verified_version($user_id) || Plugin_Name_Utilities::is_lite_verified_version($user_id)) {
+		   echo "hidden";
 		}
 		
 	}
