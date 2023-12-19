@@ -230,16 +230,16 @@ class Plugin_Name_Admin {
 		if (in_array('um_pro-member', $old_roles) && $role == 'um_free-member') {
 
 			// Set default template back
-			$default = get_user_meta(1, 'default_template', true);	
+			// $default = get_user_meta(1, 'default_template', true);	
 			update_user_meta( $user_id, 'selected_template', 9522 );
 
-			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
-			update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
+			// $default_pkit = get_user_meta(1, 'default_pkit_template', true);
+			// update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
 
-			// Backup links list
-			$meta_value = get_user_meta($user_id, 'links_list', true);
-			update_user_meta($user_id, '_backup_meta_field', $meta_value);
-			update_user_meta($user_id, '_backup_date', current_time('mysql'));
+			// // Backup links list
+			// $meta_value = get_user_meta($user_id, 'links_list', true);
+			// update_user_meta($user_id, '_backup_meta_field', $meta_value);
+			// update_user_meta($user_id, '_backup_date', current_time('mysql'));
 		}
 
 		// Roles if user role is upgraded back
