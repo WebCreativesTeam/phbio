@@ -224,9 +224,9 @@ class Plugin_Name_Admin {
 		
 		// Roles if user role is degraded
 		$meta_key = 'default_template';
-		error_log($user_id);
-		var_dump($role);
-		var_dump($old_roles);
+		write_log('User ID:', $user_id);
+		write_log('Current Role:', $role);
+		write_log('Old Role:', $old_roles);
 		
 		if (in_array('um_pro-member', $old_roles) && $role == 'um_free-member') {
 
