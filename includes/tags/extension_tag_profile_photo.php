@@ -51,7 +51,7 @@ class Elementor_Ext_Profile_Photo_Tag extends \Elementor\Core\DynamicTags\Data_T
 	    $current_user = get_post_meta($current_post, 'associated_user', true);
 
 		$loggedIn = wp_get_current_user();
-		if(current_user_can('administrator') && $post->post_type == 'template-manager') {
+		if(current_user_can('administrator') && $post->post_type == 'pkit-template') {
 			return $loggedIn->ID;
 
 		}
