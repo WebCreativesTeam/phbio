@@ -225,31 +225,31 @@ class Plugin_Name_Admin {
 		// Roles if user role is degraded
 		$meta_key = 'default_template';
 		
-		print_r($old_roles);
-		print_r($role);
+		error_log('User ID: ' . $user_id);
+		error_log('Old Roles: ' . print_r($old_roles, true));
+		error_log('New Role: ' . $role);
+		if (in_array('um_pro-member', $old_roles) && $role == 'um_free-member') {
 
-		// if (in_array('um_pro-member', $old_roles) && $role == 'um_free-member') {
+			// Set default template back
+			$default = get_user_meta(1, $meta_key, true);
+			update_user_meta( $user_id, 'selected_template', $default );
 
-		// 	// Set default template back
-		// 	$default = get_user_meta(1, $meta_key, true);
-		// 	update_user_meta( $user_id, 'selected_template', $default );
+			// Backup links list
+			$meta_value = get_user_meta($user_id, 'links_list', true);
+			update_user_meta($user_id, '_backup_meta_field', $meta_value);
+			update_user_meta($user_id, '_backup_date', current_time('mysql'));
+		}
 
-		// 	// Backup links list
-		// 	$meta_value = get_user_meta($user_id, 'links_list', true);
-		// 	update_user_meta($user_id, '_backup_meta_field', $meta_value);
-		// 	update_user_meta($user_id, '_backup_date', current_time('mysql'));
-		// }
+		// Roles if user role is upgraded back
+		if (in_array('um_free-member', $old_roles) && $role == 'um_pro-member') {
 
-		// // Roles if user role is upgraded back
-		// if (in_array('um_free-member', $old_roles) && $role == 'um_pro-member') {
-
-		// 	$backup_value = get_user_meta($user_id, '_backup_meta_field', true);
-		// 	if ($backup_value) {
-		// 		update_user_meta($user_id, 'links_list', $backup_value);
-		// 		delete_user_meta($user_id, '_backup_meta_field');
-		// 		delete_user_meta($user_id, '_backup_date');
-		// 	}
-		// }
+			$backup_value = get_user_meta($user_id, '_backup_meta_field', true);
+			if ($backup_value) {
+				update_user_meta($user_id, 'links_list', $backup_value);
+				delete_user_meta($user_id, '_backup_meta_field');
+				delete_user_meta($user_id, '_backup_date');
+			}
+		}
 
 		
 	}
