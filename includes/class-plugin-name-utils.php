@@ -248,7 +248,7 @@ class Plugin_Name_Utilities {
     public static function is_full_version($user_id) {
         $user = get_userdata($user_id);
         
-        return in_array('um_pro-member', $user->roles);
+        return in_array('um_pro-member', (array) $user->roles);
     }
     public static function is_lite_verified_version($user_id) {
         $user = get_userdata($user_id);
@@ -259,7 +259,7 @@ class Plugin_Name_Utilities {
     public static function is_full_verified_version($user_id) {
         $user = get_userdata($user_id);
         
-        return in_array('um_pro-verified', $user->roles);
+        return in_array('um_pro-verified', (array) $user->roles);
     }
 
     public static function get_user_maxLinks($user_id) {
