@@ -20,11 +20,14 @@ class Elementor_Ext_Parent_Tag extends \Elementor\Core\DynamicTags\Tag {
 		return [ \Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY ];
 	}
     public function render() {
-		$current_user = $this->current_user();
+		global $post;
+
+		// Get the current user
+		$parent_id = $post->post_parent;
 	
 		
 		// Display the value
-		echo $current_user;
+		echo $parent_id;
 	}
 
 	public function current_user() {
