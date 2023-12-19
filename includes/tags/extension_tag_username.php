@@ -18,6 +18,10 @@ class Elementor_Ext_Username_Tag extends \Elementor\Core\DynamicTags\Tag {
 		return [ \Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY ];
 	}
     public function render() {
+	    global $post;
+		$parent_id = $post->post_parent;
+		
+	    
 		// Get the current user
 		$current_user = wp_get_current_user();
 	
@@ -29,7 +33,7 @@ class Elementor_Ext_Username_Tag extends \Elementor\Core\DynamicTags\Tag {
 		// Get the user meta for 'tag-name'
 		$meta_key = 'username';
 		// $meta_value = get_user_meta($current_user->ID, $meta_key, true);
-		$meta_value = get_user_meta(19, $meta_key, true);
+		$meta_value = get_user_meta($parent_id, $meta_key, true);
 	
 		if (!$meta_value) {
 			echo 'No meta value found for ' . $meta_key;

@@ -47,11 +47,11 @@ class Elementor_Ext_Cover_Photo_Tag extends \Elementor\Core\DynamicTags\Data_Tag
 
 	public function current_user() {
 	    global $post;
-
-		// Get the current user
-		$current_post = $post->ID;
-	    // $current_user = get_post_meta($current_post, 'associated_user', true);
-	    $current_user = 19;
+    
+    
+		$parent_id = $post->post_parent;
+		
+	    $current_user = get_post_meta($parent_id, 'associated_user', true);
 
 
 		$loggedIn = wp_get_current_user();

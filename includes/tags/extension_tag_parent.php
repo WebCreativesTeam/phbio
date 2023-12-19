@@ -1,15 +1,15 @@
 <?php
 
-class Elementor_Ext_Project_Name_Tag extends \Elementor\Core\DynamicTags\Tag {
+class Elementor_Ext_Parent_Tag extends \Elementor\Core\DynamicTags\Tag {
 
-	private $fieldName = 'pkit_project';
+	private $fieldName = 'pkit_parent';
 	public function get_name() {
 		return 'ph__' . $this->fieldName;
 	}
 
 
 	public function get_title() {
-		return esc_html__( 'Project Name', 'textdomain' );
+		return esc_html__( 'Parent ID', 'textdomain' );
 	}
 
 	public function get_group() {
@@ -22,21 +22,9 @@ class Elementor_Ext_Project_Name_Tag extends \Elementor\Core\DynamicTags\Tag {
     public function render() {
 		$current_user = $this->current_user();
 	
-		if(!$current_user) {
-			return;
-		}
-		// Get the user meta for 'tag-name'
-		$meta_key = 'pkit_project';
 		
-		$meta_value = get_user_meta($current_user, $meta_key, true);
-	
-		if (!$meta_value) {
-			echo 'No meta value found for ' . $meta_key;
-			return;
-		}
-	
 		// Display the value
-		echo esc_html($meta_value);
+		echo esc_html($current_user);
 	}
 
 	public function current_user() {
