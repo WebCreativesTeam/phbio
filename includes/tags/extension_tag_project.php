@@ -45,7 +45,7 @@ class Elementor_Ext_Project_Name_Tag extends \Elementor\Core\DynamicTags\Tag {
 		// Get the current user
 		$parent_id = $post->post_parent;
 		
-	    $current_user = get_post_meta($parent_id, 'associated_user', true);
+	    $current_user = get_post_meta($parent_id, 'associated_pkit_user', true);
 
 		
 		if (!$current_user) {

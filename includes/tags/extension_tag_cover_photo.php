@@ -51,7 +51,7 @@ class Elementor_Ext_Cover_Photo_Tag extends \Elementor\Core\DynamicTags\Data_Tag
     
 		$parent_id = $post->post_parent;
 		
-	    $current_user = get_post_meta($parent_id, 'associated_user', true);
+	    $current_user = get_post_meta($parent_id, 'associated_pkit_user', true);
 
 
 		$loggedIn = wp_get_current_user();

@@ -28,7 +28,6 @@ function add_group( $dynamic_tags_manager ) {
 function register_tags( $dynamic_tags_manager) {
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_project.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/extension_tag_project.php';
-	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/extension_tag_parent.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_bio.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_username.php';
 	require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/tags/tag_profile_photo.php';
@@ -51,7 +50,6 @@ function register_tags( $dynamic_tags_manager) {
     $dynamic_tags_manager->register( new \Elementor_Ext_Username_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Ext_Profile_Photo_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Ext_Cover_Photo_Tag() );
-    $dynamic_tags_manager->register( new \Elementor_Ext_Parent_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Is_Logo_Tag() );
     $dynamic_tags_manager->register( new \Elementor_Link_Property() );
     $dynamic_tags_manager->register( new \Elementor_Is_Track_Link() );
