@@ -189,7 +189,7 @@ class Press_Kit_Builder {
         foreach($languages as $language) {
             ?>
             <div class="flex flex-col items-start gap-3 mb-3 sm:items-center sm:flex-row last:mb-7">
-                <span class="block text-sm text-gray-500 hover:text-gray-700">
+                <span class="block text-sm text-gray-500 hover:text-gray-700" style="margin: 0px;">
                     <?php echo esc_js(site_url('/presskit')) . '/' . get_user_meta($target_user_id, 'pkit_username', true) . '/' . $language; ?>
                 </span>
                 <div class="flex flex-row gap-4 sm:gap-2">
