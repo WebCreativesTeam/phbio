@@ -21,31 +21,27 @@ class Elementor_Ext_Parent_Tag extends \Elementor\Core\DynamicTags\Tag {
 	}
     public function render() {
 		global $post;
-
-		// Get the current user
-		$parent_id = $post->post_parent;
-	
 		
 		// Display the value
-		echo $parent_id;
+		echo $post->post_parent;
 	}
 
-	public function current_user() {
-	    global $post;
+	// public function current_user() {
+	//     global $post;
 
-		// Get the current user
-		$parent_id = $post->post_parent;
+	// 	// Get the current user
+	// 	$parent_id = $post->post_parent;
 		
-	    $current_user = get_post_meta($parent_id, 'associated_user', true);
+	//     $current_user = get_post_meta($parent_id, 'associated_user', true);
 
 		
-		if (!$current_user) {
-			echo $this->get_title();
-			return;
-		}
+	// 	if (!$current_user) {
+	// 		echo $this->get_title();
+	// 		return;
+	// 	}
 
-		return $parent_id;
-	}
+	// 	return $parent_id;
+	// }
 	
 
 }
