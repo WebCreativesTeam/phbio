@@ -247,7 +247,7 @@ class Press_Kit_Dashboard {
                 <?php 
 
                          
-                    Plugin_Name_Builder::checkbox_field('logo', 
+                    Plugin_Name_Builder::checkbox_field('pkit_logo', 
                     'Hide the PRODUCHERTZ.COM logo', 
                     Plugin_Name_Capabilities::MANAGE_WEBSITE_LOGO, $user_id); 
                 

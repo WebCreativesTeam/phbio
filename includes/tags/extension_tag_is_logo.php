@@ -1,9 +1,9 @@
 <?php
 
-class Elementor_Is_Logo_Tag extends \Elementor\Core\DynamicTags\Tag {
+class Elementor_Ext_Is_Logo_Tag extends \Elementor\Core\DynamicTags\Tag {
 
 	public function get_name() {
-		return 'ph_is_logo';
+		return 'pkit_is_logo';
 	}
 
 	public function get_title() {
@@ -11,7 +11,7 @@ class Elementor_Is_Logo_Tag extends \Elementor\Core\DynamicTags\Tag {
 	}
 
 	public function get_group() {
-		return [ 'link-in-bio' ];
+		return [ 'press-kit' ];
 	}
 
 	public function get_categories() {
@@ -27,7 +27,7 @@ class Elementor_Is_Logo_Tag extends \Elementor\Core\DynamicTags\Tag {
 		}
 	
 		// Get the user meta for 'tag-name'
-		$meta_key = 'phbio_logo';
+		$meta_key = 'pkit_logo';
 		$meta_value = get_user_meta($current_user->ID, $meta_key, true);
 	
 		if (!$meta_value) {
