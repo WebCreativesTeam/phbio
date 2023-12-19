@@ -226,11 +226,12 @@ class Plugin_Name_Admin {
 		if (in_array('um_pro-member', $old_roles) && $role == 'um_free-member') {
 
 			$default = get_user_meta(1, 'default_template', true);	
-			update_user_meta( $user_id, 'selected_template', $default );
-
 			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
-			update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
-
+			
+			if(Plugin_Name_Utilities::user_has_backup($user_id) && Plugin_Name_Utilities::is_lite_version($user_id)) {
+				update_user_meta( $user_id, 'selected_template', (string) $default );
+				update_user_meta( $user_id, 'selected_pkit_template', (string) $default_pkit );
+			}
 
 			// Backup links list
 			$meta_value = get_user_meta($user_id, 'links_list', true);
