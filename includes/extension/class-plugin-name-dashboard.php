@@ -802,12 +802,13 @@ public function component__range_picker() { ?>
     public function edit__tab_analytics($user_id) { ?>
         <div x-data="analyticsFilter()" x-init="init" x-cloak>
             <!-- Predefined Date Range Filters -->
-            <div class="flex items-center justify-start gap-4 mb-4">
-                <span @click="setDateRange('lifetime')" :class="{'font-bold text-gray-800': selectedRange == 'lifetime'}" class="cursor-pointer filter-item">Lifetime</span>
-                <span @click="setDateRange('7days')" :class="{'font-bold text-gray-800': selectedRange == '7days'}" class="cursor-pointer filter-item">Last 7 days</span>
-                <span @click="setDateRange('30days')" :class="{'font-bold text-gray-800': selectedRange == '30days'}" class="cursor-pointer filter-item">Last 30 days</span>
-                <span @click="setDateRange('90days')" :class="{'font-bold text-gray-800': selectedRange == '90days'}" class="cursor-pointer filter-item">Last 90 days</span>
-                <span @click="setDateRange('custom')" :class="{'font-bold text-gray-800': selectedRange == 'custom'}" class="cursor-pointer filter-item">Custom</span>
+            <div class="range-filters">
+                <span @click="setDateRange('lifetime', true)" :class="{'range-active-filter': selectedRange == 'lifetime'}" class="range-filter">Lifetime</span>
+                <span @click="setDateRange('90days', true)" :class="{'range-active-filter': selectedRange == '90days'}" class="range-filter">90 D</span>
+                <span @click="setDateRange('30days', true)" :class="{'range-active-filter': selectedRange == '30days'}" class="range-filter">30 D</span>
+                <span @click="setDateRange('7days', true)" :class="{'range-active-filter': selectedRange == '7days'}" class="range-filter">7 D</span>
+                <span @click="setDateRange('Today', true)" :class="{'range-active-filter': selectedRange == 'Today'}" class="range-filter">Today</span>
+                <span @click.stop="setDateRange('custom')" :class="{'range-active-filter': selectedRange == 'custom'}" class="range-filter">Custom</span>
             </div>
 
             <?php self::component__range_picker(); ?>
