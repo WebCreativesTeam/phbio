@@ -21,9 +21,11 @@ class Elementor_Ext_Parent_Tag extends \Elementor\Core\DynamicTags\Tag {
 	}
     public function render() {
 		global $post;
-		
+		$parent_id = $post->post_parent;
+		$current_user = get_post_meta($parent_id, 'associated_user', true);
+
 		// Display the value
-		echo $post->post_parent;
+		echo $current_user;
 	}
 
 	// public function current_user() {
