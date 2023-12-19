@@ -24,7 +24,7 @@ class Elementor_Ext_Parent_Tag extends \Elementor\Core\DynamicTags\Tag {
 	
 		
 		// Display the value
-		echo esc_html($current_user);
+		echo "Hi";
 	}
 
 	public function current_user() {
