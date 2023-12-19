@@ -230,8 +230,6 @@ class Plugin_Name_Admin {
 
 			// Set default template back
 			$default = get_user_meta(1, $meta_key, true);
-			print_r($default);
-			error_log(var_dump($default));
 			update_user_meta( $user_id, 'selected_template', $default );
 
 			// Backup links list
