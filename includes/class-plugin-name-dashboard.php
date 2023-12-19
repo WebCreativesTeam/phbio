@@ -548,6 +548,7 @@ class Plugin_Name_Dashboard {
 		$selected = Plugin_Name_Utilities::handle_user_meta('selected_template', 'read', $user_id); 
 		$default = get_user_meta(1, 'default_template', true);	
         echo $default;	
+        echo $selected;
 		?>
 		<!-- Templates Actions  - STARTS HERE -->
         <?php self::actions__bar('showTemplates', 'templateForm'); ?>
