@@ -221,13 +221,17 @@ class Plugin_Name_Admin {
 	
 	public static function role_change($user_id, $role, $old_roles) {
 
-		$default = get_user_meta(1, 'default_template', true);	
-		update_user_meta( $user_id, 'selected_template', $default );
-
-		$default_pkit = get_user_meta(1, 'default_pkit_template', true);
-		update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
+		
 
 		if (in_array('um_pro-member', $old_roles) && $role == 'um_free-member') {
+
+			$default = get_user_meta(1, 'default_template', true);	
+			update_user_meta( $user_id, 'selected_template', $default );
+
+			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
+			update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
+
+
 			// Backup links list
 			$meta_value = get_user_meta($user_id, 'links_list', true);
 			update_user_meta($user_id, '_backup_meta_field', $meta_value);
