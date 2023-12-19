@@ -231,7 +231,7 @@ class Plugin_Name_Admin {
 
 			// Set default template back
 			$default = get_user_meta(1, 'default_template', true);	
-			update_user_meta( $user_id, 'selected_template', $default );
+			update_user_meta( $user_id, 'selected_template', 9522 );
 
 			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
 			update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
