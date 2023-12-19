@@ -41,7 +41,7 @@ class Elementor_Ext_Parent_Tag extends \Elementor\Core\DynamicTags\Tag {
 			return;
 		}
 
-		return $current_user;
+		return $parent_id;
 	}
 	
 
