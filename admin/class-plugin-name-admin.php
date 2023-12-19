@@ -224,6 +224,7 @@ class Plugin_Name_Admin {
 		
 		// Roles if user role is degraded
 		$meta_key = 'default_template';
+		$meta_key_pkit = 'default_pkit_template';
 		
 		
 		if (in_array('um_pro-member', $old_roles) && $role == 'um_free-member') {
@@ -231,6 +232,9 @@ class Plugin_Name_Admin {
 			// Set default template back
 			$default = get_user_meta(1, $meta_key, true);
 			update_user_meta( $user_id, 'selected_template', $default );
+
+			$default_pkit = get_user_meta(1, $meta_key_pkit, true);
+			update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
 
 			// Backup links list
 			$meta_value = get_user_meta($user_id, 'links_list', true);
