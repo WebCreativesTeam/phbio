@@ -36,7 +36,7 @@ class Elementor_Ext_Is_User_Verified extends \Elementor\Core\DynamicTags\Tag {
 
 		// Get the current user
 		$current_post = $post->post_parent;
-	    $current_user = get_post_meta($current_post, 'associated_user', true);
+	    $current_user = get_post_meta($current_post, 'associated_pkit_user', true);
 
 		
 		if (!$current_user) {
