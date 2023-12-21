@@ -3843,10 +3843,10 @@ const analyticsFilter = ()=>({
             return year + "-" + ("0" + month).slice(-2) + "-" + ("0" + date).slice(-2);
         },
         init () {
-            console.log(performance.navigation.type, "performance.navigation.type");
+            console.log(performance.navigation.type === 0, "performance.navigation.type");
             console.log(this.disableLocalStorage(), "this.disableLocalStorage()");
-            console.log(localStorage.getItem("selectedRange"));
-            console.log(localStorage.getItem("changedRange"));
+            console.log(localStorage.getItem("selectedRange") !== "Today");
+            console.log(localStorage.getItem("changedRange") === true);
             if (performance.navigation.type === 1 || performance.navigation.type === 0 && this.disableLocalStorage() && localStorage.getItem("selectedRange") !== "Today" && localStorage.getItem("changedRange") == true) {
                 localStorage.removeItem("selectedRange");
                 localStorage.removeItem("changedRange");
