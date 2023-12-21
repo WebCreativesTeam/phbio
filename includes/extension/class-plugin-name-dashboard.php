@@ -341,41 +341,8 @@ class Press_Kit_Dashboard {
                         
                         
                     } 
-                } else {
-    
-                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Users (Views)</div>";
-                    echo "<div class='table-wrapper'>";        
-                        echo do_shortcode('[wpdatatable id=32 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']'); 
-                    echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_table(32);
-                   
-                     
-                    // Hidden Tables
-                    echo "<div class='hidden'>";
-    
-                    echo "<div class='table-wrapper'>";     
-                    echo do_shortcode('[wpdatatable id=31 var3=' . date("Y-m-d") . ' var4=' . date("Y-m-d") . ']');
-                    echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_table(31);
-    
-          
-    
-                    echo "</div>";
-    
-                   
-                
-    
-                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Locations</div>";
-                    echo "<div class='chart-wraper'>";        
-                    echo do_shortcode('[wpdatachart id=16]');
-                    echo "</div>";
-                    echo Plugin_Name_Utilities::is_empty_chart('pie', 31, 16);
-                    
+                } 
        
-                  
-                  
-                   
-                }
                 
                     
                 ?>
