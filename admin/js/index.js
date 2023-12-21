@@ -3776,11 +3776,13 @@ const analyticsFilter = ()=>({
         no_of_days: [],
         blankdays: [],
         // Function to check if the current page has one of the specific query parameters
-        disableLocalStorage () {
-            const urlSearchParams = new URLSearchParams(window.location.search);
-            const pageParam = urlSearchParams.get("page");
-            return pageParam === "presskit-analytics" || pageParam === "linkin-bio-analytics";
-        },
+        // disableLocalStorage() {
+        //   const urlSearchParams = new URLSearchParams(window.location.search);
+        //   const pageParam = urlSearchParams.get("page");
+        //   return (
+        //     pageParam === "presskit-analytics" || pageParam === "linkin-bio-analytics"
+        //   );
+        // },
         setDateRange (range, submitForm = false) {
             // Check if the current range is 'Custom' and the new range is not 'Custom'
             if (this.selectedRange === "custom" && range !== "custom" && this.endToShow !== "") return; // Exit the function without changing the range or doing anything else
@@ -3864,11 +3866,9 @@ const analyticsFilter = ()=>({
                 this.year = currentYear;
                 this.getNoOfDays();
             }
-            if (!this.disableLocalStorage()) {
-                const savedRange = localStorage.getItem("selectedRange");
-                if (savedRange) this.setDateRange(savedRange);
-                else if (!this.selectedRange || this.selectedRange === "") this.setDateRange("Today");
-            }
+            const savedRange = localStorage.getItem("selectedRange");
+            if (savedRange) this.setDateRange(savedRange);
+            else if (!this.selectedRange || this.selectedRange === "") this.setDateRange("Today");
             this.setDateValues();
         },
         isToday (date) {
