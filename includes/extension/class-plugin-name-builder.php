@@ -188,7 +188,7 @@ class Press_Kit_Builder {
         <?php $languages = Plugin_Name_Utilities::get_user_langs(); 
         foreach($languages as $language) {
             ?>
-            <div class="flex flex-col items-start gap-3 mb-3 sm:items-center sm:flex-row last-of-type:mb-10">
+            <div class="flex flex-col items-start gap-3 mb-3 sm:items-center sm:flex-row">
                 <span class="block text-sm text-gray-500 hover:text-gray-700" style="margin: 0px;">
                     <?php echo esc_js(site_url('/presskit')) . '/' . get_user_meta($target_user_id, 'pkit_username', true) . '/' . $language; ?>
                 </span>
@@ -204,7 +204,7 @@ class Press_Kit_Builder {
         }
         
         ?>
-        
+        <div class="h-10"></div>
         <?php
     }
     
