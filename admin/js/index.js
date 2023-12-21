@@ -3848,7 +3848,7 @@ const analyticsFilter = ()=>({
             console.log(this.disableLocalStorage(), "this.disableLocalStorage()");
             console.log(localStorage.getItem("selectedRange") !== "Today");
             console.log(localStorage.getItem("changedRange") == "true");
-            if (performance.navigation.type === 1 || performance.navigation.type === 0 && this.disableLocalStorage() && localStorage.getItem("selectedRange") !== "Today" && localStorage.getItem("changedRange") == "true") {
+            if (performance.navigation.type === 1) {
                 localStorage.removeItem("selectedRange");
                 localStorage.removeItem("changedRange");
                 this.setDateRange("Today");
