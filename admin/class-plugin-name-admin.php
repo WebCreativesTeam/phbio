@@ -220,12 +220,16 @@ class Plugin_Name_Admin {
 	}
 	
 	
-	public static function role_change($user_id, $old_user_data) {
+	public static function role_change($user_id, $old_user_data, $data) {
             $old_roles = $old_user_data->roles;
-
-			sleep(10);
+			write_log('Old Roles ✅ ', $old_roles);
+			
+			sleep(1); // Adds a one-second delay
+			clean_user_cache($user_id);
 			$user_data = get_userdata($user_id);
 			$new_roles = $user_data->roles;
+			write_log('New Roles ✅ ', $new_roles);
+			write_log('Data ✅ ', $data);
 		
         
 		if (in_array('um_pro-member', $old_roles ) && in_array('um_free-member', $new_roles )) {
