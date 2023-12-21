@@ -228,6 +228,8 @@ class Plugin_Name_Admin {
 	public static function role_change($user_id, $old_user_data) {
 
 			write_log('Old Roles ', $old_user_data->roles);
+			sleep(1);
+			clean_user_cache($user_id);
 			write_log('Current User ', get_userdata($user_id));
         
 		if (in_array('um_pro-member', $old_user_data->roles) && $userdata->roles == 'um_free-member') {
