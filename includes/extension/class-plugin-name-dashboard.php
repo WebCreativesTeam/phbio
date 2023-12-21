@@ -309,7 +309,7 @@ class Press_Kit_Dashboard {
                         $date_from = $_POST['date_from'];
                         $date_to = $_POST['date_to'];
                 
-                        echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Users (Clicks)</div>";
+                        echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Users (Views)</div>";
                         echo "<div class='table-wrapper'>";     
                             echo do_shortcode('[wpdatatable id=32 var2=' . $date_from . ' var3=' . $date_to . ']');
                         echo "</div>";
@@ -343,7 +343,7 @@ class Press_Kit_Dashboard {
                     } 
                 } else {
     
-                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Users (Clicks)</div>";
+                    echo "<div class='analytics-label input-label'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 512 512' class='heading-icon' fill='currentColor'><path d='M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-352a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'></path></svg> Top Performing Users (Views)</div>";
                     echo "<div class='table-wrapper'>";        
                         echo do_shortcode('[wpdatatable id=32 var2=' . date("Y-m-d") . ' var3=' . date("Y-m-d") . ']'); 
                     echo "</div>";
