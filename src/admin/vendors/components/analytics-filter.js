@@ -33,13 +33,6 @@ export const analyticsFilter = () => ({
   blankdays: [],
 
   // Function to check if the current page has one of the specific query parameters
-  disableLocalStorage() {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const pageParam = urlSearchParams.get("page");
-    return (
-      pageParam === "presskit-analytics" || pageParam === "linkin-bio-analytics"
-    );
-  },
 
   setDateRange(range, submitForm = false, onClick = false) {
     // Check if the current range is 'Custom' and the new range is not 'Custom'
