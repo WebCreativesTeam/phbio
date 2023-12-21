@@ -3787,6 +3787,8 @@ const analyticsFilter = ()=>({
             this.selectedRange = range;
             // Save the selected range in local storage
             localStorage.setItem("selectedRange", this.selectedRange);
+            // Date range changed by clicking the button
+            localStorage.setItem("changedRange", true);
             const today = new Date();
             switch(range){
                 case "Today":
@@ -3841,8 +3843,9 @@ const analyticsFilter = ()=>({
             return year + "-" + ("0" + month).slice(-2) + "-" + ("0" + date).slice(-2);
         },
         init () {
-            if (performance.navigation.type === 1 || performance.navigation.type === 0 && this.disableLocalStorage() && localStorage.getItem("selectedRange") !== "Today") {
+            if (performance.navigation.type === 1 || performance.navigation.type === 0 && this.disableLocalStorage() && localStorage.getItem("selectedRange") !== "Today" && localStorage.getItem("changedRange") == true) {
                 localStorage.removeItem("selectedRange");
+                localStorage.removeItem("changedRange");
                 this.setDateRange("Today");
             }
             this.selecting = this.endToShow === "to" && this.dateTo || this.endToShow === "from" && this.dateFrom;

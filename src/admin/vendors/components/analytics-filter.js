@@ -55,6 +55,9 @@ export const analyticsFilter = () => ({
     // Save the selected range in local storage
     localStorage.setItem("selectedRange", this.selectedRange);
 
+    // Date range changed by clicking the button
+    localStorage.setItem("changedRange", true);
+
     const today = new Date();
     switch (range) {
       case "Today":
@@ -137,9 +140,12 @@ export const analyticsFilter = () => ({
       performance.navigation.type === 1 ||
       (performance.navigation.type === 0 &&
         this.disableLocalStorage() &&
-        localStorage.getItem("selectedRange") !== "Today")
+        localStorage.getItem("selectedRange") !== "Today" &&
+        localStorage.getItem("changedRange") == true)
     ) {
       localStorage.removeItem("selectedRange");
+      localStorage.removeItem("changedRange");
+
       this.setDateRange("Today");
     }
 
