@@ -56,7 +56,9 @@ export const analyticsFilter = () => ({
     localStorage.setItem("selectedRange", this.selectedRange);
 
     // Date range changed by clicking the button
-    localStorage.setItem("changedRange", true);
+    if (this.selectedRange !== "Today") {
+      localStorage.setItem("changedRange", true);
+    }
 
     const today = new Date();
     switch (range) {
