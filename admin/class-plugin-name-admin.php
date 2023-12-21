@@ -223,7 +223,7 @@ class Plugin_Name_Admin {
 		$old_roles = $user->roles;
 		write_log('User ID ✅ ', $user_id);
 		write_log('Old Roles ✅ ', $old_roles);
-
+        clean_user_cache($user_id);
 		$user_data = get_userdata($user_id);
 		write_log('User ✅ ', $user_data);
 	}
