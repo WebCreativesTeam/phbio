@@ -219,22 +219,22 @@ class Plugin_Name_Admin {
 		
 	}
 	
-	public static function role_change($user_id, $old_user_data, $userdata) {
-		write_log('Current Roles', get_userdata($user_id)->roles);
-		write_log('Old Roles', $old_user_data->roles);
-		write_log('Userdata', $userdata);
+	// public static function role_change($user_id, $old_user_data, $userdata) {
+	// 	write_log('Current Roles', get_userdata($user_id)->roles);
+	// 	write_log('Old Roles', $old_user_data->roles);
+	// 	write_log('Userdata', $userdata);
 		
-	}
-	public static function role_change_cb($user_id, $old_roles, $role) {
+	// }
+	public static function role_change($user_id, $old_roles, $userdata) {
 
 		
 
-		if (in_array('um_pro-member', $old_roles) && $role === 'um_free-member') {
+		if (in_array('um_pro-member', $old_roles) && $userdata->role == 'um_free-member') {
 
-			// $default = get_user_meta(1, 'default_template', true);	
-			// $default_pkit = get_user_meta(1, 'default_pkit_template', true);
-			// update_usermeta( $user_id, 'selected_template', 9522 );
-			// update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
+			$default = get_user_meta(1, 'default_template', true);	
+			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
+			update_usermeta( $user_id, 'selected_template', $default );
+			update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
 			
 			
 			$pkit_langs = get_user_meta($user_id, 'pkit_lang', true);
@@ -248,7 +248,7 @@ class Plugin_Name_Admin {
 		}
 
 		// Roles if user role is upgraded back
-		if (in_array('um_free-member', $old_roles) && $role === 'um_pro-member') {
+		if (in_array('um_free-member', $old_roles) && $userdata->role == 'um_pro-member') {
 
 			$backup_value = get_user_meta($user_id, '_backup_meta_field', true);
 			if ($backup_value) {
