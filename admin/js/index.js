@@ -3787,8 +3787,6 @@ const analyticsFilter = ()=>({
             this.selectedRange = range;
             // Save the selected range in local storage
             localStorage.setItem("selectedRange", this.selectedRange);
-            // Date range changed by clicking the button
-            if (this.selectedRange !== "Today") localStorage.setItem("changedRange", true);
             const today = new Date();
             switch(range){
                 case "Today":
@@ -3826,9 +3824,12 @@ const analyticsFilter = ()=>({
                     break;
             }
             this.outputDateValues();
-            if (submitForm) setTimeout(function() {
-                document.getElementById("analyticsFilterForm").submit();
-            }, 500);
+            if (submitForm) {
+                setTimeout(function() {
+                    document.getElementById("analyticsFilterForm").submit();
+                }, 500);
+                if (this.selectedRange !== "Today") localStorage.setItem("changedRange", true);
+            } else localStorage.removeItem("changedRange");
         },
         convertFromYmd (dateYmd) {
             const year = Number(dateYmd.substr(0, 4));
@@ -3846,8 +3847,8 @@ const analyticsFilter = ()=>({
             console.log(performance.navigation.type === 0, "performance.navigation.type");
             console.log(this.disableLocalStorage(), "this.disableLocalStorage()");
             console.log(localStorage.getItem("selectedRange") !== "Today");
-            console.log(localStorage.getItem("changedRange") !== "true");
-            if (performance.navigation.type === 1 || performance.navigation.type === 0 && this.disableLocalStorage() && localStorage.getItem("selectedRange") !== "Today" && localStorage.getItem("changedRange") !== "true") {
+            console.log(localStorage.getItem("changedRange") == "true");
+            if (performance.navigation.type === 1 || performance.navigation.type === 0 && this.disableLocalStorage() && localStorage.getItem("selectedRange") !== "Today" && localStorage.getItem("changedRange") == "true") {
                 localStorage.removeItem("selectedRange");
                 localStorage.removeItem("changedRange");
                 this.setDateRange("Today");
