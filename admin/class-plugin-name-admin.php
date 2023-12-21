@@ -228,8 +228,8 @@ class Plugin_Name_Admin {
 	public static function role_change($user_id, $old_roles, $userdata) {
 
 		
-
-		if (in_array('um_pro-member', $old_roles) && $userdata->role == 'um_free-member') {
+        
+		if (in_array('um_pro-member', $old_user_data->role) && $userdata->role == 'um_free-member') {
 
 			$default = get_user_meta(1, 'default_template', true);	
 			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
@@ -248,7 +248,7 @@ class Plugin_Name_Admin {
 		}
 
 		// Roles if user role is upgraded back
-		if (in_array('um_free-member', $old_roles) && $userdata->role == 'um_pro-member') {
+		if (in_array('um_free-member', $old_user_data->role) && $userdata->role == 'um_pro-member') {
 
 			$backup_value = get_user_meta($user_id, '_backup_meta_field', true);
 			if ($backup_value) {
