@@ -133,7 +133,7 @@ export const analyticsFilter = () => ({
   },
 
   init() {
-    if (performance.navigation.type === 1) {
+    if (performance.navigation.type === 1 && this.disableLocalStorage()) {
       localStorage.removeItem("selectedRange");
       this.setDateRange("Today");
     }
@@ -175,11 +175,7 @@ export const analyticsFilter = () => ({
     const savedRange = localStorage.getItem("selectedRange");
     if (savedRange) {
       this.setDateRange(savedRange);
-    } else if (
-      !this.selectedRange ||
-      this.selectedRange === "" ||
-      !this.disableLocalStorage()
-    ) {
+    } else if (!this.selectedRange || this.selectedRange === "") {
       this.setDateRange("Today");
     }
 

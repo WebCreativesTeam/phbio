@@ -3841,7 +3841,7 @@ const analyticsFilter = ()=>({
             return year + "-" + ("0" + month).slice(-2) + "-" + ("0" + date).slice(-2);
         },
         init () {
-            if (performance.navigation.type === 1) {
+            if (performance.navigation.type === 1 && this.disableLocalStorage()) {
                 localStorage.removeItem("selectedRange");
                 this.setDateRange("Today");
             }
@@ -3866,7 +3866,7 @@ const analyticsFilter = ()=>({
             }
             const savedRange = localStorage.getItem("selectedRange");
             if (savedRange) this.setDateRange(savedRange);
-            else if (!this.selectedRange || this.selectedRange === "" || !this.disableLocalStorage()) this.setDateRange("Today");
+            else if (!this.selectedRange || this.selectedRange === "") this.setDateRange("Today");
             this.setDateValues();
         },
         isToday (date) {
