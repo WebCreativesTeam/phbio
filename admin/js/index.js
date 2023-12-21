@@ -3775,15 +3775,18 @@ const analyticsFilter = ()=>({
         year: "",
         no_of_days: [],
         blankdays: [],
+        loadedOnclick: false,
         // Function to check if the current page has one of the specific query parameters
         disableLocalStorage () {
             const urlSearchParams = new URLSearchParams(window.location.search);
             const pageParam = urlSearchParams.get("page");
             return pageParam === "presskit-analytics" || pageParam === "linkin-bio-analytics";
         },
-        setDateRange (range, submitForm = false) {
+        setDateRange (range, submitForm = false, onClick = false) {
             // Check if the current range is 'Custom' and the new range is not 'Custom'
             if (this.selectedRange === "custom" && range !== "custom" && this.endToShow !== "") return; // Exit the function without changing the range or doing anything else
+            if (onClick) this.loadedOnclick = true;
+            else this.loadedOnclick = false;
             this.selectedRange = range;
             console.log(range, "range");
             console.log(this.selectedRange, "this.selectedRange");
@@ -3850,6 +3853,7 @@ const analyticsFilter = ()=>({
             console.log(this.disableLocalStorage(), "this.disableLocalStorage()");
             console.log(localStorage.getItem("selectedRange") !== "Today");
             console.log(localStorage.getItem("changedRange") == "true");
+            console.log(this.loadedOnclick);
             if (performance.navigation.type === 1) {
                 localStorage.removeItem("selectedRange");
                 localStorage.removeItem("changedRange");
