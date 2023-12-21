@@ -219,51 +219,56 @@ class Plugin_Name_Admin {
 		
 	}
 	
+	public function role_change( $new_role, $user_id, $user) {
+		write_log('New Roles ✅ ', $new_role);
+		write_log('User ID ✅ ', $user_id);
+		write_log('User ✅ ', $user);
+		return $new_role;
+	}
 	
-	public function role_change($user_id, $old_user_data, $data) {
-            $old_roles = $old_user_data->roles;
-			write_log('Old Roles ✅ ', $old_roles);
-			sleep(5);
-			clean_user_cache($user_id);
-			// $user_data = get_userdata($user_id);
-			$new_roles = UM()->roles()->get_um_user_role( $user_id );
-			write_log('New Roles ✅ ', $new_roles);
-			write_log('Data ✅ ', $data);
+	// public function role_change($user_id, $old_user_data, $data) {
+    //         $old_roles = $old_user_data->roles;
+	// 		write_log('Old Roles ✅ ', $old_roles);
+	// 		sleep(5);
+	// 		clean_user_cache($user_id);
+	// 		$user_data = get_userdata($user_id);
+	// 		write_log('New Roles ✅ ', $new_roles);
+	// 		write_log('Data ✅ ', $data);
 		
         
-		// if (in_array('um_pro-member', $old_roles ) && in_array('um_free-member', $new_roles )) {
-		// 	write_log('User Changed from Pro to Free', $user_data);
+	// 	// if (in_array('um_pro-member', $old_roles ) && in_array('um_free-member', $new_roles )) {
+	// 	// 	write_log('User Changed from Pro to Free', $user_data);
             
-		// 	$default = get_user_meta(1, 'default_template', true);	
-		// 	$default_pkit = get_user_meta(1, 'default_pkit_template', true);
-		// 	update_usermeta( $user_id, 'selected_template', $default );
-		// 	update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
+	// 	// 	$default = get_user_meta(1, 'default_template', true);	
+	// 	// 	$default_pkit = get_user_meta(1, 'default_pkit_template', true);
+	// 	// 	update_usermeta( $user_id, 'selected_template', $default );
+	// 	// 	update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
 			
 			
-		// 	$pkit_langs = get_user_meta($user_id, 'pkit_lang', true);
-		// 	$parts = explode(",", $pkit_langs);
-		// 	$firstLang = $pkit_langs[0];
-		// 	update_user_meta( $user_id, 'pkit_lang', $firstLang );
-		// 	// Backup links list
-		// 	$meta_value = get_user_meta($user_id, 'links_list', true);
-		// 	update_user_meta($user_id, '_backup_meta_field', $meta_value);
-		// 	update_user_meta($user_id, '_backup_date', current_time('mysql'));
-		// }
+	// 	// 	$pkit_langs = get_user_meta($user_id, 'pkit_lang', true);
+	// 	// 	$parts = explode(",", $pkit_langs);
+	// 	// 	$firstLang = $pkit_langs[0];
+	// 	// 	update_user_meta( $user_id, 'pkit_lang', $firstLang );
+	// 	// 	// Backup links list
+	// 	// 	$meta_value = get_user_meta($user_id, 'links_list', true);
+	// 	// 	update_user_meta($user_id, '_backup_meta_field', $meta_value);
+	// 	// 	update_user_meta($user_id, '_backup_date', current_time('mysql'));
+	// 	// }
 
-		// // Roles if user role is upgraded back
-		// if (in_array('um_pro-member', $new_roles ) && in_array('um_free-member', $old_roles )) {
-		// 	write_log('User Changed from Free to Pro', $user_data);
+	// 	// // Roles if user role is upgraded back
+	// 	// if (in_array('um_pro-member', $new_roles ) && in_array('um_free-member', $old_roles )) {
+	// 	// 	write_log('User Changed from Free to Pro', $user_data);
 
-		// 	$backup_value = get_user_meta($user_id, '_backup_meta_field', true);
-		// 	if ($backup_value) {
-		// 		update_user_meta($user_id, 'links_list', $backup_value);
-		// 		delete_user_meta($user_id, '_backup_meta_field');
-		// 		delete_user_meta($user_id, '_backup_date');
-		// 	}
-		// }
+	// 	// 	$backup_value = get_user_meta($user_id, '_backup_meta_field', true);
+	// 	// 	if ($backup_value) {
+	// 	// 		update_user_meta($user_id, 'links_list', $backup_value);
+	// 	// 		delete_user_meta($user_id, '_backup_meta_field');
+	// 	// 		delete_user_meta($user_id, '_backup_date');
+	// 	// 	}
+	// 	// }
 
 		
-	}
+	// }
 
 	public static function user_column_button($columns) {
 		$columns['edit_btn'] = 'Edit Profile';
