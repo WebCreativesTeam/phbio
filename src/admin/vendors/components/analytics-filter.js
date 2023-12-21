@@ -52,6 +52,8 @@ export const analyticsFilter = () => ({
     }
     this.selectedRange = range;
 
+    console.log(range, "range");
+    console.log(this.selectedRange, "this.selectedRange");
     // Save the selected range in local storage
     localStorage.setItem("selectedRange", this.selectedRange);
 
@@ -118,8 +120,6 @@ export const analyticsFilter = () => ({
       if (this.selectedRange !== "Today") {
         localStorage.setItem("changedRange", true);
       }
-    } else {
-      localStorage.removeItem("changedRange");
     }
   },
   convertFromYmd(dateYmd) {

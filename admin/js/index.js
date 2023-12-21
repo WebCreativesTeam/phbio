@@ -3785,6 +3785,8 @@ const analyticsFilter = ()=>({
             // Check if the current range is 'Custom' and the new range is not 'Custom'
             if (this.selectedRange === "custom" && range !== "custom" && this.endToShow !== "") return; // Exit the function without changing the range or doing anything else
             this.selectedRange = range;
+            console.log(range, "range");
+            console.log(this.selectedRange, "this.selectedRange");
             // Save the selected range in local storage
             localStorage.setItem("selectedRange", this.selectedRange);
             const today = new Date();
@@ -3829,7 +3831,7 @@ const analyticsFilter = ()=>({
                     document.getElementById("analyticsFilterForm").submit();
                 }, 500);
                 if (this.selectedRange !== "Today") localStorage.setItem("changedRange", true);
-            } else localStorage.removeItem("changedRange");
+            }
         },
         convertFromYmd (dateYmd) {
             const year = Number(dateYmd.substr(0, 4));
