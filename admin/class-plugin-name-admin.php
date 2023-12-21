@@ -227,9 +227,14 @@ class Plugin_Name_Admin {
 
 			// $default = get_user_meta(1, 'default_template', true);	
 			// $default_pkit = get_user_meta(1, 'default_pkit_template', true);
-			update_usermeta( $user_id, 'selected_template', 9522 );
+			// update_usermeta( $user_id, 'selected_template', 9522 );
 			// update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
-
+			
+			
+			$pkit_langs = get_user_meta($user_id, 'pkit_lang', true);
+			$parts = explode(",", $pkit_langs);
+			$firstLang = $pkit_langs[0];
+			update_user_meta( $user_id, 'pkit_lang', $firstLang );
 			// Backup links list
 			$meta_value = get_user_meta($user_id, 'links_list', true);
 			update_user_meta($user_id, '_backup_meta_field', $meta_value);
