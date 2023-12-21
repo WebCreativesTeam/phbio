@@ -138,6 +138,10 @@ export const analyticsFilter = () => ({
   },
 
   init() {
+    console.log(performance.navigation.type, "performance.navigation.type");
+    console.log(this.disableLocalStorage(), "this.disableLocalStorage()");
+    console.log(localStorage.getItem("selectedRange"));
+    console.log(localStorage.getItem("changedRange"));
     if (
       performance.navigation.type === 1 ||
       (performance.navigation.type === 0 &&
