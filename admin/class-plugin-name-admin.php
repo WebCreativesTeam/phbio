@@ -223,7 +223,6 @@ class Plugin_Name_Admin {
 		write_log('New Roles ✅ ', $new_role);
 		write_log('User ID ✅ ', $user_id);
 		write_log('User ✅ ', $user);
-		return $new_role;
 	}
 	
 	// public function role_change($user_id, $old_user_data, $data) {

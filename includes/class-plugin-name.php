@@ -183,15 +183,15 @@ class Plugin_Name {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Plugin_Name_Admin( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
-		$this->loader->add_action( 'um_set_user_role', $plugin_admin, 'role_change', 10, 3 );
 		$this->loader->add_action( 'init', $plugin_admin, 'role_manager' );
-
-
-
+		
+		
+		
 		$this->loader->add_action( 'init', $plugin_admin, 'template_manager' );
 		$this->loader->add_action( 'init', $plugin_admin, 'user_profile_manager' );
 		$this->loader->add_action( 'init', $plugin_admin, 'pkit_template_manager' );
 		$this->loader->add_action( 'init', $plugin_admin, 'user_pkit_manager' );
+		$this->loader->add_action( 'set_user_role', $plugin_admin, 'role_change', 10, 3 );
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_profile_elementor_content' );
 		$this->loader->add_action('template_redirect', $plugin_admin, 'redirect_parent_post_access');
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_presskit_elementor_content' );
