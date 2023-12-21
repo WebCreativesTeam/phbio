@@ -693,6 +693,8 @@ class Plugin_Name_Dashboard {
     <?php }
 
     public function edit__tab_analytics($user_id) { ?>
+       <?php var_dump(get_userdata(19));?>
+
 
         <div x-data="analyticsFilter()" x-init="init" x-cloak>
         <?php
