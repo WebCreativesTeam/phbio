@@ -228,7 +228,6 @@ class Plugin_Name_Admin {
 	public static function role_change($user_id, $old_user_data) {
 
 			write_log('Old Roles ✅', $old_user_data->roles);
-			sleep(1);
 			clean_user_cache($user_id);
 			write_log('Current User ✅', get_userdata($user_id));
         
