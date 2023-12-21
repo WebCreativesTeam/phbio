@@ -50,6 +50,7 @@ export const analyticsFilter = () => ({
     ) {
       return; // Exit the function without changing the range or doing anything else
     }
+    console.log(range, "🍕");
     this.selectedRange = range;
 
     // Save the selected range in local storage
@@ -174,6 +175,7 @@ export const analyticsFilter = () => ({
 
     const savedRange = localStorage.getItem("selectedRange");
     if (savedRange) {
+      console.log(savedRange);
       this.setDateRange(savedRange);
     } else if (!this.selectedRange || this.selectedRange === "") {
       this.setDateRange("Today");

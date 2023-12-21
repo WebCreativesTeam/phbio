@@ -3784,6 +3784,7 @@ const analyticsFilter = ()=>({
         setDateRange (range, submitForm = false) {
             // Check if the current range is 'Custom' and the new range is not 'Custom'
             if (this.selectedRange === "custom" && range !== "custom" && this.endToShow !== "") return; // Exit the function without changing the range or doing anything else
+            console.log(range, "\uD83C\uDF55");
             this.selectedRange = range;
             // Save the selected range in local storage
             localStorage.setItem("selectedRange", this.selectedRange);
@@ -3865,8 +3866,10 @@ const analyticsFilter = ()=>({
                 this.getNoOfDays();
             }
             const savedRange = localStorage.getItem("selectedRange");
-            if (savedRange) this.setDateRange(savedRange);
-            else if (!this.selectedRange || this.selectedRange === "") this.setDateRange("Today");
+            if (savedRange) {
+                console.log(savedRange);
+                this.setDateRange(savedRange);
+            } else if (!this.selectedRange || this.selectedRange === "") this.setDateRange("Today");
             this.setDateValues();
         },
         isToday (date) {
