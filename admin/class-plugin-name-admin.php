@@ -219,7 +219,7 @@ class Plugin_Name_Admin {
 		
 	}
 	
-	public static function role_change_cb($user_id, $role, $old_roles) {
+	public static function role_change_cb($user_id, $old_roles, $role) {
 
 		
 
