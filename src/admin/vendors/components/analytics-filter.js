@@ -31,7 +31,6 @@ export const analyticsFilter = () => ({
   year: "",
   no_of_days: [],
   blankdays: [],
-  loadedOnclick: false,
 
   // Function to check if the current page has one of the specific query parameters
   disableLocalStorage() {
@@ -52,16 +51,8 @@ export const analyticsFilter = () => ({
       return; // Exit the function without changing the range or doing anything else
     }
 
-    if (onClick) {
-      this.loadedOnclick = true;
-    } else {
-      this.loadedOnclick = false;
-    }
-
     this.selectedRange = range;
 
-    console.log(range, "range");
-    console.log(this.selectedRange, "this.selectedRange");
     // Save the selected range in local storage
     localStorage.setItem("selectedRange", this.selectedRange);
 
@@ -125,9 +116,6 @@ export const analyticsFilter = () => ({
       setTimeout(function () {
         document.getElementById("analyticsFilterForm").submit();
       }, 500);
-      if (this.selectedRange !== "Today") {
-        localStorage.setItem("changedRange", true);
-      }
     }
   },
   convertFromYmd(dateYmd) {
@@ -146,24 +134,8 @@ export const analyticsFilter = () => ({
   },
 
   init() {
-    console.log(
-      performance.navigation.type === 0,
-      "performance.navigation.type"
-    );
-    console.log(this.disableLocalStorage(), "this.disableLocalStorage()");
-    console.log(localStorage.getItem("selectedRange") !== "Today");
-    console.log(localStorage.getItem("changedRange") == "true");
-    console.log(this.loadedOnclick);
-    if (
-      performance.navigation.type === 1
-      // ||
-      // (performance.navigation.type === 0 &&
-      //   this.disableLocalStorage() &&
-      //   localStorage.getItem("selectedRange") !== "Today" &&
-      //   localStorage.getItem("changedRange") == "true")
-    ) {
+    if (performance.navigation.type === 1) {
       localStorage.removeItem("selectedRange");
-      localStorage.removeItem("changedRange");
 
       this.setDateRange("Today");
     }
