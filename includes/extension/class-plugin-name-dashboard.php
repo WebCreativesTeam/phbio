@@ -1006,7 +1006,10 @@ public function component__range_picker() { ?>
 
                     echo "<div class='flex justify-center chart-wraper'>";     
                     ?>   
-                    <?php $location_img = plugin_dir_url( __FILE__ ) . 'img/location.jpg'; ?>
+                    <?php 
+                    $location_img = dirname(plugin_dir_url( __FILE__ ), 1) . '/img/location.jpg'; 
+                    ?>
+
                     <div class="bg-cover bg-center w-[250px] h-[250px] md:w-[400px] md:h-[400px] max-w-full" style="background-image: url('<?php echo $location_img; ?>');">
                             <div class="text-2xl md:text-4xl flex justify-center items-center w-[250px] h-[250px] md:w-[400px] md:h-[400px] bg-white bg-opacity-80"> Sample Data</div>
                     </div>
