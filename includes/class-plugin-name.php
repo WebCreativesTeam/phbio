@@ -183,7 +183,7 @@ class Plugin_Name {
 	private function define_admin_hooks() {
 
 		$plugin_admin = new Plugin_Name_Admin( $this->get_plugin_name(), $this->get_plugin_prefix(), $this->get_version() );
-		$this->loader->add_action( 'profile_update', $plugin_admin, 'role_change', 10, 3 );
+		$this->loader->add_action( 'um_member_role_upgrade', $plugin_admin, 'role_change', 10, 2 );
 		$this->loader->add_action( 'init', $plugin_admin, 'role_manager' );
 
 
