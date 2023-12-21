@@ -877,7 +877,7 @@ public function component__range_picker() { ?>
                     // Hidden Tables
                     echo "<div class='hidden'>";
                     echo "<div class='table-wrapper'>";     
-                    echo do_shortcode('[wpdatatable id=25 var1=' . $child_post_ids[0] . ' var2=' . $child_post_ids[1] . ' var3=' . $date_from . ' var4=' . $date_to . ']');
+                    echo do_shortcode('[wpdatatable id=25 var1=' . $child_post_ids[0] . ' var2=' . NULL . ' var3=' . $date_from . ' var4=' . $date_to . ']');
                     echo "</div>";
                     echo Plugin_Name_Utilities::is_empty_table(25);
                     
@@ -932,7 +932,7 @@ public function component__range_picker() { ?>
                 echo "<div class='hidden'>";
 
                 echo "<div class='table-wrapper'>";     
-                echo do_shortcode('[wpdatatable id=25 var1=' . $child_post_ids[0] . ' var2=' . $child_post_ids[1] . ' var3=' . date("Y-m-d") . ' var4=' . date("Y-m-d") . ']');
+                echo do_shortcode('[wpdatatable id=25 var1=' . $child_post_ids[0] . ' var2=' . NULL . ' var3=' . date("Y-m-d") . ' var4=' . date("Y-m-d") . ']');
                 echo "</div>";
                 echo Plugin_Name_Utilities::is_empty_table(25);
 
