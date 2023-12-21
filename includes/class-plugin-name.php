@@ -191,7 +191,7 @@ class Plugin_Name {
 		$this->loader->add_action( 'init', $plugin_admin, 'user_profile_manager' );
 		$this->loader->add_action( 'init', $plugin_admin, 'pkit_template_manager' );
 		$this->loader->add_action( 'init', $plugin_admin, 'user_pkit_manager' );
-		$this->loader->add_action( 'profile_update', $plugin_admin, 'role_change', 10, 3 );
+		$this->loader->add_action( 'profile_update', $plugin_admin, 'role_change', 10, 2 );
 
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_profile_elementor_content' );
 		$this->loader->add_action('template_redirect', $plugin_admin, 'redirect_parent_post_access');
