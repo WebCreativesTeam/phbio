@@ -32,6 +32,15 @@ export const analyticsFilter = () => ({
   no_of_days: [],
   blankdays: [],
 
+  // Function to check if the current page has one of the specific query parameters
+  disableLocalStorage() {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const pageParam = urlSearchParams.get("page");
+    return (
+      pageParam === "presskit-analytics" || pageParam === "linkin-bio-analytics"
+    );
+  },
+
   setDateRange(range, submitForm = false) {
     // Check if the current range is 'Custom' and the new range is not 'Custom'
     if (
@@ -44,7 +53,9 @@ export const analyticsFilter = () => ({
     this.selectedRange = range;
 
     // Save the selected range in local storage
-    localStorage.setItem("selectedRange", this.selectedRange);
+    if (!this.disableLocalStorage()) {
+      localStorage.setItem("selectedRange", this.selectedRange);
+    }
 
     const today = new Date();
     switch (range) {
@@ -162,15 +173,14 @@ export const analyticsFilter = () => ({
       this.year = currentYear;
       this.getNoOfDays();
     }
-    // Retrieve the selected range from local storage
-    const savedRange = localStorage.getItem("selectedRange");
-    // If there's a saved range, set it
 
-    if (savedRange) {
-      this.setDateRange(savedRange);
-    } else if (!this.selectedRange || this.selectedRange === "") {
-      // If there's no saved range in local storage, default to 'Today'
-      this.setDateRange("Today");
+    if (!this.disableLocalStorage()) {
+      const savedRange = localStorage.getItem("selectedRange");
+      if (savedRange) {
+        this.setDateRange(savedRange);
+      } else if (!this.selectedRange || this.selectedRange === "") {
+        this.setDateRange("Today");
+      }
     }
 
     this.setDateValues();
@@ -260,7 +270,7 @@ export const analyticsFilter = () => ({
     }
     this.setDateValues();
 
-    if (!temp) {
+    if (!temp && !this.disableLocalStorage) {
       if (this.selecting) {
         this.outputDateValues();
         this.closeDatepicker();
