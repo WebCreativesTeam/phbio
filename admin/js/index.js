@@ -3841,9 +3841,7 @@ const analyticsFilter = ()=>({
             return year + "-" + ("0" + month).slice(-2) + "-" + ("0" + date).slice(-2);
         },
         init () {
-            console.log(performance.navigation.type, "performance.navigation.type");
-            console.log(this.disableLocalStorage(), "Storage");
-            if (performance.navigation.type === 1) {
+            if (performance.navigation.type === 1 || performance.navigation.type === 0 && this.disableLocalStorage() && localStorage.getItem("selectedRange") !== "Today") {
                 localStorage.removeItem("selectedRange");
                 this.setDateRange("Today");
             }
