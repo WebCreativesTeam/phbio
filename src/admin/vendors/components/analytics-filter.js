@@ -135,7 +135,7 @@ export const analyticsFilter = () => ({
   init() {
     if (
       performance.navigation.type === 1 ||
-      (performance.navigation.type === 1 && this.disableLocalStorage())
+      (performance.navigation.type === 0 && this.disableLocalStorage())
     ) {
       localStorage.removeItem("selectedRange");
       this.setDateRange("Today");
