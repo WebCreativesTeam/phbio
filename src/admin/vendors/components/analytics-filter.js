@@ -133,11 +133,7 @@ export const analyticsFilter = () => ({
   },
 
   init() {
-    if (
-      performance.navigation.type === 0 ||
-      performance.navigation.type === 1 ||
-      performance.navigation.type === 2
-    ) {
+    if (performance.navigation.type === 1) {
       localStorage.removeItem("selectedRange");
       this.setDateRange("Today");
     }
