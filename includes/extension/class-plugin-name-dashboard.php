@@ -821,10 +821,27 @@ public function component__range_picker() { ?>
           
             <?php
             $title = get_user_meta($user_id, 'pkit_username', true);
-            echo $title;
+            // echo $title;
             $post = get_page_by_path( $title, OBJECT, 'hb-user-pkit' );
-            echo $post->ID;
+            // echo $post->ID;
 
+            $child_post_ids = [];
+            if ($post) {
+                $child_posts_args = array(
+                    'post_type'   => 'hb-user-pkit', // or your specific custom post type
+                    'post_status' => 'publish',
+                    'numberposts' => -1,
+                );
+            
+                $child_posts = get_children(array('post_parent' => $post->ID) + $child_posts_args);
+            
+                // Extracting the IDs
+                $child_post_ids = array_keys($child_posts);
+            
+                
+            }
+            
+            var_dump($child_post_ids);
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 if (isset($_POST['date_from']) && isset($_POST['date_to'])) {
                     $date_from = $_POST['date_from'];
