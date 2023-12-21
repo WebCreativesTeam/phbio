@@ -53,9 +53,7 @@ export const analyticsFilter = () => ({
     this.selectedRange = range;
 
     // Save the selected range in local storage
-    if (!this.disableLocalStorage()) {
-      localStorage.setItem("selectedRange", this.selectedRange);
-    }
+    localStorage.setItem("selectedRange", this.selectedRange);
 
     const today = new Date();
     switch (range) {
@@ -275,7 +273,7 @@ export const analyticsFilter = () => ({
         this.outputDateValues();
         this.closeDatepicker();
         // If the range is custom, save the dates in local storage
-        if (this.selectedRange === "custom" && !this.disableLocalStorage) {
+        if (this.selectedRange === "custom") {
           localStorage.setItem("customDateFrom", this.dateFrom.toISOString());
           localStorage.setItem("customDateTo", this.dateTo.toISOString());
         }
