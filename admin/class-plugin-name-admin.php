@@ -220,8 +220,9 @@ class Plugin_Name_Admin {
 	}
 	
 	public static function role_change($user_id, $old_user_data) {
-		write_log('User ', get_userdata($user_id));
-		write_log('Old Data', $old_user_data);
+		write_log('Current Roles', get_userdata($user_id)->roles);
+		write_log('Old Roles', $old_user_data->roles);
+		
 	}
 	public static function role_change_cb($user_id, $old_roles, $role) {
 
