@@ -821,6 +821,7 @@ public function component__range_picker() { ?>
           
             <?php
             $title = get_user_meta($user_id, 'username', true);
+            echo $title;
             $post = get_page_by_path( $title, OBJECT, 'hb-user-profile' );
             echo $post->ID;
 
