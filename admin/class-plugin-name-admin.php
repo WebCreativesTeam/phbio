@@ -234,6 +234,8 @@ class Plugin_Name_Admin {
 			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
 			write_log('Default Pkit', $default_pkit);
 			update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
+			$selectedPkit = get_user_meta( $user_id, 'selected_pkit_template', true );
+			write_log('Seelected Pkit', $selectedPkit);
 			
 			// One language for pkit
 			$pkit_langs = get_user_meta($user_id, 'pkit_lang', true);
