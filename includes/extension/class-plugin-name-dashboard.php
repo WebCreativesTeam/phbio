@@ -946,10 +946,14 @@ public function component__range_picker() { ?>
 
         <?php
         $forms = Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); 
+        ?>
+        <div class="my-10">
+
+        <?php
         foreach($forms as $index => $form) {
             if (count($forms) > 1) {
                 ?>
-                <div class="my-10" x-show="activeLang === '<?php echo $index; ?>'">
+                <div x-show="activeLang === '<?php echo $index; ?>'">
                     <?php echo do_shortcode('[advanced_form form="' . $form . '" user="current"]'); ?>
 
                 </div>
@@ -958,6 +962,9 @@ public function component__range_picker() { ?>
                 echo do_shortcode('[advanced_form form="' . $form . '" user="current"]');
             }
         }
+        ?>
+        </div>
+        <?php
     }
 
     
