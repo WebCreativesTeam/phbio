@@ -228,14 +228,20 @@ class Plugin_Name_Admin {
 			
 			// Fallback default templates
 			$default = get_user_meta(1, 'default_template', true);	
-			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
 			update_user_meta( $user_id, 'selected_template', $default );
+
+
+			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
+			write_log('Default Pkit', $default_pkit);
 			update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
 			
 			// One language for pkit
 			$pkit_langs = get_user_meta($user_id, 'pkit_lang', true);
 			$parts = explode(",", $pkit_langs);
 			$firstLang = $pkit_langs[0];
+
+			write_log('First Lang', $firstLang);
+
 			update_user_meta( $user_id, 'pkit_lang', $firstLang );
 
 			// Backup links list
