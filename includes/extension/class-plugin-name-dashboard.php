@@ -921,15 +921,17 @@ public function component__range_picker() { ?>
     <?php }
     
     public function edit__forms_tab($user_id) { 
-                   
+        $langs = Plugin_Name_Utilities::get_user_langs(); 
+        if (count($langs) === 1) {
         ?>
+        
             <div class="text-sm">
                 Select the Press Kit you'd like to edit
             </div>
+        <?php } ?>
             <div class="tab-headers">
 
                 <?php
-                    $langs = Plugin_Name_Utilities::get_user_langs(); 
                     if (count($langs) > 1) {
                         foreach($langs as $index => $lang) {
                             ?>
