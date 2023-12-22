@@ -947,7 +947,7 @@ public function component__range_picker() { ?>
         <?php
         $forms = Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); 
         ?>
-        <div class="my-10">
+        <div class="my-10"  x-show="activeTab === 'forms' && !showTemplates && !showSettings">
 
         <?php
         foreach($forms as $index => $form) {
