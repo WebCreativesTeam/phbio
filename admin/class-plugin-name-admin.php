@@ -219,13 +219,11 @@ class Plugin_Name_Admin {
 		
 	}
 	
-	public function role_change( $user_id, $user) {
-		$old_roles = $user->roles;
+	public function role_change( $user_id, $role, $old_roles) {
+		
 		write_log('User ID ✅ ', $user_id);
 		write_log('Old Roles ✅ ', $old_roles);
-        clean_user_cache($user_id);
-		$user_data = get_userdata($user_id);
-		write_log('User ✅ ', $user_data);
+		write_log('Role ✅ ', $role);
 	}
 	
 	// public function role_change($user_id, $old_user_data, $data) {
@@ -235,7 +233,7 @@ class Plugin_Name_Admin {
 	// 		clean_user_cache($user_id);
 	// 		$user_data = get_userdata($user_id);
 	// 		write_log('New Roles ✅ ', $new_roles);
-	// 		write_log('Data ✅ ', $data);
+	// 		write_log('Data ✅ ',  $data);
 		
         
 	// 	// if (in_array('um_pro-member', $old_roles ) && in_array('um_free-member', $new_roles )) {
