@@ -928,11 +928,10 @@ public function component__range_picker() { ?>
             <div class="text-sm">
                 Select the Press Kit you'd like to edit
             </div>
-        <?php } ?>
+       
             <div class="tab-headers">
 
                 <?php
-                    if (count($langs) > 1) {
                         foreach($langs as $index => $lang) {
                             ?>
                                 <button :class="{ 'active-tab': activeLang === '<?php echo $index; ?>' }" @click="activeLang = '<?php echo $index; ?>'" class="px-8 py-3 tab-btn">
@@ -950,7 +949,7 @@ public function component__range_picker() { ?>
         foreach($forms as $index => $form) {
             if (count($forms) > 1) {
                 ?>
-                <div x-show="activeLang === '<?php echo $index; ?>'">
+                <div class="my-10" x-show="activeLang === '<?php echo $index; ?>'">
                     <?php echo do_shortcode('[advanced_form form="' . $form . '" user="current"]'); ?>
 
                 </div>

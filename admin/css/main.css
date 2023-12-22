@@ -1800,6 +1800,10 @@ body {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
 }
+.my-10 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
 .mb-0 {
     margin-bottom: 0px;
 }
@@ -2528,12 +2532,6 @@ footer a:hover {
 }
 form {
     margin: 0px;
-}
-.last\:mb-7:last-child {
-    margin-bottom: 1.75rem;
-}
-.last-of-type\:mb-10:last-of-type {
-    margin-bottom: 2.5rem;
 }
 .hover\:bg-blue-600:hover {
     --tw-bg-opacity: 1;
