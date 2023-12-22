@@ -922,7 +922,7 @@ public function component__range_picker() { ?>
     
     public function edit__forms_tab($user_id) { 
         $langs = Plugin_Name_Utilities::get_user_langs(); 
-        if (count($langs) === 1) {
+        if (count($langs) > 1) {
         ?>
         
             <div class="text-sm">
