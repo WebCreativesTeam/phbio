@@ -952,7 +952,7 @@ public function component__range_picker() { ?>
        $user_id = 19; // The user ID
 
 // Let's say $jsonDecoded is your original array
-$arrFieldKeys = get_user_meta($user_id)['fields_order'];
+$arrFieldKeys = get_user_meta($user_id)['it_fields_order'];
 
 echo '<pre>';
 print_r($arrFieldKeys);
