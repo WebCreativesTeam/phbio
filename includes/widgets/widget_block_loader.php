@@ -132,13 +132,88 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
 
     protected function render() {
         $settings = $this->get_settings_for_display();
-        $mode = $settings['mode'];
-        $test_user = $settings['test_user'];
-        $test_lang = $settings['test_lang'];
-        $block_key = $settings['block_key'];
-
-        // Implement the logic to render the shortcode based on the settings
-        echo do_shortcode("[pkit_block_loader test_user='{$test_user}' test_lang='{$test_lang}' block_key='{$block_key}' mode='{$mode}']");
+        echo $this->render_block_loader($settings);
     }
+
+    private function render_block_loader($settings) {
+        ob_start();
+
+        $current_user = wp_get_current_user();
+        $is_admin = in_array('administrator', $current_user->roles);
+
+        global $post;
+        $is_child_page = is_a($post, 'WP_Post') && $post->post_parent;
+        $is_hb_user_pkit_page = $is_child_page && get_post_type($post->post_parent) === 'hb-user-pkit';
+
+        if (!$is_admin && $is_hb_user_pkit_page) {
+            $lang = $post->post_name;
+            $parent_post_id = wp_get_post_parent_id($post->ID);
+            $test_user = get_post_meta($parent_post_id, 'associated_pkit_user', true) ?: $settings['test_user'];
+            $data = Plugin_Name_Utilities::get_pkit_data($test_user, $lang);
+
+            $filtered_data = array_filter($data, function($block) use ($settings, $lang) {
+                return $block['block_name'] === $lang . '_' . $settings['block_key'];
+            });
+
+            foreach ($filtered_data as &$block) {
+                $block['fields'] = array_filter($block['fields'], function($field) {
+                    return !empty($field[1]);
+                });
+            }
+
+            if($settings['mode'] === 'prod') {
+                $this->render_block_html($filtered_data);
+            } else {
+                echo "<pre>";
+                print_r($filtered_data);
+                echo "</pre>";
+            }
+        } elseif ($is_admin && !$is_child_page && $settings['mode'] === 'help') {
+            echo "<pre>";
+            print_r(Plugin_Name_Utilities::get_pkit_blocks());
+            echo "</pre>";
+        } elseif ($is_admin && !$is_child_page && !empty($settings['block_key'])) {
+            $data = Plugin_Name_Utilities::get_pkit_data($settings['test_user'], $settings['test_lang']);
+            $selected_block = $this->find_selected_block($data, $settings);
+
+            if ($selected_block) {
+                if($settings['mode'] === 'prod') {
+                    $this->render_block_html([$selected_block]);
+                } else {
+                    echo "<pre>";
+                    print_r($selected_block);
+                    echo "</pre>";
+                }
+            }
+        }
+
+        return ob_get_clean();
+    }
+
+    private function find_selected_block($data, $settings) {
+        foreach ($data as &$block) {
+            if ($block['block_name'] === $settings['test_lang'] . '_' . $settings['block_key']) {
+                foreach ($block['fields'] as &$field) {
+                    $field[1] = "Value";
+                }
+                return $block;
+            }
+        }
+        return null;
+    }
+
+    private function render_block_html($blocks) {
+        foreach ($blocks as $block) {
+            echo "<div class='pkit_blocks'>";
+            foreach ($block['fields'] as $field) {
+                echo "<div class='pkit_block'>";
+                echo "<label>" . htmlspecialchars($field[0]) . "</label> ";
+                echo "<input type='text' value='" . htmlspecialchars($field[1]) . "' disabled>";
+                echo "</div>";
+            }
+            echo "</div>";
+        }
+    }
+
 
 }
