@@ -128,6 +128,153 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
         );
 
         $this->end_controls_section();
+
+        $this->start_controls_section(
+            'style_section',
+            [
+                'label' => esc_html__( 'Style', 'elementor-block-loader-widget' ),
+                'tab' => \Elementor\Controls_Manager::TAB_STYLE,
+            ]
+        );
+
+ $this->add_control(
+            'pkit_block_display',
+            [
+                'label' => esc_html__( 'Display', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    'block' => esc_html__( 'Block', 'elementor-block-loader-widget' ),
+                    'inline-block' => esc_html__( 'Inline Block', 'elementor-block-loader-widget' ),
+                    'grid' => esc_html__( 'Grid', 'elementor-block-loader-widget' ),
+                    'inline-grid' => esc_html__( 'Inline Grid', 'elementor-block-loader-widget' ),
+                    'flex' => esc_html__( 'Flex', 'elementor-block-loader-widget' ),
+                    'inline-flex' => esc_html__( 'Inline Flex', 'elementor-block-loader-widget' ),
+                ],
+                'default' => 'block',
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_block' => 'display: {{VALUE}};',
+                ],
+            ]
+        );
+
+        
+        // Label Style
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'label_typography',
+                'label' => esc_html__( 'Label Typography', 'elementor-block-loader-widget' ),
+                'selector' => '{{WRAPPER}} .pkit_block label',
+            ]
+        );
+
+        $this->add_control(
+            'label_color',
+            [
+                'label' => esc_html__( 'Label Color', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_block label' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+        // Input Field Style
+        $this->add_group_control(
+            \Elementor\Group_Control_Typography::get_type(),
+            [
+                'name' => 'input_typography',
+                'label' => esc_html__( 'Input Typography', 'elementor-block-loader-widget' ),
+                'selector' => '{{WRAPPER}} .pkit_block input',
+            ]
+        );
+
+         $this->add_control(
+            'input_width',
+            [
+                'label' => esc_html__( 'Input Width', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['%', 'px', 'em'],
+                'range' => [
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                    ],
+                    'em' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_block input' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'input_color',
+            [
+                'label' => esc_html__( 'Input Text Color', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_block input' => 'color: {{VALUE}};',
+                ],
+            ]
+        );
+
+         // Input Padding
+        $this->add_control(
+            'input_padding',
+            [
+                'label' => esc_html__( 'Padding', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_block input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        // Input Border
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'input_border',
+                'selector' => '{{WRAPPER}} .pkit_block input',
+                'fields_options' => [
+                    'border' => [
+                        'label' => esc_html__( 'Border Type', 'elementor-block-loader-widget' ),
+                    ],
+                    'color' => [
+                        'label' => esc_html__( 'Border Color', 'elementor-block-loader-widget' ),
+                    ],
+                    'width' => [
+                        'label' => esc_html__( 'Border Width', 'elementor-block-loader-widget' ),
+                    ],
+                ],
+            ]
+        );
+
+        // Input Border Radius
+        $this->add_control(
+            'input_border_radius',
+            [
+                'label' => esc_html__( 'Border Radius', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_block input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+
+        // Finish Style Section
+        $this->end_controls_section();
+
     }
 
     protected function render() {
