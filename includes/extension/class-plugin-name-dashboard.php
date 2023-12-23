@@ -948,27 +948,7 @@ public function component__range_picker() { ?>
         $forms = Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); 
         ?>
         <div class="my-10"  x-show="activeTab === 'forms' && !showTemplates && !showSettings">
-        <?php 
-        // Example usage
-        $user_id = 19;
-        $lang = 'en'; // Replace with the desired language code
-        $customFieldsArray = Plugin_Name_Utilities::get_pkit_data($user_id, $lang);
-    
-        // Output the result
-        echo '<pre>';
-        print_r($customFieldsArray);
-        echo '</pre>';
-
-         // Example usage
-        $blockInstances = Plugin_Name_Utilities::get_pkit_blocks();
-    
-        // Output the result
-        echo '<pre>';
-        print_r($blockInstances);
-        echo '</pre>';
-        ?>
-       
-
+        
         <?php
         foreach($forms as $index => $form) {
             if (count($forms) > 1) {
