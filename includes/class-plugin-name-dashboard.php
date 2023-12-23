@@ -92,6 +92,9 @@ class Plugin_Name_Dashboard {
             showSettings = state.showSettings;
             showTemplates = state.showTemplates;
             activeFilter = state.activeFilter;
+
+            let validTabs = ['profile', 'links', 'analytics'];
+            activeTab = validTabs.includes(state.activeTab) ? state.activeTab : 'profile';
         }
         $watch('activeTab', () => saveState());
         $watch('showSettings', () => saveState());

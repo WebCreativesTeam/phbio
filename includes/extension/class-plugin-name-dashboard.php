@@ -98,6 +98,9 @@ class Press_Kit_Dashboard {
             showSettings = state.showSettings;
             showTemplates = state.showTemplates;
             activeFilter = state.activeFilter;
+
+            let validTabs = ['profile', 'forms', 'analytics'];
+            activeTab = validTabs.includes(state.activeTab) ? state.activeTab : 'profile';
         }
         $watch('activeLang', () => saveState());
         $watch('activeTab', () => saveState());
