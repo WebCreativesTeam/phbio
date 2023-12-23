@@ -228,7 +228,6 @@ function pkit_block_loader($atts) {
         'test_lang' => 'it',
         'block_key' => '',
         'mode' => '', // Add mode attribute
-        'display' => 'block',
     ), $atts);
 
     ob_start(); // Start output buffering
@@ -268,7 +267,7 @@ function pkit_block_loader($atts) {
             foreach ($filtered_data as $block) {
                 echo "<div class='pkit_blocks'>";
                 foreach ($block['fields'] as $field) {
-                    echo "<div class='pkit_block' style=' . $atts['block_key'] . '>";
+                    echo "<div class='pkit_block'>";
                     echo "<label>" . htmlspecialchars($field[0]) . "</label>";
                     echo "<input type='text' value='" . htmlspecialchars($field[1]) . "' disabled>";
                     echo "</div>";
@@ -303,7 +302,7 @@ function pkit_block_loader($atts) {
             if($atts['mode'] === 'prod') {
                 echo "<div class='pkit_blocks'>";
                 foreach ($selected_block['fields'] as $fieldItem) {
-                    echo "<div class='pkit_block' style=' . $atts['block_key'] . '>";
+                    echo "<div class='pkit_block'>";
                     echo "<label>" . htmlspecialchars($fieldItem[0]) . "</label> ";
                     echo "<input type='text' value='" . htmlspecialchars($fieldItem[1]) . "' disabled>";
                     echo "</div>";
