@@ -286,18 +286,33 @@ function pkit_block_loader($atts) {
         print_r(Plugin_Name_Utilities::get_pkit_blocks());
         echo "</pre>";
     } elseif ($is_admin && !$is_child_page && !empty($atts['block_key'])) {
-        // For admins on non-child pages, with block_key provided, fetch and print data
         $data = Plugin_Name_Utilities::get_pkit_data($atts['test_user'], $atts['test_lang']);
+        $selected_block = null;
         foreach ($data as &$block) {
             if ($block['block_name'] === $atts['test_lang'] . '_' . $atts['block_key']) {
                 foreach ($block['fields'] as &$field) {
                     $field[1] = "Value"; // Replace second element with "Value"
                 }
-                echo "<pre>";
-                print_r($block);
-                echo "</pre>";
-                break;
+                $selected_block = $block;
+                break; // Exit the loop once the block is found
             }
+        }
+        // Print the modified block data outside of the foreach loop
+        if ($selected_block) {
+            if($atts['mode'] === 'prod') {
+                echo "<div class='block'>";
+                echo "<h2>" . htmlspecialchars($selected_block['block_label']) . "</h2>";
+                foreach ($selected_block['fields'] as $field) {
+                    echo "<label>" . htmlspecialchars($field[0]) . "</label>: ";
+                    echo "<input type='text' value='" . htmlspecialchars($field[1]) . "' disabled>";
+                    echo "<br>";
+                }
+                echo "</div>";
+             } else {
+                 echo "<pre>";
+                 print_r($selected_block);
+                 echo "</pre>";
+             }
         }
     }
 
