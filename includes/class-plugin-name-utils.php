@@ -334,6 +334,30 @@ class Plugin_Name_Utilities {
     
         return $finalArray;
     }
+    public static function get_pkit_blocks() {
+        // Retrieve the repeater field data from the options page
+        $blockConfigurations = get_field('block_configuration', 'option');
+        
+        // Initialize an array to store the instances
+        $instances = [];
+    
+        // Check if the repeater field has rows of data
+        if ($blockConfigurations) {
+            // Loop through each row of the repeater field
+            foreach ($blockConfigurations as $configuration) {
+                // Add the 'name' and 'key' of each row to the instances array
+                $instances[] = [
+                    'name' => $configuration['name'],
+                    'key' => $configuration['key']
+                ];
+            }
+        }
+    
+        return $instances;
+    }
+    
+   
+    
     
    
     

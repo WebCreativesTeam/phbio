@@ -959,6 +959,13 @@ public function component__range_picker() { ?>
         print_r($customFieldsArray);
         echo '</pre>';
 
+         // Example usage
+        $blockInstances = Plugin_Name_Utilities::get_pkit_blocks();
+    
+        // Output the result
+        echo '<pre>';
+        print_r($blockInstances);
+        echo '</pre>';
         ?>
        
 
