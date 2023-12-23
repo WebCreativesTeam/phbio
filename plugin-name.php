@@ -224,32 +224,86 @@ add_shortcode('display_user_links_listing', 'display_user_links_shortcode_listin
 function pkit_block_loader($atts) {
     // Extract shortcode attributes
     $atts = shortcode_atts(array(
+        'test_user' => get_current_user_id(),
+        'test_lang' => 'it',
         'block_key' => '',
+        'mode' => '', // Add mode attribute
     ), $atts);
 
     ob_start(); // Start output buffering
 
-    // 1. Print the current user ID or 'Admin'
+    // Get the current user and whether they are an admin
     $current_user = wp_get_current_user();
-    if (in_array('administrator', $current_user->roles)) {
-        echo "Admin";
-    } else {
-        echo "User ID: " . $current_user->ID;
-    }
+    $is_admin = in_array('administrator', $current_user->roles);
 
-    // 2. Print the slug of the current page if it's a child page
+    // Check if the current page is a child page
     global $post;
-    if (is_a($post, 'WP_Post') && $post->post_parent) {
-        $slug = $post->post_name;
-        echo "Page Slug: " . $slug;
-    } else {
-        echo "Parent";
-    }
+    $is_child_page = is_a($post, 'WP_Post') && $post->post_parent;
+    $is_hb_user_pkit_page = $is_child_page && get_post_type($post->post_parent) === 'hb-user-pkit';
 
-    // If block_key is set to "help", pre-print the result of get_pkit_blocks()
-    if ($atts['block_key'] === 'help') {
+    // For non-admin users on a child page of 'hb-user-pkit'
+    if (!$is_admin && $is_hb_user_pkit_page) {
+        // Use the child page slug as the lang and parent post's associated user as test_user
+        $lang = $post->post_name;
+        $parent_post_id = wp_get_post_parent_id($post->ID);
+        $test_user = get_post_meta($parent_post_id, 'associated_pkit_user', true) ?: $atts['test_user'];
+
+        $data = Plugin_Name_Utilities::get_pkit_data($test_user, $lang);
+
+        // Filter the data to only include the specified block
+        $filtered_data = array_filter($data, function($block) use ($atts, $lang) {
+            return $block['block_name'] === $lang . '_' . $atts['block_key'];
+        });
+
+        // Apply additional filtering
+        foreach ($filtered_data as &$block) {
+            $block['fields'] = array_filter($block['fields'], function($field) {
+                return !empty($field[1]); // Keep the field if the second element is not empty
+            });
+        }
+        
+        if($atts['mode'] === 'prod') {
+           // Print the fields as HTML
+            foreach ($filtered_data as $block) {
+                echo "<div class='block'>";
+                echo "<h2>" . htmlspecialchars($block['block_label']) . "</h2>";
+                foreach ($block['fields'] as $field) {
+                    echo "<label>" . htmlspecialchars($field[0]) . "</label>: ";
+                    echo "<input type='text' value='" . htmlspecialchars($field[1]) . "' disabled>";
+                    echo "<br>";
+                }
+                echo "</div>";
+            }
+        } else {
+            echo "<pre>";
+            print_r($filtered_data);
+            echo "</pre>";
+        }
+        
+    } elseif ($is_admin && !$is_child_page && $atts['mode'] === 'help') {
+        // Print the help information if in help mode and user is admin on a parent page
         echo "<pre>";
         print_r(Plugin_Name_Utilities::get_pkit_blocks());
+        echo "</pre>";
+    } elseif ($is_admin && !$is_child_page && !empty($atts['block_key'])) {
+        // For admins on non-child pages, with block_key provided, fetch and print data
+        $data = Plugin_Name_Utilities::get_pkit_data($atts['test_user'], $atts['test_lang']);
+        foreach ($data as &$block) {
+            if ($block['block_name'] === $atts['test_lang'] . '_' . $atts['block_key']) {
+                foreach ($block['fields'] as &$field) {
+                    $field[1] = "Value"; // Replace second element with "Value"
+                }
+                break;
+            }
+        }
+
+        // Filter the data to only include the specified block
+        $filtered_data = array_filter($data, function($block) use ($atts, $lang) {
+            return $block['block_name'] === $lang . '_' . $atts['block_key'];
+        });
+
+        echo "<pre>";
+            print_r($filtered_data);
         echo "</pre>";
     }
 
