@@ -236,7 +236,7 @@ class Plugin_Name {
 		$el_integrate = new Plugin_Name_Elementor_Integration();
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'add_group' );
 		$this->loader->add_action( 'elementor/dynamic_tags/register', $el_integrate, 'register_tags' );
-		// $this->loader->add_action( 'elementor/widgets/register', $el_integrate, 'register_widgets' );
+		$this->loader->add_action( 'elementor/widgets/register', $el_integrate, 'register_widgets' );
 
 		$this->loader->add_action( 'elementor/element/icon/section_icon/before_section_start', $el_integrate, 'extend_icon', 10, 2);
 		$this->loader->add_action( 'elementor/widget/render_content', $el_integrate, 'extend_icon_render', 10, 2);
