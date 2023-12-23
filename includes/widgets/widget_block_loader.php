@@ -68,55 +68,77 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
 		return [ 'block', 'presskit'];
 	}
 
-	/**
-	 * Register oEmbed widget controls.
-	 *
-	 * Add input fields to allow the user to customize the widget settings.
-	 *
-	 * @since 1.0.0
-	 * @access protected
-	 */
 	protected function register_controls() {
+        $this->start_controls_section(
+            'content_section',
+            [
+                'label' => esc_html__( 'Content', 'elementor-block-loader-widget' ),
+                'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
+            ]
+        );
 
-		$this->start_controls_section(
-			'content_section',
-			[
-				'label' => esc_html__( 'Content', 'elementor-block-picker-widget' ),
-				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
-			]
-		);
+        $this->add_control(
+            'mode',
+            [
+                'label' => esc_html__( 'Mode', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => [
+                    '' => esc_html__( 'Dev (No Mode)', 'elementor-block-loader-widget' ),
+                    'prod' => esc_html__( 'Prod', 'elementor-block-loader-widget' ),
+                    'help' => esc_html__( 'Help', 'elementor-block-loader-widget' ),
+                ],
+                'default' => '',
+            ]
+        );
 
-		$this->add_control(
-			'url',
-			[
-				'label' => esc_html__( 'URL to embed', 'elementor-block-picker-widget' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'input_type' => 'url',
-				'placeholder' => esc_html__( 'https://your-link.com', 'elementor-block-picker-widget' ),
-			]
-		);
+        $this->add_control(
+            'test_user',
+            [
+                'label' => esc_html__( 'Test User', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::NUMBER,
+                'default' => get_current_user_id(),
+                'description' => 'User ID for testing purpose',
+            ]
+        );
 
-		$this->end_controls_section();
+        $this->add_control(
+            'test_lang',
+            [
+                'label' => esc_html__( 'Test Language', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::TEXT,
+                'default' => 'en',
+                'description' => 'Language for testing purpose',
+            ]
+        );
 
-	}
+        $block_options = [];
+        $blocks = Plugin_Name_Utilities::get_pkit_blocks();
+        foreach ($blocks as $block) {
+            $block_options[$block['key']] = $block['name'];
+        }
 
-	/**
-	 * Render oEmbed widget output on the frontend.
-	 *
-	 * Written in PHP and used to generate the final HTML.
-	 *
-	 * @since 1.0.0
-	 * @access protected
-	 */
-	protected function render() {
+        $this->add_control(
+            'block_key',
+            [
+                'label' => esc_html__( 'Block Key', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::SELECT,
+                'options' => $block_options,
+                'default' => '',
+            ]
+        );
 
-		$settings = $this->get_settings_for_display();
-		$html = wp_oembed_get( $settings['url'] );
+        $this->end_controls_section();
+    }
 
-		echo '<div class="oembed-elementor-widget">';
-		echo ( $html ) ? $html : $settings['url'];
-		echo '</div>';
+    protected function render() {
+        $settings = $this->get_settings_for_display();
+        $mode = $settings['mode'];
+        $test_user = $settings['test_user'];
+        $test_lang = $settings['test_lang'];
+        $block_key = $settings['block_key'];
 
-	}
+        // Implement the logic to render the shortcode based on the settings
+        echo do_shortcode("[pkit_block_loader test_user='{$test_user}' test_lang='{$test_lang}' block_key='{$block_key}' mode='{$mode}']");
+    }
 
 }
