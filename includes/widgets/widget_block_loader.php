@@ -137,6 +137,32 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'multiple_fields_gap',
+            [
+                'label' => esc_html__( 'Fields Gap', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                    'em' => [
+                        'min' => 0,
+                        'max' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 10,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_blocks' => 'gap: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+
  $this->add_control(
             'pkit_block_display',
             [
@@ -153,6 +179,32 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
                 'default' => 'block',
                 'selectors' => [
                     '{{WRAPPER}} .pkit_block' => 'display: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'label_input_gap',
+            [
+                'label' => esc_html__( 'Label-Input Gap', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['px', 'em', '%'],
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 50,
+                    ],
+                    'em' => [
+                        'min' => 0,
+                        'max' => 5,
+                    ],
+                    '%' => [
+                        'min' => 0,
+                        'max' => 10,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_block' => 'gap: {{SIZE}}{{UNIT}};',
                 ],
             ]
         );
@@ -351,7 +403,7 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
 
     private function render_block_html($blocks) {
         foreach ($blocks as $block) {
-            echo "<div class='pkit_blocks'>";
+            echo "<div class='pkit_blocks' style='display: grid;'>";
             foreach ($block['fields'] as $field) {
                 echo "<div class='pkit_block'>";
                 echo "<label>" . htmlspecialchars($field[0]) . "</label> ";
