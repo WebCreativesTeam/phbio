@@ -293,6 +293,50 @@ class Plugin_Name_Utilities {
         return $maxLinks;
     }
     
+    public static function get_pkit_data($user_id, $lang) {
+        // Fetch the user meta based on language argument
+        $array = get_user_meta($user_id)[$lang . '_fields_order'];
+    
+        // Check if the array is set and is not empty
+        if (!isset($array[0]) || empty($array[0])) {
+            return []; // Return an empty array if no data found
+        }
+    
+        // Decode the JSON string
+        $jsonDecoded = json_decode($array[0], true);
+    
+        $finalArray = [];
+        foreach ($jsonDecoded as $blockName => $values) {
+            $blockMeta = get_user_meta($user_id, '_' . $blockName, true);
+            $blockPlaceholder = $blockMeta ?: $blockName;
+            $blockLabel = acf_get_field($blockPlaceholder)['label'] ?? $blockPlaceholder;
+    
+            $blockArray = [
+                'block_name' => $blockName,
+                'block_label' => $blockLabel,
+                'fields' => []
+            ];
+    
+            foreach ($values as $value) {
+                $concatenatedKey = $blockName . '_' . $value;
+                $metaKey = '_' . $concatenatedKey;
+                $userMeta = get_user_meta($user_id, $metaKey, true);
+                $placeholder = $userMeta ?: $metaKey;
+                $fieldLabel = acf_get_field($placeholder)['label'] ?? $placeholder;
+                $secondElementMeta = get_user_meta($user_id, $concatenatedKey, true) ?: '';
+                $blockArray['fields'][] = [$fieldLabel, $secondElementMeta];
+            }
+    
+            if (!empty($blockArray['fields'])) {
+                $finalArray[] = $blockArray;
+            }
+        }
+    
+        return $finalArray;
+    }
+    
+   
+    
     
 
     public static function handle_user_meta($name, $capability, $target_user_id = null) {
