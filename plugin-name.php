@@ -265,11 +265,12 @@ function pkit_block_loader($atts) {
         if($atts['mode'] === 'prod') {
            // Print the fields as HTML
             foreach ($filtered_data as $block) {
-                echo "<div class='block'>";
+                echo "<div class='pkit_blocks'>";
                 foreach ($block['fields'] as $field) {
-                    echo "<label>" . htmlspecialchars($field[0]) . "</label>: ";
+                    echo "<div class='pkit_block'>";
+                    echo "<label>" . htmlspecialchars($field[0]) . "</label>";
                     echo "<input type='text' value='" . htmlspecialchars($field[1]) . "' disabled>";
-                    echo "<br>";
+                    echo "</div>";
                 }
                 echo "</div>";
             }
@@ -299,11 +300,12 @@ function pkit_block_loader($atts) {
         // Print the modified block data outside of the foreach loop
         if ($selected_block) {
             if($atts['mode'] === 'prod') {
-                echo "<div class='block'>";
+                echo "<div class='pkit_blocks'>";
                 foreach ($selected_block['fields'] as $fieldItem) {
-                    echo "<label>" . htmlspecialchars($fieldItem[0]) . "</label>: ";
+                    echo "<div class='pkit_block'>";
+                    echo "<label>" . htmlspecialchars($fieldItem[0]) . "</label> ";
                     echo "<input type='text' value='" . htmlspecialchars($fieldItem[1]) . "' disabled>";
-                    echo "<br>";
+                    echo "</div>";
                 }
                 echo "</div>";
              } else {
