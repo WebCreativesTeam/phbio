@@ -221,6 +221,43 @@ function display_user_links_shortcode_listing($atts) {
 }
 add_shortcode('display_user_links_listing', 'display_user_links_shortcode_listing');
 
+function pkit_block_loader($atts) {
+    // Extract shortcode attributes
+    $atts = shortcode_atts(array(
+        'block_key' => '',
+    ), $atts);
+
+    ob_start(); // Start output buffering
+
+    // 1. Print the current user ID or 'Admin'
+    $current_user = wp_get_current_user();
+    if (in_array('administrator', $current_user->roles)) {
+        echo "Admin";
+    } else {
+        echo "User ID: " . $current_user->ID;
+    }
+
+    // 2. Print the slug of the current page if it's a child page
+    global $post;
+    if (is_a($post, 'WP_Post') && $post->post_parent) {
+        $slug = $post->post_name;
+        echo "Page Slug: " . $slug;
+    } else {
+        echo "Parent";
+    }
+
+    // If block_key is set to "help", pre-print the result of get_pkit_blocks()
+    if ($atts['block_key'] === 'help') {
+        echo "<pre>";
+        print_r(Plugin_Name_Utilities::get_pkit_blocks());
+        echo "</pre>";
+    }
+
+    return ob_get_clean(); // Return the buffered content
+}
+
+// Register the shortcode
+add_shortcode('pkit_block_loader', 'pkit_block_loader');
 
 add_action('updated_user_meta', 'sync_links_list_to_phbio_links', 10, 4);
 add_action('added_user_meta', 'sync_links_list_to_phbio_links', 10, 4);
