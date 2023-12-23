@@ -227,7 +227,7 @@ function pkit_block_loader($atts) {
         'test_user' => get_current_user_id(),
         'test_lang' => 'it',
         'block_key' => '',
-        'mode' => '', // Add mode attribute
+        'mode' => '', // Add mode attribute...
     ), $atts);
 
     ob_start(); // Start output buffering
