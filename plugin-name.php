@@ -293,18 +293,12 @@ function pkit_block_loader($atts) {
                 foreach ($block['fields'] as &$field) {
                     $field[1] = "Value"; // Replace second element with "Value"
                 }
+                echo "<pre>";
+                print_r($block);
+                echo "</pre>";
                 break;
             }
         }
-
-        // Filter the data to only include the specified block
-        $filtered_data = array_filter($data, function($block) use ($atts, $lang) {
-            return $block['block_name'] === $lang . '_' . $atts['block_key'];
-        });
-
-        echo "<pre>";
-            print_r($filtered_data);
-        echo "</pre>";
     }
 
     return ob_get_clean(); // Return the buffered content
