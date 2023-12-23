@@ -948,6 +948,70 @@ public function component__range_picker() { ?>
         $forms = Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); 
         ?>
         <div class="my-10"  x-show="activeTab === 'forms' && !showTemplates && !showSettings">
+        <?php 
+       $user_id = 19; // The user ID
+
+// Let's say $jsonDecoded is your original array
+$arrFieldKeys = get_user_meta($user_id)['fields_order'];
+
+echo '<pre>';
+print_r($arrFieldKeys);
+echo '</pre>';
+// Decode the JSON string
+$jsonDecoded = json_decode($arrFieldKeys[0], true);
+
+$finalArray = [];
+foreach ($jsonDecoded as $blockName => $values) {
+    $blockArray = [
+        'block_name' => $blockName,
+        'block_label' => '', // Empty string for block_label
+        'fields' => []
+    ];
+
+    foreach ($values as $value) {
+        $concatenatedKey = $blockName . '_' . $value;
+        $metaKey = '_' . $concatenatedKey;
+
+        // Fetch the user meta for the metaKey
+        $userMeta = get_user_meta($user_id, $metaKey, true);
+
+        // Use the userMeta or the metaKey as the placeholder
+        $placeholder = $userMeta ?: $metaKey;
+
+        // Apply the second operation
+        $fieldLabel = acf_get_field($placeholder)['label'] ?? $placeholder;
+
+        // Fetch the user meta for the second element
+        $secondElementMeta = get_user_meta($user_id, $concatenatedKey, true) ?: '';
+
+        // Add field regardless of the value of secondElementMeta
+        $blockArray['fields'][] = [$fieldLabel, $secondElementMeta];
+    }
+
+    if (!empty($blockArray['fields'])) {
+        $finalArray[] = $blockArray;
+    }
+}
+
+// Output the final array
+echo '<pre>';
+print_r($finalArray);
+echo '</pre>';
+
+
+
+
+
+// Function to filter out elements with empty second elements
+$filteredArray = array_filter($concatenatedArray, function ($item) {
+    return !empty($item[1]);
+});
+
+// Output the filtered array
+print_r($filteredArray);
+
+?>
+       
 
         <?php
         foreach($forms as $index => $form) {
