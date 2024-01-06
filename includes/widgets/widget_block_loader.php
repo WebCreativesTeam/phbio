@@ -359,8 +359,8 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
                 
                 $block['fields'] = array_filter($block['fields'], function($field) {
                     // Is array and empty
-                    return !(is_array($field[2]) && count($field[2]) == 0);
-                    return !empty($field[2]);
+                    return !(is_array($field[1]) && count($field[1]) == 0);
+                    return !empty($field[1]);
                 });
             }
 
