@@ -362,8 +362,13 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
                     if (is_array($field[2]) && count($field[2]) === 0) {
                         return false;
                     }
+                    if ($field[1] === 'true_false') {
+                        return false;
+                    }
 
                     return $field[2] !== '';
+
+                    
                 });
             }
             unset($block); // Unset the reference to the last element
