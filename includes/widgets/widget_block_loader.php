@@ -355,17 +355,21 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
                 return $block['block_name'] === $lang . '_' . $settings['block_key'];
             });
 
-            foreach ($filtered_data as $block) {
-                
+            foreach ($filtered_data as &$block) {
+                echo '<pre>';
+                print_r($block);
+                echo '</pre>';
+
+                // Filter out fields where the third item is an empty string or an empty array
                 $block['fields'] = array_filter($block['fields'], function($field) {
-                    // Exclude if the field is an array and empty
-                    if (is_array($field[2]) && count($field[2]) == 0) {
+                    if (is_array($field[2]) && count($field[2]) === 0) {
                         return false;
                     }
-                    
-                    return !empty($field[2]);
+
+                    return $field[2] !== '';
                 });
             }
+            unset($block); // Unset the reference to the last element
 
             if($settings['mode'] === 'prod') {
                 $this->render_block_html($filtered_data);
