@@ -430,6 +430,10 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
                     $this->render_input_select($value);
                 }
 
+                if($type == "oembed") {
+                    $this->render_input_oembed($value);
+                }
+
 
 
                 echo "</div>";
@@ -455,6 +459,11 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             echo htmlspecialchars($value) . "\n"; // Each value on a new line
         }
         echo "</textarea>";
+    }
+    private function render_input_oembed($value) {
+        echo "<div>";
+        $GLOBALS['wp_embed']->run_shortcode( $value );
+        echo "</div>"
     }
     
     
