@@ -354,7 +354,11 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
                 return $block['block_name'] === $lang . '_' . $settings['block_key'];
             });
 
-            foreach ($filtered_data as &$block) {
+            foreach ($filtered_data as $block) {
+                echo "<br/>Block Detais<br/>";
+            echo '<pre>';
+            print_r($block);
+            echo '<pre>';
                 $block['fields'] = array_filter($block['fields'], function($field) {
                     return !empty($field[1]);
                 });
@@ -391,10 +395,7 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
 
     private function find_selected_block($data, $settings) {
         foreach ($data as $block) {
-            echo "<br/>Block Detais<br/>";
-            echo '<pre>';
-            print_r($block);
-            echo '<pre>';
+            
             if ($block['block_name'] === $settings['test_lang'] . '_' . $settings['block_key']) {
                 foreach ($block['fields'] as $field) {
                     $field[1] = "Value";
