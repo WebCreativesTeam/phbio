@@ -478,7 +478,9 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
         $iframe = str_replace('></iframe>', ' ' . $attributes . '></iframe>', $iframe);
 
         // Display customized HTML.
+        echo "<div class='embed-container'>";
         echo $iframe;
+        echo "</div>";
     }
     
     
