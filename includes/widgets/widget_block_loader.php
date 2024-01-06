@@ -415,6 +415,10 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
                 if($type == 'text' || $type == 'number') {
                     $this->render_input_text($value);
                 }
+
+                if($type == "textarea") {
+                    $this->render_input_textarea($value);
+                }
                 echo "</div>";
             }
             echo "</div>";
@@ -423,6 +427,10 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
 
     private function render_input_text($value) {
         echo "<input type='text' value='" . htmlspecialchars($value) . "' disabled>";
+    }
+
+    private function render_input_textarea($value) {
+        echo "<textarea disabled>" . htmlspecialchars($value) .  "</textarea>";
     }
 
 
