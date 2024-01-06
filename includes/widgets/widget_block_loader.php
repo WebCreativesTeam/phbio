@@ -392,9 +392,9 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
     private function find_selected_block($data, $settings) {
         foreach ($data as $block) {
             echo "<br/>Block Detais<br/>";
-            echo '<pre>'
+            echo '<pre>';
             print_r($block);
-            echo '<pre>'
+            echo '<pre>';
             if ($block['block_name'] === $settings['test_lang'] . '_' . $settings['block_key']) {
                 foreach ($block['fields'] as $field) {
                     $field[1] = "Value";
