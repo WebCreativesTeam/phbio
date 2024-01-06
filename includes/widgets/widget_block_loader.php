@@ -409,14 +409,20 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             echo "<div class='pkit_blocks' style='display: grid;'>";
             foreach ($block['fields'] as $field) {
                 $type = $field[1];
-                echo $type;
+                $value = $field[2];
                 echo "<div class='pkit_block'>";
                 echo "<label>" . htmlspecialchars($field[0]) . "</label> ";
-                echo "<input type='text' value='" . htmlspecialchars($field[2]) . "' disabled>";
+                if($type == 'text' || $type == 'number') {
+                    $this->render_input_text($value);
+                }
                 echo "</div>";
             }
             echo "</div>";
         }
+    }
+
+    private function render_input_text($value) {
+        echo "<input type='text' value='" . htmlspecialchars($value) . "' disabled>";
     }
 
 
