@@ -309,16 +309,15 @@ class Plugin_Name_Utilities {
         foreach ($jsonDecoded as $blockName => $values) {
             $blockMeta = get_user_meta($user_id, '_' . $blockName, true);
             $blockPlaceholder = $blockMeta ?: $blockName;
-            $blockLabel = acf_get_field($blockPlaceholder)['label'] ?? $blockPlaceholder;
-    
-            echo "<br/>Data Debug START FOR " . $blockLabel . "<br/>";
-            echo '<pre>';
-            print_r(acf_get_field($blockPlaceholder));
-            echo '<pre>';
-            echo "<br/>Data Debug END FOR " . $blockLabel . "<br/>";
+            $blockDefinitionsACF = acf_get_field($blockPlaceholder);
+            $blockLabel = $blockDefinitionsACF['label'] ?? $blockPlaceholder;
+            $blockType = $blockDefinitionsACF['type'] ?? "text";
+            
+            
             $blockArray = [
                 'block_name' => $blockName,
                 'block_label' => $blockLabel,
+                'type'       => $blockType,
                 'fields' => []
             ];
     
