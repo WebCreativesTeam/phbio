@@ -358,9 +358,12 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             foreach ($filtered_data as $block) {
                 
                 $block['fields'] = array_filter($block['fields'], function($field) {
-                    // Is array and empty
-                    return !(is_array($field[1]) && count($field[1]) == 0);
-                    return !empty($field[1]);
+                    // Exclude if the field is an array and empty
+                    if (is_array($field[2]) && count($field[2]) == 0) {
+                        return false;
+                    }
+                    
+                    return !empty($field[2]);
                 });
             }
 
