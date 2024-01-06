@@ -358,7 +358,9 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             foreach ($filtered_data as $block) {
                 
                 $block['fields'] = array_filter($block['fields'], function($field) {
-                    return !empty($field[1]);
+                    // Is array and empty
+                    return !(is_array($field[2]) && count($field[2]) == 0);
+                    return !empty($field[2]);
                 });
             }
 
@@ -396,7 +398,7 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             
             if ($block['block_name'] === $settings['test_lang'] . '_' . $settings['block_key']) {
                 foreach ($block['fields'] as $field) {
-                    $field[1] = "Value";
+                    $field[2] = "Value";
                 }
                 return $block;
             }
@@ -430,7 +432,7 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
     }
 
     private function render_input_textarea($value) {
-        echo "<textarea rows='auto' minrows='4' disabled style='resize: none;'>" . htmlspecialchars($value) .  "</textarea>";
+        echo "<textarea rows='auto' minrows='6' disabled style='resize: none;'>" . htmlspecialchars($value) .  "</textarea>";
     }
 
 
