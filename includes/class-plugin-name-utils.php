@@ -311,6 +311,11 @@ class Plugin_Name_Utilities {
             $blockPlaceholder = $blockMeta ?: $blockName;
             $blockLabel = acf_get_field($blockPlaceholder)['label'] ?? $blockPlaceholder;
     
+            echo "<br/>Data Debug START FOR " . $blockLabel . "<br/>";
+            echo '<pre>';
+            print_r(acf_get_field($blockPlaceholder));
+            echo '<pre>';
+            echo "<br/>Data Debug END FOR " . $blockLabel . "<br/>";
             $blockArray = [
                 'block_name' => $blockName,
                 'block_label' => $blockLabel,
@@ -322,15 +327,7 @@ class Plugin_Name_Utilities {
                 $metaKey = '_' . $concatenatedKey;
                 $userMeta = get_user_meta($user_id, $metaKey, true);
                 $placeholder = $userMeta ?: $metaKey;
-
-                
-
                 $fieldLabel = acf_get_field($placeholder)['label'] ?? $placeholder;
-
-                echo '<pre>';
-                print_r(acf_get_field($placeholder));
-                echo '<pre>';
-                echo "<br/>Data Debug END FOR " . $fieldLabel . "<br/>";
                 $secondElementMeta = get_user_meta($user_id, $concatenatedKey, true) ?: '';
                 $blockArray['fields'][] = [$fieldLabel, $secondElementMeta];
             }
