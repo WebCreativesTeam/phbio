@@ -350,11 +350,7 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             $test_user = get_post_meta($parent_post_id, 'associated_pkit_user', true) ?: $settings['test_user'];
             $data = Plugin_Name_Utilities::get_pkit_data($test_user, $lang);
             
-            echo "<br/>Data Debug<br/>";
-            echo '<pre>';
-            print_r($data);
-            echo '<pre>';
-            echo '<br/>Data Debug End<br/>';
+            
             $filtered_data = array_filter($data, function($block) use ($settings, $lang) {
                 return $block['block_name'] === $lang . '_' . $settings['block_key'];
             });
@@ -369,9 +365,9 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             if($settings['mode'] === 'prod') {
                 $this->render_block_html($filtered_data);
             } else {
-                // echo "<pre>";
-                // print_r($filtered_data);
-                // echo "</pre>";
+                echo "<pre>";
+                print_r($filtered_data);
+                echo "</pre>";
             }
         } elseif ($is_admin && !$is_child_page && $settings['mode'] === 'help') {
             echo "<pre>";
