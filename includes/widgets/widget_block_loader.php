@@ -447,7 +447,10 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
     }
 
     private function render_input_select($values) {
-        echo "<textarea readonly style='resize: none;'>";
+        $rows = count($value);
+
+
+        echo "<textarea readonly style='resize: none;' rows='" . $rows . "'>";
         foreach ($values as $value) {
             echo htmlspecialchars($value) . "\n"; // Each value on a new line
         }
