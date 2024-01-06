@@ -430,7 +430,7 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
     }
 
     private function render_input_textarea($value) {
-        echo "<textarea disabled>" . htmlspecialchars($value) .  "</textarea>";
+        echo "<div contenteditable>" . htmlspecialchars($value) .  "</div>";
     }
 
 
