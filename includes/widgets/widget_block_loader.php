@@ -349,16 +349,18 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             $parent_post_id = wp_get_post_parent_id($post->ID);
             $test_user = get_post_meta($parent_post_id, 'associated_pkit_user', true) ?: $settings['test_user'];
             $data = Plugin_Name_Utilities::get_pkit_data($test_user, $lang);
-
+            
+            echo "<br/>Data Debug<br/>";
+            echo '<pre>';
+            print_r($data);
+            echo '<pre>';
+            echo '<br/>Data Debug End<br/>';
             $filtered_data = array_filter($data, function($block) use ($settings, $lang) {
                 return $block['block_name'] === $lang . '_' . $settings['block_key'];
             });
 
             foreach ($filtered_data as $block) {
-                echo "<br/>Block Detais<br/>";
-            echo '<pre>';
-            print_r($block);
-            echo '<pre>';
+                
                 $block['fields'] = array_filter($block['fields'], function($field) {
                     return !empty($field[1]);
                 });
