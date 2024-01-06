@@ -356,10 +356,7 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             });
 
             foreach ($filtered_data as &$block) {
-                echo '<pre>';
-                print_r($block);
-                echo '</pre>';
-
+                
                 // Filter out fields where the third item is an empty string or an empty array
                 $block['fields'] = array_filter($block['fields'], function($field) {
                     if (is_array($field[2]) && count($field[2]) === 0) {
@@ -428,6 +425,13 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
                 if($type == "textarea") {
                     $this->render_input_textarea($value);
                 }
+
+                if($type == "select") {
+                    $this->render_input_select($value);
+                }
+
+
+
                 echo "</div>";
             }
             echo "</div>";
@@ -439,8 +443,18 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
     }
 
     private function render_input_textarea($value) {
-        echo "<textarea rows='auto' minrows='6' disabled style='resize: none;'>" . htmlspecialchars($value) .  "</textarea>";
+        echo "<textarea rows='auto' minrows='6' readonly style='resize: none;'>" . htmlspecialchars($value) .  "</textarea>";
     }
+
+    private function render_input_select($values) {
+        echo "<textarea readonly style='resize: none;'>";
+        foreach ($values as $value) {
+            echo htmlspecialchars($value) . "\n"; // Each value on a new line
+        }
+        echo "</textarea>";
+    }
+    
+    
 
 
 }
