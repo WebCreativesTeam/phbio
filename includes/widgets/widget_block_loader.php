@@ -369,9 +369,9 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             if($settings['mode'] === 'prod') {
                 $this->render_block_html($filtered_data);
             } else {
-                echo "<pre>";
-                print_r($filtered_data);
-                echo "</pre>";
+                // echo "<pre>";
+                // print_r($filtered_data);
+                // echo "</pre>";
             }
         } elseif ($is_admin && !$is_child_page && $settings['mode'] === 'help') {
             echo "<pre>";
