@@ -439,7 +439,7 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
                     $this->render_input_oembed($value);
                 }
                 // Image
-                if($type == "image" | $type == "file" ) {
+                if($type == "image") {
                     $this->render_input_image($value);
                 }
 
@@ -455,6 +455,8 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
         echo "<input type='text' value='" . htmlspecialchars($value) . "' disabled>";
     }
     private function render_input_image($value) {
+        // Get media url from id $value
+        $value = wp_get_attachment_url($value);
         echo "<img src='" . $value . "'/>";
     }
 
