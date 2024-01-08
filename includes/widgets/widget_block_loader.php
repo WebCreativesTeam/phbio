@@ -439,7 +439,7 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
                     $this->render_input_oembed($value);
                 }
                 // Image
-                if($type == "image") {
+                if($type == "image" | $type == "file" ) {
                     $this->render_input_image($value);
                 }
 
