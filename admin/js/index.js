@@ -4453,7 +4453,7 @@ function applyAcfDrags() {
                 const dataName = fieldBlock.attributes["data-name"].value;
                 const fieldBox = fieldBlock.lastElementChild.lastElementChild;
                 // Filter out elements with 'acf-hidden' class for condtional fields to exclude if condition does not match
-                const fieldBlockInputs = Array.from(fieldBox.getElementsByClassName("acf-field")).filter((input)=>!input.classList.contains("acf-hidden"));
+                const fieldBlockInputs = Array.from(fieldBox.getElementsByClassName("acf-field")).filter((input)=>!input.classList.contains("acf-hidden") && !input.classList.contains("fields-block-condition"));
                 const FieldNames = fieldBlockInputs.map((input)=>input.attributes["data-name"].value);
                 FieldOrder[dataName] = FieldNames;
             });
@@ -4504,15 +4504,17 @@ function applyAcfDrags() {
             fieldOrder[dataName].forEach((fieldName)=>{
                 fieldBox.appendChild(TempFieldMap[fieldName]);
                 const InputBox = TempFieldMap[fieldName];
-                InputBox.addEventListener("dragstart", (e)=>{
-                    const handle = e.target.querySelector(".drag-handle"); // Replace .drag-handle with your actual handle selector
-                    const { left, right, top, bottom } = handle.getBoundingClientRect();
-                    if (!(left <= e.clientX && e.clientX <= right && top <= e.clientY && e.clientY <= bottom)) e.preventDefault();
-                    else setTimeout(()=>InputBox.classList.add("dragging"), 0);
-                });
-                InputBox.addEventListener("dragend", ()=>{
-                    InputBox.classList.remove("dragging");
-                });
+                if (!InputBox.classList.contains("fields-block-condition")) {
+                    InputBox.addEventListener("dragstart", (e)=>{
+                        const handle = e.target.querySelector(".drag-handle"); // Replace .drag-handle with your actual handle selector
+                        const { left, right, top, bottom } = handle.getBoundingClientRect();
+                        if (!(left <= e.clientX && e.clientX <= right && top <= e.clientY && e.clientY <= bottom)) e.preventDefault();
+                        else setTimeout(()=>InputBox.classList.add("dragging"), 0);
+                    });
+                    InputBox.addEventListener("dragend", ()=>{
+                        InputBox.classList.remove("dragging");
+                    });
+                }
             });
             fieldBox.addEventListener("dragover", (e)=>RearrangeFields(e, dataName));
             fieldBox.addEventListener("dragenter", (e)=>e.preventDefault());
