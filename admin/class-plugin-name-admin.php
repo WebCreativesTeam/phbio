@@ -468,6 +468,16 @@ class Plugin_Name_Admin {
 	function user_pkit_profile_redirections() {
 		$redirect = false;
 
+		if(is_404()) {
+			global $wp_query, $wpdb;
+	        $post_id = $wpdb->get_var( $wp_query->request );
+	        $if_post_published = get_post_status( $post_id ) == 'publish';
+
+			// Redirect All Unpublished child pages ( this works for non-logged in users only)
+			if (!$if_post_published) {
+				$redirect = true;
+			}		
+		}
 		if (is_singular('hb-user-pkit')) {
 			global $post;
 			$parent_id = $post->post_parent;
@@ -477,7 +487,7 @@ class Plugin_Name_Admin {
 			$redirection_url = get_user_meta(1, 'private_redirection', true);
 
 
-			// Redirect All Parent pages || Redirect All Unpublished child pages ( this works for logged in users only)
+			// Redirect All Parent pages ( works for all) || Redirect All Unpublished child pages ( this works for logged in users only)
 			if (!$is_child_page || ($is_child_page && !$is_child_published && !is_admin())) {
 				$redirect = true;
 			}		
