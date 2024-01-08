@@ -238,16 +238,21 @@ function initializeIframeLoading(selector) {
 function initializeAcfDrags() {
   // Adding Drag Handles
   var draggables = document.querySelectorAll(
-    "#AcfFormsArea .fields-block-item"
+    "#AcfFormsArea .fields-block-item:not(.fields-block-condition)"
   );
+
   // Iterate over each item and set the draggable attribute to true
   draggables.forEach(function (item) {
     item.setAttribute("draggable", "true");
   });
 
   // Select all .acf-input elements within #AcfFormsArea
-  var acfInputs = document.querySelectorAll(" .fields-block-item .acf-input");
-  var acfLabels = document.querySelectorAll(" .fields-block-item .acf-label");
+  var acfInputs = document.querySelectorAll(
+    "#AcfFormsArea .fields-block-item:not(.fields-block-condition) .acf-input"
+  );
+  var acfLabels = document.querySelectorAll(
+    "#AcfFormsArea .fields-block-item:not(.fields-block-condition) .acf-label"
+  );
 
   // Define a common style object for .acf-input
   var inputStyle = {
@@ -267,17 +272,15 @@ function initializeAcfDrags() {
   // Loop through each .acf-input element
   acfInputs.forEach(function (acfInput) {
     // Check if the handle already exists
-    if (!parentItem.classList.contains("fields-block-condition")) {
-      if (!acfInput.querySelector(".drag-handle")) {
-        // Create the handle div
-        console.log("Creating handle");
-        var handleDiv = document.createElement("div");
-        handleDiv.className = "drag-handle";
-        handleDiv.textContent = "☰";
+    if (!acfInput.querySelector(".drag-handle")) {
+      // Create the handle div
+      console.log("Creating handle");
+      var handleDiv = document.createElement("div");
+      handleDiv.className = "drag-handle";
+      handleDiv.textContent = "☰";
 
-        // Insert the handle at the beginning of the .acf-input element
-        acfInput.insertBefore(handleDiv, acfInput.firstChild);
-      }
+      // Insert the handle at the beginning of the .acf-input element
+      acfInput.insertBefore(handleDiv, acfInput.firstChild);
     }
     // Apply styles to acfInput
     Object.assign(acfInput.style, inputStyle);
