@@ -465,24 +465,7 @@ class Plugin_Name_Admin {
 		}
 	}
 	
-	function redirect_parent_post_access() {
-		if (is_singular('hb-user-pkit')) {
-			global $post;
-			$is_child_page = is_a($post, 'WP_Post') && $post->post_parent;
-            
-			if ($post->post_parent == 0) { // Check if it's a parent post
-				wp_redirect(home_url()); // Redirect to homepage or any other page
-				exit;
-			}
-
-			if ($is_child_page && $post->post_status !== 'publish') { 
-				wp_redirect(home_url()); // Redirect to homepage or any other page
-				exit;
-			}
-		}
-
-		
-	}
+	
 	
 	
 	
@@ -596,8 +579,6 @@ function user_profile_private_redirection() {
     }
     if (is_singular('hb-user-pkit')) {
         
-		$this->redirect_parent_post_access();
-	
 		if($post->post_parent !== 0) {
 				// Get the associated user for this CPT post (assuming you've saved the user ID in the post meta with key 'associated_user')
 				$user_id = get_post_meta($post->post_parent, 'associated_pkit_user', true);
@@ -612,7 +593,7 @@ function user_profile_private_redirection() {
 				$public = get_user_meta($user_id, 'public_' . $post->ID, true);
 				
 				// If 'public' is NOT set to 'yes', perform the redirection
-				if ($public !== 'yes') {
+				if ($public !== 'yes' || $post->post_status !== 'publish') {
             
 					// Get the private redirection URL set for user ID '1'
 					$redirection_url = get_user_meta(1, 'private_pkit_redirection', true);
@@ -627,6 +608,9 @@ function user_profile_private_redirection() {
 					}
 				}
 			
+		} else {
+			wp_redirect(home_url(), 503); // Redirect to homepage or any other page
+			exit;
 		}
 	}
 	
