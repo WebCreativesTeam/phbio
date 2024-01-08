@@ -4469,11 +4469,20 @@ function applyAcfDrags() {
             let siblings = [
                 ...FieldBlockMap[dataName].querySelectorAll(".acf-field:not(.dragging)")
             ];
-            let nextSibling = siblings.find((sibling)=>{
+            let nonDraggablePositions = [];
+            siblings.forEach((sibling, index)=>{
+                if (sibling.classList.contains("fields-block-condition")) nonDraggablePositions.push(index);
+            });
+            let nextSiblingIndex = siblings.findIndex((sibling)=>{
                 const { top, height } = sibling.getBoundingClientRect();
                 return e.clientY <= top + height / 2;
             });
+            // Prevent placing the draggable item before non-draggable items
+            if (nonDraggablePositions.includes(nextSiblingIndex)) return;
+            let nextSibling = siblings[nextSiblingIndex];
             FieldBlockMap[dataName].insertBefore(draggingItem, nextSibling);
+            // Update field order, ensuring non-draggable items remain in place
+            fieldOrder[dataName] = siblings.map((sibling)=>sibling.attributes["data-name"].value);
             if (!nextSibling) {
                 fieldOrder[dataName] = fieldOrder[dataName].filter((field)=>field !== draggingItem.attributes["data-name"].value);
                 fieldOrder[dataName].push(draggingItem.attributes["data-name"].value);
