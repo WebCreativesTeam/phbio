@@ -330,6 +330,9 @@ class Plugin_Name_Utilities {
                 
                 $fieldLabel = $fieldDefinitionsACF['label'] ?? $placeholder;
                 $fieldType = $fieldDefinitionsACF['type'] ?? "text";
+                if($fieldType == 'oembed') {
+                    $userElementMeta = get_field($concatenatedKey, 'user_' . $user_id);
+                }
                 $userElementMeta = get_user_meta($user_id, $concatenatedKey, true) ?: '';
                 $blockArray['fields'][] = [$fieldLabel, $fieldType, $userElementMeta];
             }

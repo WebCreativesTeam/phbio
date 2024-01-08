@@ -474,33 +474,9 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
         }
         echo "</textarea>";
     }
-    private function render_input_oembed($url) {
-        // Check if the URL is a YouTube URL and modify it to the embed format
-        if (preg_match('/youtu\.be\/(.+)/', $url, $matches)) {
-            // Shortened YouTube URL format
-            $video_id = $matches[1];
-            $url = "https://www.youtube.com/embed/$video_id";
-        } elseif (preg_match('/youtube\.com.*v=([^&]+)/', $url, $matches)) {
-            // Standard YouTube URL format
-            $video_id = $matches[1];
-            $url = "https://www.youtube.com/embed/$video_id";
-        }
-    
-        // Add extra parameters to src.
-        $params = array(
-            'controls'  => 0,
-            'hd'        => 1,
-            'autohide'  => 1
-        );
-        $new_src = add_query_arg($params, $url);
-    
-        // Construct the iframe HTML with the new source URL and additional attributes.
-        $attributes = 'frameborder="0"';
-        $iframe = "<iframe src='" . htmlspecialchars($new_src) . "' " . $attributes . "></iframe>";
-    
-        // Display the customized HTML.
+    private function render_input_oembed($value) {
         echo "<div class='embed-container'>";
-        echo $iframe;
+        echo $value;
         echo "</div>";
     }
     
