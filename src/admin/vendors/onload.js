@@ -264,21 +264,21 @@ function initializeAcfDrags() {
   var labelStyle = {
     paddingLeft: "3rem",
   };
-  console.log(acfInputs);
   // Loop through each .acf-input element
   acfInputs.forEach(function (acfInput) {
     // Check if the handle already exists
-    if (!acfInput.querySelector(".drag-handle")) {
-      // Create the handle div
-      console.log("Creating handle");
-      var handleDiv = document.createElement("div");
-      handleDiv.className = "drag-handle";
-      handleDiv.textContent = "☰";
+    if (!parentItem.classList.contains("fields-block-condition")) {
+      if (!acfInput.querySelector(".drag-handle")) {
+        // Create the handle div
+        console.log("Creating handle");
+        var handleDiv = document.createElement("div");
+        handleDiv.className = "drag-handle";
+        handleDiv.textContent = "☰";
 
-      // Insert the handle at the beginning of the .acf-input element
-      acfInput.insertBefore(handleDiv, acfInput.firstChild);
+        // Insert the handle at the beginning of the .acf-input element
+        acfInput.insertBefore(handleDiv, acfInput.firstChild);
+      }
     }
-
     // Apply styles to acfInput
     Object.assign(acfInput.style, inputStyle);
 
