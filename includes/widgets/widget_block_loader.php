@@ -438,6 +438,10 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
                 if($type == "oembed") {
                     $this->render_input_oembed($value);
                 }
+                // Image
+                if($type == "image") {
+                    $this->render_input_image($value);
+                }
 
 
 
@@ -449,6 +453,9 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
 
     private function render_input_text($value) {
         echo "<input type='text' value='" . htmlspecialchars($value) . "' disabled>";
+    }
+    private function render_input_image($value) {
+        echo "<img src='" . $value . "'/>";
     }
 
     private function render_input_textarea($value) {

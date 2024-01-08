@@ -486,7 +486,6 @@ class Plugin_Name_Admin {
 				exit;
 			}
 		}
-		
 	}
 	
 	
