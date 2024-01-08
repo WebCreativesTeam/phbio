@@ -487,13 +487,34 @@ class Plugin_Name_Admin {
 			$is_child_page = is_a($post, 'WP_Post') && $post->post_parent != 0;
 			$is_child_published = $post->post_status == 'publish';
 			
+			$user_id = get_post_meta($post->post_parent, 'associated_pkit_user', true);
 
 
 			// Redirect All Parent pages ( works for all) || Redirect All Unpublished child pages ( this works for logged in users only)
 			if (!$is_child_page || ($is_child_page && !$is_child_published && !is_admin())) {
 				$redirect = true;
-			}		
+			}	
+			
+			
+			if(!$redirect) {
+				
+				// Get the 'public' meta for this user and this child post
+				$public = get_user_meta($user_id, 'public_' . $post->ID, true);
+				
+				// If 'public' is NOT set to 'yes', perform the redirection
+				if (!$public || $public !== 'yes') { 
+					$redirect = true;
+				}
+
+				// Exclude the associated user and administrators from the redirection
+				if (get_current_user_id() == $user_id || current_user_can('manage_options')) {
+					$redirect = false;
+				}
+			}
+
 		}
+
+		
 
 		// If the redirection URL is set, redirect to it.
 		if($redirect) {
