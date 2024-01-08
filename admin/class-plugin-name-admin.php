@@ -467,7 +467,10 @@ class Plugin_Name_Admin {
 	
 	function user_pkit_profile_redirections() {
 		$redirect = false;
+		// Get the private redirection URL set for user ID '1'
+		$redirection_url = get_user_meta(1, 'private_redirection', true);
 
+		
 		if(is_404()) {
 			global $wp_query, $wpdb;
 	        $post_id = $wpdb->get_var( $wp_query->request );
@@ -483,8 +486,7 @@ class Plugin_Name_Admin {
 			$parent_id = $post->post_parent;
 			$is_child_page = is_a($post, 'WP_Post') && $post->post_parent != 0;
 			$is_child_published = $post->post_status == 'publish';
-			// Get the private redirection URL set for user ID '1'
-			$redirection_url = get_user_meta(1, 'private_redirection', true);
+			
 
 
 			// Redirect All Parent pages ( works for all) || Redirect All Unpublished child pages ( this works for logged in users only)
