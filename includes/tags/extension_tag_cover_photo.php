@@ -58,10 +58,6 @@ class Elementor_Ext_Cover_Photo_Tag extends \Elementor\Core\DynamicTags\Data_Tag
 		if(current_user_can('administrator') && $post->post_type == 'pkit-template') {
 			return $loggedIn->ID;
 		}
-		
-		if (!$current_user) {
-			return;
-		}
 
 		return $current_user;
 	}

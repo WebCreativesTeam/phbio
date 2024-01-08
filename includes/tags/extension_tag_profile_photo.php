@@ -55,11 +55,6 @@ class Elementor_Ext_Profile_Photo_Tag extends \Elementor\Core\DynamicTags\Data_T
 			return $loggedIn->ID;
 
 		}
-		
-		if (!$current_user) {
-			echo $this->get_title();
-			return;
-		}
 
 		return $current_user;
 	}
