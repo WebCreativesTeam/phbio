@@ -23,7 +23,7 @@ class Elementor_Ext_Is_Logo_Tag extends \Elementor\Core\DynamicTags\Tag {
 
 		// Get the user meta for 'tag-name'
 		$meta_key = 'pkit_logo';
-		$meta_value = get_user_meta($current_user->ID, $meta_key, true);
+		$meta_value = get_user_meta($current_user, $meta_key, true);
 	
 		
 		$isLogo = '';
