@@ -609,7 +609,7 @@ function user_profile_private_redirection() {
 				}
 			
 		} else {
-			wp_redirect(home_url(), 503); // Redirect to homepage or any other page
+			wp_redirect($redirection_url, 503); // Redirect to homepage or any other page
 			exit;
 		}
 	}
