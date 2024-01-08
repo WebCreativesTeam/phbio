@@ -470,11 +470,26 @@ class Plugin_Name_Admin {
 			global $post;
 			$is_child_page = is_a($post, 'WP_Post') && $post->post_parent;
 			$is_child_published = $post->post_status == 'publish';
+			// Get the private redirection URL set for user ID '1'
+			$redirection_url = get_user_meta(1, 'private_redirection', true);
+
+			
             $redirect = false;
 
 			// Redirect All Parent pages, Redirect All Unpublished child pages
 			if (!$is_child_page || ($is_child_page && !$is_child_published)) { 
 				$redirect = true;
+			}
+
+
+
+			// If the redirection URL is set, redirect to it. Otherwise, redirect to the 404 page.
+			if (!empty($redirection_url)) {
+				wp_redirect($redirection_url, 503);
+				exit;
+			} else {
+				wp_redirect(get_site_url('/'), 503);
+				exit;
 			}
 			
 			
