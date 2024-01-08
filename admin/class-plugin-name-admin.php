@@ -468,7 +468,14 @@ class Plugin_Name_Admin {
 	function redirect_parent_post_access() {
 		if (is_singular('hb-user-pkit')) {
 			global $post;
+			$is_child_page = is_a($post, 'WP_Post') && $post->post_parent;
+            
 			if ($post->post_parent == 0) { // Check if it's a parent post
+				wp_redirect(home_url()); // Redirect to homepage or any other page
+				exit;
+			}
+
+			if ($is_child_page && $post->post_status !== 'publish') { 
 				wp_redirect(home_url()); // Redirect to homepage or any other page
 				exit;
 			}
@@ -476,17 +483,7 @@ class Plugin_Name_Admin {
 
 		
 	}
-	function redirect_draft_child_pages() {
-		if (is_singular('hb-user-pkit')) {
-			global $post;
-			$is_child_page = is_a($post, 'WP_Post') && $post->post_parent;
-
-			if ($is_child_page && $post->post_status !== 'publish') { 
-				wp_redirect(home_url()); // Redirect to homepage or any other page
-				exit;
-			}
-		}
-	}
+	
 	
 	
 
@@ -599,7 +596,7 @@ function user_profile_private_redirection() {
     }
     if (is_singular('hb-user-pkit')) {
         
-		
+		$this->redirect_parent_post_access();
 	
 		if($post->post_parent !== 0) {
 				// Get the associated user for this CPT post (assuming you've saved the user ID in the post meta with key 'associated_user')
