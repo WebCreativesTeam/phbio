@@ -44,45 +44,6 @@ if ( ! function_exists('write_log')) {
     }
  }
 
- if( !defined('PIX_OEMBED_CACHE_KEY') ) {
-            define('PIX_OEMBED_CACHE_KEY', 'pix_oembed_');
-        }
-
-        function _wp_custom_oembed_cache_key($url, $args) {
-            $args_serialized = serialize($args);
-            return PIX_OEMBED_CACHE_KEY . md5("{$url}-{$args_serialized}");
-        }
-
-        /**
-        * This function caches the result
-        */
-        function pix_cache_wp_oembed_get_function($data, $url, $args) {
-
-            set_transient( _wp_custom_oembed_cache_key($url, $args), $data, 14*DAY_IN_SECONDS);
-            return $data;
-
-        }
-        add_filter('oembed_result', 'pix_cache_wp_oembed_get_function', 999, 3);
-
-        /**
-        * This function serves the cached result
-        */
-
-        function pix_serve_wp_oembed_get_function($result, $url, $args) {
-
-            if(trim($url) === '') {
-                return '';
-            }
-
-            if($cached_result = get_transient(_wp_custom_oembed_cache_key($url, $args))) {
-                return $cached_result;
-            }
-
-            return $result;
-
-        }
-        add_filter('pre_oembed_result', 'pix_serve_wp_oembed_get_function', 2, 3);
-
 
 /**
  * Current plugin version.
