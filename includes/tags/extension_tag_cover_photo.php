@@ -60,7 +60,6 @@ class Elementor_Ext_Cover_Photo_Tag extends \Elementor\Core\DynamicTags\Data_Tag
 		}
 		
 		if (!$current_user) {
-			echo $this->get_title();
 			return;
 		}
 
