@@ -47,7 +47,7 @@ class Press_Kit_Dashboard {
         // Get Dynamic Tags
         $user_id = get_current_user_id(); 
     
-        $template_id = Plugin_Name_Utilities::handle_user_meta('selected_template', 'read', $user_id);
+        $template_id = Plugin_Name_Utilities::handle_user_meta('selected_pkit_template', 'read', $user_id);
         
         if($template_id === NULL || !$template_id || strlen($template_id) < 1 ) {
             $template_id = get_user_meta(1, 'default_template', true);		
