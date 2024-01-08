@@ -4452,7 +4452,8 @@ function applyAcfDrags() {
             FieldBlocks.forEach((fieldBlock)=>{
                 const dataName = fieldBlock.attributes["data-name"].value;
                 const fieldBox = fieldBlock.lastElementChild.lastElementChild;
-                const fieldBlockInputs = Array.from(fieldBox.getElementsByClassName("acf-field"));
+                // Filter out elements with 'acf-hidden' class for condtional fields to exclude if condition does not match
+                const fieldBlockInputs = Array.from(fieldBox.getElementsByClassName("acf-field")).filter((input)=>!input.classList.contains("acf-hidden"));
                 const FieldNames = fieldBlockInputs.map((input)=>input.attributes["data-name"].value);
                 FieldOrder[dataName] = FieldNames;
             });
@@ -4494,9 +4495,11 @@ function applyAcfDrags() {
             const fieldBlockInputs = Array.from(fieldBox.getElementsByClassName("acf-field"));
             const TempFieldMap = {};
             fieldBlockInputs.forEach((fieldBlockInput)=>{
-                const fieldName = fieldBlockInput.attributes["data-name"].value;
-                TempFieldMap[fieldName] = fieldBlockInput;
-                fieldBox.removeChild(fieldBlockInput);
+                if (!fieldBlockInput.classList.contains("acf-hidden")) {
+                    const fieldName = fieldBlockInput.attributes["data-name"].value;
+                    TempFieldMap[fieldName] = fieldBlockInput;
+                    fieldBox.removeChild(fieldBlockInput);
+                }
             });
             fieldOrder[dataName].forEach((fieldName)=>{
                 fieldBox.appendChild(TempFieldMap[fieldName]);
