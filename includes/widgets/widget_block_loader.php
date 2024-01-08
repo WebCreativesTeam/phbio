@@ -461,7 +461,7 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
     }
 
     private function render_input_textarea($value) {
-        echo "<textarea rows='auto' minrows='10' readonly style='resize: none;'>" . htmlspecialchars($value) .  "</textarea>";
+        echo "<textarea rows='auto' rows='10' readonly style='resize: none;'>" . htmlspecialchars($value) .  "</textarea>";
     }
 
     private function render_input_select($values) {
