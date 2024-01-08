@@ -461,12 +461,12 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
     }
 
     private function render_input_textarea($value) {
-        echo "<textarea rows='10' readonly style='resize: none;'>" . htmlspecialchars($value) .  "</textarea>";
+        echo "<textarea rows='9' readonly style='resize: none;'>" . htmlspecialchars($value) .  "</textarea>";
     }
 
     private function render_input_select($values) {
         $rows = count($values);
-        $formattedValues = implode("-", $values); // Joins array elements with a hyphen
+        $formattedValues = implode(" - ", $values); // Joins array elements with a hyphen
     
         echo "<textarea class='dynamic-textarea' readonly style='resize: none; overflow: hidden;'>";
         echo htmlspecialchars($formattedValues); // Outputs formatted values
