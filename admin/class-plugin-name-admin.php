@@ -469,28 +469,16 @@ class Plugin_Name_Admin {
 		if (is_singular('hb-user-pkit')) {
 			global $post;
 			$is_child_page = is_a($post, 'WP_Post') && $post->post_parent;
+			$is_child_published = $post->post_status == 'publish';
             $redirect = false;
 
-			// Redirect All Prent pages
-			if (!$is_child_page) { 
+			// Redirect All Parent pages, Redirect All Unpublished child pages
+			if (!$is_child_page || ($is_child_page && !$is_child_published)) { 
 				$redirect = true;
 			}
-
-			?>
-			<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var isChildPage = <?php echo json_encode($post->post_status); ?>;
-    console.log('Is Child Page:', isChildPage);
-});
-</script>
-
-
-			<?php
-
-			// if ($is_child_page && $post->post_status !== 'publish') { 
-			// 	wp_redirect(home_url()); // Redirect to homepage or any other page
-			// 	exit;
-			// }
+			
+			
+			
 		}
 
 		
