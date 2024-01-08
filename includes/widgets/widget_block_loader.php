@@ -476,7 +476,7 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
     }
     private function render_input_oembed($value) {
         echo "<div class='embed-container'>";
-        echo $value;
+        print_r($value);
         echo "</div>";
     }
     
