@@ -19,16 +19,11 @@ class Elementor_Is_Logo_Tag extends \Elementor\Core\DynamicTags\Tag {
 	}
     public function render() {
 		// Get the current user
-		$current_user = wp_get_current_user();
-	
-		if (!$current_user->ID) {
-			echo 'No user logged in';
-			return;
-		}
+		$current_user = $this->current_user();
 	
 		// Get the user meta for 'tag-name'
 		$meta_key = 'phbio_logo';
-		$meta_value = get_user_meta($current_user->ID, $meta_key, true);
+		$meta_value = get_user_meta($current_user, $meta_key, true);
 	
 		if (!$meta_value) {
 			echo 'No meta value found for ' . $meta_key;
@@ -41,6 +36,21 @@ class Elementor_Is_Logo_Tag extends \Elementor\Core\DynamicTags\Tag {
 		}
 
 		echo $isLogo;
+	}
+
+	public function current_user() {
+	    global $post;
+
+		$parent_id = $post->post_parent;
+		
+	    $current_user = get_post_meta($parent_id, 'associated_user', true);
+
+		$loggedIn = wp_get_current_user();
+		if(current_user_can('administrator') && $post->post_type == 'template-manager') {
+			return $loggedIn->ID;
+		}
+
+		return $current_user;
 	}
 	
 	
