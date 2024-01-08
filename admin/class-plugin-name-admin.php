@@ -477,7 +477,7 @@ class Plugin_Name_Admin {
             $redirect = false;
 
 			// Redirect All Parent pages, Redirect All Unpublished child pages
-			if (!$is_child_page || ($is_child_page && !$is_child_published)) { 
+			if (!$is_child_page || ($is_child_page && !$is_child_published)) {
 				$redirect = true;
 			}
 
@@ -485,10 +485,10 @@ class Plugin_Name_Admin {
 
 			// If the redirection URL is set, redirect to it. Otherwise, redirect to the 404 page.
 			if (!empty($redirection_url)) {
-				wp_redirect($redirection_url, 503);
+				wp_redirect($redirection_url, 303);
 				exit;
 			} else {
-				wp_redirect(get_site_url('/'), 503);
+				wp_redirect(get_site_url('/'), 303);
 				exit;
 			}
 			
