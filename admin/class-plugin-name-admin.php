@@ -468,7 +468,8 @@ class Plugin_Name_Admin {
 	function user_pkit_profile_redirections() {
 		if (is_singular('hb-user-pkit')) {
 			global $post;
-			$is_child_page = is_a($post, 'WP_Post') && $post->post_parent;
+			$parent_id = $post->post_parent;
+			$is_child_page = is_a($post, 'WP_Post') && $post->post_parent != 0;
 			$is_child_published = $post->post_status == 'publish';
 			// Get the private redirection URL set for user ID '1'
 			$redirection_url = get_user_meta(1, 'private_redirection', true);
@@ -483,13 +484,15 @@ class Plugin_Name_Admin {
 
 
 
-			// If the redirection URL is set, redirect to it. Otherwise, redirect to the 404 page.
-			if (!empty($redirection_url)) {
-				wp_redirect($redirection_url, 303);
-				exit;
-			} else {
-				wp_redirect(get_site_url('/'), 303);
-				exit;
+			// If the redirection URL is set, redirect to it.
+			if($redirect) {
+				if (!empty($redirection_url)) {
+					wp_redirect($redirection_url, 303);
+					exit;
+				} else {
+					wp_redirect(get_site_url('/'), 303);
+					exit;
+				}
 			}
 			
 			
