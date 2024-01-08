@@ -421,7 +421,7 @@ function applyAcfDrags() {
 
 function reloadPageIfSuccess() {
   // Check for the presence of an element with the class 'af-success'
-  var successElement = document.querySelector("#AcfFormsArea .af-success");
+  var successElement = document.querySelector(".af-success");
 
   // If the element is found, reload the page
   if (successElement) {

@@ -195,6 +195,7 @@ class Plugin_Name {
 
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_profile_elementor_content' );
 		$this->loader->add_action('template_redirect', $plugin_admin, 'redirect_parent_post_access');
+		$this->loader->add_action('template_redirect', $plugin_admin, 'redirect_draft_child_pages');
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_presskit_elementor_content' );
 		$this->loader->add_action( 'template_redirect', $plugin_admin, 'user_profile_private_redirection' );
 		

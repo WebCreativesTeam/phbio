@@ -473,6 +473,22 @@ class Plugin_Name_Admin {
 				exit;
 			}
 		}
+
+		
+	}
+	function redirect_draft_child_pages() {
+		if (is_page() && !is_admin()) {
+			global $post;
+			
+        $is_child_page = is_a($post, 'WP_Post') && $post->post_parent;
+			
+			// Check if the page is a draft or child of a draft page
+			if ($is_child_page && get_post_status($post->ID) != 'publish') {
+				// Perform a redirect or display a message
+				wp_redirect(home_url()); // Redirect to home page
+				exit;
+			}
+		}
 	}
 	
 	
