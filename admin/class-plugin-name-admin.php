@@ -465,7 +465,36 @@ class Plugin_Name_Admin {
 		}
 	}
 	
-	
+	function user_pkit_profile_redirections() {
+		if (is_singular('hb-user-pkit')) {
+			global $post;
+			$is_child_page = is_a($post, 'WP_Post') && $post->post_parent;
+            $redirect = false;
+
+			// Redirect All Prent pages
+			if (!$is_child_page) { 
+				$redirect = true;
+			}
+
+			?>
+			<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var isChildPage = <?php echo json_encode($post->post_status); ?>;
+    console.log('Is Child Page:', isChildPage);
+});
+</script>
+
+
+			<?php
+
+			// if ($is_child_page && $post->post_status !== 'publish') { 
+			// 	wp_redirect(home_url()); // Redirect to homepage or any other page
+			// 	exit;
+			// }
+		}
+
+		
+	}
 	
 	
 	
@@ -577,42 +606,7 @@ function user_profile_private_redirection() {
 			
         }
     }
-    if (is_singular('hb-user-pkit')) {
-        
-		if($post->post_parent !== 0) {
-				// Get the associated user for this CPT post (assuming you've saved the user ID in the post meta with key 'associated_user')
-				$user_id = get_post_meta($post->post_parent, 'associated_pkit_user', true);
-			
-			
-				// Exclude the associated user and administrators from the redirection
-				if (get_current_user_id() == $user_id || current_user_can('manage_options')) {
-					return;
-				}
-				
-				// Get the 'public' meta for this user and this child post
-				$public = get_user_meta($user_id, 'public_' . $post->ID, true);
-				
-				// If 'public' is NOT set to 'yes', perform the redirection
-				if ($public !== 'yes' || $post->post_status !== 'publish') {
-            
-					// Get the private redirection URL set for user ID '1'
-					$redirection_url = get_user_meta(1, 'private_pkit_redirection', true);
-		
-					// If the redirection URL is set, redirect to it. Otherwise, redirect to the 404 page.
-					if (!empty($redirection_url)) {
-						wp_redirect($redirection_url, 503);
-						exit;
-					} else {
-						wp_redirect(get_site_url('/'), 503);
-						exit;
-					}
-				}
-			
-		} else {
-			wp_redirect($redirection_url, 503); // Redirect to homepage or any other page
-			exit;
-		}
-	}
+    
 	
 }
 

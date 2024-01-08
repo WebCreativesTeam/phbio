@@ -194,6 +194,7 @@ class Plugin_Name {
 		$this->loader->add_action( 'set_user_role', $plugin_admin, 'role_change', 10, 3 );
 
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_profile_elementor_content' );
+		$this->loader->add_action('template_redirect', $plugin_admin, 'user_pkit_profile_redirections');
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_presskit_elementor_content' );
 		$this->loader->add_action( 'template_redirect', $plugin_admin, 'user_profile_private_redirection' );
 		
