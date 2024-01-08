@@ -466,14 +466,13 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
 
     private function render_input_select($values) {
         $rows = count($values);
-
-
-        echo "<textarea readonly style='resize: none; overflow: hidden;' rows='" . $rows . "'>";
-        foreach ($values as $value) {
-            echo htmlspecialchars($value) . "\n"; // Each value on a new line
-        }
+        $formattedValues = implode("-", $values); // Joins array elements with a hyphen
+    
+        echo "<textarea readonly style='resize: none; overflow: hidden;'>";
+        echo htmlspecialchars($formattedValues); // Outputs formatted values
         echo "</textarea>";
     }
+    
     private function render_input_oembed($iframe) {
         
         // Use preg_match to find iframe src.
