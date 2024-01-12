@@ -240,6 +240,7 @@ function initializeAcfDrags() {
   var draggables = document.querySelectorAll(
     "#AcfFormsArea .fields-block-item:not(.fields-block-condition)"
   );
+  console.log(draggables, "All Draggable Fields");
 
   // Iterate over each item and set the draggable attribute to true
   draggables.forEach(function (item) {
@@ -250,9 +251,13 @@ function initializeAcfDrags() {
   var acfInputs = document.querySelectorAll(
     "#AcfFormsArea .fields-block-item:not(.fields-block-condition) .acf-input:not(.acf-hidden)"
   );
+  console.log(acfInputs, "ACF Inputs");
+
   var acfLabels = document.querySelectorAll(
     "#AcfFormsArea .fields-block-item:not(.fields-block-condition) .acf-label:not(.acf-hidden)"
   );
+
+  console.log(acfLabels, "ACF Labels");
 
   // Define common style objects
   var inputStyle = {
