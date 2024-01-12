@@ -941,11 +941,13 @@ public function component__range_picker() { ?>
                                     <?php echo Plugin_Name_Utilities::get_language_full_name($lang); ?>
                                 </button>
                             <?php
-                        } 
-                    }
+                        } ?>
+            </div>
+
+
+                   <?php }
                 ?>
                 
-            </div>
 
         <?php
         $forms = Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); 
