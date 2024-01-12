@@ -342,11 +342,11 @@ function applyAcfDrags() {
       ];
 
       let nonDraggablePositions = [];
-      siblings.forEach((sibling, index) => {
-        if (sibling.classList.contains("fields-block-condition")) {
-          nonDraggablePositions.push(index);
-        }
-      });
+      // siblings.forEach((sibling, index) => {
+      //   if (sibling.classList.contains("fields-block-condition")) {
+      //     nonDraggablePositions.push(index);
+      //   }
+      // });
 
       let nextSiblingIndex = siblings.findIndex((sibling) => {
         const { top, height } = sibling.getBoundingClientRect();
@@ -412,28 +412,28 @@ function applyAcfDrags() {
         fieldBox.appendChild(TempFieldMap[fieldName]);
         const InputBox = TempFieldMap[fieldName];
 
-        if (!InputBox.classList.contains("fields-block-condition")) {
-          InputBox.addEventListener("dragstart", (e) => {
-            const handle = e.target.querySelector(".drag-handle"); // Replace .drag-handle with your actual handle selector
-            const { left, right, top, bottom } = handle.getBoundingClientRect();
-            if (
-              !(
-                left <= e.clientX &&
-                e.clientX <= right &&
-                top <= e.clientY &&
-                e.clientY <= bottom
-              )
-            ) {
-              e.preventDefault();
-            } else {
-              setTimeout(() => InputBox.classList.add("dragging"), 0);
-            }
-          });
+        // if (!InputBox.classList.contains("fields-block-condition")) {
+        InputBox.addEventListener("dragstart", (e) => {
+          const handle = e.target.querySelector(".drag-handle"); // Replace .drag-handle with your actual handle selector
+          const { left, right, top, bottom } = handle.getBoundingClientRect();
+          if (
+            !(
+              left <= e.clientX &&
+              e.clientX <= right &&
+              top <= e.clientY &&
+              e.clientY <= bottom
+            )
+          ) {
+            e.preventDefault();
+          } else {
+            setTimeout(() => InputBox.classList.add("dragging"), 0);
+          }
+        });
 
-          InputBox.addEventListener("dragend", () => {
-            InputBox.classList.remove("dragging");
-          });
-        }
+        InputBox.addEventListener("dragend", () => {
+          InputBox.classList.remove("dragging");
+        });
+        // }
       });
 
       fieldBox.addEventListener("dragover", (e) =>
