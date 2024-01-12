@@ -4401,9 +4401,9 @@ function initializeAcfDrags() {
     draggables.forEach(function(item) {
         item.setAttribute("draggable", "true");
     });
-    var acfInputs = document.querySelectorAll("#AcfFormsArea .acf-input:not(.acf-hidden)");
+    var acfInputs = document.querySelectorAll("#AcfFormsArea .fields-block-item .acf-input:not(.acf-hidden)");
     console.log(acfInputs, "ACF Inputs");
-    var acfLabels = document.querySelectorAll("#AcfFormsArea .acf-label:not(.acf-hidden)");
+    var acfLabels = document.querySelectorAll("#AcfFormsArea .fields-block-item .acf-label:not(.acf-hidden)");
     console.log(acfLabels, "ACF Labels");
     // Define common style objects
     var inputStyle = {

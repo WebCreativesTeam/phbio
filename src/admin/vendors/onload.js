@@ -248,12 +248,12 @@ function initializeAcfDrags() {
   });
 
   var acfInputs = document.querySelectorAll(
-    "#AcfFormsArea .acf-input:not(.acf-hidden)"
+    "#AcfFormsArea .fields-block-item .acf-input:not(.acf-hidden)"
   );
   console.log(acfInputs, "ACF Inputs");
 
   var acfLabels = document.querySelectorAll(
-    "#AcfFormsArea .acf-label:not(.acf-hidden)"
+    "#AcfFormsArea .fields-block-item .acf-label:not(.acf-hidden)"
   );
 
   console.log(acfLabels, "ACF Labels");
