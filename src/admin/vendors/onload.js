@@ -308,11 +308,6 @@ function applyAcfDrags() {
         const fieldBlockInputs = Array.from(
           fieldBox.getElementsByClassName("acf-field")
         );
-        // ).filter(
-        //   (input) =>
-        //     !input.classList.contains("acf-hidden") &&
-        //     !input.classList.contains("fields-block-condition")
-        // );
 
         const FieldNames = fieldBlockInputs.map(
           (input) => input.attributes["data-name"].value
@@ -342,11 +337,6 @@ function applyAcfDrags() {
       ];
 
       let nonDraggablePositions = [];
-      // siblings.forEach((sibling, index) => {
-      //   if (sibling.classList.contains("fields-block-condition")) {
-      //     nonDraggablePositions.push(index);
-      //   }
-      // });
 
       let nextSiblingIndex = siblings.findIndex((sibling) => {
         const { top, height } = sibling.getBoundingClientRect();
@@ -412,7 +402,6 @@ function applyAcfDrags() {
         fieldBox.appendChild(TempFieldMap[fieldName]);
         const InputBox = TempFieldMap[fieldName];
 
-        // if (!InputBox.classList.contains("fields-block-condition")) {
         InputBox.addEventListener("dragstart", (e) => {
           const handle = e.target.querySelector(".drag-handle"); // Replace .drag-handle with your actual handle selector
           const { left, right, top, bottom } = handle.getBoundingClientRect();
@@ -433,7 +422,6 @@ function applyAcfDrags() {
         InputBox.addEventListener("dragend", () => {
           InputBox.classList.remove("dragging");
         });
-        // }
       });
 
       fieldBox.addEventListener("dragover", (e) =>
