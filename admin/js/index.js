@@ -4447,7 +4447,12 @@ function applyAcfDrags() {
                 const dataName = fieldBlock.attributes["data-name"].value;
                 const fieldBox = fieldBlock.lastElementChild.lastElementChild;
                 // Filter out elements with 'acf-hidden' class for condtional fields to exclude if condition does not match
-                const fieldBlockInputs = Array.from(fieldBox.getElementsByClassName("acf-field")).filter((input)=>!input.classList.contains("acf-hidden") && !input.classList.contains("fields-block-condition"));
+                const fieldBlockInputs = Array.from(fieldBox.getElementsByClassName("acf-field"));
+                // ).filter(
+                //   (input) =>
+                //     !input.classList.contains("acf-hidden") &&
+                //     !input.classList.contains("fields-block-condition")
+                // );
                 const FieldNames = fieldBlockInputs.map((input)=>input.attributes["data-name"].value);
                 FieldOrder[dataName] = FieldNames;
             });
