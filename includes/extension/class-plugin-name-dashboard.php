@@ -951,6 +951,7 @@ public function component__range_picker() { ?>
 
         <?php
         $forms = Plugin_Name_Utilities::get_user_forms(Plugin_Name_Utilities::get_user_langs()); 
+        
         ?>
         <div class="my-10"  x-show="activeTab === 'forms' && !showTemplates && !showSettings">
         
@@ -960,7 +961,6 @@ public function component__range_picker() { ?>
                 ?>
                 <div x-show="activeLang === '<?php echo $index; ?>'">
                     <?php echo do_shortcode('[advanced_form form="' . $form . '" user="current"]'); ?>
-
                 </div>
                 <?php
             } else {

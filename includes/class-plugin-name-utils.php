@@ -161,6 +161,35 @@ class Plugin_Name_Utilities {
         return $pkit_lang_array;
     }
     
+    // public static function get_user_forms($pkit_lang_array) {
+    //     $user_id = get_current_user_id();
+    //     // Check if the user is Pro or Free
+    //     $is_pro_version = Plugin_Name_Utilities::is_full_version($user_id);
+        
+    //     // Get the repeater field 'pkit_fmanager' (assuming it's an option field)
+    //     $forms = get_field('pkit_fmanager', 'option');
+    //     $user_forms = array();
+    
+    //     if ($forms) {
+    //         foreach ($forms as $form) {
+    //             // Check if the current row matches the user's version
+    //             $is_pro_form = $form['pkit_fmanager_role'];
+    
+    //             // If the user is Pro, include both Pro and Free forms
+    //             // If the user is Free, only include Free forms
+    //             if (($is_pro_version && $is_pro_form) || (!$is_pro_version && !$is_pro_form)) {
+    //                 // Check if the form language is in the user's language array
+    //                 if (in_array($form['pkit_fmanager_language'], $pkit_lang_array)) {
+    //                     // Add the form object to the user forms array
+    //                     $user_forms[] = $form['pkit_fmanager_form'];
+    //                 }
+    //             }
+    //         }
+    //     }
+        
+    //     return $user_forms;
+    // }
+
     public static function get_user_forms($pkit_lang_array) {
         $user_id = get_current_user_id();
         // Check if the user is Pro or Free
@@ -168,9 +197,14 @@ class Plugin_Name_Utilities {
         
         // Get the repeater field 'pkit_fmanager' (assuming it's an option field)
         $forms = get_field('pkit_fmanager', 'option');
-        $user_forms = array();
+        $sorted_user_forms = array();
     
         if ($forms) {
+            // Initialize an array for each language
+            foreach ($pkit_lang_array as $lang) {
+                $sorted_user_forms[$lang] = array();
+            }
+    
             foreach ($forms as $form) {
                 // Check if the current row matches the user's version
                 $is_pro_form = $form['pkit_fmanager_role'];
@@ -178,17 +212,27 @@ class Plugin_Name_Utilities {
                 // If the user is Pro, include both Pro and Free forms
                 // If the user is Free, only include Free forms
                 if (($is_pro_version && $is_pro_form) || (!$is_pro_version && !$is_pro_form)) {
+                    $form_lang = $form['pkit_fmanager_language'];
                     // Check if the form language is in the user's language array
-                    if (in_array($form['pkit_fmanager_language'], $pkit_lang_array)) {
-                        // Add the form object to the user forms array
-                        $user_forms[] = $form['pkit_fmanager_form'];
+                    if (in_array($form_lang, $pkit_lang_array)) {
+                        // Add the form object to the corresponding language array
+                        $sorted_user_forms[$form_lang][] = $form['pkit_fmanager_form'];
                     }
                 }
+            }
+        }
+    
+        // Flatten the sorted array while preserving the order of languages
+        $user_forms = array();
+        foreach ($pkit_lang_array as $lang) {
+            if (!empty($sorted_user_forms[$lang])) {
+                $user_forms = array_merge($user_forms, $sorted_user_forms[$lang]);
             }
         }
         
         return $user_forms;
     }
+    
     
 
     public static function get_language_full_name($language_code) {
