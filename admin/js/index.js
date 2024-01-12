@@ -4394,17 +4394,16 @@ function initializeIframeLoading(selector) {
     }, 20000);
 }
 function initializeAcfDrags() {
-    // Adding Drag Handles to elements except those with .fields-block-condition
-    var draggables = document.querySelectorAll("#AcfFormsArea .fields-block-item:not(.fields-block-condition)");
+    // Adding Drag Handles to elements except those with
+    var draggables = document.querySelectorAll("#AcfFormsArea .fields-block-item");
     console.log(draggables, "All Draggable Fields");
     // Iterate over each item and set the draggable attribute to true
     draggables.forEach(function(item) {
         item.setAttribute("draggable", "true");
     });
-    // Select all .acf-input elements within #AcfFormsArea, excluding .fields-block-condition and .acf-hidden
-    var acfInputs = document.querySelectorAll("#AcfFormsArea .fields-block-item:not(.fields-block-condition) .acf-input:not(.acf-hidden)");
+    var acfInputs = document.querySelectorAll("#AcfFormsArea .acf-input:not(.acf-hidden)");
     console.log(acfInputs, "ACF Inputs");
-    var acfLabels = document.querySelectorAll("#AcfFormsArea .fields-block-item:not(.fields-block-condition) .acf-label:not(.acf-hidden)");
+    var acfLabels = document.querySelectorAll("#AcfFormsArea .acf-label:not(.acf-hidden)");
     console.log(acfLabels, "ACF Labels");
     // Define common style objects
     var inputStyle = {
