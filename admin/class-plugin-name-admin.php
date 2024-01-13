@@ -529,6 +529,9 @@ class Plugin_Name_Admin {
 			}
 
 		}
+		if(is_admin()) {
+			$redirect = false;
+		}
 
 		
 
