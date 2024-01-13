@@ -507,19 +507,9 @@ class Plugin_Name_Admin {
 
 
 			// Redirect All Parent pages ( works for all) || Redirect All Unpublished child pages ( this works for logged in users only)
-			if (!$is_child_page) {
+			if (!$is_child_page || ($is_child_page && !$is_child_published && !is_admin())) {
 				$redirect = true;
-			} else {
-
-				if(!$is_child_published && !is_admin()) {
-				    $redirect = true;
-				} else  {
-					$redirect = false;
-				}
-
-			}
-
-			
+			}	
 			
 			
 			if(!$redirect) {
