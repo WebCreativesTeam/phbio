@@ -606,6 +606,7 @@ function render_user_presskit_elementor_content($content) {
     
     // If no template manager ID is found, return an error message
     if (!$template_manager_id) {
+		echo $user_id;
         return $content . '<p class="error">Error: No template found for this user.</p>';
     }
     
