@@ -507,9 +507,19 @@ class Plugin_Name_Admin {
 
 
 			// Redirect All Parent pages ( works for all) || Redirect All Unpublished child pages ( this works for logged in users only)
-			if (!$is_child_page || ($is_child_page && !$is_child_published && !is_admin())) {
+			if (!$is_child_page) {
 				$redirect = true;
-			}	
+			} else {
+
+				if(!$is_child_published && !is_admin()) {
+				    $redirect = true;
+				} else  {
+					$redirect = false;
+				}
+
+			}
+
+			
 			
 			
 			if(!$redirect) {
@@ -518,7 +528,7 @@ class Plugin_Name_Admin {
 				$public = get_user_meta($user_id, 'public_' . $post->ID, true);
 				
 				// If 'public' is NOT set to 'yes', perform the redirection
-				if (!$public || $public !== 'yes') { 
+				if (!$public || $public !== 'yes' || !$is_lang_active) { 
 					$redirect = true;
 				}
 
