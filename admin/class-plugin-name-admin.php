@@ -518,7 +518,7 @@ class Plugin_Name_Admin {
 				$public = get_user_meta($user_id, 'public_' . $post->ID, true);
 				
 				// If 'public' is NOT set to 'yes', perform the redirection
-				if (!$public || $public !== 'yes' || !$is_lang_active) { 
+				if (!$public || $public !== 'yes') { 
 					$redirect = true;
 				}
 
