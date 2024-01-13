@@ -523,16 +523,13 @@ class Plugin_Name_Admin {
 				}
 
 				// Exclude the associated user and administrators from the redirection
-				if (get_current_user_id() == $user_id || current_user_can('manage_options')) {
+				if (current_user_can('manage_options')) {
 					$redirect = false;
 				}
 			}
 
 		}
-		if(is_admin()) {
-			$redirect = false;
-		}
-
+		
 		
 
 		// If the redirection URL is set, redirect to it.
