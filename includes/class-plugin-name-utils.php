@@ -571,7 +571,7 @@ class Plugin_Name_Utilities {
                         'post_type' => 'hb-user-pkit',
                         'post_parent' => $post_id,
                         'name' => $lang,
-                        'post_status' => array('publish', 'draft')  // Include drafts in the search
+                        'post_status' => array('publish')  
                     );
                     $subpage_query = new WP_Query($args);
                     
@@ -608,7 +608,7 @@ class Plugin_Name_Utilities {
                     if (!in_array($subpage->post_name, $langs)) {
                         wp_update_post(array(
                             'ID' => $subpage->ID,
-                            'post_status' => 'draft'
+                            'post_status' => 'publish'
                         ));
                     }
                 }
