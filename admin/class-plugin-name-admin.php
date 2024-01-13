@@ -483,11 +483,27 @@ class Plugin_Name_Admin {
 		}
 		if (is_singular('hb-user-pkit')) {
 			global $post;
+			$child_post_slug = $post->post_name;
 			$parent_id = $post->post_parent;
 			$is_child_page = is_a($post, 'WP_Post') && $post->post_parent != 0;
 			$is_child_published = $post->post_status == 'publish';
-			
+				
 			$user_id = get_post_meta($post->post_parent, 'associated_pkit_user', true);
+			$pkit_lang_array = array();
+
+			$pkit_lang_meta = get_user_meta($user_id, 'pkit_lang', true);
+
+			// Check if the meta contains a comma and split by comma if it does
+			if (strpos($pkit_lang_meta, ',') !== false) {
+				$pkit_lang_array = explode(',', $pkit_lang_meta);
+			} else {
+				// If there is no comma, just create an array with the single value
+				$pkit_lang_array = array($pkit_lang_meta);
+			}
+
+			$is_lang_active = in_array($child_post_slug, $pkit_lang_array);
+
+
 
 
 			// Redirect All Parent pages ( works for all) || Redirect All Unpublished child pages ( this works for logged in users only)
@@ -502,7 +518,7 @@ class Plugin_Name_Admin {
 				$public = get_user_meta($user_id, 'public_' . $post->ID, true);
 				
 				// If 'public' is NOT set to 'yes', perform the redirection
-				if (!$public || $public !== 'yes') { 
+				if (!$public || $public !== 'yes' || !$is_lang_active) { 
 					$redirect = true;
 				}
 
