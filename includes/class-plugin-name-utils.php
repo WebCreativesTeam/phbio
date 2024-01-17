@@ -300,10 +300,9 @@ class Plugin_Name_Utilities {
         return in_array('um_free-verified', (array) $user->roles);
     }
 
-    public static function is_full_verified_version($user_id) {
-        $user = get_userdata($user_id);
-        
-        return in_array('um_pro-verified', (array) $user->roles);
+    public static function is_user_verified($user_id) {
+        $isVerified = get_field('borah__user_verified', 'user_' . $user_id);
+        return $isVerified;
     }
 
     public static function get_user_maxLinks($user_id) {
