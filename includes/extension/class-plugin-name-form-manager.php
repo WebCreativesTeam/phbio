@@ -142,6 +142,148 @@ class FormManager {
             'description' => '',
             'show_in_rest' => 0,
         ) );
+
+        acf_add_local_field_group( array(
+            'key' => 'group_65865afb20c6e',
+            'title' => 'Block Manager Settings',
+            'fields' => array(
+                array(
+                    'key' => 'field_65865afbcbe73',
+                    'label' => 'Block Configuration',
+                    'name' => 'block_configuration',
+                    'aria-label' => '',
+                    'type' => 'repeater',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'hide_admin' => 0,
+                    'layout' => 'row',
+                    'pagination' => 0,
+                    'min' => 0,
+                    'max' => 0,
+                    'collapsed' => '',
+                    'button_label' => 'Add Row',
+                    'rows_per_page' => 20,
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_65865b1ccbe74',
+                            'label' => 'Name',
+                            'name' => 'name',
+                            'aria-label' => '',
+                            'type' => 'text',
+                            'instructions' => '',
+                            'required' => 0,
+                            'conditional_logic' => 0,
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'hide_admin' => 0,
+                            'default_value' => '',
+                            'maxlength' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'parent_repeater' => 'field_65865afbcbe73',
+                        ),
+                        array(
+                            'key' => 'field_65865b86cbe75',
+                            'label' => 'Key',
+                            'name' => 'key',
+                            'aria-label' => '',
+                            'type' => 'text',
+                            'instructions' => 'Please don\'t include language prefixes ( For example it_, en_ etc..)',
+                            'required' => 0,
+                            'conditional_logic' => 0,
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'hide_admin' => 0,
+                            'default_value' => '',
+                            'maxlength' => '',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'parent_repeater' => 'field_65865afbcbe73',
+                        ),
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'options_page',
+                        'operator' => '==',
+                        'value' => 'blocks-manager',
+                    ),
+                ),
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => true,
+            'description' => '',
+            'show_in_rest' => 0,
+        ) );
+        
+        acf_add_local_field_group( array(
+            'key' => 'group_65a7ac98b0cc0',
+            'title' => 'Verified User',
+            'fields' => array(
+                array(
+                    'key' => 'field_65a7ac9aa2aab',
+                    'label' => 'User Verified',
+                    'name' => 'borah__user_verified',
+                    'aria-label' => '',
+                    'type' => 'true_false',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'hide_admin' => 0,
+                    'message' => '',
+                    'default_value' => 0,
+                    'ui_on_text' => '',
+                    'ui_off_text' => '',
+                    'ui' => 1,
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'user_form',
+                        'operator' => '==',
+                        'value' => 'edit',
+                    ),
+                ),
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => true,
+            'description' => '',
+            'show_in_rest' => 0,
+        ) );
+        
+        
     }
     
     public function add_acf_options_page() {
@@ -152,6 +294,14 @@ class FormManager {
             'position' => '',
             'redirect' => false,
             'autoload' => true,
+        ) );
+        
+        acf_add_options_page( array(
+            'page_title' => 'Blocks Manager',
+            'menu_slug' => 'blocks-manager',
+            'parent_slug' => 'presskit-settings',
+            'position' => '',
+            'redirect' => false,
         ) );
     }
 }
