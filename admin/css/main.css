@@ -474,6 +474,9 @@ select {
   .content-templates {
     margin-top: 1rem;
 }
+.content-preview {
+    margin-bottom: 8rem;
+}
 .content-settings,
   .content-templates {
     position: absolute;
@@ -1792,6 +1795,10 @@ body {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
 }
+.my-10 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+}
 .my-3 {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
@@ -1799,10 +1806,6 @@ body {
 .my-5 {
     margin-top: 1.25rem;
     margin-bottom: 1.25rem;
-}
-.my-10 {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
 }
 .mb-0 {
     margin-bottom: 0px;

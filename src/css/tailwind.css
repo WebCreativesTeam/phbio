@@ -123,6 +123,10 @@ form {
   .content-templates {
     @apply mt-4;
   }
+
+  .content-preview {
+    @apply mb-32;
+  }
   .content-settings,
   .content-templates {
     @apply absolute top-0 left-0 z-10 w-full bg-white;
