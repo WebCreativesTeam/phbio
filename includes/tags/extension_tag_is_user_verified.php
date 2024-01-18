@@ -23,7 +23,7 @@ class Elementor_Ext_Is_User_Verified extends \Elementor\Core\DynamicTags\Tag {
 
 		$user_id = $this->current_user();
 
-		if ( Plugin_Name_Utilities::is_full_verified_version($user_id) || Plugin_Name_Utilities::is_lite_verified_version($user_id)) {
+		if ( Plugin_Name_Utilities::is_user_verified($user_id)) {
 		   echo "if-user-verified user-verified";
 		} else {
 		   echo "if-user-verified user-not-verified";
