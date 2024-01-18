@@ -4420,11 +4420,12 @@ function initializeAcfDrags() {
     };
     // Loop through each .acf-input element
     acfInputs.forEach(function(acfInput) {
-        // Create and insert the handle div if it doesn't exist
         if (!acfInput.querySelector(".drag-handle")) {
             var handleDiv = document.createElement("div");
             handleDiv.className = "drag-handle";
-            handleDiv.textContent = "☰";
+            var icon = document.createElement("i");
+            icon.className = "fas fa-bars"; // Font Awesome icon class
+            handleDiv.appendChild(icon);
             acfInput.insertBefore(handleDiv, acfInput.firstChild);
         }
         // Apply styles
