@@ -669,7 +669,7 @@ class Plugin_Name_Builder {
                                         } else { ?>
                                          <div class="mt-5 mb-7 text-[15px]">
                                             <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
-                                        </div>
+                                         </div>
                                         <div class="flex flex-col w-full gap-5 my-5 md:gap-7 md:flex-row" x-show="link.isScheduled">
                                             <div class="flex flex-col items-baseline gap-1 md:gap-3 md:flex-row md:w-fit">
                                                 <label class="w-full input-label md:text-sm max-w-fit"> Start Time</label>

@@ -3505,6 +3505,7 @@ exports.default = ({ initLinks = [], initMax })=>({
             highlight: false,
             isEditing: false,
             isScheduled: false,
+            isEndScheduled: false,
             start_time: null,
             end_time: null,
             imageFile: ""
@@ -3518,6 +3519,7 @@ exports.default = ({ initLinks = [], initMax })=>({
                 start_time: link.start_time || null,
                 end_time: link.end_time || null,
                 isScheduled: link.isScheduled || false,
+                isEndScheduled: link.isEndScheduled || false,
                 imageFile: link.imageFile || ""
             })),
         draggingLinkId: null,
@@ -3581,6 +3583,7 @@ exports.default = ({ initLinks = [], initMax })=>({
                     highlight: this.newLink.highlight,
                     isEditing: false,
                     isScheduled: this.newLink.isScheduled,
+                    isEndScheduled: this.newLink.isEndScheduled,
                     start_time: this.newLink.start_time,
                     end_time: this.newLink.end_time
                 });
@@ -3718,13 +3721,17 @@ exports.default = ({ initLinks = [], initMax })=>({
         applyScheduling () {
             const currentTime = this.isDebugMode ? this.debugTime : new Date().toISOString(); // Use debug time if in debug mode
             this.links.forEach((link)=>{
+                // Proceed only if the link is scheduled
                 if (link.isScheduled) {
-                    // Convert string times to Date objects for easier comparison
-                    const startTime = new Date(link.start_time);
-                    const endTime = new Date(link.end_time);
-                    // Check if current time is outside the scheduled window
-                    if (currentTime < startTime.toISOString() || currentTime > endTime.toISOString()) link.isHidden = true; // Hide the link
-                    else link.isHidden = false; // Show the link
+                    const startTime = new Date(link.start_time).toISOString();
+                    let shouldHide = currentTime < startTime; // Initially, hide if before start time
+                    // If end scheduling is also enabled, further check against the end time
+                    if (link.isEndScheduled) {
+                        const endTime = new Date(link.end_time).toISOString();
+                        shouldHide = shouldHide || currentTime > endTime; // Hide if also past end time
+                    }
+                    // Set visibility based on the scheduling checks
+                    link.isHidden = shouldHide;
                 }
             });
         }
