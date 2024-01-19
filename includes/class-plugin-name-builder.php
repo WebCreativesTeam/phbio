@@ -518,7 +518,7 @@ class Plugin_Name_Builder {
                                     Enable Scheduling
                                 </label>
                             </div>
-                            <div class="my-3 text-sm sm:text-[15px]">
+                            <div class="my-3 text-sm sm:text-[15px]" x-show="link.isScheduled">
                                 <label>
                                     <input type="checkbox" x-model="newLink.isEndScheduled">
                                     Enable End Time
@@ -677,7 +677,7 @@ class Plugin_Name_Builder {
                                             <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
                                          </div>
                                          <div class="mt-5 mb-7 text-[15px]">
-                                            <input type="checkbox" x-model="link.isScheduled"> Enable End Time
+                                            <input type="checkbox" x-model="link.isScheduled" x-show="link.isScheduled"> Enable End Time
                                          </div>
                                         <div class="flex flex-col w-full gap-5 my-5 md:gap-7 md:flex-row">
                                             <div class="flex flex-col items-baseline gap-1 md:gap-3 md:flex-row md:w-fit" x-show="link.isScheduled">
