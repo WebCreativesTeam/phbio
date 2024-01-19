@@ -533,7 +533,7 @@ class Plugin_Name_Builder {
         
                                 <div class="flex flex-col items-baseline gap-1 md:gap-3 md:flex-row md:w-fit" x-show="newLink.isEndScheduled">
                                     <label class="w-full input-label md:text-sm max-w-fit"> End Time</label>
-                                    <input class="schedule_time" class="w-full md:max-w-fit" type="datetime-local" x-model="newLink.end_time" value="<?php echo date("Y-m-d\TH:i:s"); ?>" min="<?php echo date("Y-m-d\TH:i"); ?>">
+                                    <input class="schedule_time" class="w-full md:max-w-fit" type="datetime-local" x-model="newLink.end_time" value="<?php echo date("Y-m-d\TH:i:s"); ?>" min="newLink.start_time">
                                 </div>
                             </div>
                             
@@ -688,7 +688,7 @@ class Plugin_Name_Builder {
 
                                             <div class="flex flex-col items-baseline gap-1 md:gap-3 md:flex-row md:w-fit" x-show="link.isEndScheduled">
                                                 <label class="w-full input-label md:text-sm max-w-fit"> End Time</label>
-                                                <input type="datetime-local" class="w-full md:max-w-fit" x-model="link.end_time" value="<?php echo date("Y-m-d\TH:i"); ?>" min="link.start_time">
+                                                <input type="datetime-local" class="w-full md:max-w-fit" x-model="link.end_time" value="<?php echo date("Y-m-d\TH:i"); ?>" min="<?php echo date("Y-m-d\TH:i"); ?>">
                                             </div>
                                         </div>
                                         
