@@ -676,8 +676,9 @@ class Plugin_Name_Builder {
                                          <div class="mt-5 mb-7 text-[15px]">
                                             <input type="checkbox" x-model="link.isScheduled"> Enable Scheduling
                                          </div>
-                                         <div class="mt-5 mb-7 text-[15px]">
-                                            <input type="checkbox" x-model="link.isScheduled" x-show="link.isScheduled"> Enable End Time
+                                         <div class="mt-5 mb-7 text-[15px]" x-show="link.isScheduled">
+                                            <input type="checkbox" x-model="link.isScheduled" x-show="link.isScheduled"> 
+                                            <span>Enable End Time</span>
                                          </div>
                                         <div class="flex flex-col w-full gap-5 my-5 md:gap-7 md:flex-row">
                                             <div class="flex flex-col items-baseline gap-1 md:gap-3 md:flex-row md:w-fit" x-show="link.isScheduled">
@@ -687,7 +688,7 @@ class Plugin_Name_Builder {
 
                                             <div class="flex flex-col items-baseline gap-1 md:gap-3 md:flex-row md:w-fit" x-show="link.isEndScheduled">
                                                 <label class="w-full input-label md:text-sm max-w-fit"> End Time</label>
-                                                <input type="datetime-local" class="w-full md:max-w-fit" x-model="link.end_time" value="<?php echo date("Y-m-d\TH:i"); ?>" min="<?php echo date("Y-m-d\TH:i"); ?>">
+                                                <input type="datetime-local" class="w-full md:max-w-fit" x-model="link.end_time" value="<?php echo date("Y-m-d\TH:i"); ?>" min="link.start_time">
                                             </div>
                                         </div>
                                         
