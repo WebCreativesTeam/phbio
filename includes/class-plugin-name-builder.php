@@ -521,7 +521,7 @@ class Plugin_Name_Builder {
                             <div class="my-3 text-sm sm:text-[15px]" x-show="newLink.isScheduled">
                                 <label>
                                     <input type="checkbox" x-model="newLink.isEndScheduled">
-                                    Enable End Time
+                                    <span>Enable End Time</span>
                                 </label>
                             </div>
                             
