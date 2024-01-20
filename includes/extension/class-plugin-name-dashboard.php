@@ -251,13 +251,7 @@ class Press_Kit_Dashboard {
                         }
 
 
-                        // Loop through the associative array
-                        foreach ($children_array as $i => $lang) {
-                            // Call the function for each ID and slug
-                            Plugin_Name_Builder::checkbox_field('public_' . $i, 
-                                'Enable Public Access for ' . Plugin_Name_Utilities::get_language_full_name($lang), 
-                                Plugin_Name_Capabilities::EDIT_PROJECT_NAME, $user_id) . ' Press Kit'; 
-                        }
+                       
                     }
                 ?>
 
