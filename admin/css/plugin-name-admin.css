@@ -11,6 +11,6 @@ li#toplevel_page_presskit-settings {
   padding-bottom: 10px !important;
 }
 
-.form-table > tbody > tr.user-role-wrap {
+tr.user-role-wrap {
   display: block !important;
 }
