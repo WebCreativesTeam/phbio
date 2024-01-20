@@ -263,7 +263,6 @@ class Plugin_Name_Activator {
 				start_time DATETIME,
 				end_time DATETIME,
 				isScheduled BOOLEAN,
-				isEndScheduled BOOLEAN,
 				imageFile TEXT,
 				PRIMARY KEY  (link_id)
 			) $charset_collate;";

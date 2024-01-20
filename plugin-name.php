@@ -367,7 +367,6 @@ function sync_links_list_to_phbio_links($meta_id, $user_id, $meta_key, $_meta_va
                         'highlight' => $link['highlight'],
                         'start_time' => $link['start_time'],
                         'end_time' => $link['end_time'],
-                        'isEndScheduled' => $link['isEndScheduled'],
                         'isScheduled' => $link['isScheduled'],
                         'imageFile' => $link['imageFile']
                     ),
@@ -386,7 +385,6 @@ function sync_links_list_to_phbio_links($meta_id, $user_id, $meta_key, $_meta_va
                         'highlight' => $link['highlight'],
                         'start_time' => $link['start_time'],
                         'end_time' => $link['end_time'],
-                        'isEndScheduled' => $link['isEndScheduled'],
                         'isScheduled' => $link['isScheduled'],
                         'imageFile' => $link['imageFile']
                     )
