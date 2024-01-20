@@ -346,11 +346,13 @@ class Plugin_Name_Builder {
                                     </div>
                                     <div x-show="isOpen" class="absolute z-10 w-full bg-white border">
                                         <input type="text" x-model="search" placeholder="Search..." class="w-full p-2" @click.stop />
-                                        <template x-for="option in filteredOptions()" :key="option">
-                                            <div @click.stop="selectOption(option)" class="flex items-center p-2 cursor-pointer hover:bg-gray-200" :class="{'bg-gray-100': selected === option}">
-                                                <i :class="'fa fa-2x ' + option" class="mr-2"></i>
-                                            </div>
-                                        </template>
+                                        <div class="flex flex-wrap w-full p-3">
+                                            <template x-for="option in filteredOptions()" :key="option">
+                                                <div @click.stop="selectOption(option)" class="flex items-center p-2 cursor-pointer hover:bg-gray-200" :class="{'bg-gray-100': selected === option}">
+                                                    <i :class="'fa fa-2x ' + option" class="mr-2"></i>
+                                                </div>
+                                            </template>
+                                        </div>
                                         <div x-show="!filteredOptions().length" class="p-2">No results found</div>
                                     </div>
                                 </div>
@@ -420,11 +422,13 @@ class Plugin_Name_Builder {
                                                 </div>
                                                 <div x-show="isOpen" class="absolute z-10 w-full bg-white border">
                                                     <input type="text" x-model="search" placeholder="Search..." class="w-full p-2" @click.stop />
-                                                    <template x-for="option in filteredOptions()" :key="option">
-                                                        <div @click.stop="selectOption(option)" class="flex items-center p-2 cursor-pointer hover:bg-gray-200" :class="{'bg-gray-100': selected === option}">
-                                                            <i :class="'fa fa-2x ' + option" class="mr-2"></i>
-                                                        </div>
-                                                    </template>
+                                                    <div class="flex flex-wrap w-full p-3">
+                                                        <template x-for="option in filteredOptions()" :key="option">
+                                                            <div @click.stop="selectOption(option)" class="flex items-center p-2 cursor-pointer hover:bg-gray-200" :class="{'bg-gray-100': selected === option}">
+                                                                <i :class="'fa fa-2x ' + option" class="mr-2"></i>
+                                                            </div>
+                                                        </template>
+                                                    </div>
                                                     <div x-show="!filteredOptions().length" class="p-2">No results found</div>
                                                 </div>
                                             </div>

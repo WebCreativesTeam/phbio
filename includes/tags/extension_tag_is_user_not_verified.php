@@ -39,7 +39,6 @@ class Elementor_Ext_Is_User_Not_Verified extends \Elementor\Core\DynamicTags\Tag
 
 		
 		if (!$current_user) {
-			echo $this->get_title();
 			return;
 		}
 

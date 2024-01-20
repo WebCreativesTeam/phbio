@@ -469,6 +469,7 @@ class Plugin_Name_Admin {
 		$redirect = false;
 		// Get the private redirection URL set for user ID '1'
 		$redirection_url = get_user_meta(1, 'private_redirection', true);
+        $current_user_id = get_current_user_id();
 
 		
 		if(is_404()) {
@@ -489,6 +490,9 @@ class Plugin_Name_Admin {
 			$is_child_published = $post->post_status == 'publish';
 				
 			$user_id = get_post_meta($post->post_parent, 'associated_pkit_user', true);
+			$is_same_user = ($current_user_id == $user_id);
+
+
 			$pkit_lang_array = array();
 
 			$pkit_lang_meta = get_user_meta($user_id, 'pkit_lang', true);
@@ -523,7 +527,7 @@ class Plugin_Name_Admin {
 				}
 
 				// Exclude the associated user and administrators from the redirection
-				if (current_user_can('manage_options')) {
+				if (current_user_can('manage_options') || $is_same_user) {
 					$redirect = false;
 				}
 			}
