@@ -676,7 +676,7 @@ class Plugin_Name_Builder {
                                         <label class="input-label">Title</label>
                                         <?php
                                             if($char_limit) {
-                                                echo '<div class="input-container-enhanced input-container shadow-og" x-data="{ charCount: 0, charLimit: '.  $char_limit . '}">';
+                                                echo '<div class="input-container-enhanced input-container shadow-og" x-data="{ charCount: link.title.length, charLimit: '.  $char_limit . '}">';
                                             } else {
                                                 echo '<div class="input-container-enhanced input-container shadow-og">';
                                             }
