@@ -242,6 +242,9 @@ class Plugin_Name_Admin {
 			foreach ($linksArray as &$link) {
 				if (isset($link['isScheduled']) && $link['isScheduled'] === true) {
 					$link['isScheduled'] = false;
+					$link['isEndScheduled'] = false;
+					$link['start_time'] = null;
+					$link['end_time'] = null;
 					$link['isHidden'] = true;
 				}
 			}
