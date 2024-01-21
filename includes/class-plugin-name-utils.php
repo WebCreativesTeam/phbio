@@ -337,8 +337,20 @@ class Plugin_Name_Utilities {
     }
     
     public static function get_pkit_data($user_id, $lang) {
+        // Initialize the version as 'free'
+        $version = 'free';
+
+        // Get the user by user ID
+        $user = get_user_by('id', $user_id);
+
+        // Check if the user exists and has the 'um_pro-member' role
+        if ($user && in_array('um_pro-member', $user->roles)) {
+            $version = 'pro';
+        }
+
+
         // Fetch the user meta based on language argument
-        $array = get_user_meta($user_id)[$lang . '_fields_order'];
+        $array = get_user_meta($user_id)[$lang . '_' . $version . '_fields_order'];
     
         // Check if the array is set and is not empty
         if (!isset($array[0]) || empty($array[0])) {
