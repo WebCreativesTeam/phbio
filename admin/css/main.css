@@ -1737,7 +1737,7 @@ div.acf-label > label {
     color: rgb(42, 42, 42);
 }
 .fields-block .acf-label > label {
-    font-weight: 700;
+    font-weight: 700 !important;
 }
 .sr-only {
     position: absolute;

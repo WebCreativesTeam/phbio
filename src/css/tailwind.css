@@ -723,7 +723,14 @@ form {
     color: rgb(42, 42, 42);
   }
 
+  .fields-block > .af-input > .acf-fields {
+    @apply rounded-lg;
+  }
+
+  .fields-block-item {
+    @apply p-6 !important;
+  }
   .fields-block .acf-label > label {
-    @apply font-bold;
+    @apply font-bold !important;
   }
 }
