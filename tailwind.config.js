@@ -14,6 +14,7 @@ module.exports = {
     "./src/admin/vendors/wpdataTables.js",
   ],
   safelist: [
+    "acf-input-wrap",
     "setting-page-wrap",
     "wpbody-content",
     "wpcontent",

@@ -1717,6 +1717,18 @@ body {
 .if-user-verified.user-not-verified {
     display: none;
 }
+.drag-handle {
+    margin-top: -0.5rem;
+}
+div.acf-input-wrap > input {
+    height: 2.75rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    padding: 0.75rem;
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    border: 0.8px solid rgb(221, 221, 221);
+}
 .sr-only {
     position: absolute;
     width: 1px;
@@ -2273,14 +2285,14 @@ body {
 .p-2 {
     padding: 0.5rem;
 }
+.p-3 {
+    padding: 0.75rem;
+}
 .p-4 {
     padding: 1rem;
 }
 .p-5 {
     padding: 1.25rem;
-}
-.p-3 {
-    padding: 0.75rem;
 }
 .px-1 {
     padding-left: 0.25rem;

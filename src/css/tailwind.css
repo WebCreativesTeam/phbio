@@ -708,4 +708,13 @@ form {
   .if-user-verified.user-not-verified {
     @apply hidden;
   }
+
+  .drag-handle {
+    @apply -mt-2;
+  }
+
+  div.acf-input-wrap > input {
+    @apply bg-white h-11 p-3 font-normal font-poppins;
+    border: 0.8px solid rgb(221, 221, 221);
+  }
 }
