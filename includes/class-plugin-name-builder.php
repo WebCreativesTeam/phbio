@@ -674,9 +674,24 @@ class Plugin_Name_Builder {
                                             <span>You're editing your link</span>
                                         </div>
                                         <label class="input-label">Title</label>
-                                        <div class="input-container-enhanced input-container shadow-og">
+                                        <?php
+                                            if($char_limit) {
+                                                echo '<div class="input-container-enhanced input-container shadow-og" x-data="{ charCount: inputEditTitleValue.length, charLimit: '.  $char_limit . '}">';
+                                            } else {
+                                                echo '<div class="input-container-enhanced input-container shadow-og">';
+                                            }
+                                        ?>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#F1441E]" fill="currentColor" viewBox="0 0 512 512"><path d="M453.3 19.3l39.4 39.4c25 25 25 65.5 0 90.5l-52.1 52.1 0 0-1-1 0 0-16-16-96-96-17-17 52.1-52.1c25-25 65.5-25 90.5 0zM241 114.9c-9.4-9.4-24.6-9.4-33.9 0L105 217c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9L173.1 81c28.1-28.1 73.7-28.1 101.8 0L288 94.1l17 17 96 96 16 16 1 1-17 17L229.5 412.5c-48 48-109.2 80.8-175.8 94.1l-25 5c-7.9 1.6-16-.9-21.7-6.6s-8.1-13.8-6.6-21.7l5-25c13.3-66.6 46.1-127.8 94.1-175.8L254.1 128 241 114.9z"/></svg>
-                                            <input class="input-field-enhanced" x-model="inputEditTitleValue" >
+                                            <?php 
+
+                                            if ($char_limit) {
+                                                echo '<input class="input-field-enhanced" x-model="inputEditTitleValue"' . ($char_limit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' x-on:input="charCount = $event.target.value.length" />';
+                                                echo '<span class="char-counter" x-text="`${charCount} / ${charLimit}`"></span>';
+                                            } else {
+                                                echo '<input class="input-field-enhanced" x-model="inputEditTitleValue">';
+
+                                            }
+                                            ?>
                                         </div>
                                         <label class="input-label">URL</label>
                                         <div class="input-container-enhanced input-container shadow-og">
