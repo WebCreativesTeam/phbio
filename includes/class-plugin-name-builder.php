@@ -552,7 +552,7 @@ class Plugin_Name_Builder {
                                     <input class="schedule_time" class="w-full md:max-w-fit" type="datetime-local" x-model="newLink.start_time">             
                                 </div>
         
-                                <div class="flex flex-col items-baseline gap-1 md:gap-3 md:flex-row md:w-fit" x-show="newLink.isEndScheduled">
+                                <div class="flex flex-col items-baseline gap-1 md:gap-3 md:flex-row md:w-fit" x-show="newLink.isEndScheduled && newLink.isEndScheduled">
                                     <label class="w-full input-label md:text-sm max-w-fit"> End Time</label>
                                     <input class="schedule_time" class="w-full md:max-w-fit" type="datetime-local" x-model="newLink.end_time">
                                 </div>
@@ -722,7 +722,7 @@ class Plugin_Name_Builder {
                                                 <input type="datetime-local" class="w-full md:max-w-fit" x-model="link.start_time">             
                                             </div>
 
-                                            <div class="flex flex-col items-baseline gap-1 md:gap-3 md:flex-row md:w-fit" x-show="link.isEndScheduled">
+                                            <div class="flex flex-col items-baseline gap-1 md:gap-3 md:flex-row md:w-fit" x-show="newLink.isEndScheduled && newLink.isEndScheduled">
                                                 <label class="w-full input-label md:text-sm max-w-fit"> End Time</label>
                                                 <input type="datetime-local" class="w-full md:max-w-fit" x-model="link.end_time">
                                             </div>
