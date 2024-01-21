@@ -719,7 +719,7 @@ form {
   }
 
   div.acf-label > label {
-    @apply font-poppins font-norma text-xs leading-6;
+    @apply font-poppins font-normal text-xs leading-6;
     color: rgb(42, 42, 42);
   }
 }

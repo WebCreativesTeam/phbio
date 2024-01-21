@@ -15,6 +15,7 @@ module.exports = {
   ],
   safelist: [
     "acf-input-wrap",
+    "acf-label",
     "setting-page-wrap",
     "wpbody-content",
     "wpcontent",
