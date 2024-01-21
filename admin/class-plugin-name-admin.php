@@ -234,6 +234,23 @@ class Plugin_Name_Admin {
 			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
 			update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
 			$selectedPkit = get_user_meta( $user_id, 'selected_pkit_template', true );
+
+			$value = get_user_meta($user_id, 'links_list', true);
+			$decodedString = urldecode($value);
+			$linksArray = json_decode($decodedString, true);
+			// Iterate over the array and update elements where isScheduled is true
+			foreach ($linksArray as &$link) {
+				if (isset($link['isScheduled']) && $link['isScheduled'] === true) {
+					$link['isScheduled'] = false;
+					$link['isHidden'] = true;
+				}
+			}
+			unset($link); // Break the reference with the last element
+
+			// Re-encode the updated array and save it back to the user meta
+			$updatedValue = json_encode($linksArray);
+			$encodedValue = urlencode($updatedValue);
+			update_user_meta($user_id, 'links_list', $encodedValue);
 			
 			// One language for pkit
 			$pkit_langs = get_user_meta($user_id, 'pkit_lang', true);

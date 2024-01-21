@@ -583,6 +583,22 @@ public function component__range_picker() { ?>
         }
         ?>
         </div>
+        <script>
+            window.addEventListener("DOMContentLoaded", function() {
+                var iframe = document.querySelector('iframe');
+                var spinner = document.querySelector('.loaad');
+                iframe.onload = function() {
+                    iframe.style.height = iframe.contentWindow.document.body.scrollHeight + 40 + 'px';
+                    spinner.style.display = 'none'; // Hide spinner when iframe is loaded
+                }
+
+                // Reload iframe every 30 seconds
+                    setInterval(function(){
+                        iframe.src += '';
+                    }, 20000);
+                    });
+            
+        </script>
         <?php
         
     }
