@@ -250,8 +250,6 @@ class Press_Kit_Dashboard {
                             }
                         }
 
-
-                       
                     }
                 ?>
 

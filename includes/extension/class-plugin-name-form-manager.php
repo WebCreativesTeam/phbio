@@ -6,8 +6,21 @@ class FormManager {
     public function __construct() {
         add_action('acf/include_fields', array($this, 'add_acf_fields'));
         add_action('acf/init', array($this, 'add_acf_options_page'));
-       
+        add_filter('acf/prepare_field/type=image', 'force_basic_uploader');
 
+    }
+    
+    public function force_basic_uploader( $field ) {
+	
+        // don't do this on the backend
+        if(is_admin() && !current_user_can('manage_options')) return $field;
+        
+        // set the uploader setting before rendering the field
+        acf_update_setting('uploader', 'basic');
+        
+        // return the field data
+        return $field;
+        
     }
     
    
