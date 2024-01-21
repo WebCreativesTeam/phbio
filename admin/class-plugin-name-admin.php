@@ -462,22 +462,18 @@ class Plugin_Name_Admin {
 		return;
 	}
 
-	function users_own_attachments( $wp_query_obj ) {
-
-		global $current_user, $pagenow;
+	function hide_image_edit_link() {
 		$user = wp_get_current_user();
-		
-		if( !is_a( $current_user, 'WP_User') )
-			return;
-	
-		if(('upload.php' != $pagenow) && (('admin-ajax.php' != $pagenow) || ($_REQUEST['action'] != 'query-attachments' )) && ( !in_array('um_free-member', $user->roles) || !in_array('um_pro-member', $user->roles) )) {
-			return;
+		if (in_array('um_free-member', $user->roles) || in_array('um_pro-member', $user->roles)) {
+			echo '<style>
+		  .media-sidebar {
+				display: none;
+			}
+			.media-frame-content .attachment-details .edit-attachment { 
+				display: none !important; 
+			}
+		</style>';
 		}
-	
-		if( !current_user_can('delete_pages') )
-			$wp_query_obj->set('author', $current_user->id );
-	
-		return;
 	}
 
     function template_version_field( $post ) {
