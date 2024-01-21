@@ -718,7 +718,7 @@ form {
     border: 0.8px solid rgb(221, 221, 221);
   }
 
-  div.acf-label > label {
+  .fields-block-item > label {
     @apply text-sm font-normal leading-6 font-poppins;
     color: rgb(42, 42, 42);
   }
