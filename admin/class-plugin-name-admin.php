@@ -444,6 +444,42 @@ class Plugin_Name_Admin {
 		);
 	}
 
+	function users_own_attachments( $wp_query_obj ) {
+
+		global $current_user, $pagenow;
+		$user = wp_get_current_user();
+		
+		if( !is_a( $current_user, 'WP_User') )
+			return;
+	
+		if(('upload.php' != $pagenow) && (('admin-ajax.php' != $pagenow) || ($_REQUEST['action'] != 'query-attachments' )) && ( !in_array('um_free-member', $user->roles) || !in_array('um_pro-member', $user->roles) )) {
+			return;
+		}
+	
+		if( !current_user_can('delete_pages') )
+			$wp_query_obj->set('author', $current_user->id );
+	
+		return;
+	}
+
+	function users_own_attachments( $wp_query_obj ) {
+
+		global $current_user, $pagenow;
+		$user = wp_get_current_user();
+		
+		if( !is_a( $current_user, 'WP_User') )
+			return;
+	
+		if(('upload.php' != $pagenow) && (('admin-ajax.php' != $pagenow) || ($_REQUEST['action'] != 'query-attachments' )) && ( !in_array('um_free-member', $user->roles) || !in_array('um_pro-member', $user->roles) )) {
+			return;
+		}
+	
+		if( !current_user_can('delete_pages') )
+			$wp_query_obj->set('author', $current_user->id );
+	
+		return;
+	}
+
     function template_version_field( $post ) {
 		$value = get_post_meta( $post->ID, '_version_key', true );
 		?>

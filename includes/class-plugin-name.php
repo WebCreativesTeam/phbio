@@ -198,6 +198,9 @@ class Plugin_Name {
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_presskit_elementor_content' );
 		$this->loader->add_action( 'template_redirect', $plugin_admin, 'user_profile_private_redirection' );
 		
+		$this->loader->add_action('pre_get_posts', $plugin_admin, 'users_own_attachments');
+		$this->loader->add_action('admin_head', $plugin_admin, 'hide_image_edit_link');
+
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'template_version_mb' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'pkit_template_version_mb' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'template_version_field_save' );
