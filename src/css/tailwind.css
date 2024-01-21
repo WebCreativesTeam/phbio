@@ -714,12 +714,12 @@ form {
   }
 
   div.acf-input-wrap > input {
-    @apply bg-white h-11 p-3 font-normal font-poppins;
+    @apply p-3 font-normal bg-white h-11 font-poppins;
     border: 0.8px solid rgb(221, 221, 221);
   }
 
   div.acf-label > label {
-    @apply font-poppins font-normal text-xs leading-6;
+    @apply text-base font-normal leading-6 font-poppins;
     color: rgb(42, 42, 42);
   }
 }
