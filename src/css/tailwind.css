@@ -717,4 +717,9 @@ form {
     @apply bg-white h-11 p-3 font-normal font-poppins;
     border: 0.8px solid rgb(221, 221, 221);
   }
+
+  div.acf-label > label {
+    @apply font-poppins font-norma text-xs leading-6;
+    color: rgb(42, 42, 42);
+  }
 }
