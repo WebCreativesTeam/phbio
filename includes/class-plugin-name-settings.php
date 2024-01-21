@@ -94,6 +94,10 @@ class Plugin_Name_Settings {
             ],
             [
                 'type' => 'text_field',
+                'args' => ['limit_link_title', '20', true, 'Link Title', '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17,6H7A1,1,0,0,0,7,8h4v9a1,1,0,0,0,2,0V8h4a1,1,0,0,0,0-2Z"></path></svg>', 'manage_options', false, $user_id]
+            ],
+            [
+                'type' => 'text_field',
                 'args' => ['limit_bio', '150', true, 'Character Limit : Bio', '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17,6H7A1,1,0,0,0,7,8h4v9a1,1,0,0,0,2,0V8h4a1,1,0,0,0,0-2Z"></path></svg>', 'manage_options', false, $user_id]
             ],
             [
