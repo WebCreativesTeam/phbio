@@ -507,6 +507,9 @@ class Plugin_Name_Admin {
 			.media-frame-content .attachment-details .edit-attachment { 
 				display: none !important; 
 			}
+			.media-toolbar .media-toolbar-secondary {
+				display: none !important;
+			}
 		</style>';
 		}
 	}
