@@ -713,7 +713,7 @@ form {
     @apply -mt-2;
   }
 
-  div.acf-input-wrap > input {
+  /* div.acf-input-wrap > input {
     @apply p-4 font-normal bg-white h-11 font-poppins;
     border: 0.8px solid rgb(221, 221, 221);
   }
@@ -732,5 +732,5 @@ form {
   }
   .fields-block .acf-label > label {
     @apply font-bold !important;
-  }
+  } */
 }

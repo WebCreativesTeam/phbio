@@ -1720,18 +1720,26 @@ body {
 .drag-handle {
     margin-top: -0.5rem;
 }
-div.acf-input-wrap > input {
-    height: 2.75rem;
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-    padding: 1rem;
-    font-family: Poppins, sans-serif;
-    font-weight: 400;
+/* div.acf-input-wrap > input {
+    @apply p-4 font-normal bg-white h-11 font-poppins;
     border: 0.8px solid rgb(221, 221, 221);
-}
-.fields-block .acf-label > label {
-    font-weight: 700 !important;
-}
+  }
+
+  .fields-block-item > label {
+    @apply text-sm font-normal leading-6 font-poppins;
+    color: rgb(42, 42, 42);
+  }
+
+  .fields-block > .af-input > .acf-fields {
+    @apply rounded-lg;
+  }
+
+  .fields-block-item {
+    @apply p-6 !important;
+  }
+  .fields-block .acf-label > label {
+    @apply font-bold !important;
+  } */
 .sr-only {
     position: absolute;
     width: 1px;
