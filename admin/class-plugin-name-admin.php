@@ -482,6 +482,21 @@ class Plugin_Name_Admin {
 		return;
 	}
 
+	function custom_role_max_upload_size( $file ) {
+		$user = wp_get_current_user();
+		$role = ( array ) $user->roles;
+		$size_limit = 50000000; // default limit 50MB
+	
+		if ( !in_array( 'administrator', $role ) ) {
+			$size_limit = 2000000; // 10MB
+		}
+	
+		if ( $file['size'] > $size_limit ) {
+			$file['error'] = 'Your file is too large';
+		}
+		return $file;
+	}
+
 	function hide_image_edit_link() {
 		$user = wp_get_current_user();
 		if (in_array('um_free-member', $user->roles) || in_array('um_pro-member', $user->roles)) {
