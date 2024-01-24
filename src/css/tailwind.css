@@ -733,4 +733,39 @@ form {
   .fields-block .acf-label > label {
     @apply font-bold !important;
   } */
+
+  /* PKit Submit Button */
+  button.acf-button.af-submit-button.button.button-primary.button-large {
+    background-color: #f1441e;
+    border: 0px;
+    padding: 3px 20px 3px 20px;
+    font-size: 14px;
+  }
+
+  /* PKit Tab */
+  .acf-tab-wrap.-top {
+    background-color: #f1441e;
+  }
+
+  /* PKit Active Tab */
+  .acf-tab-group li.active a {
+    background-color: #f1441e !important;
+    color: #fff;
+  }
+
+  /* PKit Input Area Border */
+  .acf-fields.-border {
+    border: #f1441e solid 1px !important;
+    border-radius: 5px;
+  }
+
+  /* PKit Tabs Border */
+  .acf-tab-group {
+    border: none !important;
+  }
+
+  /* PKit Tabs Background */
+  .acf-fields > .acf-tab-wrap {
+    background: #ffffff !important;
+  }
 }
