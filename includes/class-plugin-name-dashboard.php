@@ -184,7 +184,7 @@ class Plugin_Name_Dashboard {
 
     public function area__settings($user_id) {
         // Example datetime string
-        $datetime = '2024-01-28 13:39:00';
+        $datetime = '2024-01-28 15:00:00';
 
         // Example format (optional)
         $format = 'Y-m-d H:i:s'; // You can change this to any valid PHP date format
