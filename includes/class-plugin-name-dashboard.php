@@ -183,17 +183,7 @@ class Plugin_Name_Dashboard {
     <?php }
 
     public function area__settings($user_id) {
-        // Example datetime string
-        $datetime = '2024-01-28 15:05:00';
-
-        // Example format (optional)
-        $format = 'Y-m-d H:i:s'; // You can change this to any valid PHP date format
-
-        // Call the function
-        $result = wp_utz_input_offset($datetime, $format);
-
-        // Output the result
-        echo $result;
+        echo wp_custom_time_shortcode();
         ?>
         
             <!-- Templates Actions  - STARTS HERE -->

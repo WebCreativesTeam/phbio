@@ -450,3 +450,21 @@ function sync_links_list_to_phbio_links($meta_id, $user_id, $meta_key, $_meta_va
         }
     }
 }
+
+function wp_custom_time_shortcode() {
+    $user_format = get_user_option('time_format');
+    $user_format = $user_format ? $user_format : get_option('time_format');
+
+    // Server time
+    $server_time = current_time($user_format);
+
+    // User's local time - assuming you want to use the WordPress site's timezone setting
+    // If the user has a different timezone setting, you would need to adjust this part accordingly
+    $user_time = date_i18n($user_format);
+
+    // Construct the output
+    $output = "Server Time: $server_time, User Time: $user_time";
+
+    return $output;
+}
+
