@@ -494,6 +494,16 @@ class Plugin_Name_Utilities {
             update_user_meta($user_id, $name, $posted_value);
 
 
+
+            if($name === "links_list") {
+                $lists = $_POST['links_list'];
+                $decodedString = urldecode($lists);
+                $linksArray = json_decode($decodedString, true);
+            
+                /** Re-index to fix any potential issues */
+                $arr = array_values(is_array($linksArray) ? $linksArray : []);
+                error_log();
+            }
             // Sync with hb-user-profile cpt
             if ($name === "username") {
                 // Search for a hb-user-profile post associated with this user
