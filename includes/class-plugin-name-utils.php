@@ -303,16 +303,20 @@ class Plugin_Name_Utilities {
     public static function convertTimeToServer($user_id, $dateTime) {
         global $wpdb;
         $serverTimeZone = $wpdb->get_var("SELECT @@system_time_zone");
-        $userTimezone = get_user_meta( $user_id, '_wp_utz_opts', true );
-        if (!is_array($userTimezone) || empty($userTimezone['timezone'])) $userTimezone['timezone'] = wp_timezone_string();
+        $userTimezone = get_user_meta($user_id, '_wp_utz_opts', true);
+        if (!is_array($userTimezone) || empty($userTimezone['timezone'])) {
+            $userTimezone['timezone'] = wp_timezone_string();
+        }
         try {
-            $dateTime = new DateTime ($dateTime, new DateTimeZone($userTimezone['timezone']));
+            $dateTime = new DateTime($dateTime, new DateTimeZone($userTimezone['timezone']));
             $dateTime->setTimezone(new DateTimeZone($serverTimeZone));
-            return $dateTime->format("Y-m-d H:i:s");
+            return $dateTime->format("Y-m-d\TH:i:s");
         } catch (Exception $e) {
+            error_log("DateTime conversion error: " . $e->getMessage());
             return false;
         }
     }
+    
     public static function convertTimeToUser($user_id, $dateTime) {
         global $wpdb;
         $serverTimeZone = $wpdb->get_var("SELECT @@system_time_zone");
@@ -472,6 +476,35 @@ class Plugin_Name_Utilities {
         if (substr($name, -5) === '_list' && isset($_POST[$name]) && self::check_user_capability($capability)) {
             $posted_array = $_POST[$name];  // Assume that this is a JSON string
 
+            if($name === 'links_list') {
+                $current_server_time = date("Y-m-d H:i:s");
+                error_log("Current Server Time: " . $current_server_time);
+
+                $decodedString = urldecode($posted_array);
+                $linksArray = json_decode($decodedString, true);
+            
+                /** Re-index to fix any potential issues */
+                $arr = array_values(is_array($linksArray) ? $linksArray : []);
+            
+                error_log("Before");
+                error_log(print_r($arr, true));
+                // Convert the array to a string and log it
+
+                // Assuming you have the $user_id value set correctly
+                foreach ($arr as $key => $link) {
+                    if (!empty($link['start_time'])) {
+                        $arr[$key]['start_time'] = self::convertTimeToServer($user_id, $link['start_time']);
+                    }
+                    if (!empty($link['end_time'])) {
+                        $arr[$key]['end_time'] = self::convertTimeToServer($user_id, $link['end_time']);
+                    }
+                }
+
+                // Log the updated array to check if the times have been converted
+                error_log("After");
+                error_log(print_r($arr, true));
+
+            }
             
             update_user_meta($user_id, $name, $posted_array);
         
@@ -495,19 +528,7 @@ class Plugin_Name_Utilities {
 
 
 
-            if ($name === "links_list") {
-                $lists = $_POST['links_list'];
-                $decodedString = urldecode($lists);
-                $linksArray = json_decode($decodedString, true);
-            
-                /** Re-index to fix any potential issues */
-                $arr = array_values(is_array($linksArray) ? $linksArray : []);
-            
-                // Convert the array to a string and log it
-
-                error_log("Hey");
-                error_log(print_r($arr, true));
-            }
+           
             
             // Sync with hb-user-profile cpt
             if ($name === "username") {
