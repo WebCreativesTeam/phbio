@@ -5,12 +5,10 @@ jQuery(document).ready(function ($) {
   var userId = dashboardDiv.getAttribute("data-user-id");
   var userTimeZone = dashboardDiv.getAttribute("data-user-timezone");
 
-  console.log(userId); // This will log the user ID to the console
-  console.log(userTimeZone); // This will log the user ID to the console
-
   // Check if cookie is not set
-  if (userId && !timeZone) {
+  if (userId && !userTimeZone) {
     var timeZone = geoplugin_timezone();
+    console.log(timeZone);
 
     // $.ajax({
     //   type: "POST",
