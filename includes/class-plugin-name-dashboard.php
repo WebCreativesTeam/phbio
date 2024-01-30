@@ -68,7 +68,10 @@ class Plugin_Name_Dashboard {
 
         // User
         $user_id = get_current_user_id(); 
-
+        $userTimezone = get_user_meta($user_id, '_wp_utz_opts', true);
+        if (!is_array($userTimezone) || empty($userTimezone['timezone'])) {
+            $userTimezone['timezone'] = wp_timezone_string();
+        }
         
         $template_id__saved = $this->init_dynamic();
 
@@ -80,7 +83,7 @@ class Plugin_Name_Dashboard {
 		}
         include_once plugin_dir_path(__FILE__) . 'class-plugin-name-header.php';
 		?>
-<div class="dashboard-layout" data-user-id="<?php echo get_current_user_id(); ?>" data-user-timezone="<?php echo get_user_meta(get_current_user_id(), '_wp_utz_opts', true); ?>">
+<div class="dashboard-layout" data-user-id="<?php echo $user_id; ?>" data-user-timezone="<?php echo $userTimezone['timezone']; ?>">
 
 <div x-data="dashboard" 
         x-init="() => { 
