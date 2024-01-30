@@ -504,6 +504,8 @@ class Plugin_Name_Utilities {
                 $arr = array_values(is_array($linksArray) ? $linksArray : []);
             
                 // Convert the array to a string and log it
+
+                error_log("Hey");
                 error_log(print_r($arr, true));
             }
             
