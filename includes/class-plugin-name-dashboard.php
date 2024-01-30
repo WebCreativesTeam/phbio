@@ -80,7 +80,7 @@ class Plugin_Name_Dashboard {
 		}
         include_once plugin_dir_path(__FILE__) . 'class-plugin-name-header.php';
 		?>
-<div class="dashboard-layout">
+<div class="dashboard-layout" data-user-id="<?php echo get_current_user_id(); ?>" data-user-timezone="<?php echo get_user_meta(get_current_user_id(), '_wp_utz_opts', true) ?>">
 
 <div x-data="dashboard" 
         x-init="() => { 

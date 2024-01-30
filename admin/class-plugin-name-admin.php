@@ -135,6 +135,10 @@ class Plugin_Name_Admin {
 			false
 		);
 		wp_enqueue_script( 'username', plugin_dir_url( __FILE__ ) . 'js/username.js', NULL, $this->version, false );
+
+		if( isset( $_GET['page'] ) && $_GET['page'] == 'edit-bio') {
+			wp_enqueue_script( 'user-timezone', plugin_dir_url( __FILE__ ) . 'js/user-timezone.js', array('jquery'), $this->version, false );
+		}
 		
 		wp_localize_script( 'username', 'plugin', array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
