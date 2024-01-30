@@ -69,8 +69,10 @@ class Plugin_Name_Dashboard {
         // User
         $user_id = get_current_user_id(); 
         $userTimezone = get_user_meta($user_id, '_wp_utz_opts', true);
-        if (!is_array($userTimezone) || empty($userTimezone['timezone'])) {
+        if (!is_array($userTimezone)) {
             $userTimezone['timezone'] = wp_timezone_string();
+        } elseif( empty($userTimezone['timezone']) ) {
+            $userTimezone['timezone'] = false;
         }
         
         $template_id__saved = $this->init_dynamic();
