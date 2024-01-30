@@ -67,16 +67,9 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 		
 			$user_id = sanitize_text_field($_POST['user_id']);
 			$time_zone = sanitize_text_field($_POST['time_zone']);
-		
-			// Update the timezone value
-			$userTimezone['timezone'] = $time_zone;
 
 			// Update the user meta
-			update_user_meta($user_id, '_wp_utz_opts', $userTimezone);
-
-			
-			// Log the user_id and time_zone
-			error_log("User ID: " . $user_id . ", Time Zone: " . $time_zone);
+			update_user_meta($user_id, '_wp_utz_timezone', $time_zone);
 		
 			wp_die();
             exit();
