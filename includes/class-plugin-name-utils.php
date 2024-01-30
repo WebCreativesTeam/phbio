@@ -493,7 +493,11 @@ class Plugin_Name_Utilities {
                         $arr[$key]['end_time'] = self::convertTimeToServer($user_id, $link['end_time']);
                     }
                 }
-                $posted_array = $arr;
+                // Encoding the array back to JSON
+                $posted_array = json_encode($arr);
+
+                 // URL-encode the JSON string
+                $posted_array = urlencode($posted_array);
 
             }
             
