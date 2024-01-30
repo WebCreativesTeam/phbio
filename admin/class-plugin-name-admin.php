@@ -222,10 +222,13 @@ class Plugin_Name_Admin {
 
 	
 	public function role_change($user_id, $role, $old_roles) {
-          
+        error_log("New Role");
+		error_log($role);
+		error_log("Old Roles");
+		error_log(print_r($old_roles, true));
+
 		if (in_array('um_pro-member', $old_roles ) && $role == 'um_free-member') {
 
-			
 			// Fallback default templates
 			$default = get_user_meta(1, 'default_template', true);	
 			update_user_meta( $user_id, 'selected_template', $default );
