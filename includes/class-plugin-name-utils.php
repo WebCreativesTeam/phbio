@@ -325,7 +325,7 @@ class Plugin_Name_Utilities {
         try {
             $dateTime = new DateTime ($dateTime, new DateTimeZone($serverTimeZone));
             $dateTime->setTimezone(new DateTimeZone($userTimezone['timezone']));
-            return $dateTime->format("Y-m-d H:i:s");
+            return $dateTime->format("Y-m-d\TH:i:s");
         } catch (Exception $e) {
             return false;
         }
@@ -501,7 +501,21 @@ class Plugin_Name_Utilities {
                 }
 
                 // Log the updated array to check if the times have been converted
-                error_log("After");
+                error_log("After Server");
+                error_log(print_r($arr, true));
+
+                // Assuming you have the $user_id value set correctly
+                foreach ($arr as $key => $link) {
+                    if (!empty($link['start_time'])) {
+                        $arr[$key]['start_time'] = self::convertTimeToUser($user_id, $link['start_time']);
+                    }
+                    if (!empty($link['end_time'])) {
+                        $arr[$key]['end_time'] = self::convertTimeToUser($user_id, $link['end_time']);
+                    }
+                }
+
+                // Log the updated array to check if the times have been converted
+                error_log("After Client");
                 error_log(print_r($arr, true));
 
             }
