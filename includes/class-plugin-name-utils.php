@@ -495,15 +495,18 @@ class Plugin_Name_Utilities {
 
 
 
-            if($name === "links_list") {
+            if ($name === "links_list") {
                 $lists = $_POST['links_list'];
                 $decodedString = urldecode($lists);
                 $linksArray = json_decode($decodedString, true);
             
                 /** Re-index to fix any potential issues */
                 $arr = array_values(is_array($linksArray) ? $linksArray : []);
-                error_log();
+            
+                // Convert the array to a string and log it
+                error_log(print_r($arr, true));
             }
+            
             // Sync with hb-user-profile cpt
             if ($name === "username") {
                 // Search for a hb-user-profile post associated with this user
