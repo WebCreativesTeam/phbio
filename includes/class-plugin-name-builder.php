@@ -466,15 +466,8 @@ class Plugin_Name_Builder {
             /** Re-index to fix the above issue */
             $reIndexedArray = array_values(is_array($linksArray) ? $linksArray : []);
             
-            // Assuming you have the $user_id value set correctly
-            foreach ($reIndexedArray as $key => $link) {
-                if (!empty($link['start_time'])) {
-                    $reIndexedArray[$key]['start_time'] = Plugin_Name_Utilities::convertTimeToUser($target_user_id, $link['start_time']);
-                }
-                if (!empty($link['end_time'])) {
-                    $reIndexedArray[$key]['end_time'] = Plugin_Name_Utilities::convertTimeToUser($target_user_id, $link['end_time']);
-                }
-            }
+            error_log(print_r($reIndexedArray, true));
+
             $links_json = htmlspecialchars(json_encode($reIndexedArray), ENT_QUOTES, 'UTF-8');
             $links_limit = Plugin_Name_Utilities::get_user_maxLinks($target_user_id);
             $char_limit = get_metadata('user', 1, 'limit_link_title', true);
