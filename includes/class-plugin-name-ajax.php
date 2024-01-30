@@ -210,6 +210,25 @@ if( ! class_exists( 'Plugin_Ajax' ) ){
 		
 			wp_send_json($response);
 		}
+
+		public function handle_record_time_zone() {
+			// Check if user_id and time_zone are set in the POST request
+			if (!isset($_POST['user_id']) || !isset($_POST['time_zone'])) {
+				wp_send_json(['success' => false, 'error' => 'Missing required parameters']);
+				return;
+			}
+		
+			$user_id = sanitize_text_field($_POST['user_id']);
+			$time_zone = sanitize_text_field($_POST['time_zone']);
+		
+			// Log the user_id and time_zone
+			error_log("User ID: " . $user_id . ", Time Zone: " . $time_zone);
+		
+			// You can perform additional actions here, like updating user meta or database operations
+		
+			// Send a success response back to the AJAX request
+			wp_send_json(['success' => true]);
+		}
 		
 	
 		

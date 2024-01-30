@@ -10,14 +10,14 @@ jQuery(document).ready(function ($) {
     var timeZone = geoplugin_timezone();
     console.log(timeZone);
 
-    // $.ajax({
-    //   type: "POST",
-    //   url: UserTimeZone.ajax_url,
-    //   data: {
-    //     action: "handle_record_time_zone",
-    //     user_id: userId,
-    //     time_zone: timeZone,
-    //   },
-    // });
+    $.ajax({
+      type: "POST",
+      url: UserTimeZone.ajax_url,
+      data: {
+        action: "handle_record_time_zone",
+        user_id: userId,
+        time_zone: timeZone,
+      },
+    });
   }
 });
