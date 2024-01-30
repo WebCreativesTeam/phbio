@@ -223,6 +223,9 @@ class Plugin_Name {
 		$this->loader->add_action( 'wp_ajax_nopriv_callback', $plugin_ajax, 'callback' );
 		$this->loader->add_action( 'wp_ajax_callback', $plugin_ajax, 'callback' );
 
+		$this->loader->add_action( 'wp_ajax_nopriv_handle_record_time_zone', $plugin_ajax, 'handle_record_time_zone' );
+		$this->loader->add_action( 'wp_ajax_handle_record_time_zone', $plugin_ajax, 'handle_record_time_zone' );
+
 		$this->loader->add_action( 'wp_ajax_handle_link_click', $plugin_ajax, 'handle_link_click' );
 		$this->loader->add_action( 'wp_ajax_nopriv_handle_link_click', $plugin_ajax, 'handle_link_click' );
 		$this->loader->add_action( 'wp_ajax_handle_social_link_click', $plugin_ajax, 'handle_social_link_click' );

@@ -140,9 +140,11 @@ class Plugin_Name_Admin {
 			wp_enqueue_script('geoplugin', 'https://ssl.geoplugin.net/javascript.gp?k=b6f1cdacfb0b5a65', NULL, $this->version , true);
 			wp_enqueue_script( 'user-timezone', plugin_dir_url( __FILE__ ) . 'js/user-timezone.js', array('jquery', 'geoplugin'), $this->version, false );
 			// Localize the script to pass data
-			wp_localize_script('user-timezone', 'UserTimeZone', array(
+			wp_localize_script('user-timezone', 'timezonePlugin', array(
 				'ajax_url' => admin_url('admin-ajax.php'),
+				'nonce'    => wp_create_nonce( 'timezonePlugin' )
 			));
+			
 		}
 		
 		wp_localize_script( 'username', 'plugin', array(

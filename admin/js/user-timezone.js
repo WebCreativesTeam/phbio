@@ -12,7 +12,7 @@ jQuery(document).ready(function ($) {
 
     $.ajax({
       type: "POST",
-      url: UserTimeZone.ajax_url,
+      url: timezonePlugin.ajax_url,
       data: {
         action: "handle_record_time_zone",
         user_id: userId,
