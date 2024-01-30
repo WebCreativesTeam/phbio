@@ -15,6 +15,7 @@ jQuery(document).ready(function ($) {
       url: timezonePlugin.ajax_url,
       data: {
         action: "handle_record_time_zone",
+        noncee: timezonePlugin.nonce,
         user_id: userId,
         time_zone: timeZone,
       },
