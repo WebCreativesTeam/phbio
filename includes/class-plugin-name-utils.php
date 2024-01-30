@@ -300,10 +300,10 @@ class Plugin_Name_Utilities {
         return in_array('um_free-verified', (array) $user->roles);
     }
 
-    public static function convertTimeToServer($dateTime) {
+    public static function convertTimeToServer($user_id, $dateTime) {
         global $wpdb;
         $serverTimeZone = $wpdb->get_var("SELECT @@system_time_zone");
-        $userTimezone = get_user_meta( 1, '_wp_utz_opts', true );
+        $userTimezone = get_user_meta( $user_id, '_wp_utz_opts', true );
         if (!is_array($userTimezone) || empty($userTimezone['timezone'])) $userTimezone['timezone'] = wp_timezone_string();
         try {
             $dateTime = new DateTime ($dateTime, new DateTimeZone($userTimezone['timezone']));
@@ -313,10 +313,10 @@ class Plugin_Name_Utilities {
             return false;
         }
     }
-    public static function convertTimeToUser($dateTime) {
+    public static function convertTimeToUser($user_id, $dateTime) {
         global $wpdb;
         $serverTimeZone = $wpdb->get_var("SELECT @@system_time_zone");
-        $userTimezone = get_user_meta( 1, '_wp_utz_opts', true );
+        $userTimezone = get_user_meta( $user_id, '_wp_utz_opts', true );
         if (!is_array($userTimezone) || empty($userTimezone['timezone'])) $userTimezone['timezone'] = wp_timezone_string();
         try {
             $dateTime = new DateTime ($dateTime, new DateTimeZone($serverTimeZone));
