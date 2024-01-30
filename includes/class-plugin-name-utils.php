@@ -302,7 +302,8 @@ class Plugin_Name_Utilities {
 
     public static function convertTimeToServer($user_id, $dateTime) {
         global $wpdb;
-        $serverTimeZone = $wpdb->get_var("SELECT @@system_time_zone");
+        // $serverTimeZone = $wpdb->get_var("SELECT @@system_time_zone");
+        $serverTimeZone = wp_timezone_string();
         $userTimezone = get_user_meta($user_id, '_wp_utz_opts', true);
         if (!is_array($userTimezone) || empty($userTimezone['timezone'])) {
             $userTimezone['timezone'] = wp_timezone_string();
@@ -319,7 +320,8 @@ class Plugin_Name_Utilities {
     
     public static function convertTimeToUser($user_id, $dateTime) {
         global $wpdb;
-        $serverTimeZone = $wpdb->get_var("SELECT @@system_time_zone");
+        // $serverTimeZone = $wpdb->get_var("SELECT @@system_time_zone");
+        $serverTimeZone = wp_timezone_string();
         $userTimezone = get_user_meta( $user_id, '_wp_utz_opts', true );
         if (!is_array($userTimezone) || empty($userTimezone['timezone'])) $userTimezone['timezone'] = wp_timezone_string();
         try {
