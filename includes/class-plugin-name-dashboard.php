@@ -183,7 +183,6 @@ class Plugin_Name_Dashboard {
     <?php }
 
     public function area__settings($user_id) {
-        echo wp_custom_time_shortcode();
         ?>
         
             <!-- Templates Actions  - STARTS HERE -->
