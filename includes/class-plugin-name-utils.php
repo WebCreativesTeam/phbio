@@ -300,6 +300,33 @@ class Plugin_Name_Utilities {
         return in_array('um_free-verified', (array) $user->roles);
     }
 
+    public static function convertTimeToServer($dateTime) {
+        global $wpdb;
+        $serverTimeZone = $wpdb->get_var("SELECT @@system_time_zone");
+        $userTimezone = get_user_meta( 1, '_wp_utz_opts', true );
+        if (!is_array($userTimezone) || empty($userTimezone['timezone'])) $userTimezone['timezone'] = wp_timezone_string();
+        try {
+            $dateTime = new DateTime ($dateTime, new DateTimeZone($userTimezone['timezone']));
+            $dateTime->setTimezone(new DateTimeZone($serverTimeZone));
+            return $dateTime->format("Y-m-d H:i:s");
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+    public static function convertTimeToUser($dateTime) {
+        global $wpdb;
+        $serverTimeZone = $wpdb->get_var("SELECT @@system_time_zone");
+        $userTimezone = get_user_meta( 1, '_wp_utz_opts', true );
+        if (!is_array($userTimezone) || empty($userTimezone['timezone'])) $userTimezone['timezone'] = wp_timezone_string();
+        try {
+            $dateTime = new DateTime ($dateTime, new DateTimeZone($serverTimeZone));
+            $dateTime->setTimezone(new DateTimeZone($userTimezone['timezone']));
+            return $dateTime->format("Y-m-d H:i:s");
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
     public static function is_user_verified($user_id) {
         $isVerified = get_field('borah__user_verified', 'user_' . $user_id);
         return $isVerified;
