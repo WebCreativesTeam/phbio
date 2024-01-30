@@ -477,19 +477,13 @@ class Plugin_Name_Utilities {
             $posted_array = $_POST[$name];  // Assume that this is a JSON string
 
             if($name === 'links_list') {
-                $current_server_time = date("Y-m-d H:i:s");
-                error_log("Current Server Time: " . $current_server_time);
-
+                
                 $decodedString = urldecode($posted_array);
                 $linksArray = json_decode($decodedString, true);
             
                 /** Re-index to fix any potential issues */
                 $arr = array_values(is_array($linksArray) ? $linksArray : []);
-            
-                error_log("Before");
-                error_log(print_r($arr, true));
-                // Convert the array to a string and log it
-
+    
                 // Assuming you have the $user_id value set correctly
                 foreach ($arr as $key => $link) {
                     if (!empty($link['start_time'])) {
@@ -499,24 +493,7 @@ class Plugin_Name_Utilities {
                         $arr[$key]['end_time'] = self::convertTimeToServer($user_id, $link['end_time']);
                     }
                 }
-
-                // Log the updated array to check if the times have been converted
-                error_log("After Server");
-                error_log(print_r($arr, true));
-
-                // Assuming you have the $user_id value set correctly
-                foreach ($arr as $key => $link) {
-                    if (!empty($link['start_time'])) {
-                        $arr[$key]['start_time'] = self::convertTimeToUser($user_id, $link['start_time']);
-                    }
-                    if (!empty($link['end_time'])) {
-                        $arr[$key]['end_time'] = self::convertTimeToUser($user_id, $link['end_time']);
-                    }
-                }
-
-                // Log the updated array to check if the times have been converted
-                error_log("After Client");
-                error_log(print_r($arr, true));
+                $posted_array = $arr;
 
             }
             
