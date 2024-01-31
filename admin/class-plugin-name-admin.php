@@ -255,7 +255,7 @@ class Plugin_Name_Admin {
 
 			$decodedString = urldecode($value);
 			$linksArray = json_decode($decodedString, true);
-
+           
 			// Take only the first freeLinksCount entries of linksArray
 			$allowedLinks = array_slice($linksArray, 0, $freeLinksCount);
 
@@ -272,11 +272,9 @@ class Plugin_Name_Admin {
 			unset($link); // Break the reference with the last element
 
 
-			// Merge the modified first $freeLinksCount entries back into the original array
-			array_splice($linksArray, 0, $freeLinksCount, $allowedLinks);
 
 			// Re-encode the updated array and save it back to the user meta
-			$updatedValue = json_encode($linksArray);
+			$updatedValue = json_encode($allowedLinks);
 			$encodedValue = urlencode($updatedValue);
 			
 			// One language for pkit
