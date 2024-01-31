@@ -288,8 +288,7 @@ class Plugin_Name_Admin {
 			
 		}
 
-		// Roles if user role is upgraded back
-		if (in_array('um_free-member', $new_roles ) && $role == 'um_pro-member') {
+		if (in_array('um_free-member', $old_roles ) && $role == 'um_pro-member') {
 
 			$backup_value = get_user_meta($user_id, '_backup_meta_field', true);
 			if ($backup_value) {
