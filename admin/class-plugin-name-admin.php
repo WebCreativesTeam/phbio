@@ -233,27 +233,34 @@ class Plugin_Name_Admin {
 
 	
 	public function role_change($user_id, $role, $old_roles) {
-        error_log("New Role");
-		error_log($role);
-		error_log("Old Roles");
-		error_log(print_r($old_roles, true));
+        
 
 		if (in_array('um_pro-member', $old_roles ) && $role == 'um_free-member') {
 
-			// Fallback default templates
+			// Fallback default templates - lib
 			$default = get_user_meta(1, 'default_template', true);	
 			update_user_meta( $user_id, 'selected_template', $default );
-
-
+			
+			
+			// Fallback default templates - pkit
 			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
 			update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
 			$selectedPkit = get_user_meta( $user_id, 'selected_pkit_template', true );
 
+			// Backup links list
 			$value = get_user_meta($user_id, 'links_list', true);
+			$freeLinksCount = intval(get_user_meta(1, 'limit_links_lite', true));
+			update_user_meta($user_id, '_backup_meta_field', $value);
+			update_user_meta($user_id, '_backup_date', current_time('mysql'));
+
 			$decodedString = urldecode($value);
 			$linksArray = json_decode($decodedString, true);
+
+			// Take only the first freeLinksCount entries of linksArray
+			$allowedLinks = array_slice($linksArray, 0, $freeLinksCount);
+
 			// Iterate over the array and update elements where isScheduled is true
-			foreach ($linksArray as &$link) {
+			foreach ($allowedLinks as &$link) {
 				if (isset($link['isScheduled']) && $link['isScheduled'] === true) {
 					$link['isScheduled'] = false;
 					$link['isEndScheduled'] = false;
@@ -264,24 +271,23 @@ class Plugin_Name_Admin {
 			}
 			unset($link); // Break the reference with the last element
 
+
+			// Merge the modified first $freeLinksCount entries back into the original array
+			array_splice($linksArray, 0, $freeLinksCount, $allowedLinks);
+
 			// Re-encode the updated array and save it back to the user meta
 			$updatedValue = json_encode($linksArray);
 			$encodedValue = urlencode($updatedValue);
-			update_user_meta($user_id, 'links_list', $encodedValue);
 			
 			// One language for pkit
 			$pkit_langs = get_user_meta($user_id, 'pkit_lang', true);
-			
 			$parts = explode(",", $pkit_langs);
-
 			$firstLang = $parts[0];
-
+			
+			update_user_meta($user_id, 'links_list', $encodedValue);
 			update_user_meta( $user_id, 'pkit_lang', $firstLang );
 
-			// Backup links list
-			$meta_value = get_user_meta($user_id, 'links_list', true);
-			update_user_meta($user_id, '_backup_meta_field', $meta_value);
-			update_user_meta($user_id, '_backup_date', current_time('mysql'));
+			
 		}
 
 		// Roles if user role is upgraded back

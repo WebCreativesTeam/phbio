@@ -8,7 +8,6 @@ jQuery(document).ready(function ($) {
   // Check if cookie is not set
   if (userId && !userTimeZone) {
     var timeZone = geoplugin_timezone();
-    console.log(timeZone);
 
     $.ajax({
       type: "POST",
