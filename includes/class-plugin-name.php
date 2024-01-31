@@ -192,6 +192,9 @@ class Plugin_Name {
 		$this->loader->add_action( 'init', $plugin_admin, 'pkit_template_manager' );
 		$this->loader->add_action( 'init', $plugin_admin, 'user_pkit_manager' );
 		$this->loader->add_action( 'set_user_role', $plugin_admin, 'role_change', 10, 3 );
+		if ( defined( 'YITH_YWSBS_PREMIUM' ) ) {
+			$this->loader->add_action( 'ywsbs_subscription_status_changed', 'search_for_subscriptions', 10, 3 );
+		}
 
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_profile_elementor_content' );
 		$this->loader->add_action('template_redirect', $plugin_admin, 'user_pkit_profile_redirections');

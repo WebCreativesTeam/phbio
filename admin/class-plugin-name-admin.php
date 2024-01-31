@@ -230,7 +230,11 @@ class Plugin_Name_Admin {
 		
 	}
 	
-
+	public function search_for_subscriptions($user_id, $role, $old_roles) {
+		error_log($user_id);
+		error_log($role);
+		error_log(print_r($old_roles, true));
+	}
 	
 	public function role_change($user_id, $role, $old_roles) {
         
