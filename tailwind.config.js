@@ -14,6 +14,8 @@ module.exports = {
     "./src/admin/vendors/wpdataTables.js",
   ],
   safelist: [
+    "acf-icon",
+    "acf-oembed",
     "acf-tab-group",
     "acf-fields",
     "acf-tab-wrap",

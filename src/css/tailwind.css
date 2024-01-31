@@ -750,7 +750,7 @@ form {
   /* PKit Active Tab */
   .acf-tab-group li.active a {
     background-color: #f1441e !important;
-    color: #fff;
+    color: #fff !important;
   }
 
   /* PKit Input Area Border */
@@ -767,5 +767,41 @@ form {
   /* PKit Tabs Background */
   .acf-fields > .acf-tab-wrap {
     background: #ffffff !important;
+  }
+
+  /* PKit Hide Pencil Icon for Images */
+  a.acf-icon.-pencil.dark {
+    display: none;
+  }
+
+  /* PKit Label Styling */
+  .acf-field .acf-label label {
+    font-weight: 600 !important;
+  }
+
+  @media only screen and (max-width: 767px) {
+    .acf-oembed {
+      font-size: 14px;
+    }
+  }
+  /* PKit Embed Styling */
+  .acf-oembed {
+    width: 60% !important;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 10px 12px 22px 1px rgba(0, 0, 0, 0.12);
+  }
+  @media only screen and (max-width: 1024px) {
+    .acf-oembed {
+      width: 88% !important;
+    }
+  }
+  @media only screen and (max-width: 767px) {
+    .acf-oembed {
+      width: 80% !important;
+    }
+  }
+  /* PKit Embed Input */
+  .acf-oembed.has-value .input-search {
+    font-weight: 500 !important;
   }
 }
