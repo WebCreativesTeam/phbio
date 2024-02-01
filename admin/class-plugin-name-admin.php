@@ -230,20 +230,14 @@ class Plugin_Name_Admin {
 		
 	}
 	
-	public function ywsbs_no_activated_just_cancelled($data) {
-		error_log("Activated");
-		error_log(print_r($data, true));
-	}
-	public function ywsbs_customer_subscription_expired_mail($data) {
-		Plugin_Name_Utilities::downgrade_users_from_pro($data);
-	}
-	public function ywsbs_customer_subscription_suspended_mail($data) {
-		error_log("Suspended");
-		Plugin_Name_Utilities::downgrade_users_from_pro($data);
-	}
-	public function ywsbs_customer_subscription_cancelled_mail( $data) {
-		error_log("Cancelled");
-		Plugin_Name_Utilities::downgrade_users_from_pro($data);
+	
+
+	function wpdocs_check_user_email_updated( $user_id, $old_user_data ) {
+		error_log("Role changed");
+		error_log(print_r($old_user_data, true));
+		$user = get_userdata( $user_id );
+		error_log(print_r($user, true));
+		
 	}
 	
 	public function role_change($user_id, $role, $old_roles) {
