@@ -231,17 +231,7 @@ class Plugin_Name_Admin {
 	}
 	
 	
-
-	function wpdocs_check_user_email_updated( $user_id, $old_user_data ) {
-		error_log("Role changed");
-		error_log(print_r($old_user_data, true));
-		$user = get_userdata( $user_id );
-		error_log(print_r($user, true));
-		
-	}
-	
 	public function role_change($user_id, $role, $old_roles) {
-        error_log("Hey it");
 
 		if (in_array('um_pro-member', $old_roles ) && $role == 'um_free-member') {
 
@@ -305,7 +295,6 @@ class Plugin_Name_Admin {
 				delete_user_meta($user_id, '_backup_date');
 			}
 		}
-
 		
 	}
 
