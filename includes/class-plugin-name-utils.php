@@ -76,34 +76,62 @@ class Plugin_Name_Utilities {
         return max(0, floor($remaining_days)) . " days"; // ensure we don't get negative numbers
     }
     
-    public static function downgrade_users_from_pro($data) {
-        if (isset($data->post) && $data->post instanceof WP_Post) {
-            $post_author_id = $data->post->post_author; // Get the post author ID
+    public static function downgrade_users_from_pro($user_id) {
+        // Fallback default templates - lib
+        $default = get_user_meta(1, 'default_template', true);	
+        update_user_meta( $user_id, 'selected_template', $default );
         
-            // Get the user by ID
-            $user = get_user_by('id', $post_author_id);
-            
-            if ($user) {
-                $user->add_role('um_free-member'); // Add 'um_free-member' role to the user
-                $user->remove_role('um_pro-member'); // Remove 'um_pro-member' role from the user
-            }
+        
+        // Fallback default templates - pkit
+        $default_pkit = get_user_meta(1, 'default_pkit_template', true);
+        update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
+        $selectedPkit = get_user_meta( $user_id, 'selected_pkit_template', true );
 
-            error_log('User Role Changed');
-            error_log(print_r(get_user_by('id', $post_author_id), true));
-        }        
-    }
-    public static function upgrade_users_from_free($data) {
-        if (isset($data->post) && $data->post instanceof WP_Post) {
-            $post_author_id = $data->post->post_author; // Get the post author ID
+        // Backup links list
+        $value = get_user_meta($user_id, 'links_list', true);
+        $freeLinksCount = intval(get_user_meta(1, 'limit_links_lite', true));
+        update_user_meta($user_id, '_backup_meta_field', $value);
+        update_user_meta($user_id, '_backup_date', current_time('mysql'));
+
+        $decodedString = urldecode($value);
+        $linksArray = json_decode($decodedString, true);
         
-            // Get the user by ID
-            $user = get_user_by('id', $post_author_id);
-            
-            if ($user) {
-                $user->add_role('um_pro-member'); // Add 'um_free-member' role to the user
-                $user->remove_role('um_free-member'); // Remove 'um_pro-member' role from the user
+        // Take only the first freeLinksCount entries of linksArray
+        $allowedLinks = array_slice($linksArray, 0, $freeLinksCount);
+
+        // Iterate over the array and update elements where isScheduled is true
+        foreach ($allowedLinks as &$link) {
+            if (isset($link['isScheduled']) && $link['isScheduled'] === true) {
+                $link['isScheduled'] = false;
+                $link['isEndScheduled'] = false;
+                $link['start_time'] = null;
+                $link['end_time'] = null;
+                $link['isHidden'] = true;
             }
-        }        
+        }
+        unset($link); // Break the reference with the last element
+
+
+
+        // Re-encode the updated array and save it back to the user meta
+        $updatedValue = json_encode($allowedLinks);
+        $encodedValue = urlencode($updatedValue);
+        
+        // One language for pkit
+        $pkit_langs = get_user_meta($user_id, 'pkit_lang', true);
+        $parts = explode(",", $pkit_langs);
+        $firstLang = $parts[0];
+        
+        update_user_meta($user_id, 'links_list', $encodedValue);
+        update_user_meta( $user_id, 'pkit_lang', $firstLang );
+    }
+    public static function upgrade_users_from_free($user_id) {
+        $backup_value = get_user_meta($user_id, '_backup_meta_field', true);
+        if ($backup_value) {
+            update_user_meta($user_id, 'links_list', $backup_value);
+            delete_user_meta($user_id, '_backup_meta_field');
+            delete_user_meta($user_id, '_backup_date');
+        }
     }
 
     public static function get_user_langs() {

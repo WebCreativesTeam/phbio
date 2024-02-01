@@ -230,94 +230,26 @@ class Plugin_Name_Admin {
 		
 	}
 	
-	// public function ywsbs_no_activated_just_cancelled($data) {
-	// 	error_log("Activated");
-	// 	error_log(print_r($data, true));
-	// }
-	// public function ywsbs_customer_subscription_expired_mail($data) {
-	// 	Plugin_Name_Utilities::downgrade_users_from_pro($data);
-	// }
-	public function ywsbs_customer_subscription_suspended_mail($data) {
-		error_log("Suspended");
-		Plugin_Name_Utilities::downgrade_users_from_pro($data);
-	}
-	// public function ywsbs_customer_subscription_cancelled_mail( $data) {
-	// 	error_log("Cancelled");
-	// 	Plugin_Name_Utilities::downgrade_users_from_pro($data);
-	// }
+	
 
 	public function add_user_role($user_id, $role) {
-		error_log("Role added");
-		error_log($role);
+		if($role == 'um_pro-member') {
+			Plugin_Name_Utilities::upgrade_users_from_free($user_id);
+		}
 	}
 	public function remove_user_role($user_id, $role) {
-		error_log("Role Removed");
-		error_log($role);
+		if($role == 'um_pro-member') {
+			Plugin_Name_Utilities::downgrade_users_from_pro($user_id);
+		}
 	}
 	
 	public function role_change($user_id, $role, $old_roles) {
-        error_log("Role change callback");
 		if (in_array('um_pro-member', $old_roles ) && $role == 'um_free-member') {
-
-			// Fallback default templates - lib
-			$default = get_user_meta(1, 'default_template', true);	
-			update_user_meta( $user_id, 'selected_template', $default );
-			
-			
-			// Fallback default templates - pkit
-			$default_pkit = get_user_meta(1, 'default_pkit_template', true);
-			update_user_meta( $user_id, 'selected_pkit_template', $default_pkit );
-			$selectedPkit = get_user_meta( $user_id, 'selected_pkit_template', true );
-
-			// Backup links list
-			$value = get_user_meta($user_id, 'links_list', true);
-			$freeLinksCount = intval(get_user_meta(1, 'limit_links_lite', true));
-			update_user_meta($user_id, '_backup_meta_field', $value);
-			update_user_meta($user_id, '_backup_date', current_time('mysql'));
-
-			$decodedString = urldecode($value);
-			$linksArray = json_decode($decodedString, true);
-           
-			// Take only the first freeLinksCount entries of linksArray
-			$allowedLinks = array_slice($linksArray, 0, $freeLinksCount);
-
-			// Iterate over the array and update elements where isScheduled is true
-			foreach ($allowedLinks as &$link) {
-				if (isset($link['isScheduled']) && $link['isScheduled'] === true) {
-					$link['isScheduled'] = false;
-					$link['isEndScheduled'] = false;
-					$link['start_time'] = null;
-					$link['end_time'] = null;
-					$link['isHidden'] = true;
-				}
-			}
-			unset($link); // Break the reference with the last element
-
-
-
-			// Re-encode the updated array and save it back to the user meta
-			$updatedValue = json_encode($allowedLinks);
-			$encodedValue = urlencode($updatedValue);
-			
-			// One language for pkit
-			$pkit_langs = get_user_meta($user_id, 'pkit_lang', true);
-			$parts = explode(",", $pkit_langs);
-			$firstLang = $parts[0];
-			
-			update_user_meta($user_id, 'links_list', $encodedValue);
-			update_user_meta( $user_id, 'pkit_lang', $firstLang );
-
-			
+			Plugin_Name_Utilities::downgrade_users_from_pro($user_id);
 		}
 
 		if (in_array('um_free-member', $old_roles ) && $role == 'um_pro-member') {
-
-			$backup_value = get_user_meta($user_id, '_backup_meta_field', true);
-			if ($backup_value) {
-				update_user_meta($user_id, 'links_list', $backup_value);
-				delete_user_meta($user_id, '_backup_meta_field');
-				delete_user_meta($user_id, '_backup_date');
-			}
+			Plugin_Name_Utilities::upgrade_users_from_free($user_id);
 		}
 
 		
