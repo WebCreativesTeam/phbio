@@ -87,6 +87,9 @@ class Plugin_Name_Utilities {
                 $user->add_role('um_free-member'); // Add 'um_free-member' role to the user
                 $user->remove_role('um_pro-member'); // Remove 'um_pro-member' role from the user
             }
+
+            error_log('User Role Changed');
+            error_log(print_r(get_user_by('id', $post_author_id)));
         }        
     }
     public static function upgrade_users_from_free($data) {
