@@ -76,6 +76,32 @@ class Plugin_Name_Utilities {
         return max(0, floor($remaining_days)) . " days"; // ensure we don't get negative numbers
     }
     
+    public static function downgrade_users_from_pro($data) {
+        if (isset($data->post) && $data->post instanceof WP_Post) {
+            $post_author_id = $data->post->post_author; // Get the post author ID
+        
+            // Get the user by ID
+            $user = get_user_by('id', $post_author_id);
+            
+            if ($user) {
+                $user->add_role('um_free-member'); // Add 'um_free-member' role to the user
+                $user->remove_role('um_pro-member'); // Remove 'um_pro-member' role from the user
+            }
+        }        
+    }
+    public static function upgrade_users_from_free($data) {
+        if (isset($data->post) && $data->post instanceof WP_Post) {
+            $post_author_id = $data->post->post_author; // Get the post author ID
+        
+            // Get the user by ID
+            $user = get_user_by('id', $post_author_id);
+            
+            if ($user) {
+                $user->add_role('um_pro-member'); // Add 'um_free-member' role to the user
+                $user->remove_role('um_free-member'); // Remove 'um_pro-member' role from the user
+            }
+        }        
+    }
 
     public static function get_user_langs() {
         // Get the current user ID

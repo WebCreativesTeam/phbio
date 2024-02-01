@@ -230,25 +230,24 @@ class Plugin_Name_Admin {
 		
 	}
 	
-	public function ywsbs_no_activated_just_cancelled( $data) {
+	public function ywsbs_no_activated_just_cancelled($data) {
 		error_log("Activated");
 		error_log(print_r($data, true));
 	}
-	public function ywsbs_customer_subscription_expired_mail( $data) {
-		error_log("Expired");
-		error_log(print_r($data, true));
+	public function ywsbs_customer_subscription_expired_mail($data) {
+		Plugin_Name_Utilities::downgrade_users_from_pro($data);
 	}
-	public function ywsbs_customer_subscription_suspended_mail( $data) {
+	public function ywsbs_customer_subscription_suspended_mail($data) {
 		error_log("Suspended");
-		error_log(print_r($data, true));
+		Plugin_Name_Utilities::downgrade_users_from_pro($data);
 	}
 	public function ywsbs_customer_subscription_cancelled_mail( $data) {
 		error_log("Cancelled");
-		error_log(print_r($data, true));
+		Plugin_Name_Utilities::downgrade_users_from_pro($data);
 	}
 	
 	public function role_change($user_id, $role, $old_roles) {
-        
+        error_log("Hey it");
 
 		if (in_array('um_pro-member', $old_roles ) && $role == 'um_free-member') {
 
