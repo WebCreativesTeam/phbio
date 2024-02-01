@@ -194,7 +194,7 @@ class Plugin_Name {
 		$this->loader->add_action( 'set_user_role', $plugin_admin, 'role_change', 10, 3 );
 
 		$this->loader->add_action( 'ywsbs_no_activated_just_cancelled', $plugin_admin, 'ywsbs_no_activated_just_cancelled', 10, 1 );
-		// $this->loader->add_action( 'ywsbs_customer_subscription_cancelled_mail', $plugin_admin, 'ywsbs_customer_subscription_cancelled_mail', 10, 1 );
+		$this->loader->add_action( 'ywsbs_customer_subscription_cancelled_mail', $plugin_admin, 'ywsbs_customer_subscription_cancelled_mail', 10, 1 );
 		$this->loader->add_action( 'ywsbs_customer_subscription_suspended_mail', $plugin_admin, 'ywsbs_customer_subscription_suspended_mail', 10, 1 );
 		$this->loader->add_action( 'ywsbs_customer_subscription_expired_mail', $plugin_admin, 'ywsbs_customer_subscription_expired_mail', 10, 1 );
 		
