@@ -191,8 +191,9 @@ class Plugin_Name {
 		$this->loader->add_action( 'init', $plugin_admin, 'user_profile_manager' );
 		$this->loader->add_action( 'init', $plugin_admin, 'pkit_template_manager' );
 		$this->loader->add_action( 'init', $plugin_admin, 'user_pkit_manager' );
+		$this->loader->add_action( 'add_user_role', $plugin_admin, 'add_user_role', 10, 2 );
+		$this->loader->add_action( 'remove_user_role', $plugin_admin, 'remove_user_role', 10, 2 );
 		$this->loader->add_action( 'set_user_role', $plugin_admin, 'role_change', 10, 3 );
-		$this->loader->add_action( 'profile_update', $plugin_admin, 'wpdocs_check_user_email_updated', 10, 2 );
 
 		// $this->loader->add_action( 'ywsbs_no_activated_just_cancelled', $plugin_admin, 'ywsbs_no_activated_just_cancelled', 10, 1 );
 		// $this->loader->add_action( 'ywsbs_customer_subscription_cancelled_mail', $plugin_admin, 'ywsbs_customer_subscription_cancelled_mail', 10, 1 );

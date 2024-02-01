@@ -246,7 +246,14 @@ class Plugin_Name_Admin {
 	// 	Plugin_Name_Utilities::downgrade_users_from_pro($data);
 	// }
 
-	
+	public function add_user_role($user_id, $role) {
+		error_log("Role added");
+		error_log($role);
+	}
+	public function remove_user_role($user_id, $role) {
+		error_log("Role Removed");
+		error_log($role);
+	}
 	
 	public function role_change($user_id, $role, $old_roles) {
         error_log("Role change callback");
