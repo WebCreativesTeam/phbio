@@ -230,10 +230,21 @@ class Plugin_Name_Admin {
 		
 	}
 	
-	public function search_for_subscriptions($user_id, $role, $old_roles) {
-		error_log($user_id);
-		error_log($role);
-		error_log(print_r($old_roles, true));
+	public function ywsbs_no_activated_just_cancelled( $data) {
+		error_log("Activated");
+		error_log(print_r($data, true));
+	}
+	public function ywsbs_customer_subscription_expired_mail( $data) {
+		error_log("Expired");
+		error_log(print_r($data, true));
+	}
+	public function ywsbs_customer_subscription_suspended_mail( $data) {
+		error_log("Suspended");
+		error_log(print_r($data, true));
+	}
+	public function ywsbs_customer_subscription_cancelled_mail( $data) {
+		error_log("Cancelled");
+		error_log(print_r($data, true));
 	}
 	
 	public function role_change($user_id, $role, $old_roles) {
