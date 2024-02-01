@@ -89,7 +89,7 @@ class Plugin_Name_Utilities {
             }
 
             error_log('User Role Changed');
-            error_log(print_r(get_user_by('id', $post_author_id)));
+            error_log(print_r(get_user_by('id', $post_author_id), true));
         }        
     }
     public static function upgrade_users_from_free($data) {
