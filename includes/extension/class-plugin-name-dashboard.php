@@ -159,7 +159,9 @@ class Press_Kit_Dashboard {
 	<?php
 	}
     public function top_actions() { ?>
-
+            <div x-show="(activeTab === 'profile' || activeTab === 'forms') && !showTemplates && !showSettings" class="pb-0 tab-content md:pt-5 md:px-8">
+                Head to our <a href="https://produchertz.com/how-to-tools" target="_blank" rel="nofollow">Help Page</a> to get started!
+            </div>
             <h1 x-text="!editMode ? 'Edit' : 'Preview' " class="page-title"></h1>
     
             <!-- New Flex Container for Buttons and Toggle -->
@@ -708,9 +710,7 @@ public function component__range_picker() { ?>
     <?php }
     
     public function area__edit($user_id) { ?>
-            <div x-show="(activeTab === 'profile' || activeTab === 'forms') && !showTemplates && !showSettings" class="pb-0 tab-content md:pt-5 md:px-8">
-                Head to our <a href="https://produchertz.com/how-to-tools" target="_blank" rel="nofollow">Help Page</a> to get started!
-            </div>
+            
             <!-- Tab Buttons - STARTS HERE -->
             <div class="tab-headers" x-show="!showTemplates">
                 <button :class="{ 'active-tab': activeTab === 'profile' }" @click="activeTab = 'profile'" class="tab-btn">
