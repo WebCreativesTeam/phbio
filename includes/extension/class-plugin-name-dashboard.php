@@ -536,7 +536,7 @@ public function component__range_picker() { ?>
         
         if (count($langs) > 1) {
         ?>
-        <div class="text-sm text-center md:text-left px-3">
+        <div class="px-3 text-sm text-center md:text-left">
             Select the Press Kit you'd like to preview
         </div>
        
@@ -708,6 +708,9 @@ public function component__range_picker() { ?>
     <?php }
     
     public function area__edit($user_id) { ?>
+            <div x-show="(activeTab === 'profile' || activeTab === 'forms') && !showTemplates && !showSettings" class="pb-0 tab-content md:pt-5 md:px-8">
+                Head to our <a href="https://produchertz.com/how-to-tools" target="_blank" rel="nofollow">Help Page</a> to get started!
+            </div>
             <!-- Tab Buttons - STARTS HERE -->
             <div class="tab-headers" x-show="!showTemplates">
                 <button :class="{ 'active-tab': activeTab === 'profile' }" @click="activeTab = 'profile'" class="tab-btn">

@@ -586,6 +586,10 @@ class Plugin_Name_Dashboard {
     <?php }
     
     public function area__edit($user_id) { ?>
+
+            <div x-show="(activeTab === 'profile' || activeTab === 'links') && !showTemplates && !showSettings" class="pb-0 tab-content md:pt-5 md:px-8">
+                Head to our <a href="https://produchertz.com/how-to-tools" target="_blank" rel="nofollow">Help Page</a> to get started!
+            </div>
             <!-- Tab Buttons - STARTS HERE -->
             <div class="tab-headers" x-show="!showTemplates">
                 <button :class="{ 'active-tab': activeTab === 'profile' }" @click="activeTab = 'profile'" class="tab-btn">
@@ -604,6 +608,7 @@ class Plugin_Name_Dashboard {
             <!-- Tab Buttons - ENDS HERE -->
             <!-- Tabs Content - STARTS HERE -->
                 <!-- Profile Tab Content - STARTS HERE -->
+
                 <div x-show="activeTab === 'profile' && !showTemplates && !showSettings" class="pb-0 tab-content md:pt-5 md:px-8">
                     <?php self::edit__profile_tab($user_id); ?>
                 </div>
