@@ -324,7 +324,75 @@ class Elementor_Block_Loader_Widget extends \Elementor\Widget_Base {
             ]
         );
 
-        // Finish Style Section
+        $this->add_control(
+            'label_width',
+            [
+                'label' => esc_html__( 'Label Width', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::SLIDER,
+                'size_units' => ['%', 'px', 'em'],
+                'range' => [
+                    '%' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                    'px' => [
+                        'min' => 0,
+                        'max' => 1000,
+                    ],
+                    'em' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_block label' => 'width: {{SIZE}}{{UNIT}};',
+                ],
+            ]
+        );
+        
+        $this->add_control(
+            'label_background_color',
+            [
+                'label' => esc_html__( 'Label Background Color', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_block label' => 'background-color: {{VALUE}};',
+                ],
+            ]
+        );
+        
+        $this->add_group_control(
+            \Elementor\Group_Control_Border::get_type(),
+            [
+                'name' => 'label_border',
+                'label' => esc_html__( 'Label Border', 'elementor-block-loader-widget' ),
+                'selector' => '{{WRAPPER}} .pkit_block label',
+            ]
+        );
+        
+        $this->add_control(
+            'label_padding',
+            [
+                'label' => esc_html__( 'Label Padding', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', 'em', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_block label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
+        
+        $this->add_control(
+            'label_border_radius',
+            [
+                'label' => esc_html__( 'Label Border Radius', 'elementor-block-loader-widget' ),
+                'type' => \Elementor\Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%'],
+                'selectors' => [
+                    '{{WRAPPER}} .pkit_block label' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
         $this->end_controls_section();
 
     }
