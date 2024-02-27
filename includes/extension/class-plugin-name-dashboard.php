@@ -110,7 +110,7 @@ class Press_Kit_Dashboard {
     }"
      class="relative main-area"> <!-- Added relative positioning here -->
 
-    <div x-show="(activeTab === 'profile' || activeTab === 'forms') && !showTemplates && !showSettings" class="pb-4 -mt-10 tab-content md:pt-5 md:px-8">
+    <div x-show="(activeTab === 'profile' || activeTab === 'forms') && !showTemplates && !showSettings" class="pb-6 -mt-12 tab-content md:pt-5 md:px-8">
         Head to our <a href="https://produchertz.com/how-to-tools" class="text-[#F1441E] font-bold" target="_blank" rel="nofollow">Help Page</a> to get started!
     </div>
     <!--Top Actions - STARTS HERE -->
