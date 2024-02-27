@@ -86,7 +86,9 @@ class Plugin_Name_Dashboard {
         include_once plugin_dir_path(__FILE__) . 'class-plugin-name-header.php';
 		?>
 <div class="dashboard-layout" data-user-id="<?php echo $user_id; ?>" data-user-timezone="<?php echo $userTimezone['timezone']; ?>">
-
+<div x-show="(activeTab === 'profile' || activeTab === 'links') && !showTemplates && !showSettings" class="pb-0 tab-content md:pt-5 md:px-8">
+        Head to our <a href="https://produchertz.com/how-to-tools" clas="text-[#F1441E] font-bold" target="_blank" rel="nofollow">Help Page</a> to get started!
+</div>
 <div x-data="dashboard" 
         x-init="() => { 
         let storedState = localStorage.getItem('alpineState');
@@ -108,9 +110,7 @@ class Plugin_Name_Dashboard {
     }"
      class="relative main-area"> <!-- Added relative positioning here -->
 
-    <div x-show="(activeTab === 'profile' || activeTab === 'links') && !showTemplates && !showSettings" class="pb-0 tab-content md:pt-5 md:px-8">
-        Head to our <a href="https://produchertz.com/how-to-tools" clas="text-[#F1441E] font-bold" target="_blank" rel="nofollow">Help Page</a> to get started!
-    </div>
+    
     <!--Top Actions - STARTS HERE -->
     <div class="actions-area" x-show="!showTemplates">
         <?php self::top_actions(); ?>
