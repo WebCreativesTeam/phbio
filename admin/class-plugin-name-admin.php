@@ -244,16 +244,16 @@ class Plugin_Name_Admin {
 	}
 	public function on_cancelled($data) {
 		$user_id = $data->post->post_author;
+		error_log("Cancelled Subscription");
+		error_log($user_id);
         update_user_meta( $user_id, 'borahh_user_notice_for_suspended',  true);
-		error_log("Cancelled");
-        error_log(print_r($data, true));
 	}
 	
 	public function on_suspended($data) {
 		$user_id = $data->post->post_author;
+		error_log("Suspended Subscription");
+		error_log($user_id);
         update_user_meta( $user_id, 'borahh_user_notice_for_suspended',  true);
-		error_log("Suspended");
-		error_log(print_r($data, true));
 	}
 	
 	public function role_change($user_id, $role, $old_roles) {
