@@ -242,6 +242,14 @@ class Plugin_Name_Admin {
 			Plugin_Name_Utilities::downgrade_users_from_pro($user_id);
 		}
 	}
+	public function on_cancelled($data) {
+		error_log("Cancelled");
+        error_log(print_r($data));
+	}
+	public function on_suspended($data) {
+		error_log("Suspended");
+		error_log(print_r($data));
+	}
 	
 	public function role_change($user_id, $role, $old_roles) {
 		if (in_array('um_pro-member', $old_roles ) && $role == 'um_free-member') {

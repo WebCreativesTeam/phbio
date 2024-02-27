@@ -194,6 +194,11 @@ class Plugin_Name {
 		$this->loader->add_action( 'add_user_role', $plugin_admin, 'add_user_role', 10, 2 );
 		$this->loader->add_action( 'remove_user_role', $plugin_admin, 'remove_user_role', 10, 2 );
 		$this->loader->add_action( 'set_user_role', $plugin_admin, 'role_change', 10, 3 );
+		$this->loader->add_action( 'ywsbs_customer_subscription_suspended_mail', $plugin_admin, 'on_suspended', 10, 1 );
+		$this->loader->add_action( 'ywsbs_customer_subscription_cancelled_mail', $plugin_admin, 'on_cancelled', 10, 1 );
+
+		
+
 
 		$this->loader->add_action( 'the_content', $plugin_admin, 'render_user_profile_elementor_content' );
 		$this->loader->add_action('template_redirect', $plugin_admin, 'user_pkit_profile_redirections');
