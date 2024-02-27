@@ -139,6 +139,15 @@ class Plugin_Name_Utilities {
         return $suspended;
     }
 
+    public static function is_user_suspended_analytics_error_text($user_id) {
+        $suspended = get_user_meta($user_id, 'borahh_user_notice_for_suspended', true);
+        if($suspended) {
+            return 'Unlock More';
+        } else {
+            return 'Renew Now';
+        }
+    }
+
     public static function get_user_langs() {
         // Get the current user ID
         $current_user_id = get_current_user_id();
