@@ -243,14 +243,14 @@ class Plugin_Name_Admin {
 		}
 	}
 	public function on_cancelled($data) {
-		$user_id = $data['post']->post_author;
+		$user_id = $data->post->post_author;
         update_user_meta( $user_id, 'borahh_user_notice_for_suspended',  true);
 		error_log("Cancelled");
         error_log(print_r($data, true));
 	}
 	
 	public function on_suspended($data) {
-		$user_id = $data['post']->post_author;
+		$user_id = $data->post->post_author;
         update_user_meta( $user_id, 'borahh_user_notice_for_suspended',  true);
 		error_log("Suspended");
 		error_log(print_r($data, true));
