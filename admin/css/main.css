@@ -2875,6 +2875,10 @@ form {
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
     }
+    .md\:px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
     .md\:pt-0 {
         padding-top: 0px;
     }
