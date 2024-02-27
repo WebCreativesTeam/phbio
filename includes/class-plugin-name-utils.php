@@ -139,12 +139,12 @@ class Plugin_Name_Utilities {
         return $suspended;
     }
 
-    public static function is_user_suspended_analytics_error_text($user_id) {
+    public static function is_user_suspended_analytics($user_id) {
         $suspended = get_user_meta($user_id, 'borahh_user_notice_for_suspended', true);
         if($suspended) {
-            return 'Renew Now';
+            return "<div><a class='py-2 unlock-more' href='/my-account/subscription' target='_blank' rel='nofollow'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Renew Now</a></div>";
         } else {
-            return 'Unlock More';
+            return "<div><a class='py-2 unlock-more' href='/upgrade' target='_blank'><svg xmlns='http://www.w3.org/2000/svg' height='1em' viewBox='0 0 448 512' fill='currentColor'><path d='M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z'></path></svg>Unlock More</a></div>";
         }
     }
 
