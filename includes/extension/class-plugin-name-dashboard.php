@@ -3,9 +3,9 @@
 
 class Press_Kit_Dashboard {
     const ERROR_HIDE_LOGO= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock the 'Hide Website Logo' feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
-    const ERROR_HIDE_LOGO_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank' rel='nofollow'>Unlock the 'Hide Website Logo' feature instantly. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
+    const ERROR_HIDE_LOGO_RENEW= "<a href='/my-account/subscription' class='text-gray-700 no-underline font-semi-bold' target='_blank' rel='nofollow'>Unlock the 'Hide Website Logo' feature instantly. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
     const ERROR_TEMPLATE_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock premium templates instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
-    const ERROR_TEMPLATE_MSG_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank' rel='nofollow'>Unlock premium templates instantly. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
+    const ERROR_TEMPLATE_MSG_RENEW= "<a href='/my-account/subscription' class='text-gray-700 no-underline font-semi-bold' target='_blank' rel='nofollow'>Unlock premium templates instantly. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
 
     public static function get_error_logo($user_id) {
         if (Plugin_Name_Utilities::is_user_suspended_notice($user_id)) {

@@ -4,7 +4,7 @@
 class Press_Kit_Builder {
 
     const ERROR_LANG_PRO= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock an additional language instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
-    const ERROR_LANG_PRO_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank' rel='nofollow'>Unlock an additional language instantly. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
+    const ERROR_LANG_PRO_RENEW= "<a href='/my-account/subscription' class='text-gray-700 no-underline font-semi-bold' target='_blank' rel='nofollow'>Unlock an additional language instantly. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
 
     public static function get_error_lang($user_id) {
         if (Plugin_Name_Utilities::is_user_suspended_notice($user_id)) {
