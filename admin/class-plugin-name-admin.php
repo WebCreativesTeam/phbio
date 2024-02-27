@@ -246,7 +246,7 @@ class Plugin_Name_Admin {
 		$user_id = $data->post->post_author;
 		error_log("Cancelled Subscription");
 		error_log($user_id);
-        update_user_meta( $user_id, 'borahh_user_notice_for_suspended',  true);
+        update_user_meta( $user_id, 'borahh_user_notice_for_suspended',  false);
 	}
 	
 	public function on_suspended($data) {
