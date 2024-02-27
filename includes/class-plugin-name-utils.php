@@ -142,9 +142,9 @@ class Plugin_Name_Utilities {
     public static function is_user_suspended_analytics_error_text($user_id) {
         $suspended = get_user_meta($user_id, 'borahh_user_notice_for_suspended', true);
         if($suspended) {
-            return 'Unlock More';
-        } else {
             return 'Renew Now';
+        } else {
+            return 'Unlock More';
         }
     }
 
