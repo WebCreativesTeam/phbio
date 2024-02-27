@@ -3,10 +3,35 @@
 class Plugin_Name_Builder {
     
     const ERROR_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock this feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
+    const ERROR_MSG_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock this feature instantly. <span class='text-[#F1441E] font-bold'>Renew now</span>.</a>";
     const ERROR_MAX_LINK_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>You have hit the link limit. <span class='text-[#F1441E] font-bold'>Upgrade Now</span>.</a>";
+    const ERROR_MAX_LINK_MSG_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>You have hit the link limit. <span class='text-[#F1441E] font-bold'>Renew now</span>.</a>";
     const ERROR_LINK_SCHEDULING= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Go PRO now</span>!</a>";
+    const ERROR_LINK_SCHEDULING_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
     
-    
+    public static function get_error_message($user_id) {
+        if (Plugin_Name_Utilities::is_user_suspended_notice($user_id)) {
+            return self::ERROR_MSG_RENEW;
+        } else {
+            return self::ERROR_MSG;
+        }
+    }
+
+    public static function get_max_link_limit_message($user_id) {
+        if (Plugin_Name_Utilities::is_user_suspended_notice($user_id)) {
+            return self::ERROR_MAX_LINK_MSG_RENEW;
+        } else {
+            return self::ERROR_MAX_LINK_MSG;
+        }
+    }
+
+    public static function get_link_schedule_message($user_id) {
+        if (Plugin_Name_Utilities::is_user_suspended_notice($user_id)) {
+            return self::ERROR_LINK_SCHEDULING_RENEW;
+        } else {
+            return self::ERROR_LINK_SCHEDULING;
+        }
+    }
 
     public static function text_field($name, $value, $isValue, $label, $icon, $capability, $target_user_id, $hasLimit = true, $templateIncluded = true) {
         $data = Plugin_Name_Utilities::handle_user_meta($name, $capability, $target_user_id);
@@ -44,7 +69,7 @@ class Plugin_Name_Builder {
             // Display the field
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
                 echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' disabled />';
-                echo '<p class="description">' . self::ERROR_MSG . '</p>';
+                echo '<p class="description">' . self::get_error_message($target_user_id) . '</p>';
             } else {
                 echo '<input type="text" name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' x-on:input="charCount = $event.target.value.length" />';
             }
@@ -152,7 +177,7 @@ class Plugin_Name_Builder {
                 // Display the field
                 if (!Plugin_Name_Utilities::check_user_capability($capability)) {
                     echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="onInput" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" disabled />';
-                    echo '<p class="description">' . self::ERROR_MSG . '</p>';
+                    echo '<p class="description">' . self::get_error_message($target_user_id) . '</p>';
                 } else {
                     echo '<input type="text" name="' . esc_attr($name . '_visible') . '" id="' . esc_attr($name) . '" x-model="username" x-on:input="onInput" value="' . esc_attr($data) . '" class="input-field" placeholder="' . esc_attr($data) . '"' . ($hasLimit ? ' maxlength="' . esc_attr($char_limit) . '"' : '') . ' :disabled="isLoading" />';
                 }
@@ -209,7 +234,7 @@ class Plugin_Name_Builder {
     
         if (!Plugin_Name_Utilities::check_user_capability($capability)) {
             echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="textarea-field" rows="4" disabled style="resize: none !important;">' . esc_textarea($data) . '</textarea>';
-            echo '<p class="description">' . self::ERROR_MSG . '</p>';
+            echo '<p class="description">' . self::get_error_message($target_user_id) . '</p>';
         } else {
             echo '<textarea name="' . esc_attr($name) . '" id="' . esc_attr($name) . '" class="textarea-field" rows="4" ' . ($char_limit ? 'x-bind:maxlength="' . esc_attr($char_limit) . '" x-on:input="charCount = $event.target.value.length"' : '') . ' style="resize: none !important;">' . esc_textarea($data) . '</textarea>';
             if ($hasLimit && $char_limit) {
@@ -317,7 +342,7 @@ class Plugin_Name_Builder {
             ob_start();
             
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-                echo '<p class="description">' . self::ERROR_MSG . '</p>';
+                echo '<p class="description">' . self::get_error_message($target_user_id) . '</p>';
             } else {
                 ?>
 
@@ -488,7 +513,7 @@ class Plugin_Name_Builder {
             
             // Check capability
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-                echo '<p class="description">' . self::ERROR_MSG . '</p>';
+                echo '<p class="description">' . self::get_error_message($target_user_id) . '</p>';
             } else {
                 ?>
                 <main x-data="dataList({initLinks: <?php echo $links_json; ?>, initMax: <?php echo $links_limit; ?>})" x-init="applyScheduling()">
@@ -538,7 +563,7 @@ class Plugin_Name_Builder {
 
                             <?php 
                             if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK)) {
-                                echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path></svg><span>' . self::ERROR_LINK_SCHEDULING . '</span></div>';
+                                echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="warning-icon" width="24" height="24" viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path></svg><span>' . self::get_link_schedule_message($target_user_id) . '</span></div>';
 
                             } else { ?>
                             
@@ -583,7 +608,7 @@ class Plugin_Name_Builder {
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 warning-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12,2A10,10,0,1,0,22,12,10.01114,10.01114,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8.00917,8.00917,0,0,1,12,20Zm0-8.5a1,1,0,0,0-1,1v3a1,1,0,0,0,2,0v-3A1,1,0,0,0,12,11.5Zm0-4a1.25,1.25,0,1,0,1.25,1.25A1.25,1.25,0,0,0,12,7.5Z"></path>
                         </svg>
-                        <span><?php echo self::ERROR_MAX_LINK_MSG; ?></span> 
+                        <span><?php echo self::get_max_link_limit_message($target_user_id); ?></span> 
                     </div>
         
                     <!-- Existing links display -->
@@ -715,7 +740,7 @@ class Plugin_Name_Builder {
 
                                         <?php 
                                         if (!Plugin_Name_Utilities::check_user_capability(Plugin_Name_Capabilities::CAN_SCHEDULE_LINK)) {
-                                            echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 warning-icon" viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path></svg><span>' . self::ERROR_LINK_SCHEDULING . '</span></div>';
+                                            echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 warning-icon" viewBox="0 0 448 512" fill="currentColor"><path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path></svg><span>' . self::get_link_schedule_message($target_user_id) . '</span></div>';
 
                                         } else { ?>
                                          <div class="mt-5 mb-7 text-[15px]">
@@ -801,7 +826,7 @@ class Plugin_Name_Builder {
             
             // Check capability
             if (!Plugin_Name_Utilities::check_user_capability($capability)) {
-                echo '<p class="description">' . self::ERROR_MSG . '</p>';
+                echo '<p class="description">' . self::get_error_message($target_user_id) . '</p>';
             } else {
                 ?>
              <main x-data="socialLinks({initLinks: <?php echo $links_json; ?>})">
@@ -832,7 +857,7 @@ class Plugin_Name_Builder {
         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 warning-icon" viewBox="0 0 448 512" fill="currentColor">
             <path d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm320-196c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM192 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-40zM64 268c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zm0 128c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H76c-6.6 0-12-5.4-12-12v-40zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"></path>
         </svg>
-        <span><?php echo self::ERROR_MAX_LINK_MSG; ?></span> 
+        <span><?php echo self::get_max_link_limit_message($target_user_id); ?></span> 
     </div>
 
 
@@ -908,7 +933,7 @@ class Plugin_Name_Builder {
         $image_url = Plugin_Name_Utilities::handle_user_meta($name, Plugin_Name_Capabilities::EDIT_PROFILE_PICTURE,  $target_user_id);
         
         if(!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 warning-icon" viewBox="0 0 576 512" fill="#f1441e"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/> </svg><span>' . self::ERROR_MSG . '</span></div>';
+            echo '<div class="warning-message"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 warning-icon" viewBox="0 0 576 512" fill="#f1441e"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/> </svg><span>' . self::get_error_message($target_user_id) . '</span></div>';
 
         }
         
@@ -1014,7 +1039,7 @@ class Plugin_Name_Builder {
         $image_urls = $image_urls ? json_decode($image_urls, true) : array();
     
         if(!Plugin_Name_Utilities::check_user_capability($capability)) {
-            echo '<div class="warning-message"><span>' . self::ERROR_MSG . '</span></div>';
+            echo '<div class="warning-message"><span>' . self::get_error_message($target_user_id) . '</span></div>';
             return;
         }
         ?>

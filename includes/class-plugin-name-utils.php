@@ -133,6 +133,11 @@ class Plugin_Name_Utilities {
             delete_user_meta($user_id, '_backup_date');
         }
     }
+    
+    public static function is_user_suspended_notice($user_id) {
+        $suspended = get_user_meta($user_id, 'borahh_user_notice_for_suspended', true);
+        return $suspended;
+    }
 
     public static function get_user_langs() {
         // Get the current user ID
