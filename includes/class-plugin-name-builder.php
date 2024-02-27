@@ -3,11 +3,11 @@
 class Plugin_Name_Builder {
     
     const ERROR_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock this feature instantly by <span class='text-[#F1441E] font-bold'>Going PRO</span>.</a>";
-    const ERROR_MSG_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock this feature instantly. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
+    const ERROR_MSG_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank' rel='nofollow'>Unlock this feature instantly. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
     const ERROR_MAX_LINK_MSG= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>You have hit the link limit. <span class='text-[#F1441E] font-bold'>Upgrade Now</span>.</a>";
-    const ERROR_MAX_LINK_MSG_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>You have hit the link limit. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
+    const ERROR_MAX_LINK_MSG_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank' rel='nofollow'>You have hit the link limit. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
     const ERROR_LINK_SCHEDULING= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Go PRO now</span>!</a>";
-    const ERROR_LINK_SCHEDULING_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
+    const ERROR_LINK_SCHEDULING_RENEW= "<a href='/upgrade' class='text-gray-700 no-underline font-semi-bold' target='_blank' rel='nofollow'>Unlock links scheduling option. <span class='text-[#F1441E] font-bold'>Renew now</span>!</a>";
     
     public static function get_error_message($user_id) {
         if (Plugin_Name_Utilities::is_user_suspended_notice($user_id)) {
